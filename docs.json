@@ -103,5 +103,16 @@
       "instagram": "https://instagram.com/thedriveai",
       "reddit": "https://reddit.com/r/thedriveai"
     }
+  },
+  "seo": {
+    "metatags": {
+      "og:site_name": "The Drive AI Docs",
+      "og:type": "website",
+      "og:image": "https://thedrive.ai/cover.png",
+      "og:locale": "en_US",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@thedriveai",
+      "twitter:image": "https://thedrive.ai/cover.png"
+    }
   }
 }
