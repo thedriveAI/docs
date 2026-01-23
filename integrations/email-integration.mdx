@@ -1,0 +1,244 @@
+---
+title: "Email Integration"
+description: "Automatically import and organize email attachments from Gmail and Outlook"
+---
+
+## Overview
+
+The Drive AI integrates with Gmail and Outlook to automatically import email attachments to your workspace. Stop manually downloading and organizing attachments—let The Drive AI handle it automatically.
+
+<Frame>
+  <img src="/images/email-integration.jpg" alt="Email Integration" />
+</Frame>
+
+<Note>
+  Email integration is available on the **Premium plan** only.
+</Note>
+
+## Why Connect Your Email?
+
+Email attachments are one of the biggest sources of document chaos:
+
+- Contracts buried in threads
+- Invoices scattered across months of emails
+- Reports you can never find when you need them
+- Important documents lost in your inbox
+
+With The Drive AI email integration:
+
+- **Attachments are automatically imported** to your workspace
+- **AI organizes them** into logical folders
+- **Find anything instantly** with natural language search
+- **Never lose an important document** again
+
+## Supported Email Providers
+
+| Provider | Status |
+|----------|--------|
+| Gmail | Supported |
+| Outlook | Supported |
+
+## Connecting Gmail
+
+<Steps>
+  <Step title="Navigate to Integrations">
+    Go to **Settings** > **Integrations** > **Email**.
+  </Step>
+  <Step title="Select Gmail">
+    Click **Connect Gmail**.
+  </Step>
+  <Step title="Authorize Access">
+    Sign in to your Google account and grant The Drive AI permission to access your email attachments.
+
+    <Note>
+      The Drive AI only accesses attachments. We do not read your email content or store your messages.
+    </Note>
+  </Step>
+  <Step title="Configure Settings">
+    Choose your import preferences:
+    - Which folders/labels to monitor
+    - Auto-organization settings
+    - Import frequency
+  </Step>
+  <Step title="Start Importing">
+    Click **Enable** to start automatic attachment imports.
+  </Step>
+</Steps>
+
+## Connecting Outlook
+
+<Steps>
+  <Step title="Navigate to Integrations">
+    Go to **Settings** > **Integrations** > **Email**.
+  </Step>
+  <Step title="Select Outlook">
+    Click **Connect Outlook**.
+  </Step>
+  <Step title="Authorize Access">
+    Sign in to your Microsoft account and grant The Drive AI permission to access your email attachments.
+  </Step>
+  <Step title="Configure Settings">
+    Choose your import preferences:
+    - Which folders to monitor
+    - Auto-organization settings
+    - Import frequency
+  </Step>
+  <Step title="Start Importing">
+    Click **Enable** to start automatic attachment imports.
+  </Step>
+</Steps>
+
+## How It Works
+
+### Automatic Import
+
+Once connected, The Drive AI monitors your inbox for new attachments:
+
+1. **New email arrives** with an attachment
+2. **The Drive AI detects** the attachment
+3. **Attachment is imported** to your workspace
+4. **AI organizes** the file into the appropriate folder
+
+All of this happens automatically—you don't need to do anything.
+
+### What Gets Imported
+
+By default, The Drive AI imports common document types:
+
+- **Documents**: PDF, DOCX, DOC, TXT
+- **Spreadsheets**: XLSX, XLS, CSV
+- **Presentations**: PPTX, PPT
+- **Images**: PNG, JPG, JPEG (Premium)
+
+You can customize which file types to import in your settings.
+
+### Organization
+
+Imported attachments are organized based on:
+
+| Factor | Example |
+|--------|---------|
+| **Sender** | Files from "client@company.com" → Client folder |
+| **Content** | Invoice detected → Invoices folder |
+| **Subject** | "Q4 Report" → Reports folder |
+| **Date** | Organized by month or quarter |
+
+## Configuration Options
+
+### Folder Selection
+
+Choose which email folders to monitor:
+
+- **All folders**: Import attachments from anywhere
+- **Inbox only**: Only import from your main inbox
+- **Specific folders**: Select individual folders/labels
+
+### File Type Filters
+
+Control which file types are imported:
+
+- Include or exclude specific extensions
+- Set minimum/maximum file sizes
+- Skip duplicate files
+
+### Import Frequency
+
+Choose how often The Drive AI checks for new attachments:
+
+- **Real-time**: Import immediately as emails arrive
+- **Hourly**: Check every hour
+- **Daily**: Check once per day
+
+### Destination Folder
+
+Choose where imported attachments go:
+
+- **Workspace root**: Auto-organization sorts them
+- **Specific folder**: All attachments go to one place (e.g., "Email Attachments")
+- **Organized by sender**: Separate folders for each sender
+
+## Viewing Imported Attachments
+
+### Finding Attachments
+
+Use Chat Mode to find imported email attachments:
+
+```
+Find the invoice that came from accounting@company.com last week
+```
+
+```
+Show me all attachments from emails about the Johnson project
+```
+
+### Email Metadata
+
+Imported attachments retain metadata about their source:
+
+- Sender email address
+- Email subject
+- Date received
+- Original filename
+
+## Managing Your Email Connection
+
+### Pausing Import
+
+To temporarily stop importing without disconnecting:
+
+1. Go to **Settings** > **Integrations** > **Email**
+2. Toggle **Pause Import** for the desired account
+
+### Disconnecting
+
+To completely disconnect your email:
+
+1. Go to **Settings** > **Integrations** > **Email**
+2. Click **Disconnect** next to the email account
+3. Confirm the disconnection
+
+<Warning>
+  Disconnecting does not delete already-imported attachments. It only stops future imports.
+</Warning>
+
+## Privacy & Security
+
+<AccordionGroup>
+  <Accordion title="What data do you access?" icon="eye">
+    The Drive AI only accesses email attachments. We do not read, store, or process the text content of your emails. Only attachment files are imported to your workspace.
+  </Accordion>
+  <Accordion title="Is my data secure?" icon="shield-halved">
+    Yes. All data transfers are encrypted. Your email credentials are handled through secure OAuth—we never see or store your password.
+  </Accordion>
+  <Accordion title="Can I revoke access?" icon="key">
+    Yes. You can disconnect The Drive AI from your email account at any time. You can also revoke access from your Google or Microsoft account settings.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Attachments Not Importing" icon="file-circle-xmark">
+    - Check that the email integration is enabled (not paused)
+    - Verify the attachment file type is in your include list
+    - Ensure you have sufficient storage space
+    - Check that the email folder is being monitored
+  </Accordion>
+  <Accordion title="Missing Old Attachments" icon="clock-rotate-left">
+    By default, only new attachments (after connection) are imported. To import historical attachments, use the **Import History** option in settings.
+  </Accordion>
+  <Accordion title="Duplicate Files" icon="copy">
+    Enable **Skip Duplicates** in your settings to prevent the same attachment from being imported multiple times.
+  </Accordion>
+</AccordionGroup>
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Google Drive Import" icon="google-drive" href="/integrations/google-drive-import">
+    Import files from Google Drive.
+  </Card>
+  <Card title="MCP Server" icon="plug" href="/integrations/mcp-server">
+    Connect The Drive AI to other AI tools.
+  </Card>
+</CardGroup>

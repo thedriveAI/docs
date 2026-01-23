@@ -1,0 +1,313 @@
+---
+title: "Agent Mode"
+description: "Execute file operations using natural language commands"
+---
+
+## Overview
+
+Agent Mode is where the real power of The Drive AI comes to life. Unlike Chat Mode which only provides answers, Agent Mode actually takes actions—creating, renaming, moving, sharing, organizing, and deleting files based on your natural language commands.
+
+<Frame>
+  <img src="/images/agent-mode.jpg" alt="Agent Mode in The Drive AI" />
+</Frame>
+
+## What is Agent Mode?
+
+<Info>
+  **Agent Mode** is for taking actions. The AI executes file operations based on your commands—it can create, rename, move, share, organize, and delete files.
+</Info>
+
+Think of Agent Mode as having a capable assistant who can perform any file operation you describe, handling the tedious work while you focus on what matters.
+
+## When to Use Agent Mode
+
+Use Agent Mode when you want to:
+
+- **Create** new files or folders
+- **Rename** single or multiple files
+- **Move** files between folders
+- **Organize** files into logical structures
+- **Delete** or archive old files
+- **Share** files with others
+- **Manipulate** files—merge PDFs, fill out forms, and more
+- **Browse the internet** to fetch information, research topics, and download files
+- **Analyze data** by running code on your files
+- **Generate charts** and visualizations from your data
+- **Perform bulk operations** across many files
+
+## How to Use Agent Mode
+
+<Steps>
+  <Step title="Open the Chat Panel">
+    Click on the chat interface in your workspace.
+  </Step>
+  <Step title="Select Agent Mode">
+    Switch to Agent Mode using the mode selector.
+  </Step>
+  <Step title="Describe What You Want">
+    Type your command in natural language - describe the outcome you want.
+  </Step>
+  <Step title="Watch It Happen">
+    The AI executes your command and confirms the actions taken.
+  </Step>
+</Steps>
+
+## Understanding Scope
+
+The AI only operates within your current location and its contents - not parent folders. Your scope is determined by where you are in the workspace:
+
+| Your Location | AI Can Act On |
+|---------------|---------------|
+| Workspace root | All files and folders in the workspace |
+| A specific folder | That folder and all its subfolders |
+| A specific file | Only that file |
+
+The current scope is always displayed in the input box at the bottom of the chat panel, so you know exactly what the AI can access.
+
+<Tip>
+  Navigate to a specific folder before running commands to limit the AI's scope and ensure it only affects the files you intend.
+</Tip>
+
+## Example Commands
+
+### Creating Files and Folders
+
+```
+Create a new folder called "2024 Projects"
+```
+
+```
+Create a folder structure for a new client: folders for Contracts, Invoices, and Communications
+```
+
+```
+Make a new text file called "meeting-notes.txt" in the Meetings folder
+```
+
+### Renaming Files
+
+```
+Rename all files in the Downloads folder to include today's date as a prefix
+```
+
+```
+Change "draft" to "final" in all document names in this folder
+```
+
+```
+Rename the quarterly reports to follow the pattern "Q1-2024-Report"
+```
+
+### Moving Files
+
+```
+Move all PDFs to the Documents folder
+```
+
+```
+Move files older than 30 days to the Archive folder
+```
+
+```
+Organize the Downloads folder by moving files into subfolders based on file type
+```
+
+### Organizing Files
+
+```
+Organize this folder by project
+```
+
+```
+Sort all invoices by client name into separate folders
+```
+
+```
+Group these files by date: monthly folders for each month
+```
+
+### Deleting and Archiving
+
+```
+Delete all duplicate files in this folder
+```
+
+```
+Move files I haven't opened in 6 months to Archive
+```
+
+```
+Clean up empty folders in my workspace
+```
+
+### Sharing Files
+
+```
+Share the Q4 report with the marketing team
+```
+
+```
+Create a shareable link for the project proposal
+```
+
+### Manipulating Files
+
+```
+Merge all the PDF invoices in this folder into one document
+```
+
+```
+Fill out the W-9 form with my company information
+```
+
+```
+Combine the cover letter and resume into a single PDF
+```
+
+### Browsing the Internet
+
+```
+Find the current exchange rate for USD to EUR
+```
+
+```
+Research the latest pricing for AWS S3 storage
+```
+
+```
+Look up the company info for Acme Corp and summarize it
+```
+
+```
+Download the PDF from this URL and save it to my Documents folder
+```
+
+```
+Fetch the latest report from [website] and add it to the Reports folder
+```
+
+### Data Analysis and Charts
+
+```
+Analyze the sales data in this spreadsheet and show me the trends
+```
+
+```
+Create a bar chart comparing revenue by quarter from the financial report
+```
+
+```
+Run a summary analysis on this CSV and highlight any outliers
+```
+
+### Complex Multi-Step Operations
+
+```
+Create a new project folder called "Website Redesign", add subfolders for Design, Content, and Development, then move all related files from my Desktop into the appropriate subfolders
+```
+
+```
+Find all invoices from 2023, create a folder called "2023 Invoices", move them there, and rename them to include the client name
+```
+
+## Features
+
+### Natural Language Understanding
+
+You don't need to use specific syntax or commands. Just describe what you want in plain English:
+
+- "Put all the spreadsheets in one place" → Moves all .xlsx and .csv files to a folder
+- "Clean up my downloads" → Organizes and sorts your Downloads folder
+- "Get rid of the old stuff" → Archives or moves older files
+
+### Bulk Operations
+
+Agent Mode excels at operations that would take hours manually:
+
+| Manual Approach | Agent Mode |
+|-----------------|------------|
+| Rename 100 files one by one | "Rename all files to include the date" |
+| Create 20 client folders | "Create folders for each client in my list" |
+| Sort hundreds of documents | "Organize by topic" |
+| Find and move scattered files | "Move all invoices to the Finance folder" |
+
+### Smart Context
+
+The AI understands context:
+- It knows what "old files" means based on your usage patterns
+- It understands "related files" by analyzing content
+- It recognizes project names, client names, and common terms in your files
+
+### Confirmation and Feedback
+
+After executing commands, Agent Mode:
+- Confirms what actions were taken
+- Shows how many files were affected
+- Provides details on the changes made
+- Alerts you to any issues encountered
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Be Clear About Scope" icon="bullseye">
+    Specify which folder or files you're referring to.
+
+    **Good:** "Move all PDFs in the Downloads folder to Documents"
+
+    **Better:** "In the Downloads folder, move all PDF files to Documents/Reports"
+  </Accordion>
+  <Accordion title="Start Small for Complex Operations" icon="stairs">
+    For large operations, test with a subset first.
+
+    **Example:** "Move 5 of the oldest files to Archive" before "Archive all files older than 1 year"
+  </Accordion>
+  <Accordion title="Use Descriptive Folder Names" icon="tag">
+    When creating folders, use clear names.
+
+    **Good:** "Create a folder called 'Q1 2024 Marketing Campaign'"
+
+    **Not as good:** "Create a new folder"
+  </Accordion>
+  <Accordion title="Combine Related Actions" icon="link">
+    Agent Mode handles multi-step operations well.
+
+    **Example:** "Create a Projects folder, add subfolders for each client, and move their files into the appropriate subfolders"
+  </Accordion>
+</AccordionGroup>
+
+## Chat Mode vs Agent Mode
+
+| Task | Chat Mode | Agent Mode |
+|------|-----------|------------|
+| "Where is the Q4 report?" | Finds and tells you | Finds and tells you |
+| "Move the Q4 report to Reports" | Can't do this | Moves the file |
+| "What files are duplicates?" | Lists duplicates | Lists duplicates |
+| "Delete the duplicate files" | Can't do this | Deletes duplicates |
+| "Summarize this document" | Provides summary | Provides summary |
+| "Rename this document" | Can't do this | Renames the file |
+
+<Tip>
+  Use **Chat Mode** to explore and understand your files. Switch to **Agent Mode** when you're ready to take action.
+</Tip>
+
+## Safety and Control
+
+Agent Mode is powerful, but The Drive AI includes safeguards:
+
+- **Tasks panel**: View all running agent tasks from the Tasks section in the left sidebar
+- **Trash folder**: Deleted files go to Trash first, not permanently deleted
+- **Stop action**: You can stop agent anytime by clicking on stop button
+- **Action history**: Messages are saved, so you can see action history
+- **Undo action**: Soon
+
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Auto-Organization" icon="folder-tree" href="/features/auto-organization">
+    Learn about automatic file organization.
+  </Card>
+  <Card title="MCP Server" icon="plug" href="/integrations/mcp-server">
+    Use Agent Mode from other AI tools.
+  </Card>
+</CardGroup>

@@ -1,0 +1,176 @@
+---
+title: "Google Drive Import"
+description: "Import files from your Google Drive into The Drive AI"
+---
+
+## Overview
+
+The Drive AI allows you to import files directly from your Google Drive, making it easy to bring your existing documents into your AI-powered workspace without manual downloads and uploads.
+
+<Frame>
+  <img src="/images/google-drive.jpg" alt="Google Drive Import" />
+</Frame>
+
+## Why Import from Google Drive?
+
+When you import files from Google Drive to The Drive AI, you unlock:
+
+- **AI-powered organization** for your existing files
+- **Natural language search** across all your documents
+- **Chat Mode** to ask questions about your files
+- **Agent Mode** to perform bulk operations
+- **Unified workspace** for all your files
+
+## How to Import from Google Drive
+
+<Steps>
+  <Step title="Connect Your Google Account">
+    In The Drive AI, navigate to **Settings** > **Integrations** > **Google Drive**.
+
+    Click **Connect Google Drive** and authorize The Drive AI to access your files.
+
+    <Note>
+      The Drive AI uses secure OAuth authentication. Your Google password is never shared with us.
+    </Note>
+  </Step>
+  <Step title="Browse Your Drive">
+    Once connected, you'll see your Google Drive folders and files in the import interface.
+
+    Navigate to the files or folders you want to import.
+  </Step>
+  <Step title="Select Files to Import">
+    Select individual files or entire folders to import.
+
+    - **Single files**: Click to select
+    - **Multiple files**: Hold `Command` (Mac) or `Ctrl` (Windows) and click
+    - **Entire folders**: Select the folder to import all contents
+  </Step>
+  <Step title="Choose Import Location">
+    Select where in your The Drive AI workspace you want the files to go.
+
+    You can:
+    - Import to the root of your workspace (auto-organization will sort them)
+    - Import to a specific existing folder
+    - Create a new folder for the imported files
+  </Step>
+  <Step title="Import">
+    Click **Import** to begin the transfer.
+
+    Files are copied to The Drive AI—your original Google Drive files remain untouched.
+  </Step>
+</Steps>
+
+## Import Options
+
+### Copy vs. Sync
+
+Currently, The Drive AI **copies** files from Google Drive. This means:
+
+- Files are duplicated into your The Drive AI workspace
+- Changes in Google Drive are not automatically reflected
+- Changes in The Drive AI do not affect your Google Drive
+- Your original Google Drive files remain intact
+
+<Info>
+  Two-way sync may be available in future updates. For now, import brings a copy of your files.
+</Info>
+
+### Auto-Organization on Import
+
+When importing to your workspace root, you can enable auto-organization:
+
+- **Enabled**: Files are automatically sorted into logical folders after import
+- **Disabled**: Files are placed exactly where you specify
+
+## Supported File Types
+
+All Google Drive file types supported by The Drive AI can be imported:
+
+| Google Drive Format | The Drive AI Support |
+|--------------------|---------------------|
+| Google Docs | Converted to DOCX |
+| Google Sheets | Converted to XLSX |
+| Google Slides | Converted to PPTX |
+| PDF files | Imported as-is |
+| Images | Imported as-is (Premium) |
+| Other files | Imported in original format |
+
+<Note>
+  Google Docs, Sheets, and Slides are converted to Microsoft Office formats during import to ensure full compatibility.
+</Note>
+
+## Managing Your Google Drive Connection
+
+### Viewing Connection Status
+
+Go to **Settings** > **Integrations** to see your connected Google account and connection status.
+
+### Disconnecting Google Drive
+
+To disconnect:
+
+1. Go to **Settings** > **Integrations** > **Google Drive**
+2. Click **Disconnect**
+3. Confirm the disconnection
+
+<Warning>
+  Disconnecting does not delete files already imported to The Drive AI. It only removes the ability to import new files.
+</Warning>
+
+### Reconnecting
+
+If you need to reconnect or connect a different Google account:
+
+1. Disconnect the current account (if connected)
+2. Click **Connect Google Drive**
+3. Sign in with the desired Google account
+
+## Tips for Importing
+
+<AccordionGroup>
+  <Accordion title="Start with Key Folders" icon="folder">
+    Don't try to import everything at once. Start with your most important folders and let The Drive AI organize them.
+  </Accordion>
+  <Accordion title="Use Auto-Organization" icon="wand-magic-sparkles">
+    Import files to your workspace root with auto-organization enabled. The AI will create a logical structure automatically.
+  </Accordion>
+  <Accordion title="Check Storage" icon="hard-drive">
+    Before large imports, check your storage limits:
+    - Free plan: 5 GB
+    - Premium plan: 100 GB
+  </Accordion>
+  <Accordion title="Import in Batches" icon="layer-group">
+    For large Google Drives, import in batches to monitor progress and ensure successful transfers.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection Failed" icon="plug-circle-xmark">
+    - Ensure you're signed into the correct Google account
+    - Check that you've granted the necessary permissions
+    - Try disconnecting and reconnecting
+  </Accordion>
+  <Accordion title="Files Not Appearing" icon="file-circle-question">
+    - Refresh the import interface
+    - Check if the files are in a shared drive (may have different permissions)
+    - Ensure the file types are supported
+  </Accordion>
+  <Accordion title="Import Taking Too Long" icon="clock">
+    - Large files take longer to transfer
+    - Slow internet connections affect import speed
+    - Try importing smaller batches
+  </Accordion>
+</AccordionGroup>
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Email Integration" icon="envelope" href="/integrations/email-integration">
+    Auto-import attachments from Gmail and Outlook.
+  </Card>
+  <Card title="Auto-Organization" icon="folder-tree" href="/features/auto-organization">
+    Learn how imported files get organized.
+  </Card>
+</CardGroup>

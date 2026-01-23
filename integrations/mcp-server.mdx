@@ -1,0 +1,281 @@
+---
+title: "MCP Server"
+description: "Connect The Drive AI to AI assistants like Claude, ChatGPT, and Cursor"
+---
+
+## Overview
+
+The Drive AI provides an MCP (Model Context Protocol) server that allows you to connect your workspace to AI assistants like Claude, ChatGPT, Cursor IDE, and more. This means you can manage your files from any compatible AI tool.
+
+<Frame>
+  <img src="/images/mcp.jpg" alt="MCP Server Integration" />
+</Frame>
+
+## What is MCP?
+
+The **Model Context Protocol (MCP)** is an open standard that enables AI assistants to securely connect to external data sources and tools. With MCP, AI assistants can:
+
+- Browse and search through your Drive AI files
+- Create, rename, move, and share files
+- Save AI-generated content directly to your workspace
+- Perform file operations through natural language
+
+## MCP Server URL
+
+```
+https://thedriveai.fastmcp.app/mcp
+```
+
+Use this URL when configuring MCP clients to connect to The Drive AI.
+
+## Supported Integrations
+
+<CardGroup cols={2}>
+  <Card title="Claude Desktop" icon="message-bot">
+    Anthropic's desktop app for Claude AI.
+  </Card>
+  <Card title="ChatGPT" icon="comments">
+    OpenAI's ChatGPT via Connectors.
+  </Card>
+  <Card title="Claude.ai" icon="globe">
+    Claude on the web via Connectors.
+  </Card>
+  <Card title="Cursor IDE" icon="code">
+    AI-powered code editor.
+  </Card>
+  <Card title="Claude Code" icon="terminal">
+    Command-line Claude assistant.
+  </Card>
+  <Card title="VS Code" icon="laptop-code">
+    Visual Studio Code with MCP extensions.
+  </Card>
+  <Card title="Gemini CLI" icon="terminal">
+    Google's Gemini from the command line.
+  </Card>
+  <Card title="Codex CLI" icon="terminal">
+    OpenAI's Codex CLI tool.
+  </Card>
+</CardGroup>
+
+## Setup Instructions
+
+### Claude Desktop
+
+<Steps>
+  <Step title="Open The Drive AI MCP Page">
+    Go to [thedrive.ai/mcp](https://thedrive.ai/mcp).
+  </Step>
+  <Step title="Download the Manifest">
+    Click the **Claude Desktop** button to download the `.dxt` manifest file.
+  </Step>
+  <Step title="Install in Claude Desktop">
+    Open Claude Desktop and import the downloaded manifest file.
+  </Step>
+  <Step title="Authorize">
+    Follow the prompts to authorize The Drive AI to connect with Claude Desktop.
+  </Step>
+</Steps>
+
+### ChatGPT
+
+<Steps>
+  <Step title="Open ChatGPT Settings">
+    In ChatGPT, go to **Settings** > **Connectors**.
+  </Step>
+  <Step title="Add Connector">
+    Click **Add Connector** and enter the MCP server URL:
+    ```
+    https://thedriveai.fastmcp.app/mcp
+    ```
+  </Step>
+  <Step title="Authorize">
+    Sign in to your Drive AI account when prompted.
+  </Step>
+  <Step title="Start Using">
+    You can now ask ChatGPT to interact with your Drive AI files.
+  </Step>
+</Steps>
+
+### Claude.ai (Web)
+
+<Steps>
+  <Step title="Open Claude Settings">
+    On [claude.ai](https://claude.ai), go to **Settings** > **Connectors**.
+  </Step>
+  <Step title="Add The Drive AI">
+    Add The Drive AI connector using the MCP server URL.
+  </Step>
+  <Step title="Authorize">
+    Complete the authorization flow.
+  </Step>
+</Steps>
+
+### Cursor IDE
+
+<Steps>
+  <Step title="Open Cursor Settings">
+    In Cursor, open the settings panel.
+  </Step>
+  <Step title="Navigate to MCP">
+    Find the MCP configuration section.
+  </Step>
+  <Step title="One-Click Install">
+    Visit [thedrive.ai/mcp](https://thedrive.ai/mcp) and click the **Cursor** button for one-click installation.
+  </Step>
+</Steps>
+
+### Command-Line Tools (Claude Code, Gemini CLI, etc.)
+
+For command-line MCP clients, add The Drive AI to your MCP configuration:
+
+```json
+{
+  "servers": {
+    "thedrive": {
+      "url": "https://thedriveai.fastmcp.app/mcp"
+    }
+  }
+}
+```
+
+Refer to your specific CLI tool's documentation for the exact configuration location.
+
+## Available Tools
+
+The MCP server provides 14 tools across three categories:
+
+### User & Authentication
+
+| Tool | Description |
+|------|-------------|
+| `get_current_user` | Get information about the authenticated user |
+
+### File Operations
+
+| Tool | Description |
+|------|-------------|
+| `list_directory` | List files and folders in a directory |
+| `read_file` | Read the contents of a file |
+| `write_file` | Write content to a file |
+| `create_file` | Create a new file |
+| `delete_file` | Delete a file |
+| `move_file` | Move a file to a new location |
+| `copy_file` | Copy a file |
+| `rename_file` | Rename a file |
+
+### File Management
+
+| Tool | Description |
+|------|-------------|
+| `upload_file_content` | Upload content as a new file |
+| `manage_permissions` | Manage file sharing permissions |
+| `get_info` | Get metadata about a file or folder |
+| `search_files` | Search for files by name or content |
+| `list_directory_structure` | Get the full directory tree structure |
+
+## Example Usage
+
+Once connected, you can use natural language with your AI assistant:
+
+### With Claude
+
+```
+"List all the files in my Documents folder on Drive AI"
+```
+
+```
+"Create a new file called notes.txt with today's meeting summary"
+```
+
+```
+"Search for files containing 'quarterly report' in Drive AI"
+```
+
+### With ChatGPT
+
+```
+"Show me my recent files from The Drive AI"
+```
+
+```
+"Save this conversation summary to my Drive AI workspace"
+```
+
+### With Cursor
+
+```
+"Read the config file from my Drive AI and help me update it"
+```
+
+```
+"Save this code snippet to my Drive AI code folder"
+```
+
+## Requirements
+
+To use the MCP server, you need:
+
+- An **active Drive AI account** (sign in with Google, Microsoft, GitHub, or email)
+- A **compatible MCP client** (see supported integrations above)
+- **Internet connectivity**
+
+## Security
+
+<AccordionGroup>
+  <Accordion title="Authentication" icon="lock">
+    The MCP server uses OAuth for secure authentication. Each connected app must be authorized through your Drive AI account.
+  </Accordion>
+  <Accordion title="Permissions" icon="shield-halved">
+    You control which apps can access your Drive AI workspace. You can revoke access at any time from Settings > Integrations.
+  </Accordion>
+  <Accordion title="Data Access" icon="database">
+    Connected apps can only access files in your Drive AI workspace. They cannot access files outside of The Drive AI.
+  </Accordion>
+</AccordionGroup>
+
+## Managing Connected Apps
+
+### View Connected Apps
+
+Go to **Settings** > **Integrations** > **Connected Apps** to see all apps connected via MCP.
+
+### Revoke Access
+
+To disconnect an app:
+
+1. Go to **Settings** > **Integrations** > **Connected Apps**
+2. Find the app you want to disconnect
+3. Click **Revoke Access**
+4. Confirm the revocation
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection Failed" icon="plug-circle-xmark">
+    - Verify the MCP server URL is correct
+    - Ensure you're signed into your Drive AI account
+    - Check your internet connection
+    - Try re-authorizing the connection
+  </Accordion>
+  <Accordion title="Tools Not Available" icon="toolbox">
+    - Make sure the MCP client supports all tool types
+    - Some clients may have limitations on available tools
+    - Check the client's documentation for MCP support details
+  </Accordion>
+  <Accordion title="Permission Denied" icon="ban">
+    - Verify your Drive AI account is active
+    - Check that the app has been properly authorized
+    - Try disconnecting and reconnecting the app
+  </Accordion>
+</AccordionGroup>
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Agent Mode" icon="robot" href="/features/agent-mode">
+    Learn about file operations in The Drive AI.
+  </Card>
+  <Card title="Plans & Pricing" icon="credit-card" href="/account/plans-pricing">
+    See what's included in each plan.
+  </Card>
+</CardGroup>

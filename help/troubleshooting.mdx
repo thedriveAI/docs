@@ -1,0 +1,253 @@
+---
+title: "Troubleshooting"
+description: "Solutions to common issues with The Drive AI"
+---
+
+## Upload Issues
+
+<AccordionGroup>
+  <Accordion title="Files won't upload" icon="upload">
+    **Possible causes and solutions:**
+
+    1. **Internet connection**: Check that you have a stable internet connection.
+
+    2. **File size**: Large files take longer to upload. Try uploading smaller files first.
+
+    3. **Storage limit reached**: Check your storage usage in **Settings** > **Plan & Billing**.
+       - Free plan: 5 GB
+       - Premium plan: 100 GB
+
+    4. **Unsupported file type**: Verify the file type is supported.
+       - Free: PDF, DOCX, DOC, TXT, RTF, XLSX, XLS, CSV, PPTX, PPT
+       - Premium: All of the above plus images, audio, and video
+
+    5. **Browser issue**: Try refreshing the page or using a different browser.
+  </Accordion>
+
+  <Accordion title="Upload stuck at processing" icon="spinner">
+    **Possible causes and solutions:**
+
+    1. **Large or complex file**: PDFs with many images or large documents take longer to process. Wait a few minutes.
+
+    2. **Refresh the page**: Sometimes the UI doesn't update. Refresh to see current status.
+
+    3. **Re-upload**: If stuck for more than 10 minutes, try uploading the file again.
+
+    4. **File corruption**: The file might be corrupted. Try opening it locally to verify it works.
+  </Accordion>
+
+  <Accordion title="Uploaded file appears blank" icon="file-circle-question">
+    **Possible causes and solutions:**
+
+    1. **Scanned PDF without OCR**: If the PDF is a scanned image, the AI might not extract text. Premium includes OCR for better results.
+
+    2. **Encrypted/password-protected file**: Remove password protection before uploading.
+
+    3. **Processing incomplete**: Wait for the file to finish processing before accessing.
+  </Accordion>
+</AccordionGroup>
+
+## AI Issues
+
+<AccordionGroup>
+  <Accordion title="AI not responding" icon="robot">
+    **Possible causes and solutions:**
+
+    1. **Daily limit reached**: Free plan has 5 AI queries per day. Check your usage in **Settings** > **Plan & Billing**.
+
+    2. **Server busy**: During peak times, responses may be slower. Wait a moment and try again.
+
+    3. **Internet connection**: Ensure you have a stable connection.
+
+    4. **Browser refresh**: Refresh the page and try again.
+
+    5. **Sign out and back in**: This can resolve session-related issues.
+  </Accordion>
+
+  <Accordion title="AI giving wrong or irrelevant answers" icon="circle-xmark">
+    **Possible causes and solutions:**
+
+    1. **Be more specific**: Rephrase your question with more context and keywords.
+
+    2. **File not processed**: The file may still be processing. Wait until processing completes.
+
+    3. **Wrong mode**: Make sure you're in Chat Mode for questions and Agent Mode for actions.
+
+    4. **Specify files or folders**: Mention which files you're asking about: "In the Q4 report, what was..."
+  </Accordion>
+
+  <Accordion title="Agent Mode command didn't work" icon="wand-magic-sparkles">
+    **Possible causes and solutions:**
+
+    1. **Check you're in Agent Mode**: Agent Mode must be selected for actions to execute.
+
+    2. **Ambiguous command**: Be more specific. Instead of "organize these," try "create folders by file type and move files accordingly."
+
+    3. **Permission issue**: Some operations may require confirmation. Check the notification panel.
+
+    4. **File locked or in use**: If a file is open elsewhere, some operations may fail.
+  </Accordion>
+</AccordionGroup>
+
+## Organization Issues
+
+<AccordionGroup>
+  <Accordion title="Auto-organization not working" icon="folder-tree">
+    **Possible causes and solutions:**
+
+    1. **Not uploading to root**: Automatic organization triggers when files are uploaded to the workspace root. Uploading directly to a subfolder skips auto-organization.
+
+    2. **Monthly limit reached**: Free plan has 5 auto-organized files per month. Check your usage.
+
+    3. **Use Command+K**: For existing files, press Command+K (Ctrl+K on Windows) to manually trigger organization.
+
+    4. **Files still processing**: Wait until file processing completes before organization can occur.
+  </Accordion>
+
+  <Accordion title="Files organized incorrectly" icon="shuffle">
+    **Possible causes and solutions:**
+
+    1. **Ambiguous content**: Files with generic content may be placed in unexpected folders.
+
+    2. **Move manually**: Drag files to the correct location. The AI learns from your adjustments.
+
+    3. **Re-organize**: Use Command+K to re-run organization with additional context.
+
+    4. **Provide hints**: Rename files with descriptive names to help the AI understand their purpose.
+  </Accordion>
+
+  <Accordion title="Command+K not doing anything" icon="keyboard">
+    **Possible causes and solutions:**
+
+    1. **Make sure you're in the correct folder**: Navigate to the folder you want to organize.
+
+    2. **Empty folder**: Command+K won't do anything in an empty folder.
+
+    3. **Browser keyboard shortcut conflict**: Some browsers use Command+K. Try right-clicking and selecting "Organize with AI" instead.
+
+    4. **Already organized**: If files are already well-organized, the AI may make no changes.
+  </Accordion>
+</AccordionGroup>
+
+## Integration Issues
+
+<AccordionGroup>
+  <Accordion title="Can't connect to Google Drive" icon="google-drive">
+    **Possible causes and solutions:**
+
+    1. **Pop-up blocked**: Enable pop-ups for The Drive AI in your browser settings.
+
+    2. **Wrong Google account**: Make sure you're signing into the correct Google account.
+
+    3. **Permission denied**: You must grant The Drive AI permission to access your Drive files.
+
+    4. **Try again**: Disconnect and reconnect the integration in **Settings** > **Integrations**.
+  </Accordion>
+
+  <Accordion title="Email attachments not importing" icon="envelope">
+    **Possible causes and solutions:**
+
+    1. **Premium required**: Email integration is only available on the Premium plan.
+
+    2. **Integration paused**: Check if import is paused in **Settings** > **Integrations** > **Email**.
+
+    3. **Folder not monitored**: Verify that the email folder is included in your monitoring settings.
+
+    4. **File type filtered**: Check your file type filters to ensure the attachment type is included.
+
+    5. **Storage full**: Attachments won't import if you've reached your storage limit.
+  </Accordion>
+
+  <Accordion title="MCP connection failing" icon="plug">
+    **Possible causes and solutions:**
+
+    1. **Verify the server URL**: Use `https://thedriveai.fastmcp.app/mcp`
+
+    2. **Re-authorize**: Disconnect and reconnect the integration.
+
+    3. **Check client compatibility**: Ensure your MCP client supports the Drive AI server.
+
+    4. **Sign into Drive AI**: You must be signed into your Drive AI account for MCP to work.
+  </Accordion>
+</AccordionGroup>
+
+## Account Issues
+
+<AccordionGroup>
+  <Accordion title="Can't sign in" icon="right-to-bracket">
+    **Possible causes and solutions:**
+
+    1. **Pop-up blocked**: Google Sign-in uses a pop-up. Allow pop-ups for The Drive AI.
+
+    2. **Clear cookies**: Clear your browser cookies and try again.
+
+    3. **Try incognito mode**: Test in an incognito/private window.
+
+    4. **Different browser**: Try a different browser to rule out browser-specific issues.
+
+    5. **Google account issue**: Ensure your Google account is working by signing into Gmail.
+  </Accordion>
+
+  <Accordion title="Storage showing incorrect amount" icon="hard-drive">
+    **Possible causes and solutions:**
+
+    1. **Processing delay**: Storage updates may take a few minutes after deletions.
+
+    2. **Trash not emptied**: Deleted files count toward storage until you empty the Trash.
+
+    3. **Refresh the page**: The storage display may need a refresh to update.
+  </Accordion>
+
+  <Accordion title="Subscription not activating" icon="credit-card">
+    **Possible causes and solutions:**
+
+    1. **Payment failed**: Check your payment method and try again.
+
+    2. **Refresh the page**: After payment, refresh to see updated plan status.
+
+    3. **Sign out and back in**: This forces a refresh of your account status.
+
+    4. **Contact support**: If Premium doesn't activate within 5 minutes of payment, reach out to support.
+  </Accordion>
+</AccordionGroup>
+
+## Performance Issues
+
+<AccordionGroup>
+  <Accordion title="The Drive AI is slow" icon="gauge-simple-low">
+    **Possible causes and solutions:**
+
+    1. **Large folder**: Folders with many files take longer to load. Consider organizing into subfolders.
+
+    2. **Browser performance**: Close unnecessary tabs. Try refreshing the page.
+
+    3. **Internet speed**: A slow connection affects load times. Test your connection speed.
+
+    4. **Clear browser cache**: Cached data can sometimes cause slowdowns.
+  </Accordion>
+
+  <Accordion title="Search is slow or not finding files" icon="magnifying-glass">
+    **Possible causes and solutions:**
+
+    1. **Recent uploads**: Newly uploaded files may take time to be indexed for search.
+
+    2. **Use Chat Mode**: For content search, use Chat Mode: "Find files about [topic]"
+
+    3. **Check spelling**: Verify you're searching for the correct terms.
+
+    4. **File type limitation**: On Free plan, only text files are searchable.
+  </Accordion>
+</AccordionGroup>
+
+## Getting More Help
+
+If you can't resolve your issue with the troubleshooting steps above:
+
+<CardGroup cols={2}>
+  <Card title="FAQ" icon="circle-question" href="/help/faq">
+    Check our frequently asked questions for more answers.
+  </Card>
+  <Card title="Contact Support" icon="headset" href="mailto:contact@thedrive.ai">
+    Email our support team for personalized help.
+  </Card>
+</CardGroup>

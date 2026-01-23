@@ -1,68 +1,54 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "The Drive AI",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#6366F1",
+    "light": "#818CF8",
+    "dark": "#4F46E5"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "getting-started/introduction",
+              "getting-started/quick-start",
+              "getting-started/interface-overview"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Core Features",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "features/uploading-files",
+              "features/auto-organization",
+              "features/chat-mode",
+              "features/agent-mode"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Integrations",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "integrations/google-drive-import",
+              "integrations/email-integration",
+              "integrations/mcp-server"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Account & Billing",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
+              "account/plans-pricing"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Help",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "help/faq",
+              "help/troubleshooting"
             ]
           }
         ]
@@ -71,14 +57,19 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Website",
+          "href": "https://thedrive.ai",
+          "icon": "globe"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Discord",
+          "href": "https://discord.com/invite/mCnxKxyxPC",
+          "icon": "discord"
+        },
+        {
+          "anchor": "MCP Server",
+          "href": "https://thedrive.ai/mcp",
+          "icon": "plug"
         }
       ]
     }
@@ -90,33 +81,27 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Contact",
+        "href": "https://thedrive.ai/contact"
+      },
+       {
+        "label": "Get a demo",
+        "href": "https://cal.com/bigyan"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Open App",
+      "href": "https://thedrive.ai"
     }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "discord": "https://discord.com/invite/mCnxKxyxPC",
+      "x": "https://x.com/thedriveai",
+      "linkedin": "https://linkedin.com/company/thedriveai",
+      "instagram": "https://instagram.com/thedriveai",
+      "reddit": "https://reddit.com/r/thedriveai"
     }
   }
 }
