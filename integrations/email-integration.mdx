@@ -8,7 +8,14 @@ description: "Automatically import and organize email attachments from Gmail and
 The Drive AI integrates with Gmail and Outlook to automatically import email attachments to your workspace. Stop manually downloading and organizing attachments—let The Drive AI handle it automatically.
 
 <Frame>
-  <img src="/images/email-integration.jpg" alt="Email Integration" />
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="w-full aspect-video"
+    src="https://thedriveaistorage.blob.core.windows.net/rootpublic/UploadAssets/email_demo.mp4"
+  ></video>
 </Frame>
 
 <Note>
@@ -38,30 +45,34 @@ With The Drive AI email integration:
 | Gmail | Supported |
 | Outlook | Supported |
 
+### Connection Limits
+
+The number of email accounts you can connect depends on your workspace type:
+
+| Workspace Type | Gmail Accounts | Outlook Accounts |
+|----------------|----------------|------------------|
+| Personal | 1 | 1 |
+| Team | Up to 50 | Up to 50 |
+
 ## Connecting Gmail
 
 <Steps>
   <Step title="Navigate to Integrations">
-    Go to **Settings** > **Integrations** > **Email**.
+    Go to **Settings** > **Email Integrations**.
   </Step>
   <Step title="Select Gmail">
     Click **Connect Gmail**.
   </Step>
   <Step title="Authorize Access">
     Sign in to your Google account and grant The Drive AI permission to access your email attachments.
-
-    <Note>
-      The Drive AI only accesses attachments. We do not read your email content or store your messages.
-    </Note>
   </Step>
-  <Step title="Configure Settings">
-    Choose your import preferences:
-    - Which folders/labels to monitor
-    - Auto-organization settings
-    - Import frequency
+   <Step title="Import Past attachments">
+    After successful authorization, you have an option to import past attachments:
+    - You will see an option to import historical file attachments
+    - Select how far back you want to go on history
   </Step>
   <Step title="Start Importing">
-    Click **Enable** to start automatic attachment imports.
+    Click **Import** to start automatic attachment imports.
   </Step>
 </Steps>
 
@@ -69,7 +80,7 @@ With The Drive AI email integration:
 
 <Steps>
   <Step title="Navigate to Integrations">
-    Go to **Settings** > **Integrations** > **Email**.
+    Go to **Settings** > **Email Integrations**.
   </Step>
   <Step title="Select Outlook">
     Click **Connect Outlook**.
@@ -77,14 +88,13 @@ With The Drive AI email integration:
   <Step title="Authorize Access">
     Sign in to your Microsoft account and grant The Drive AI permission to access your email attachments.
   </Step>
-  <Step title="Configure Settings">
-    Choose your import preferences:
-    - Which folders to monitor
-    - Auto-organization settings
-    - Import frequency
+  <Step title="Import Past attachments">
+    After successful authorization, you have an option to import past attachments:
+    - You will see an option to import historical file attachments
+    - Select how far back you want to go on history
   </Step>
   <Step title="Start Importing">
-    Click **Enable** to start automatic attachment imports.
+    Click **Import** to start automatic attachment imports.
   </Step>
 </Steps>
 
@@ -108,9 +118,7 @@ By default, The Drive AI imports common document types:
 - **Documents**: PDF, DOCX, DOC, TXT
 - **Spreadsheets**: XLSX, XLS, CSV
 - **Presentations**: PPTX, PPT
-- **Images**: PNG, JPG, JPEG (Premium)
-
-You can customize which file types to import in your settings.
+- **Images**: Images are not imported.
 
 ### Organization
 
@@ -118,58 +126,96 @@ Imported attachments are organized based on:
 
 | Factor | Example |
 |--------|---------|
-| **Sender** | Files from "client@company.com" → Client folder |
 | **Content** | Invoice detected → Invoices folder |
-| **Subject** | "Q4 Report" → Reports folder |
-| **Date** | Organized by month or quarter |
 
 ## Configuration Options
 
-### Folder Selection
+### Blocking Email Addresses and Domains
 
-Choose which email folders to monitor:
+You can block attachments from specific senders or entire domains to prevent unwanted files from being imported. Blocking can be configured at two levels:
 
-- **All folders**: Import attachments from anywhere
-- **Inbox only**: Only import from your main inbox
-- **Specific folders**: Select individual folders/labels
+**Integration Level**
 
-### File Type Filters
+Block senders for a specific email integration (Gmail or Outlook):
 
-Control which file types are imported:
+1. Go to **Settings** > **Email Integrations**
+2. Select the integration you want to configure
+3. Click **Blocked Senders**
+4. Add email addresses (e.g., `spam@example.com`) or domains (e.g., `@marketing.com`)
 
-- Include or exclude specific extensions
-- Set minimum/maximum file sizes
-- Skip duplicate files
+**Workspace Level**
+
+Block senders across all email integrations in your workspace:
+
+1. Go to **Settings** > **Workspace** > **Email Blocklist**
+2. Add email addresses or domains to the block list
+3. These rules apply to all connected email accounts
+
+<Tip>
+  Use domain blocking (e.g., `@newsletters.com`) to block all emails from a specific domain at once.
+</Tip>
 
 ### Import Frequency
+The Drive AI imports files real-time.
 
-Choose how often The Drive AI checks for new attachments:
+## Fetching Past Email Attachments
 
-- **Real-time**: Import immediately as emails arrive
-- **Hourly**: Check every hour
-- **Daily**: Check once per day
+You can import historical email attachments from both Gmail and Outlook. This allows you to bring in attachments from emails received before you connected The Drive AI.
 
-### Destination Folder
+<Steps>
+  <Step title="Navigate to Email Settings">
+    Go to **Settings** > **Email Integrations** and select the connected account.
+  </Step>
+  <Step title="Select Import History">
+    Click **Import History** or **Fetch Past Attachments**.
+  </Step>
+  <Step title="Choose Date Range">
+    Select the time period for historical import:
+    - Last 30 days
+    - Last 90 days
+  </Step>
+  <Step title="Start Import">
+    Click **Start Import** to begin fetching historical attachments. The import runs in the background.
+  </Step>
+</Steps>
 
-Choose where imported attachments go:
+<Note>
+  Historical import may take some time depending on the number of emails and attachments in the selected date range.
+</Note>
 
-- **Workspace root**: Auto-organization sorts them
-- **Specific folder**: All attachments go to one place (e.g., "Email Attachments")
-- **Organized by sender**: Separate folders for each sender
+## Activity History
 
-## Viewing Imported Attachments
+Track all email attachment activity in your workspace with the Activity History feature. This gives you complete visibility into what files are being imported and their status.
 
-### Finding Attachments
+### Viewing Activity History
 
-Use Chat Mode to find imported email attachments:
+1. Go to **Settings** > **Email Integrations**
+2. Click **Activity History** or **View Activity**
 
-```
-Find the invoice that came from accounting@company.com last week
-```
+### Activity Statuses
 
-```
-Show me all attachments from emails about the Johnson project
-```
+Each imported attachment shows one of the following statuses:
+
+| Status | Description |
+|--------|-------------|
+| **Uploaded** | File was successfully imported to your workspace |
+| **Skipped** | File was skipped based on your filter settings (blocked sender, excluded file type, etc.) |
+| **Duplicate** | File was already imported previously and skipped to avoid duplicates |
+| **Unsupported** | File type is not supported for import |
+
+### Activity Details
+
+For each activity entry, you can see:
+
+- File name and type
+- Sender email address
+- Email subject
+- Date and time of activity
+- Status and any relevant notes
+
+<Tip>
+  Use the Activity History to troubleshoot import issues and understand why certain attachments may not have been imported.
+</Tip>
 
 ### Email Metadata
 
@@ -181,13 +227,6 @@ Imported attachments retain metadata about their source:
 - Original filename
 
 ## Managing Your Email Connection
-
-### Pausing Import
-
-To temporarily stop importing without disconnecting:
-
-1. Go to **Settings** > **Integrations** > **Email**
-2. Toggle **Pause Import** for the desired account
 
 ### Disconnecting
 
@@ -223,12 +262,13 @@ To completely disconnect your email:
     - Verify the attachment file type is in your include list
     - Ensure you have sufficient storage space
     - Check that the email folder is being monitored
+    - Check the **Activity History** to see if files were skipped or marked as unsupported
   </Accordion>
   <Accordion title="Missing Old Attachments" icon="clock-rotate-left">
-    By default, only new attachments (after connection) are imported. To import historical attachments, use the **Import History** option in settings.
+    By default, only new attachments (after connection) are imported. Use the **Fetch Past Attachments** feature to import historical attachments from before you connected. See [Fetching Past Email Attachments](#fetching-past-email-attachments) for details.
   </Accordion>
   <Accordion title="Duplicate Files" icon="copy">
-    Enable **Skip Duplicates** in your settings to prevent the same attachment from being imported multiple times.
+    Enable **Skip Duplicates** in your settings to prevent the same attachment from being imported multiple times. You can view duplicate detections in the **Activity History**.
   </Accordion>
 </AccordionGroup>
 

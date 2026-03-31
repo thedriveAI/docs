@@ -1,6 +1,6 @@
 ---
 title: "Auto-Organization"
-description: "Let AI intelligently organize your files into logical folder structures"
+description: "Let AI intelligently rename and organize your files into logical folder structures"
 ---
 
 ## Overview
@@ -8,7 +8,14 @@ description: "Let AI intelligently organize your files into logical folder struc
 Auto-Organization is one of The Drive AI's most powerful features. Instead of manually creating folders and sorting files, the AI analyzes your file contents and automatically creates logical folder structures.
 
 <Frame>
-  <img src="/images/auto-org.jpg" alt="Auto-Organization in The Drive AI" />
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="w-full aspect-video"
+    src="https://thedriveaistorage.blob.core.windows.net/rootpublic/UploadAssets/auto_org_demo.mp4"
+  ></video>
 </Frame>
 
 ## How It Works
@@ -21,7 +28,7 @@ Auto-Organization is one of The Drive AI's most powerful features. Instead of ma
     The Drive AI reads and understands the content, context, and relationships between your files. It identifies document types, topics, projects, and more.
   </Step>
   <Step title="Instant Organization">
-    Files automatically go to the right folder, or new folders are intelligently created based on your content.
+    Files are automatically renamed and organized into the right folders. New folders are intelligently created based on your content.
   </Step>
 </Steps>
 
@@ -78,6 +85,32 @@ When organizing your files, The Drive AI analyzes:
 | **Project Context** | Client names, project codes, campaigns |
 | **Date Patterns** | Quarterly reports, monthly statements |
 | **File Relationships** | Related documents, versions, attachments |
+
+## Automatic File Renaming
+
+The Drive AI can automatically rename files to make them more descriptive and easier to find. This happens during organization when files have unclear or generic names.
+
+**When files get renamed:**
+- Files with generic names like `Document1.pdf` or `IMG_1234.jpg`
+- Scanned documents with meaningless filenames
+- Files where the content doesn't match the filename
+
+**How renaming works:**
+- The AI analyzes the file content to understand what it is
+- A descriptive name is generated based on the content
+- Original file extension is preserved
+- You receive a notification showing the old and new names
+
+**Example:**
+| Original Name | AI-Generated Name |
+|---------------|-------------------|
+| `scan001.pdf` | `Invoice_Acme_Corp_March_2024.pdf` |
+| `IMG_4521.jpg` | `Team_Offsite_Photo_2024.jpg` |
+| `Document.docx` | `Q4_Marketing_Strategy.docx` |
+
+<Tip>
+  If you prefer to keep original filenames, you can disable automatic renaming in your workspace settings.
+</Tip>
 
 ## Real-World Example
 

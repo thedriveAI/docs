@@ -70,6 +70,16 @@
           "anchor": "MCP Server",
           "href": "https://thedrive.ai/mcp",
           "icon": "plug"
+        },
+        {
+          "anchor": "Android App",
+          "href": "https://play.google.com/store/apps/details?id=com.bigyankarki.thedriveai&referrer=utm_source%3Ddocs%26utm_medium%3Ddocs%26utm_campaign%3Dandroid_launch",
+          "icon": "android"
+        },
+        {
+          "anchor": "iOS App",
+          "href": "https://apps.apple.com/us/app/the-drive-ai-file-organizer/id6758524851",
+          "icon": "apple"
         }
       ]
     }
