@@ -33,6 +33,7 @@
               "features/document-creation",
               "features/document-scanning",
               "features/file-sharing",
+              "features/file-requests",
               "features/security"
             ]
           },
