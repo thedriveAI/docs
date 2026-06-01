@@ -7,14 +7,53 @@ description: "Collect documents from anyone via email with checklists, reminders
 
 File Requests let you collect documents from clients, vendors, or anyone by email. Recipients upload files through a secure link or simply reply with attachments—no account needed. Files land in your workspace, automatically renamed and organized.
 
+## Managing File Requests
+
+Navigate to **Settings** > **File Requests** to see all your file requests, their status, and create new ones.
+
+<Frame>
+  <img src="/images/file-request-1.png" alt="File Requests dashboard showing past requests and their status" />
+</Frame>
+
+Each request shows the number of respondents, files received, time since creation, and status (**Active** or **Closed**). Click **+ New request** to create a new one.
+
 ## How It Works
 
 <Steps>
-  <Step title="Send a Request">
-    Enter the recipient's email address, create a document checklist specifying exactly what you need, and send the request.
+  <Step title="Create a Request">
+    Click **+ New request** to open the request form. Fill in the details:
+
+    - **Title** (required) — e.g., "Q4 Tax Documents"
+    - **Message to recipients** (optional) — instructions for your recipients
+    - **Recipients** — email (required) and name (optional), add as many as needed
+    - **Required documents** (optional) — add a checklist of specific documents you need
+    - **Destination** — choose which folder files land in (defaults to Root)
+    - **Expires** — optionally set an expiration date
+    <Frame>
+      <img src="/images/file-request-2.png" alt="New file request modal with title, recipients, and settings" />
+    </Frame>
+
+    Expand **More options** for additional settings:
+
+    - **Auto-organize uploads** — AI sorts incoming files into subfolders automatically (off by default)
+    - **Rename uploaded files** — define a naming pattern using variables like `{recipient_name}`, `{original_name}`, `{recipient}`, `{email}`, `{date}`, `{title}`, `{document_name}`
+    - **Smart reminders** — auto-remind recipients who haven't uploaded yet (off by default)
+    - **Completion email** — get notified by email when a recipient uploads files (on by default)
+
+    <Frame>
+      <img src="/images/file-request-3.png" alt="More options: auto-organize, rename pattern, smart reminders, and completion email" />
+    </Frame>
+
+    Click **Send Request** when ready.
   </Step>
   <Step title="They Upload or Reply">
-    Recipients receive an email with a secure link. They can either upload files directly through the link or reply to the email with attachments. No Drive AI account is required.
+    Recipients receive an email with a secure link. They see the request title, your message, and the document checklist. They can upload files to each slot, replace uploaded files, or upload additional files. They can also reply to the request email with attachments instead.
+
+    No Drive AI account is required.
+
+    <Frame>
+      <img src="/images/file-request-4.png" alt="Recipient view showing the file upload page with document checklist and progress" />
+    </Frame>
   </Step>
   <Step title="Files Organize Automatically">
     Uploaded documents land in your workspace, auto-renamed and organized based on your rules.

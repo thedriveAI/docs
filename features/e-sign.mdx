@@ -1,75 +1,164 @@
 ---
 title: "E-Sign"
-description: "Add legally binding electronic signatures to your PDF documents"
+description: "Send PDFs for legally binding electronic signatures — no account needed for signers"
 ---
 
 ## Overview
 
-The Drive AI includes built-in electronic signature capabilities so you can sign PDF documents directly in your workspace. E-signatures created with The Drive AI are legally binding and compliant with the ESIGN Act.
+Send any PDF for electronic signatures directly from your Drive AI workspace. Recipients sign from their browser—no account or software required. Every signature is legally binding with a full audit trail.
 
-## How to Sign a Document
+## How It Works
+
+### Starting an E-Sign Request
+
+There are two ways to start:
+
+**From the file browser** — right-click on a PDF and select **Request Signature** from the context menu.
+
+<Frame>
+  <img src="/images/e-sign-1.png" alt="Right-click a PDF and select Request Signature from the context menu" />
+</Frame>
+
+**From the document viewer** — open a PDF and click the **E-Sign** icon in the top toolbar.
+
+<Frame>
+  <img src="/images/e-sign-2.png" alt="Click the E-Sign icon in the document viewer toolbar" />
+</Frame>
+
+### Sender Workflow
 
 <Steps>
-  <Step title="Open the PDF">
-    Navigate to the PDF you want to sign in your workspace.
+  <Step title="Set Up Recipients and Settings">
+    The first screen lets you configure the signing request:
+
+    - **Subject** — a title for the signing request
+    - **Message** — optional message to include in the email
+    - **Recipients** — enter each signer's email (required) and name (optional)
+    - **Signing order** — sign in any order (parallel) or sequential
+    - **Expiration** — optionally set an expiration date
+    - **Auto-reminder** — off by default; enable to send automatic reminders
+    - **Require email verification** — if enabled, recipients must verify their identity with a 6-digit code sent to their email before signing
+
+    <Frame>
+      <img src="/images/e-sign-3.png" alt="E-Sign recipients and settings screen" />
+    </Frame>
   </Step>
-  <Step title="Select E-Sign">
-    Click the **E-Sign** option from the file actions menu.
+  <Step title="Place Fields on the Document">
+    Click on the document to place fields. The left sidebar shows the available field types:
+    - **Signature**
+    - **Initials**
+    - **Text**
+    - **Date**
+    - **Checkbox**
+    - **Dropdown**
+
+    Fields can be resized and repositioned. Each field is assigned to a specific recipient. You can also save the setup as a template for reuse.
+
+    <Frame>
+      <img src="/images/e-sign-4.png" alt="Place signature fields on the document" />
+    </Frame>
   </Step>
-  <Step title="Place Your Signature">
-    Click where you want to place your signature on the document. You can draw, type, or upload your signature.
+  <Step title="Send">
+    Click **Send to recipient(s)** to send the signing request. Recipients receive a secure email link to sign.
   </Step>
-  <Step title="Add Additional Fields">
-    Optionally add your initials, date, or other fields to the document.
-  </Step>
-  <Step title="Apply and Save">
-    Confirm your signature. The signed document is saved to your workspace.
+  <Step title="Track and Download">
+    Monitor signing progress in real time. Once all parties have signed, download the completed PDF.
   </Step>
 </Steps>
 
-## Signature Options
+### Recipient Experience
 
-You can create your signature in three ways:
+Recipients do not need a Drive AI account or any software:
 
-| Method | Description |
-|--------|-------------|
-| **Draw** | Draw your signature using your mouse, trackpad, or touchscreen |
-| **Type** | Type your name and select from signature-style fonts |
-| **Upload** | Upload an image of your handwritten signature |
+1. They receive an email with a secure signing link
+2. They review and accept the ESIGN Act disclosure
+3. They review the document and fill in their assigned fields
+4. They submit their signature
+
+The entire process happens in the browser.
+
+## Reminders and Expiration
+
+### Auto-Reminders
+
+Enable automatic reminders for signers who have not yet completed:
+
+| Cadence | Description |
+|---------|-------------|
+| **Daily** | Reminder sent every day |
+| **Every few days** | A moderate reminder cadence |
+| **Weekly** | A light-touch weekly reminder |
+
+### Expiration
+
+Set an expiration date to automatically close stale signing requests. Expired requests can no longer be signed.
+
+## Reusable Templates
+
+Save your prepared documents as templates for recurring signatures:
+
+- Set up fields and recipients once
+- Reuse the template for new signers with one click
+- Ideal for NDAs, offer letters, lease agreements, and other standard documents
+
+## Identity Verification
+
+For added security, enable email-based identity verification:
+
+- Recipients receive a one-time 6-digit code to their email
+- They must enter the code before accessing the document
+- Adds an extra layer of identity assurance
 
 ## Legal Compliance
 
-The Drive AI's E-Sign feature is compliant with:
+The Drive AI's E-Sign captures a complete audit trail for every document:
+
+| Detail | What Is Recorded |
+|--------|-----------------|
+| **Consent** | Explicit ESIGN Act consent with timestamp and IP address |
+| **Document integrity** | SHA-256 hash at every state transition |
+| **Action log** | Every action recorded: viewed, filled, signed, or declined |
+| **Audit trail** | Immutable record of all events |
+
+Compliant with:
 
 - **ESIGN Act** (Electronic Signatures in Global and National Commerce Act) — legally binding in the United States
-- **UETA** (Uniform Electronic Transactions Act) — recognized across US states
+- **eIDAS Regulation** — recognized in the European Union
 
 <Info>
-  Electronic signatures created through The Drive AI carry the same legal weight as handwritten signatures for most documents, including contracts, agreements, and forms.
+  Electronic signatures created through The Drive AI carry the same legal weight as handwritten signatures for most documents.
 </Info>
 
-## What You Can Sign
+## Post-Signature
 
-- Contracts and agreements
-- NDAs and legal documents
-- Tax forms and applications
-- HR documents and offer letters
-- Invoices and purchase orders
-- Consent forms
+After all parties sign:
 
-## Tips for E-Signing
+- The signed PDF is saved as a new file in your workspace (the original remains unchanged)
+- All parties receive an email with a link to the completed document
+- The full audit trail is attached to the document
 
-<AccordionGroup>
-  <Accordion title="Reuse Your Signature" icon="rotate">
-    Once you create a signature, it is saved for future use. You do not need to redraw it each time.
-  </Accordion>
-  <Accordion title="Review Before Signing" icon="magnifying-glass">
-    Always review the full document before applying your signature. Use Chat Mode to ask questions about the document content if needed.
-  </Accordion>
-  <Accordion title="Combine with PDF Tools" icon="file-pdf">
-    Use PDF tools to fill out forms before signing. For example, fill out a contract with Agent Mode, then apply your signature.
-  </Accordion>
-</AccordionGroup>
+## Use Cases
+
+<CardGroup cols={3}>
+  <Card title="Law Firms" icon="scale-balanced">
+    NDAs, retainers, settlements
+  </Card>
+  <Card title="Real Estate" icon="house">
+    Leases, purchase contracts
+  </Card>
+  <Card title="HR Teams" icon="users">
+    Offer letters, employment agreements
+  </Card>
+  <Card title="Freelancers" icon="laptop">
+    Consulting agreements, SOWs
+  </Card>
+  <Card title="Finance" icon="building-columns">
+    Loans, compliance forms
+  </Card>
+  <Card title="Sales" icon="handshake">
+    Proposals, contracts
+  </Card>
+</CardGroup>
 
 ## What's Next?
 
@@ -77,7 +166,7 @@ The Drive AI's E-Sign feature is compliant with:
   <Card title="PDF Tools" icon="file-pdf" href="/features/pdf-tools">
     Merge, split, compress, and manipulate your PDFs.
   </Card>
-  <Card title="File Sharing" icon="share-nodes" href="/features/file-sharing">
-    Share signed documents with others.
+  <Card title="File Requests" icon="inbox" href="/features/file-requests">
+    Collect documents from anyone via email.
   </Card>
 </CardGroup>
