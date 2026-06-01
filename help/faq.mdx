@@ -27,11 +27,11 @@ description: "Frequently asked questions about The Drive AI"
   </Accordion>
 
   <Accordion title="Is my data secure?" icon="shield-halved">
-    Yes. The Drive AI uses industry-standard encryption for data in transit and at rest. Your files are stored securely and are only accessible to you (and anyone you explicitly share with).
+    Yes. The Drive AI uses AES-256 encryption at rest and TLS 1.3 in transit. The platform is CASA certified and a Microsoft Verified Partner. All uploads are scanned for malware in real time, and your data is never used to train AI models. See our [Security & Privacy](/features/security) page for full details.
   </Accordion>
 
   <Accordion title="Can I access The Drive AI on mobile?" icon="mobile">
-    Currently, The Drive AI is optimized for desktop web browsers. Mobile apps are planned for future release.
+    Yes! The Drive AI is available on iOS and Android, in addition to the web app. The mobile apps include features like document scanning, file management, and AI chat. Download from the [App Store](https://apps.apple.com/us/app/the-drive-ai-file-organizer/id6758524851) or [Google Play](https://play.google.com/store/apps/details?id=com.bigyankarki.thedriveai).
   </Accordion>
 </AccordionGroup>
 
@@ -61,10 +61,7 @@ description: "Frequently asked questions about The Drive AI"
   </Accordion>
 
   <Accordion title="How do I delete my account?" icon="trash">
-    To delete your account and all associated data:
-    Please contact contact@thedrive.ai
-
-    You will be able to delete your account from dashboard soon.
+    To delete your account and all associated data, please contact [contact@thedrive.ai](mailto:contact@thedrive.ai).
   </Accordion>
 </AccordionGroup>
 
@@ -91,6 +88,22 @@ description: "Frequently asked questions about The Drive AI"
     Yes. Recent Agent Mode actions can be undone. Additionally, deleted files go to a Trash folder first, giving you a chance to recover them.
   </Accordion>
 
+  <Accordion title="Can I sign PDF documents?" icon="signature">
+    Yes. The Drive AI includes built-in [E-Sign](/features/e-sign) for adding legally binding electronic signatures to PDFs. E-signatures are compliant with the ESIGN Act and UETA.
+  </Accordion>
+
+  <Accordion title="What PDF operations are available?" icon="file-pdf">
+    The Drive AI includes a full suite of [PDF tools](/features/pdf-tools): merge, split, compress, fill forms, extract pages, add watermarks, and convert PDF to JPG. You can use these through Agent Mode with natural language commands.
+  </Accordion>
+
+  <Accordion title="Can I scan physical documents?" icon="camera">
+    Yes. The Drive AI mobile app includes a [document scanner](/features/document-scanning) that converts physical documents to searchable PDFs with OCR text extraction. Download the iOS or Android app to get started.
+  </Accordion>
+
+  <Accordion title="How do I share files with people outside my workspace?" icon="share-nodes">
+    You can share files via shareable links, direct email invitations, or [File Requests](/features/file-sharing). External collaborators only see the specific files shared with them—they cannot browse your workspace.
+  </Accordion>
+
   <Accordion title="Does The Drive AI work offline?" icon="wifi-slash">
     No. The Drive AI requires an internet connection to function, as the AI processing happens in the cloud.
   </Accordion>
@@ -100,13 +113,22 @@ description: "Frequently asked questions about The Drive AI"
 
 <AccordionGroup>
   <Accordion title="What integrations are available?" icon="plug">
-    - **Google Drive Import**: Import files from your Google Drive
-    - **Email Integration**: Auto-import attachments from Gmail and Outlook (Premium)
-    - **MCP Server**: Connect to Claude, ChatGPT, Cursor, and other AI tools
+    **Cloud storage** (manual import/export):
+    - [Google Drive](/integrations/google-drive-import) — import and export files
+    - [OneDrive](/integrations/onedrive-import) — import and export files
+    - [Dropbox](/integrations/dropbox-import) — import and export files
+
+    **Live integrations** (automatic, real-time):
+    - [Email](/integrations/email-integration) — auto-import attachments from Gmail and Outlook (Premium)
+    - [Slack](/integrations/slack) — auto-organize files shared in Slack channels
+    - [Microsoft Teams](/integrations/microsoft-teams) — auto-organize files shared in Teams channels
+
+    **AI tools**:
+    - [MCP Server](/integrations/mcp-server) — connect to Claude, ChatGPT, Cursor, and other AI tools
   </Accordion>
 
-  <Accordion title="Does The Drive AI sync with Google Drive?" icon="sync">
-    Currently, you can import files from Google Drive, but it's a one-time copy—not a continuous sync. Your Google Drive files remain unchanged, and updates don't sync between the two.
+  <Accordion title="Do cloud storage integrations sync automatically?" icon="sync">
+    No. Google Drive, OneDrive, and Dropbox integrations are manual import/export. Files are copied when you trigger the action—changes are not synced automatically between the two. Your original files remain untouched. For real-time automatic imports, see the Email, Slack, and Microsoft Teams integrations.
   </Accordion>
 
   <Accordion title="What is MCP?" icon="link">

@@ -1,0 +1,131 @@
+---
+title: "Slack Integration"
+description: "Automatically organize files shared in your Slack channels"
+---
+
+## Overview
+
+The Drive AI integrates with Slack to automatically capture and organize files shared across your Slack channels. Stop losing important documents in the endless scroll of messages—every file shared in Slack is automatically imported and organized in your Drive AI workspace.
+
+## How It Works
+
+Once connected, The Drive AI monitors your Slack channels for shared files:
+
+1. **A file is shared** in a Slack channel or direct message
+2. **The Drive AI detects** the file automatically
+3. **The file is imported** to your workspace
+4. **AI organizes** the file into the appropriate folder based on its content
+
+All of this happens in real time—no manual intervention required.
+
+## Connecting Slack
+
+<Steps>
+  <Step title="Navigate to Integrations">
+    Go to **Settings** > **Integrations** > **Slack**.
+  </Step>
+  <Step title="Connect Your Slack Workspace">
+    Click **Connect Slack** and sign in to your Slack workspace.
+  </Step>
+  <Step title="Authorize Access">
+    Grant The Drive AI permission to access files shared in your Slack channels. Authentication uses secure OAuth—your Slack password is never stored.
+  </Step>
+  <Step title="Select Channels">
+    Choose which Slack channels The Drive AI should monitor for files.
+  </Step>
+</Steps>
+
+## What Gets Imported
+
+The Drive AI imports files shared in your connected Slack channels:
+
+- **Documents**: PDF, DOCX, DOC, TXT, RTF
+- **Spreadsheets**: XLSX, XLS, CSV
+- **Presentations**: PPTX, PPT
+- **Images**: PNG, JPG, GIF (Premium)
+
+<Note>
+  Only files shared in monitored channels are imported. Private messages are not monitored unless you explicitly enable them.
+</Note>
+
+## Organization
+
+Imported Slack files are organized based on:
+
+| Factor | Example |
+|--------|---------|
+| **Content** | Design mockup detected → Design folder |
+| **Channel context** | Shared in #marketing → Marketing folder |
+| **File type** | Spreadsheet → relevant project folder |
+
+The AI uses both the file content and the Slack channel context to determine the best location for each file.
+
+## Configuration
+
+### Choosing Channels
+
+Select which channels to monitor:
+
+1. Go to **Settings** > **Integrations** > **Slack**
+2. Click **Manage Channels**
+3. Toggle channels on or off
+
+### File Type Filtering
+
+Control which file types are imported:
+
+1. Go to **Settings** > **Integrations** > **Slack**
+2. Click **File Settings**
+3. Enable or disable specific file types
+
+## Managing Your Connection
+
+### Disconnecting
+
+1. Go to **Settings** > **Integrations** > **Slack**
+2. Click **Disconnect**
+3. Confirm the disconnection
+
+<Warning>
+  Disconnecting stops future file imports. Files already imported to your workspace are not deleted.
+</Warning>
+
+## Privacy & Security
+
+<AccordionGroup>
+  <Accordion title="What data do you access?" icon="eye">
+    The Drive AI only accesses files shared in your selected Slack channels. We do not read or store your Slack messages—only the files attached to them.
+  </Accordion>
+  <Accordion title="Is my data secure?" icon="shield-halved">
+    All data transfers are encrypted. Your Slack credentials are handled through secure OAuth—we never see or store your password.
+  </Accordion>
+  <Accordion title="Can I revoke access?" icon="key">
+    Yes. You can disconnect The Drive AI from Slack at any time. You can also revoke access from your Slack workspace settings.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Files Not Importing" icon="file-circle-xmark">
+    - Check that the Slack integration is connected and not paused
+    - Verify the channel is in your monitored channels list
+    - Ensure the file type is supported and not filtered out
+    - Check that you have sufficient storage space
+  </Accordion>
+  <Accordion title="Wrong Channel Files Importing" icon="filter">
+    - Review your monitored channels list in Settings > Integrations > Slack
+    - Disable channels you do not want monitored
+  </Accordion>
+</AccordionGroup>
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Microsoft Teams" icon="users" href="/integrations/microsoft-teams">
+    Auto-organize files from Microsoft Teams.
+  </Card>
+  <Card title="Email Integration" icon="envelope" href="/integrations/email-integration">
+    Auto-import attachments from Gmail and Outlook.
+  </Card>
+</CardGroup>

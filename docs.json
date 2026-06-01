@@ -27,14 +27,24 @@
               "features/uploading-files",
               "features/auto-organization",
               "features/chat-mode",
-              "features/agent-mode"
+              "features/agent-mode",
+              "features/pdf-tools",
+              "features/e-sign",
+              "features/document-creation",
+              "features/document-scanning",
+              "features/file-sharing",
+              "features/security"
             ]
           },
           {
             "group": "Integrations",
             "pages": [
               "integrations/google-drive-import",
+              "integrations/onedrive-import",
+              "integrations/dropbox-import",
               "integrations/email-integration",
+              "integrations/slack",
+              "integrations/microsoft-teams",
               "integrations/mcp-server"
             ]
           },

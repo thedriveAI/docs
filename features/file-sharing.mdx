@@ -1,0 +1,158 @@
+---
+title: "File Sharing & Permissions"
+description: "Share files and folders with granular permission controls"
+---
+
+## Overview
+
+The Drive AI makes it easy to share files and folders with anyone—whether they are team members in your workspace or external collaborators. You control exactly who can access what with granular permission settings.
+
+## Sharing a File or Folder
+
+<Steps>
+  <Step title="Select the Item">
+    Right-click on a file or folder in your workspace, or click the more options menu.
+  </Step>
+  <Step title="Click Share">
+    Select **Share** from the context menu.
+  </Step>
+  <Step title="Add People or Create a Link">
+    Enter email addresses to share with specific people, or create a shareable link for broader access.
+  </Step>
+  <Step title="Set Permissions">
+    Choose the permission level for each person or link.
+  </Step>
+</Steps>
+
+## Permission Levels
+
+| Permission | Can View | Can Edit | Can Share | Can Delete |
+|------------|----------|----------|-----------|------------|
+| **Viewer** | Yes | No | No | No |
+| **Editor** | Yes | Yes | No | No |
+| **Admin** | Yes | Yes | Yes | Yes |
+
+## Sharing Methods
+
+### Share with Specific People
+
+Invite individuals by email address. They will receive a notification and can access the shared file or folder from their workspace.
+
+- Recipients need a Drive AI account to access shared items
+- You can set different permission levels for each person
+- Revoke access at any time
+
+### Shareable Links
+
+Create a link that anyone can use to access the file:
+
+- **Restricted** — only people you have explicitly shared with can open the link
+- **Anyone with the link** — anyone who has the link can access the file
+
+<Note>
+  Shareable links respect the permission level you set. A view-only link does not allow editing.
+</Note>
+
+### File Requests
+
+Need to collect files from others? Use File Requests to create a secure upload link:
+
+<Steps>
+  <Step title="Create a File Request">
+    Right-click on a folder and select **File Request**, or use Agent Mode: "Create a file request for the Client Documents folder."
+  </Step>
+  <Step title="Share the Link">
+    Share the generated link with anyone you need files from.
+  </Step>
+  <Step title="Receive Files">
+    Files uploaded through the link appear directly in your specified folder. Uploaders do not need a Drive AI account.
+  </Step>
+</Steps>
+
+<Tip>
+  File Requests are great for collecting documents from clients, vendors, or team members who do not use The Drive AI.
+</Tip>
+
+## External Collaborators
+
+Share files with people outside your workspace without giving them full workspace access:
+
+- External collaborators can only see the specific files or folders shared with them
+- They cannot browse your workspace or access other files
+- Permissions are set per shared item
+
+## Sharing with Agent Mode
+
+Use natural language commands to manage sharing:
+
+```
+Share the Q4 report with the marketing team
+```
+
+```
+Create a shareable link for the project proposal
+```
+
+```
+Give John editor access to the Contracts folder
+```
+
+```
+Create a file request for the Client Onboarding folder
+```
+
+```
+Remove Sarah's access to the Finance folder
+```
+
+## Team Workspace Roles
+
+In team workspaces, members have workspace-level roles that determine their default capabilities:
+
+| Role | Description |
+|------|-------------|
+| **Owner** | Full control over the workspace, billing, and member management |
+| **Admin** | Can manage members, settings, and all files |
+| **Member** | Can upload, organize, and share files |
+| **Viewer** | Read-only access to workspace files |
+
+<Info>
+  File-level permissions can override workspace roles. For example, you can give a Viewer edit access to a specific folder.
+</Info>
+
+## Version History
+
+The Drive AI keeps track of file changes so you can recover previous versions:
+
+- View the version history of any file
+- Restore a previous version at any time
+- See who made changes and when
+
+## Managing Shared Items
+
+### Viewing Shared Access
+
+To see who has access to a file or folder:
+
+1. Right-click the item and select **Share**
+2. View the list of people and their permission levels
+3. Modify or revoke access as needed
+
+### Revoking Access
+
+Remove someone's access at any time:
+
+1. Open the sharing settings for the file or folder
+2. Click the remove icon next to the person's name
+3. Their access is revoked immediately
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Agent Mode" icon="robot" href="/features/agent-mode">
+    Manage file sharing with natural language commands.
+  </Card>
+  <Card title="Plans & Pricing" icon="credit-card" href="/account/plans-pricing">
+    Learn about team workspace plans.
+  </Card>
+</CardGroup>

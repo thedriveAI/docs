@@ -1,0 +1,147 @@
+---
+title: "OneDrive Import"
+description: "Import and export files between OneDrive and The Drive AI"
+---
+
+## Overview
+
+The Drive AI connects with Microsoft OneDrive so you can import files from OneDrive into your workspace and export files back. This is a manual import/export—files are copied on demand, not automatically synced.
+
+## Why Connect OneDrive?
+
+Bring your OneDrive files into The Drive AI to unlock:
+
+- **AI-powered organization** for your existing files
+- **Natural language search** across all your documents
+- **Chat Mode** to ask questions about your files
+- **Agent Mode** to perform bulk operations
+- **Unified workspace** alongside files from other sources
+
+## Connecting OneDrive
+
+<Steps>
+  <Step title="Navigate to Integrations">
+    Go to **Settings** > **Integrations** > **OneDrive**.
+  </Step>
+  <Step title="Connect Your Microsoft Account">
+    Click **Connect OneDrive** and sign in with your Microsoft account.
+  </Step>
+  <Step title="Authorize Access">
+    Grant The Drive AI permission to access your OneDrive files. Your Microsoft password is never stored—authentication uses secure OAuth.
+  </Step>
+</Steps>
+
+## Importing Files from OneDrive
+
+<Steps>
+  <Step title="Open the Import Interface">
+    After connecting, navigate to **Settings** > **Integrations** > **OneDrive** and click **Import**.
+  </Step>
+  <Step title="Browse and Select">
+    Browse your OneDrive folders and select the files or folders you want to import.
+  </Step>
+  <Step title="Choose Import Location">
+    Select where in your Drive AI workspace the files should go:
+    - **Workspace root** — auto-organization sorts them for you
+    - **Specific folder** — place them exactly where you want
+  </Step>
+  <Step title="Import">
+    Click **Import** to begin the transfer. Files are copied into your workspace—your OneDrive originals remain untouched.
+  </Step>
+</Steps>
+
+## Exporting Files to OneDrive
+
+You can also send files from your Drive AI workspace back to OneDrive:
+
+<Steps>
+  <Step title="Select Files">
+    Select the files or folders you want to export from your workspace.
+  </Step>
+  <Step title="Choose Export">
+    Right-click and select **Export to OneDrive**, or use the export option from the file actions menu.
+  </Step>
+  <Step title="Choose Destination">
+    Select the OneDrive folder where you want the files to go.
+  </Step>
+  <Step title="Export">
+    Click **Export** to copy the files to your OneDrive.
+  </Step>
+</Steps>
+
+## How Import/Export Works
+
+<Info>
+  OneDrive integration is **manual import/export**, not live sync. Files are copied when you trigger the action. Changes made in one location are not automatically reflected in the other.
+</Info>
+
+| Behavior | Details |
+|----------|---------|
+| **Import** | Copies files from OneDrive to your workspace |
+| **Export** | Copies files from your workspace to OneDrive |
+| **Live sync** | Not available — import and export are triggered manually |
+| **Original files** | Remain untouched in the source location |
+
+## Auto-Organization on Import
+
+When importing to your workspace root, auto-organization can sort your files automatically:
+
+- The AI reads file content and creates logical folders
+- Related files are grouped together
+- Files are renamed if they have generic or meaningless names
+
+## Managing Your Connection
+
+### Viewing Connection Status
+
+Go to **Settings** > **Integrations** to see your connected Microsoft account and connection status.
+
+### Disconnecting
+
+1. Go to **Settings** > **Integrations** > **OneDrive**
+2. Click **Disconnect**
+3. Confirm the disconnection
+
+<Warning>
+  Disconnecting does not delete files already imported to your workspace. It only removes the ability to import or export.
+</Warning>
+
+## Tips
+
+<AccordionGroup>
+  <Accordion title="Import in Batches" icon="layer-group">
+    For large OneDrive accounts, import folders in batches to monitor progress and stay within storage limits.
+  </Accordion>
+  <Accordion title="Check Storage First" icon="hard-drive">
+    Verify your available storage before importing. Free plan: 5 GB, Premium: 100 GB.
+  </Accordion>
+  <Accordion title="Use Auto-Organization" icon="wand-magic-sparkles">
+    Import to the workspace root with auto-organization enabled to let the AI sort your files into logical folders.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection Failed" icon="plug-circle-xmark">
+    - Ensure you are signed into the correct Microsoft account
+    - Check that you have granted the necessary permissions
+    - Try disconnecting and reconnecting
+  </Accordion>
+  <Accordion title="Import or Export Stuck" icon="clock">
+    - Large files take longer to transfer
+    - Check your internet connection
+    - Try smaller batches
+  </Accordion>
+</AccordionGroup>
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Dropbox Import" icon="dropbox" href="/integrations/dropbox-import">
+    Import and export files from Dropbox.
+  </Card>
+  <Card title="Auto-Organization" icon="folder-tree" href="/features/auto-organization">
+    Learn how imported files get organized.
+  </Card>
+</CardGroup>
