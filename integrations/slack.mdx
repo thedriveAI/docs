@@ -1,82 +1,103 @@
 ---
 title: "Slack Integration"
-description: "Automatically organize files shared in your Slack channels"
+description: "Automatically capture and organize files shared in your Slack channels"
 ---
 
 ## Overview
 
-The Drive AI integrates with Slack to automatically capture and organize files shared across your Slack channels. Stop losing important documents in the endless scroll of messages—every file shared in Slack is automatically imported and organized in your Drive AI workspace.
+The Drive AI integrates with Slack to automatically capture, organize, and make searchable every file shared in your Slack channels. Stop losing important documents in the endless scroll of messages—files shared in Slack are automatically saved and organized in your Drive AI workspace.
 
 ## How It Works
 
-Once connected, The Drive AI monitors your Slack channels for shared files:
+Once connected and invited to a channel, The Drive AI monitors for shared files:
 
-1. **A file is shared** in a Slack channel or direct message
-2. **The Drive AI detects** the file automatically
-3. **The file is imported** to your workspace
-4. **AI organizes** the file into the appropriate folder based on its content
+1. **A file is shared** in a channel where The Drive AI app is invited
+2. **The AI reads the file content**, considers the channel context, and matches it against your existing folder structure
+3. **The file is imported and organized** into the appropriate folder automatically
 
 All of this happens in real time—no manual intervention required.
 
 ## Connecting Slack
 
 <Steps>
-  <Step title="Navigate to Integrations">
-    Go to **Settings** > **Integrations** > **Slack**.
-  </Step>
   <Step title="Connect Your Slack Workspace">
-    Click **Connect Slack** and sign in to your Slack workspace.
+    Go to **Settings** > **Integrations** > **Slack** and click **Connect Slack**. Sign in to your Slack workspace and authorize The Drive AI app.
   </Step>
-  <Step title="Authorize Access">
-    Grant The Drive AI permission to access files shared in your Slack channels. Authentication uses secure OAuth—your Slack password is never stored.
-  </Step>
-  <Step title="Select Channels">
-    Choose which Slack channels The Drive AI should monitor for files.
+  <Step title="Invite The Drive AI to Channels">
+    In each Slack channel you want monitored, type:
+
+    ```
+    /invite @the-drive-ai
+    ```
+
+    The Drive AI app **only has access to channels you explicitly invite it to**. It cannot see or access any channel it has not been added to.
   </Step>
 </Steps>
 
+<Info>
+  The app installs as a single connection per Slack workspace. You control access by inviting or removing it from specific channels.
+</Info>
+
 ## What Gets Imported
 
-The Drive AI imports files shared in your connected Slack channels:
+The Drive AI imports files shared in channels where the app is invited:
 
 - **Documents**: PDF, DOCX, DOC, TXT, RTF
 - **Spreadsheets**: XLSX, XLS, CSV
 - **Presentations**: PPTX, PPT
-- **Images**: PNG, JPG, GIF (Premium)
-
-<Note>
-  Only files shared in monitored channels are imported. Private messages are not monitored unless you explicitly enable them.
-</Note>
+- **Images**: PNG, JPG, GIF
 
 ## Organization
 
-Imported Slack files are organized based on:
+The AI uses context-aware routing to place files in the right folders:
 
 | Factor | Example |
 |--------|---------|
-| **Content** | Design mockup detected → Design folder |
-| **Channel context** | Shared in #marketing → Marketing folder |
-| **File type** | Spreadsheet → relevant project folder |
+| **File content** | Contract detected → Contracts folder |
+| **Channel context** | Shared in #legal → Legal folder |
+| **Existing structure** | Matches against your current folder structure |
 
-The AI uses both the file content and the Slack channel context to determine the best location for each file.
+You can also define custom routing rules to override or refine automatic decisions.
 
-## Configuration
+## Key Features
 
-### Choosing Channels
+### Full-Text Search
 
-Select which channels to monitor:
+Search the content of every file shared in Slack—not just filenames. Once imported, files are fully indexed and searchable through Chat Mode or the search bar.
 
-1. Go to **Settings** > **Integrations** > **Slack**
-2. Click **Manage Channels**
-3. Toggle channels on or off
+### Permanent Storage
 
-### File Type Filtering
+Files remain safe in your Drive AI workspace even when Slack deletes originals due to storage limits or retention policies.
 
-Control which file types are imported:
+### File Activity Audit
 
-1. Go to **Settings** > **Integrations** > **Slack**
-2. Click **File Settings**
-3. Enable or disable specific file types
+Complete logs showing who shared what, when, and where it was filed, with links back to the original Slack messages.
+
+### Real-Time Notifications
+
+Get alerts for important files with filtering by file type, sender, or keywords.
+
+### Slack Connect Support
+
+The integration works with shared channels between organizations.
+
+## Managing Channels
+
+### Adding a Channel
+
+Invite the app to any channel you want monitored:
+
+```
+/invite @the-drive-ai
+```
+
+### Removing from a Channel
+
+Remove the app from a channel to stop monitoring:
+
+```
+/remove @the-drive-ai
+```
 
 ## Managing Your Connection
 
@@ -94,7 +115,10 @@ Control which file types are imported:
 
 <AccordionGroup>
   <Accordion title="What data do you access?" icon="eye">
-    The Drive AI only accesses files shared in your selected Slack channels. We do not read or store your Slack messages—only the files attached to them.
+    The Drive AI only accesses files shared in channels where the app has been invited. We do not read or store your Slack messages—only the files attached to them.
+  </Accordion>
+  <Accordion title="Which channels can the app see?" icon="hashtag">
+    Only channels where you explicitly invite the app using `/invite @the-drive-ai`. The app cannot see or access any other channels, DMs, or messages.
   </Accordion>
   <Accordion title="Is my data secure?" icon="shield-halved">
     All data transfers are encrypted. Your Slack credentials are handled through secure OAuth—we never see or store your password.
@@ -108,14 +132,15 @@ Control which file types are imported:
 
 <AccordionGroup>
   <Accordion title="Files Not Importing" icon="file-circle-xmark">
-    - Check that the Slack integration is connected and not paused
-    - Verify the channel is in your monitored channels list
-    - Ensure the file type is supported and not filtered out
+    - Make sure The Drive AI app is invited to the channel — type `/invite @the-drive-ai` in the channel
+    - Check that the Slack integration is connected in Settings
+    - Ensure the file type is supported
     - Check that you have sufficient storage space
   </Accordion>
-  <Accordion title="Wrong Channel Files Importing" icon="filter">
-    - Review your monitored channels list in Settings > Integrations > Slack
-    - Disable channels you do not want monitored
+  <Accordion title="App Not Appearing in Slack" icon="plug-circle-xmark">
+    - Verify you completed the authorization in Settings > Integrations > Slack
+    - You may need Slack workspace admin permissions to install apps
+    - Try disconnecting and reconnecting
   </Accordion>
 </AccordionGroup>
 

@@ -1,13 +1,11 @@
 ---
 title: "Google Drive Import"
-description: "Import files from your Google Drive into The Drive AI"
+description: "Import and export files between Google Drive and The Drive AI"
 ---
 
 ## Overview
 
-CURRENTLY UNAVAILABLE
-
-The Drive AI allows you to import files directly from your Google Drive, making it easy to bring your existing documents into your AI-powered workspace without manual downloads and uploads.
+The Drive AI connects with Google Drive so you can import files from Google Drive into your workspace and export files back. This is a manual import/export—files are copied on demand, not automatically synced.
 
 <Frame>
   <img src="/images/google-drive.jpg" alt="Google Drive Import" />
@@ -62,20 +60,37 @@ When you import files from Google Drive to The Drive AI, you unlock:
   </Step>
 </Steps>
 
-## Import Options
+## Exporting Files to Google Drive
 
-### Copy vs. Sync
+You can also send files from your Drive AI workspace back to Google Drive:
 
-Currently, The Drive AI **copies** files from Google Drive. This means:
+<Steps>
+  <Step title="Select Files">
+    Select the files or folders you want to export from your workspace.
+  </Step>
+  <Step title="Choose Export">
+    Right-click and select **Export to Cloud**, or use the export option from the file actions menu.
+  </Step>
+  <Step title="Choose Destination">
+    Select the Google Drive folder where you want the files to go.
+  </Step>
+  <Step title="Export">
+    Click **Export** to copy the files to your Google Drive.
+  </Step>
+</Steps>
 
-- Files are duplicated into your The Drive AI workspace
-- Changes in Google Drive are not automatically reflected
-- Changes in The Drive AI do not affect your Google Drive
-- Your original Google Drive files remain intact
+## How Import/Export Works
 
 <Info>
-  Two-way sync may be available in future updates. For now, import brings a copy of your files.
+  Google Drive integration is **manual import/export**, not live sync. Files are copied when you trigger the action. Changes made in one location are not automatically reflected in the other.
 </Info>
+
+| Behavior | Details |
+|----------|---------|
+| **Import** | Copies files from Google Drive to your workspace |
+| **Export** | Copies files from your workspace to Google Drive |
+| **Live sync** | Not available — import and export are triggered manually |
+| **Original files** | Remain untouched in the source location |
 
 ### Auto-Organization on Import
 

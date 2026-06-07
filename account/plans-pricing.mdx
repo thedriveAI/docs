@@ -5,7 +5,7 @@ description: "Compare The Drive AI plans and choose the right one for you"
 
 ## Overview
 
-The Drive AI offers flexible pricing for individuals and teams. Everyone starts with a **Personal Workspace** on the **Free** plan, and can upgrade to **Premium** for unlimited AI capabilities. Teams can create **Team Workspaces** for collaborative file management.
+The Drive AI offers flexible pricing for individuals and teams. Everyone starts with a **Free** plan and can upgrade to **Premium** or **Max** for more AI power, storage, and integrations. Teams can create **Team Workspaces** for collaborative file management.
 
 ## Workspaces
 
@@ -17,7 +17,7 @@ The Drive AI uses workspaces to organize your files. There are two types:
 
     - One per account (created automatically)
     - Single user only
-    - Free or Premium plan
+    - Free, Premium, or Max plan
     - Cannot be deleted or recreated
   </Card>
   <Card title="Team Workspace" icon="users">
@@ -42,37 +42,44 @@ To switch between workspaces or create a new team workspace:
 
 ## Personal Plans
 
-For your Personal Workspace, choose between Free and Premium:
-
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Free" icon="gift">
-    **$0** — Always free
+    **$0** — Free forever
 
     Get started with essential AI file management.
   </Card>
   <Card title="Premium" icon="crown">
     **$199.99/year**
 
-    <Note>2 months free with annual billing (regularly $239.88)</Note>
+    More AI power and storage for regular use.
+  </Card>
+  <Card title="Max" icon="bolt">
+    **$999.99/year**
 
-    Unlimited AI power for serious file management.
+    Unlimited AI, all integrations, and maximum storage.
   </Card>
 </CardGroup>
 
 ### Feature Comparison
 
-| Feature | Free | Premium |
-|---------|------|---------|
-| **AI Queries** | 5 per day | Unlimited |
-| **File Types** | Text files only (PDF, DOCX, etc.) | All files (PDF, DOCX, PPTX, images, videos, audio) |
-| **Auto-Organization** | 5 files per month | Unlimited |
-| **Storage** | 5 GB | 100 GB |
-| **Workspace** | Personal (1 user) | Personal (1 user) |
-| **File Management** | Basic | Advanced |
-| **AI Models** | Standard | Multiple (GPT-5, Claude, etc.) |
-| **Email Integration** | — | Gmail & Outlook |
-| **Advanced Integrations** | — | Included |
-| **Support** | Community | Premium support |
+| Feature | Free | Premium | Max |
+|---------|------|---------|-----|
+| **AI Steps** | 10/day, 300/month | 100/day, 3,000/month | Unlimited |
+| **Auto-Organization** | 5 files/month | 100 files/month | Unlimited |
+| **Storage** | 1 GB (up to 50 files) | 20 GB (up to 500 files) | 500 GB (unlimited files) |
+| **File Types** | Text files only | All formats (images, video, audio) | All formats |
+| **AI Models** | Standard | Multiple (GPT-5, Claude) | Multiple (GPT-5, Claude) |
+| **Rate Limits** | Rate limited during peak | Higher rate limits | Highest rate limits |
+| **Email Sync** | — | — | Gmail, Outlook, Slack, Teams |
+| **Cloud Storage** | — | — | Google Drive, OneDrive, Dropbox |
+| **E-Sign** | — | — | Included |
+| **File Requests** | — | — | Included |
+| **Support** | Community | Standard | Premium support |
+| **Mobile Apps** | Yes | Yes | Yes |
+
+<Note>
+  All plans include core features: AI file agent, auto-organization, content-based search, grounded answers, mobile apps, and security (AES-256 encryption, malware detection, CASA certified).
+</Note>
 
 ---
 
@@ -91,9 +98,10 @@ For teams that need to collaborate on files together.
 - **Up to 50 team members** per workspace
 - **Role-based access levels** (Owner, Admin, Member, Viewer)
 - **Centralized billing** managed by workspace owner
-- **All Premium features** for every team member
+- **All Max features** for every team member
 - **Shared file organization** across the team
 - **Team-wide AI capabilities**
+- **Multiple integrations** in a shared workspace
 
 ### Creating a Team Workspace
 
@@ -129,20 +137,21 @@ After your 1-month free trial ends:
   You can create multiple team workspaces. Each workspace has its own 1-month free trial and separate $500/month billing.
 </Info>
 
-## Free Plan
+---
+
+## Plan Details
+
+### Free Plan
 
 The Free plan is perfect for:
 
 - Trying out The Drive AI
 - Light personal use
 - Text document organization
-- Basic file management
-
-### What's Included
 
 <AccordionGroup>
-  <Accordion title="5 AI Queries Per Day" icon="message">
-    Ask questions in Chat Mode or execute commands in Agent Mode up to 5 times per day. Resets daily at midnight UTC.
+  <Accordion title="10 AI Steps Per Day (300/month)" icon="message">
+    Use Chat Mode and Agent Mode up to 10 times per day. Monthly cap of 300 steps.
   </Accordion>
   <Accordion title="Text File Support" icon="file-lines">
     Works with PDF, DOCX, DOC, TXT, RTF, XLSX, XLS, CSV, PPTX, and PPT files. Does not include images, audio, or video.
@@ -150,70 +159,90 @@ The Free plan is perfect for:
   <Accordion title="5 Files Auto-Organized Per Month" icon="folder-tree">
     The AI can automatically organize up to 5 files per month. Manual organization is still available.
   </Accordion>
-  <Accordion title="5 GB Storage" icon="hard-drive">
-    Store up to 5 GB of files in your workspace.
-  </Accordion>
-  <Accordion title="Basic File Management" icon="folder-open">
-    Create, rename, move, and delete files. Basic sharing capabilities.
+  <Accordion title="1 GB Storage (50 files)" icon="hard-drive">
+    Store up to 1 GB of files, with a maximum of 50 files.
   </Accordion>
 </AccordionGroup>
 
-## Premium Plan
+### Premium Plan
 
 The Premium plan is ideal for:
 
-- Power users with large file collections
+- Regular users with growing file collections
 - Professionals who work with diverse file types
-- Anyone who needs unlimited AI assistance
-- Users who receive many email attachments
-
-### What's Included
+- Anyone who needs more AI power
 
 <AccordionGroup>
-  <Accordion title="Unlimited AI Queries" icon="infinity">
-    No daily limits. Use Chat Mode and Agent Mode as much as you need.
+  <Accordion title="100 AI Steps Per Day (3,000/month)" icon="bolt">
+    Significantly more AI capacity for daily use.
   </Accordion>
   <Accordion title="All File Types" icon="files">
-    Full support for:
-    - Documents (PDF, DOCX, TXT, etc.)
-    - Spreadsheets (XLSX, CSV)
-    - Presentations (PPTX)
-    - Images with OCR and analysis
-    - Audio with transcription and speaker identification
-    - Video with content analysis
+    Full support for documents, spreadsheets, presentations, images with OCR, audio with transcription, and video analysis.
   </Accordion>
-  <Accordion title="Unlimited Auto-Organization" icon="wand-magic-sparkles">
-    No limits on automatic file organization. Let the AI sort everything.
+  <Accordion title="100 Files Auto-Organized Per Month" icon="wand-magic-sparkles">
+    Organize up to 100 files per month automatically.
   </Accordion>
-  <Accordion title="100 GB Storage" icon="database">
-    20x more storage than the Free plan. Room for all your files.
+  <Accordion title="20 GB Storage (500 files)" icon="database">
+    20x more storage than Free, with up to 500 files.
   </Accordion>
   <Accordion title="Multiple AI Models" icon="brain">
     Access to GPT-5, Claude, and other advanced AI models for better results.
   </Accordion>
-  <Accordion title="Email Integration" icon="envelope">
-    Connect Gmail and Outlook to automatically import and organize email attachments.
+  <Accordion title="Priority Access" icon="gauge-high">
+    Higher rate limits and priority access during peak demand.
   </Accordion>
-  <Accordion title="Advanced Integrations" icon="plug">
-    Full access to MCP server, Google Drive import, and future integrations.
+</AccordionGroup>
+
+### Max Plan
+
+The Max plan is for power users who need everything:
+
+- Unlimited AI with no daily caps
+- Full integration suite (email, cloud storage, Slack, Teams)
+- E-Sign and File Requests
+- Maximum storage
+
+<AccordionGroup>
+  <Accordion title="Unlimited AI Steps" icon="infinity">
+    No daily or monthly limits. Use Chat Mode and Agent Mode as much as you need.
+  </Accordion>
+  <Accordion title="Unlimited Auto-Organization" icon="wand-magic-sparkles">
+    No limits on automatic file organization.
+  </Accordion>
+  <Accordion title="500 GB Storage (Unlimited files)" icon="database">
+    Massive storage with no file count limits.
+  </Accordion>
+  <Accordion title="Email Sync" icon="envelope">
+    Connect Gmail, Outlook, Slack, and Microsoft Teams for automatic file imports.
+  </Accordion>
+  <Accordion title="Cloud Storage Integration" icon="cloud">
+    Import and export files with Google Drive, OneDrive, and Dropbox.
+  </Accordion>
+  <Accordion title="E-Sign" icon="signature">
+    Send PDFs for legally binding electronic signatures.
+  </Accordion>
+  <Accordion title="File Requests" icon="inbox">
+    Collect documents from anyone with checklists, reminders, and auto-organization.
   </Accordion>
   <Accordion title="Premium Support" icon="headset">
     Priority support with faster response times.
   </Accordion>
 </AccordionGroup>
 
+---
+
 ## Pricing Details
 
-### Premium Annual Billing
+### Annual Billing
 
-| | |
-|---|---|
-| **Regular Price** | $19.99/month ($239.88/year) |
-| **Annual Price** | $199.99/year |
-| **You Save** | $39.89 (2 months free) |
+| Plan | Annual Price | Monthly Equivalent | Savings |
+|------|-------------|-------------------|---------|
+| **Free** | $0 | $0 | — |
+| **Premium** | $199.99/year | ~$16.67/month | $39.89 (2 months free) |
+| **Max** | $999.99/year | ~$83.33/month | $199.89 (2 months free) |
 
 <Note>
-  Premium is billed annually. Cancel anytime—you'll retain access until the end of your billing period.
+  Premium and Max are billed annually. Cancel anytime—you retain access until the end of your billing period.
 </Note>
 
 ## How to Upgrade
@@ -223,16 +252,16 @@ The Premium plan is ideal for:
     Log in to your The Drive AI account at [thedrive.ai](https://thedrive.ai).
   </Step>
   <Step title="Go to Settings">
-    Click on your profile and navigate to **Settings** > **Plan & Billing**.
+    Click on your profile and navigate to **Settings** > **Billing**.
   </Step>
-  <Step title="Select Premium">
-    Click **Upgrade to Premium**.
+  <Step title="Select a Plan">
+    Choose **Premium** or **Max**.
   </Step>
   <Step title="Complete Payment">
     Enter your payment information and confirm the subscription.
   </Step>
-  <Step title="Start Using Premium">
-    Your account is upgraded immediately. All Premium features are now available.
+  <Step title="Start Using Your Plan">
+    Your account is upgraded immediately. All features for your plan are now available.
   </Step>
 </Steps>
 
@@ -240,45 +269,45 @@ The Premium plan is ideal for:
 
 ### View Current Plan
 
-Go to **Settings** > **Plan & Billing** to see:
+Go to **Settings** > **Billing** to see:
 - Your current plan
 - Billing cycle dates
 - Storage usage
-- AI query usage (Free plan)
+- AI step usage
 
 ### Cancel Subscription
 
-To cancel your Premium subscription:
+To cancel your subscription:
 
-1. Go to **Settings** > **Plan & Billing**
+1. Go to **Settings** > **Billing**
 2. Click **Cancel Subscription**
 3. Confirm cancellation
 
 <Info>
-  When you cancel, you keep Premium access until the end of your current billing period. After that, your account reverts to the Free plan.
+  When you cancel, you keep access until the end of your current billing period. After that, your account reverts to the Free plan.
 </Info>
 
 ### What Happens When You Downgrade?
 
-If you cancel Premium or downgrade to Free:
+If you cancel or downgrade:
 
 - Your files remain in your workspace
-- Files over the 5 GB limit become read-only until you delete some
-- Media files (images, audio, video) become inaccessible until you upgrade again
-- Auto-organization is limited to 5 files/month
-- AI queries are limited to 5/day
+- Files over your plan's storage limit become read-only until you delete some
+- Media files (images, audio, video) become inaccessible on the Free plan
+- AI steps and auto-organization revert to the lower plan's limits
+- Integrations exclusive to your previous plan are paused
 
 ## Frequently Asked Questions
 
 <AccordionGroup>
-  <Accordion title="Can I try Premium before committing?" icon="flask">
-    Currently, there is no free trial. However, the Free plan lets you experience core features before upgrading.
+  <Accordion title="Can I try Premium or Max before committing?" icon="flask">
+    There is no free trial for personal plans. However, the Free plan lets you experience core features before upgrading.
   </Accordion>
   <Accordion title="What payment methods do you accept?" icon="credit-card">
     We accept all major credit cards (Visa, Mastercard, American Express) and PayPal.
   </Accordion>
-  <Accordion title="Is there a monthly payment option?" icon="calendar">
-    Currently, Premium is only available with annual billing, which gives you 2 months free.
+  <Accordion title="Can I switch between Premium and Max?" icon="arrows-rotate">
+    Yes. You can upgrade from Premium to Max or downgrade from Max to Premium at any time. Changes take effect on your next billing cycle.
   </Accordion>
   <Accordion title="Can I get a refund?" icon="rotate-left">
     If you're not satisfied within the first 14 days, contact support for a full refund.
@@ -287,7 +316,7 @@ If you cancel Premium or downgrade to Free:
     Team workspaces allow up to 50 people to collaborate with different access levels. Each team workspace costs $500/month after a 1-month free trial. The workspace owner manages billing. You can create multiple team workspaces, each with its own trial and billing.
   </Accordion>
   <Accordion title="What's the difference between Personal and Team workspaces?" icon="circle-question">
-    Personal workspaces are for individual use only (1 user). You get one automatically when you sign up, and it can't be deleted. Team workspaces support up to 50 members with role-based access, making them ideal for collaboration.
+    Personal workspaces are for individual use only (1 user). You get one automatically when you sign up, and it cannot be deleted. Team workspaces support up to 50 members with role-based access, making them ideal for collaboration.
   </Accordion>
 </AccordionGroup>
 
