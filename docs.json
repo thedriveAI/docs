@@ -8,7 +8,6 @@
     "dark": "#4F46E5"
   },
   "favicon": "/favicon.png",
-  "openapi": "openapi.json",
   "navigation": {
     "tabs": [
       {
@@ -67,6 +66,7 @@
       },
       {
         "tab": "Developer API",
+        "openapi": "openapi.json",
         "groups": [
           {
             "group": "Getting Started",
@@ -87,31 +87,31 @@
           {
             "group": "Extraction",
             "pages": [
-              {"openapi": "POST /api/v1/extract"},
-              {"openapi": "POST /api/v1/extract/batch"}
+              "POST /api/v1/extract",
+              "POST /api/v1/extract/batch"
             ]
           },
           {
             "group": "Analysis",
             "pages": [
-              {"openapi": "POST /api/v1/analyze"},
-              {"openapi": "POST /api/v1/analyze/cross"},
-              {"openapi": "POST /api/v1/analyze/batch"}
+              "POST /api/v1/analyze",
+              "POST /api/v1/analyze/cross",
+              "POST /api/v1/analyze/batch"
             ]
           },
           {
             "group": "Utilities",
             "pages": [
-              {"openapi": "POST /api/v1/markdown/convert"},
-              {"openapi": "POST /api/v1/thumbnails/generate"}
+              "POST /api/v1/markdown/convert",
+              "POST /api/v1/thumbnails/generate"
             ]
           },
           {
             "group": "Jobs & Webhooks",
             "pages": [
-              {"openapi": "GET /api/v1/jobs/{task_id}"},
-              {"openapi": "GET /api/v1/jobs/batch/{batch_id}"},
-              {"openapi": "GET /api/v1/jobs/{task_id}/deliveries"}
+              "GET /api/v1/jobs/{task_id}",
+              "GET /api/v1/jobs/batch/{batch_id}",
+              "GET /api/v1/jobs/{task_id}/deliveries"
             ]
           }
         ]
