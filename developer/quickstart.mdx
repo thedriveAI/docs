@@ -1,0 +1,112 @@
+---
+title: "Quickstart"
+description: "Extract structured data from a document in under 5 minutes"
+---
+
+## 1. Get an API key
+
+Sign up at [dev.thedrive.ai](https://dev.thedrive.ai) and create an API key from the dashboard.
+
+## 2. Install the SDK
+
+<CodeGroup>
+```bash Python
+pip install thedriveai
+```
+```bash TypeScript
+npm install @thedriveai/sdk
+```
+</CodeGroup>
+
+## 3. Extract data
+
+<CodeGroup>
+```python Python
+from thedriveai import TheDriveAI
+
+client = TheDriveAI(api_key="tda_live_...")
+
+result = client.extract(
+    file="invoice.pdf",
+    schema={
+        "invoice_number": {"type": "string", "description": "The invoice number"},
+        "vendor": {"type": "string", "description": "Company name"},
+        "total": {"type": "number", "description": "Total amount due"},
+        "is_paid": {"type": "boolean", "description": "Whether the invoice is marked as paid"},
+    },
+)
+
+print(result.data)
+# {"invoice_number": "INV-2024-0042", "vendor": "Acme Corp", "total": 1234.56, "is_paid": false}
+
+print(result.confidence)
+# {"invoice_number": 0.96, "vendor": 0.94, "total": 0.91, "is_paid": 0.85}
+```
+
+```typescript TypeScript
+import { TheDriveAI } from "@thedriveai/sdk";
+
+const client = new TheDriveAI({ apiKey: "tda_live_..." });
+
+const result = await client.extract({
+  file: new Blob([fs.readFileSync("invoice.pdf")]),
+  schema: {
+    invoice_number: { type: "string", description: "The invoice number" },
+    vendor: { type: "string", description: "Company name" },
+    total: { type: "number", description: "Total amount due" },
+    is_paid: { type: "boolean", description: "Whether the invoice is marked as paid" },
+  },
+});
+
+console.log(result.data);
+// { invoice_number: "INV-2024-0042", vendor: "Acme Corp", total: 1234.56, is_paid: false }
+```
+
+```bash cURL
+curl -X POST https://dev.thedrive.ai/api/v1/extract \
+  -H "X-API-Key: tda_live_..." \
+  -F file=@invoice.pdf \
+  -F 'schema={
+    "invoice_number": {"type": "string", "description": "The invoice number"},
+    "vendor": {"type": "string", "description": "Company name"},
+    "total": {"type": "number", "description": "Total amount due"}
+  }'
+```
+</CodeGroup>
+
+## 4. Use Pydantic models (Python)
+
+Instead of writing dict schemas, define a Pydantic model:
+
+```python
+from pydantic import BaseModel, Field
+from thedriveai import TheDriveAI
+
+class Invoice(BaseModel):
+    invoice_number: str = Field(description="The invoice number")
+    vendor: str = Field(description="Company name")
+    total: float = Field(description="Total amount due")
+    is_paid: bool = Field(description="Whether the invoice is marked as paid")
+
+client = TheDriveAI(api_key="tda_live_...")
+result = client.extract(file="invoice.pdf", schema=Invoice)
+
+print(result.data["vendor"])  # "Acme Corp"
+```
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Analyze" icon="magnifying-glass-chart" href="/developer/analyze">
+    Compute and reason over documents — sums, comparisons, risk assessments.
+  </Card>
+  <Card title="Cross-Analyze" icon="code-compare" href="/developer/cross-analyze">
+    Validate an invoice against a contract, reconcile spreadsheets, compare agreements.
+  </Card>
+  <Card title="Schemas" icon="brackets-curly" href="/developer/schemas">
+    Supported types, arrays, nested objects, enums, and required fields.
+  </Card>
+  <Card title="Async & Webhooks" icon="webhook" href="/developer/webhooks">
+    Process documents asynchronously with webhook notifications.
+  </Card>
+</CardGroup>

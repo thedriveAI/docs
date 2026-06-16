@@ -8,6 +8,7 @@
     "dark": "#4F46E5"
   },
   "favicon": "/favicon.png",
+  "openapi": "openapi.json",
   "navigation": {
     "tabs": [
       {
@@ -60,6 +61,57 @@
             "pages": [
               "help/faq",
               "help/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developer API",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "developer/introduction",
+              "developer/quickstart",
+              "developer/schemas"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "developer/analyze",
+              "developer/cross-analyze",
+              "developer/webhooks"
+            ]
+          },
+          {
+            "group": "Extraction",
+            "pages": [
+              {"openapi": "POST /api/v1/extract"},
+              {"openapi": "POST /api/v1/extract/batch"}
+            ]
+          },
+          {
+            "group": "Analysis",
+            "pages": [
+              {"openapi": "POST /api/v1/analyze"},
+              {"openapi": "POST /api/v1/analyze/cross"},
+              {"openapi": "POST /api/v1/analyze/batch"}
+            ]
+          },
+          {
+            "group": "Utilities",
+            "pages": [
+              {"openapi": "POST /api/v1/markdown/convert"},
+              {"openapi": "POST /api/v1/thumbnails/generate"}
+            ]
+          },
+          {
+            "group": "Jobs & Webhooks",
+            "pages": [
+              {"openapi": "GET /api/v1/jobs/{task_id}"},
+              {"openapi": "GET /api/v1/jobs/batch/{batch_id}"},
+              {"openapi": "GET /api/v1/jobs/{task_id}/deliveries"}
             ]
           }
         ]

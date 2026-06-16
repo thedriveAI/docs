@@ -1,0 +1,3334 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "The Drive AI API",
+    "description": "\n## The Drive AI API\n\nOne API for screenshots, markdown extraction, structured data extraction,\nand more. 107+ file formats supported.\n\n## Endpoints\n\n| Endpoint | Credits | Description |\n|----------|---------|-------------|\n| `GET /{url}` | 1 | Screenshot any URL |\n| `GET /md/{url}` | 1 | Convert any URL to markdown |\n| `POST /api/v1/thumbnails/generate` | 1 | Generate thumbnail from file or URL |\n| `POST /api/v1/markdown/convert` | 1 | Convert file/URL to markdown |\n| `POST /api/v1/extract` | 1/page or 5/site | Extract structured data |\n| `POST /api/v1/analyze` | 2/page or 10/site | Analyze \u2014 compute, reason, derive |\n\n## Authentication\n\nAll protected endpoints require an `X-API-Key` header:\n```bash\ncurl https://dev.thedrive.ai/stripe.com \\\n  -H \"X-API-Key: tda_live_your_key_here\"\n```\n\nGet your API key at https://dev.thedrive.ai/login\n\n## Pricing\n\n- **Free**: 100 credits/month, no card required\n- **Pro**: $0.01/credit, pay-as-you-go\n- **Enterprise**: Volume pricing, contact us\n",
+    "version": "1.3.0"
+  },
+  "paths": {
+    "/api/v1/thumbnails/generate": {
+      "post": {
+        "tags": [
+          "thumbnails"
+        ],
+        "summary": "Generate Thumbnail",
+        "description": "Generate a thumbnail from a file upload or URL.\n\n**File Upload**: Use multipart/form-data with a `file` field.\n\n**URL Fetch**: Use JSON body with `url` field. Optionally include `url_headers` for authenticated URLs.\n\n**Options**:\n- `width`, `height`: Max dimensions (default 600x400)\n- `quality`: JPEG quality 1-100 (default 95)\n- `sync`: Wait for result (true) or return job ID (false)\n- `webhook_url`: URL to POST result when complete (async only)\n- `response_type`: \"url\" returns storage URL, \"base64\" returns encoded image",
+        "operationId": "generate_thumbnail_api_v1_thumbnails_generate_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_generate_thumbnail_api_v1_thumbnails_generate_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThumbnailResponse"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Async job created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCreatedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported file type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thumbnails/generate/json": {
+      "post": {
+        "tags": [
+          "thumbnails"
+        ],
+        "summary": "Generate Thumbnail (JSON)",
+        "description": "Generate a thumbnail from a URL using JSON request body.",
+        "operationId": "generate_thumbnail_json_api_v1_thumbnails_generate_json_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThumbnailRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThumbnailResponse"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Async job created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCreatedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thumbnails/jobs/{job_id}": {
+      "get": {
+        "tags": [
+          "thumbnails"
+        ],
+        "summary": "Get Job Status",
+        "description": "Get the status of an async thumbnail generation job.",
+        "operationId": "get_job_status_api_v1_thumbnails_jobs__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatusResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "thumbnails"
+        ],
+        "summary": "Delete Job",
+        "description": "Delete a job and its associated thumbnail.",
+        "operationId": "delete_job_api_v1_thumbnails_jobs__job_id__delete",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Delete Job Api V1 Thumbnails Jobs  Job Id  Delete"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thumbnails/jobs/{job_id}/image": {
+      "get": {
+        "tags": [
+          "thumbnails"
+        ],
+        "summary": "Get Thumbnail Image",
+        "description": "Get the raw thumbnail image bytes.",
+        "operationId": "get_thumbnail_image_api_v1_thumbnails_jobs__job_id__image_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thumbnail image",
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "image/jpeg": {}
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Job not completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thumbnails/supported-types": {
+      "get": {
+        "tags": [
+          "thumbnails"
+        ],
+        "summary": "List Supported Types",
+        "description": "Get a list of all supported file types grouped by handler.",
+        "operationId": "get_supported_types_api_v1_thumbnails_supported_types_get",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportedTypesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/thumbnails/preview": {
+      "get": {
+        "tags": [
+          "thumbnails"
+        ],
+        "summary": "Preview URL (Direct Image)",
+        "description": "Generate and return a thumbnail image directly from a URL.\n\n**Usage**: Perfect for embedding in `<img>` tags or direct browser access.\n\n```html\n<img src=\"https://dev.thedrive.ai/api/v1/thumbnails/preview?url=https://example.com/doc.pdf\" />\n```\n\n**Parameters**:\n- `url`: The URL of the file to generate a thumbnail from (required)\n- `width`, `height`: Max dimensions (default 600x400)\n- `quality`: JPEG quality 1-100 (default 95)\n\n**Returns**: Raw JPEG image bytes with `Content-Type: image/jpeg`",
+        "operationId": "preview_url_api_v1_thumbnails_preview_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          },
+          {
+            "name": "width",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 600,
+              "title": "Width"
+            }
+          },
+          {
+            "name": "height",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 400,
+              "title": "Height"
+            }
+          },
+          {
+            "name": "quality",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 95,
+              "title": "Quality"
+            }
+          },
+          {
+            "name": "nocache",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Nocache"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thumbnail image",
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "image/jpeg": {}
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported file type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/markdown/convert": {
+      "post": {
+        "tags": [
+          "markdown"
+        ],
+        "summary": "Convert to Markdown",
+        "description": "Convert a file or URL to markdown.\n\n**File Upload**: Use multipart/form-data with a `file` field.\n\n**URL Fetch**: Provide a `url` field. For websites (HTML), uses a headless browser\nto render the page before converting \u2014 handles JS-heavy sites.\n\n**Supported formats**: PDF, DOCX, PPTX, XLSX, CSV, HTML, images, audio,\ncode files, and any URL via headless browser rendering.",
+        "operationId": "convert_to_markdown_api_v1_markdown_convert_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_convert_to_markdown_api_v1_markdown_convert_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkdownResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/markdown/supported": {
+      "get": {
+        "tags": [
+          "markdown"
+        ],
+        "summary": "Supported Markdown Conversion Types",
+        "description": "List all file types supported for markdown conversion.",
+        "operationId": "get_supported_types_api_v1_markdown_supported_get",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkdownSupportedTypesResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/extract": {
+      "post": {
+        "tags": [
+          "extraction"
+        ],
+        "summary": "Extract Structured Data",
+        "description": "Extract structured data from a file or URL using AI.\n\nUpload a file (or provide a URL) along with a typed JSON schema describing the\nfields you want extracted. Each field must have a `type` and `description`.\nReturns structured data matching your schema with **guaranteed type conformance**.\n\n**Example schema**:\n```json\n{\n  \"invoice_number\": {\"type\": \"string\", \"description\": \"The invoice number\"},\n  \"total_amount\": {\"type\": \"number\", \"description\": \"Total amount due\", \"required\": true},\n  \"status\": {\"type\": \"string\", \"enum\": [\"paid\", \"unpaid\", \"overdue\"]},\n  \"line_items\": {\n    \"type\": \"array\",\n    \"description\": \"Each line item\",\n    \"items\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"description\": {\"type\": \"string\"},\n        \"quantity\": {\"type\": \"integer\"},\n        \"unit_price\": {\"type\": \"number\"}\n      }\n    }\n  }\n}\n```\n\n**Supported types**: `string`, `number`, `integer`, `boolean`, `array`, `object`\n\n**Supported formats**: PDF, DOCX, XLSX, PPTX, CSV, images (JPG, PNG),\nand any file type supported by the markdown conversion endpoint.\n\n**Vision mode**: For images or scanned documents, set `use_vision=true`\nfor highest accuracy on visual content.",
+        "operationId": "extract_structured_data_api_v1_extract_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_extract_structured_data_api_v1_extract_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtractionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "AI service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analyze/cross": {
+      "post": {
+        "tags": [
+          "analysis"
+        ],
+        "summary": "Cross-Document Analysis",
+        "description": "Analyze and cross-reference multiple documents together. Unlike `/analyze` (single\ndocument) or `/analyze/batch` (many documents independently), this endpoint lets\nthe agent reason **across** all documents simultaneously.\n\n**Use cases**:\n- Validate an invoice against a contract or purchase order\n- Check that a report's numbers match a source spreadsheet\n- Compare terms across multiple agreements\n- Reconcile data from different sources\n\nUpload 2-5 files and/or provide URLs. Each document gets a label (auto-generated\nfrom filename, or you can provide custom labels). The agent can search, read, and\ncompare data across all documents.\n\nProvide a typed schema \u2014 each field has a type and description.\n\n**Example**:\n```json\n{\n  \"rates_match\": {\"type\": \"boolean\", \"description\": \"Do the hourly rates on the invoice match the contract?\"},\n  \"total_valid\": {\"type\": \"boolean\", \"description\": \"Does the invoice total equal the sum of line items?\"},\n  \"correct_vendor\": {\"type\": \"boolean\", \"description\": \"Is the vendor name on the invoice the same as the contracting party?\"}\n}\n```\n\n**Pricing**: 5 credits/document + 3 credits/page (minimum 10).",
+        "operationId": "cross_analyze_api_v1_analyze_cross_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_cross_analyze_api_v1_analyze_cross_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrossAnalyzeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Analysis or extraction failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "AI service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Analysis timed out",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analyze": {
+      "post": {
+        "tags": [
+          "analysis"
+        ],
+        "summary": "Analyze Document",
+        "description": "Analyze a document by asking questions. Unlike `/extract`, this endpoint\ncan **compute, reason, and derive** values that aren't explicitly written\nin the document.\n\nUpload a file (or provide a URL) along with a typed schema. Each field\nmust have a `type` and `description`.\n\n**Example schema**:\n```json\n{\n  \"total_cost\": {\"type\": \"number\", \"description\": \"Sum all line item amounts\"},\n  \"is_auto_renew\": {\"type\": \"boolean\", \"description\": \"Does this contract auto-renew?\"},\n  \"risk_level\": {\"type\": \"string\", \"enum\": [\"low\", \"medium\", \"high\"], \"description\": \"Legal risk level\"}\n}\n```\n\n**Supported types**: `string`, `number`, `integer`, `boolean`, `array`, `object`\n\nEvery answer includes:\n- The computed answer (type-enforced)\n- Reasoning explaining how it was derived\n- Source text snippets from the document\n- Confidence level\n\n**Pricing**: 2 credits/page (min 5) for documents, 10 credits for websites.",
+        "operationId": "analyze_document_api_v1_analyze_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_analyze_document_api_v1_analyze_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyzeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "AI service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/extract/batch": {
+      "post": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Batch Extract",
+        "description": "Submit multiple files or URLs for extraction with a single schema.\nEach item is processed concurrently. Returns a batch_id to poll.\n\n**Poll**: `GET /api/v1/jobs/batch/{batch_id}`\n\n**Limits**: Maximum 20 items per batch.",
+        "operationId": "batch_extract_api_v1_extract_batch_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_batch_extract_api_v1_extract_batch_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/analyze/batch": {
+      "post": {
+        "tags": [
+          "batch"
+        ],
+        "summary": "Batch Analyze",
+        "description": "Submit multiple files or URLs for analysis with a single schema.\nEach item is processed concurrently. Returns a batch_id to poll.\n\n**Poll**: `GET /api/v1/jobs/batch/{batch_id}`\n\n**Limits**: Maximum 10 items per batch.",
+        "operationId": "batch_analyze_api_v1_analyze_batch_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_batch_analyze_api_v1_analyze_batch_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/jobs/{task_id}": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Task Status",
+        "description": "Poll the status of an async extract or analyze task. Returns the result when complete.",
+        "operationId": "get_task_status_api_v1_jobs__task_id__get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/jobs/batch/{batch_id}": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Batch Status",
+        "description": "Poll the status of a batch operation. Returns all results when complete.",
+        "operationId": "get_batch_status_api_v1_jobs_batch__batch_id__get",
+        "parameters": [
+          {
+            "name": "batch_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Batch Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/jobs/{task_id}/deliveries": {
+      "get": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Get Webhook Deliveries",
+        "description": "Check the delivery status of webhooks for a task. Returns a list of\ndelivery attempts with status, response code, and timestamps.\n\nUseful for debugging \"I didn't receive my webhook\" scenarios.",
+        "operationId": "get_webhook_deliveries_api_v1_jobs__task_id__deliveries_get",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health Check",
+        "description": "Check the health status of the service.",
+        "operationId": "health_check_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health/live": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Liveness Check",
+        "description": "Liveness probe.",
+        "operationId": "liveness_api_v1_health_live_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Liveness Api V1 Health Live Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health/ready": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Readiness Check",
+        "description": "Readiness probe.",
+        "operationId": "readiness_api_v1_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Readiness Api V1 Health Ready Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/md/{url}": {
+      "get": {
+        "tags": [
+          "markdown"
+        ],
+        "summary": "URL to Markdown",
+        "description": "Convert any URL to markdown by prepending `/md/`.\n\n**Usage Examples:**\n```\n# Website\ndev.thedrive.ai/md/example.com\n\n# PDF document\ndev.thedrive.ai/md/arxiv.org/pdf/1706.03762\n\n# Any file URL\ndev.thedrive.ai/md/example.com/report.docx\n```\n\nReturns plain text markdown. Websites are rendered with a headless browser\nso JS-heavy pages work too.",
+        "operationId": "quick_markdown_md__url__get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          },
+          {
+            "name": "nocache",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Nocache"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Markdown content",
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "text/markdown": {}
+            }
+          },
+          "400": {
+            "description": "Invalid URL or conversion failed"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{url}": {
+      "get": {
+        "tags": [
+          "screenshots"
+        ],
+        "summary": "Screenshot / Thumbnail",
+        "description": "Generate a thumbnail by simply appending a URL to the service path.\n\n**Usage Examples:**\n```\n# Without scheme (https:// is assumed)\ndev.thedrive.ai/example.com/document.pdf\n\n# With full URL\ndev.thedrive.ai/https://example.com/image.png\n\n# With options\ndev.thedrive.ai/example.com/doc.pdf?w=300&h=200&q=80\n\n# URLs with query strings (e.g., Azure SAS tokens)\ndev.thedrive.ai/https://storage.blob.core.windows.net/file.pdf?sv=2024&sig=xxx\n```\n\n**In HTML:**\n```html\n<img src=\"https://dev.thedrive.ai/example.com/preview.png\" />\n```\n\n**Query Parameters (ours):**\n- `w`: Width (default 600, max 2000)\n- `h`: Height (default 400, max 2000)\n- `q`: Quality (default 95, 1-100)\n- `nocache`: Bypass cache (default false)\n\n**Screenshot Options (websites only, ignored for documents):**\n- `fullpage`: Capture full scrollable page (default false)\n- `delay`: Extra wait in ms after page load, max 5000 (default 0)\n- `dark`: Emulate dark mode / prefers-color-scheme: dark (default false)\n- `device`: Viewport preset \u2014 `mobile` (390x844), `tablet` (820x1180), `desktop` (1440x900)\n- `viewport`: Raw viewport override, e.g. `375x812` (overrides device)\n- `selector`: CSS selector to capture a specific element (falls back to viewport if not found)\n- `wait`: CSS selector to wait for before capturing (max 5s timeout)\n\n**Note:** Query parameters from the target URL (like Azure SAS tokens) are preserved and passed through.",
+        "operationId": "quick_preview__url__get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          },
+          {
+            "name": "w",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 600,
+              "title": "W"
+            }
+          },
+          {
+            "name": "h",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 400,
+              "title": "H"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 95,
+              "title": "Q"
+            }
+          },
+          {
+            "name": "nocache",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Nocache"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "jpeg",
+              "title": "Format"
+            }
+          },
+          {
+            "name": "duration",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 5,
+              "title": "Duration"
+            }
+          },
+          {
+            "name": "fullpage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Fullpage"
+            }
+          },
+          {
+            "name": "delay",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Delay"
+            }
+          },
+          {
+            "name": "dark",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Dark"
+            }
+          },
+          {
+            "name": "device",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Device"
+            }
+          },
+          {
+            "name": "viewport",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Viewport"
+            }
+          },
+          {
+            "name": "selector",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Selector"
+            }
+          },
+          {
+            "name": "wait",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Wait"
+            }
+          },
+          {
+            "name": "_skip_og_check",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": " Skip Og Check"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thumbnail image",
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "image/jpeg": {}
+            }
+          },
+          "400": {
+            "description": "Invalid URL or fetch failed"
+          },
+          "415": {
+            "description": "Unsupported file type"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AgentStepResponse": {
+        "properties": {
+          "tool": {
+            "type": "string",
+            "title": "Tool",
+            "description": "Tool that was called"
+          },
+          "args": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Args",
+            "description": "Arguments passed to the tool"
+          },
+          "result_preview": {
+            "type": "string",
+            "title": "Result Preview",
+            "description": "First 200 chars of the tool output",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "tool"
+        ],
+        "title": "AgentStepResponse",
+        "description": "One step in the agent's reasoning trace."
+      },
+      "AnalyzeResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Data",
+            "description": "Computed/derived values keyed by field name"
+          },
+          "confidence": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Confidence",
+            "description": "Per-field confidence scores (0.0\u20131.0)"
+          },
+          "sources": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Sources",
+            "description": "Per-field source text snippets from the document"
+          },
+          "reasoning": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Reasoning",
+            "description": "Per-field step-by-step explanation of how the answer was derived"
+          },
+          "steps": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/components/schemas/AgentStepResponse"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Steps",
+            "description": "Per-field agent reasoning trace (tool calls). Empty unless include_steps=true."
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename",
+            "description": "Original filename or URL"
+          },
+          "content_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Type",
+            "description": "Detected MIME type"
+          },
+          "model_used": {
+            "type": "string",
+            "title": "Model Used",
+            "description": "Model used for analysis"
+          },
+          "text_length": {
+            "type": "integer",
+            "title": "Text Length",
+            "description": "Length of extracted text"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Total pages in the document (0 for non-paginated files)",
+            "default": 0
+          },
+          "credits_used": {
+            "type": "integer",
+            "title": "Credits Used",
+            "description": "Credits consumed",
+            "default": 0
+          },
+          "schema_format": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SchemaFormat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Schema format: always 'typed'"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "filename",
+          "model_used",
+          "text_length"
+        ],
+        "title": "AnalyzeResponse",
+        "description": "Response for document analysis \u2014 flat parallel dicts matching /extract.",
+        "example": {
+          "confidence": {
+            "is_overdue": 0.72,
+            "total_cost": 0.95
+          },
+          "content_type": "application/pdf",
+          "credits_used": 10,
+          "data": {
+            "is_overdue": true,
+            "total_cost": 1500.0
+          },
+          "filename": "invoice.pdf",
+          "model_used": "gpt-5.1",
+          "reasoning": {
+            "is_overdue": "Due date 2025-01-15 has passed.",
+            "total_cost": "Summed 3 line items: $500 + $600 + $400"
+          },
+          "sources": {
+            "is_overdue": [
+              "Due Date: January 15, 2025"
+            ],
+            "total_cost": [
+              "Item A: $500",
+              "Item B: $600",
+              "Item C: $400"
+            ]
+          },
+          "success": true,
+          "text_length": 3200,
+          "total_pages": 5
+        }
+      },
+      "Body_analyze_document_api_v1_analyze_post": {
+        "properties": {
+          "file": {
+            "anyOf": [
+              {
+                "type": "string",
+                "contentMediaType": "application/octet-stream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File",
+            "description": "File to analyze"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "URL to fetch file from"
+          },
+          "url_headers": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Headers",
+            "description": "JSON-encoded headers for URL auth"
+          },
+          "schema": {
+            "type": "string",
+            "title": "Schema",
+            "description": "JSON schema \u2014 keys are field names, values describe what to compute or answer"
+          },
+          "include_steps": {
+            "type": "boolean",
+            "title": "Include Steps",
+            "description": "Include the agent's reasoning trace (tool calls) in each answer",
+            "default": false
+          },
+          "sync": {
+            "type": "boolean",
+            "title": "Sync",
+            "description": "Set to false to process asynchronously. Returns a task_id to poll.",
+            "default": true
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "URL to POST the result to when async processing completes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema"
+        ],
+        "title": "Body_analyze_document_api_v1_analyze_post"
+      },
+      "Body_batch_analyze_api_v1_analyze_batch_post": {
+        "properties": {
+          "files": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Files",
+            "description": "Files to analyze",
+            "default": []
+          },
+          "urls": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Urls",
+            "description": "JSON array of URLs to analyze"
+          },
+          "schema": {
+            "type": "string",
+            "title": "Schema",
+            "description": "JSON schema \u2014 applied to every item"
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "URL to POST results when the entire batch completes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema"
+        ],
+        "title": "Body_batch_analyze_api_v1_analyze_batch_post"
+      },
+      "Body_batch_extract_api_v1_extract_batch_post": {
+        "properties": {
+          "files": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Files",
+            "description": "Files to extract data from",
+            "default": []
+          },
+          "urls": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Urls",
+            "description": "JSON array of URLs to extract from"
+          },
+          "schema": {
+            "type": "string",
+            "title": "Schema",
+            "description": "JSON schema \u2014 applied to every item"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model",
+            "description": "Model: 'fast', 'accurate', or 'auto'",
+            "default": "auto"
+          },
+          "use_vision": {
+            "type": "boolean",
+            "title": "Use Vision",
+            "description": "Use vision mode",
+            "default": false
+          },
+          "follow_links": {
+            "type": "boolean",
+            "title": "Follow Links",
+            "description": "Follow internal links (URLs only)",
+            "default": false
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "URL to POST results when the entire batch completes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema"
+        ],
+        "title": "Body_batch_extract_api_v1_extract_batch_post"
+      },
+      "Body_convert_to_markdown_api_v1_markdown_convert_post": {
+        "properties": {
+          "file": {
+            "anyOf": [
+              {
+                "type": "string",
+                "contentMediaType": "application/octet-stream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File",
+            "description": "File to convert"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "URL to convert"
+          },
+          "url_headers": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Headers",
+            "description": "JSON-encoded headers for URL auth"
+          },
+          "use_llm": {
+            "type": "boolean",
+            "title": "Use Llm",
+            "description": "Use LLM for image descriptions (costs tokens)",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "Body_convert_to_markdown_api_v1_markdown_convert_post"
+      },
+      "Body_cross_analyze_api_v1_analyze_cross_post": {
+        "properties": {
+          "files": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Files",
+            "description": "Files to analyze (2-5). Labeled by filename or via document_labels.",
+            "default": []
+          },
+          "urls": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Urls",
+            "description": "JSON array of URLs, or JSON object mapping labels to URLs (e.g. {\"invoice\": \"https://...\"}). Combined with files, total must be 2-5."
+          },
+          "url_headers": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Headers",
+            "description": "JSON-encoded headers for URL auth"
+          },
+          "schema": {
+            "type": "string",
+            "title": "Schema",
+            "description": "JSON schema \u2014 keys are field names, values describe what to validate or compute across documents"
+          },
+          "document_labels": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Labels",
+            "description": "JSON array of labels for the uploaded files, in order. Must match files count. E.g. [\"invoice\", \"contract\"]"
+          },
+          "include_steps": {
+            "type": "boolean",
+            "title": "Include Steps",
+            "description": "Include the agent's reasoning trace in each answer",
+            "default": false
+          },
+          "sync": {
+            "type": "boolean",
+            "title": "Sync",
+            "description": "Set to false to process asynchronously. Returns a task_id to poll.",
+            "default": true
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "URL to POST the result to when async processing completes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema"
+        ],
+        "title": "Body_cross_analyze_api_v1_analyze_cross_post"
+      },
+      "Body_extract_structured_data_api_v1_extract_post": {
+        "properties": {
+          "file": {
+            "anyOf": [
+              {
+                "type": "string",
+                "contentMediaType": "application/octet-stream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File",
+            "description": "File to extract data from"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "URL to fetch file from"
+          },
+          "url_headers": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Headers",
+            "description": "JSON-encoded headers for URL auth"
+          },
+          "schema": {
+            "type": "string",
+            "title": "Schema",
+            "description": "JSON schema defining fields to extract"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model",
+            "description": "Model: 'fast', 'accurate', or 'auto'",
+            "default": "auto"
+          },
+          "use_vision": {
+            "type": "boolean",
+            "title": "Use Vision",
+            "description": "Use vision mode for images and scanned documents",
+            "default": false
+          },
+          "follow_links": {
+            "type": "boolean",
+            "title": "Follow Links",
+            "description": "Follow internal links (e.g. /about, /contact) to find more data. URL inputs only.",
+            "default": false
+          },
+          "sync": {
+            "type": "boolean",
+            "title": "Sync",
+            "description": "Set to false to process asynchronously. Returns a task_id to poll.",
+            "default": true
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "URL to POST the result to when async processing completes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema"
+        ],
+        "title": "Body_extract_structured_data_api_v1_extract_post"
+      },
+      "Body_generate_thumbnail_api_v1_thumbnails_generate_post": {
+        "properties": {
+          "file": {
+            "anyOf": [
+              {
+                "type": "string",
+                "contentMediaType": "application/octet-stream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File",
+            "description": "File to generate thumbnail from"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "URL to fetch file from"
+          },
+          "url_headers": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Headers",
+            "description": "JSON-encoded headers for URL auth"
+          },
+          "width": {
+            "type": "integer",
+            "maximum": 2000.0,
+            "minimum": 50.0,
+            "title": "Width",
+            "description": "Max thumbnail width",
+            "default": 600
+          },
+          "height": {
+            "type": "integer",
+            "maximum": 2000.0,
+            "minimum": 50.0,
+            "title": "Height",
+            "description": "Max thumbnail height",
+            "default": 400
+          },
+          "quality": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Quality",
+            "description": "JPEG quality",
+            "default": 95
+          },
+          "sync": {
+            "type": "boolean",
+            "title": "Sync",
+            "description": "Wait for result or return job ID",
+            "default": true
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "Webhook URL for async completion"
+          },
+          "response_type": {
+            "type": "string",
+            "title": "Response Type",
+            "description": "Response type: 'url' or 'base64'",
+            "default": "url"
+          }
+        },
+        "type": "object",
+        "title": "Body_generate_thumbnail_api_v1_thumbnails_generate_post"
+      },
+      "CrossAnalyzeResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Data",
+            "description": "Computed/derived values keyed by field name"
+          },
+          "confidence": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Confidence",
+            "description": "Per-field confidence scores (0.0\u20131.0)"
+          },
+          "sources": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Sources",
+            "description": "Per-field source text snippets (prefixed with [doc_label])"
+          },
+          "reasoning": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Reasoning",
+            "description": "Per-field step-by-step explanation referencing specific documents"
+          },
+          "steps": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/components/schemas/AgentStepResponse"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Steps",
+            "description": "Per-field agent reasoning trace. Empty unless include_steps=true."
+          },
+          "documents": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentInfo"
+            },
+            "type": "array",
+            "title": "Documents",
+            "description": "Metadata for each document in the analysis"
+          },
+          "model_used": {
+            "type": "string",
+            "title": "Model Used",
+            "description": "Model used for analysis"
+          },
+          "total_text_length": {
+            "type": "integer",
+            "title": "Total Text Length",
+            "description": "Combined text length across all documents"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Combined page count across all documents"
+          },
+          "credits_used": {
+            "type": "integer",
+            "title": "Credits Used",
+            "description": "Credits consumed",
+            "default": 0
+          },
+          "schema_format": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SchemaFormat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Schema format: always 'typed'"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "documents",
+          "model_used",
+          "total_text_length",
+          "total_pages"
+        ],
+        "title": "CrossAnalyzeResponse",
+        "description": "Response for cross-document analysis \u2014 flat parallel dicts matching /extract.",
+        "example": {
+          "confidence": {
+            "rates_match": 0.95
+          },
+          "credits_used": 35,
+          "data": {
+            "rates_match": false
+          },
+          "documents": [
+            {
+              "content_type": "application/pdf",
+              "filename": "invoice_042.pdf",
+              "label": "invoice",
+              "text_length": 1200,
+              "total_pages": 2
+            },
+            {
+              "content_type": "application/pdf",
+              "filename": "service_agreement.pdf",
+              "label": "contract",
+              "text_length": 15000,
+              "total_pages": 8
+            }
+          ],
+          "model_used": "gpt-5.1",
+          "reasoning": {
+            "rates_match": "Invoice hourly rate ($150) differs from contract rate ($125)"
+          },
+          "sources": {
+            "rates_match": [
+              "[invoice] \"Rate: $150.00/hr\"",
+              "[contract] \"Hourly rate: $125.00\""
+            ]
+          },
+          "success": true,
+          "total_pages": 10,
+          "total_text_length": 16200
+        }
+      },
+      "DocumentInfo": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "description": "Document label used in the analysis"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename",
+            "description": "Original filename or URL"
+          },
+          "content_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Type",
+            "description": "Detected MIME type"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Number of pages in this document",
+            "default": 0
+          },
+          "text_length": {
+            "type": "integer",
+            "title": "Text Length",
+            "description": "Length of extracted text",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "label",
+          "filename"
+        ],
+        "title": "DocumentInfo",
+        "description": "Metadata about one document in a cross-document analysis."
+      },
+      "ErrorResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": false
+          },
+          "error": {
+            "type": "string",
+            "title": "Error",
+            "description": "Error type"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail",
+            "description": "Human-readable error message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error",
+          "detail"
+        ],
+        "title": "ErrorResponse",
+        "description": "Standard error response.",
+        "example": {
+          "detail": "File size exceeds maximum allowed (50MB)",
+          "error": "validation_error",
+          "success": false
+        }
+      },
+      "ExtractionResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "description": "True if all required fields were found. False if any required field is missing (partial data still returned).",
+            "default": true
+          },
+          "data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Data",
+            "description": "Extracted structured data matching the provided schema. Types are guaranteed when using typed schema."
+          },
+          "confidence": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Confidence",
+            "description": "Per-field calibrated confidence scores (0.0\u20131.0). Composite of LLM self-report, token logprobs, and OCR quality weighted by extraction method."
+          },
+          "citations": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Citations",
+            "description": "Per-field source text snippets from the document"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename",
+            "description": "Original filename or URL"
+          },
+          "content_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Type",
+            "description": "Detected MIME type"
+          },
+          "model_used": {
+            "type": "string",
+            "title": "Model Used",
+            "description": "Model used for extraction (fast or accurate)"
+          },
+          "extraction_method": {
+            "type": "string",
+            "title": "Extraction Method",
+            "description": "How text was extracted: text, ocr, ocr+vision, vision, or dom+text"
+          },
+          "text_length": {
+            "type": "integer",
+            "title": "Text Length",
+            "description": "Length of extracted text processed"
+          },
+          "pages_processed": {
+            "type": "integer",
+            "title": "Pages Processed",
+            "description": "Number of document pages actually read (0 for non-paginated files)",
+            "default": 0
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Total pages in the document (0 for non-paginated files)",
+            "default": 0
+          },
+          "credits_used": {
+            "type": "integer",
+            "title": "Credits Used",
+            "description": "Credits consumed for this extraction",
+            "default": 0
+          },
+          "schema_format": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SchemaFormat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Schema format: always 'typed'. Each field has an explicit type for guaranteed type conformance."
+          },
+          "field_status": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "$ref": "#/components/schemas/FieldStatusInfo"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field Status",
+            "description": "Per-field status (typed schemas only)."
+          },
+          "missing_required": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Missing Required",
+            "description": "List of required fields that could not be found (typed schemas only). Present only when success=false."
+          },
+          "quality_signals": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quality Signals",
+            "description": "Raw quality signals used for confidence calibration. 'ocr_quality': blended OCR quality (0.7*mean + 0.3*p10, 0\u20131, absent for non-OCR). 'doc_quality': geometric mean of LLM token probs (0\u20131). 'signal_disagreement': mean |llm_self_report - logprob| across fields. Values above 0.3 indicate the signals disagree \u2014 the model may be confidently wrong (high logprob, low self-report) or self-deprecating."
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "filename",
+          "model_used",
+          "extraction_method",
+          "text_length"
+        ],
+        "title": "ExtractionResponse",
+        "description": "Response for structured data extraction.",
+        "example": {
+          "citations": {
+            "invoice_number": "Invoice #: INV-2024-0042",
+            "total_amount": "Total Due: $1,234.56"
+          },
+          "confidence": {
+            "invoice_number": 0.96,
+            "total_amount": 0.91,
+            "vendor_name": 0.94
+          },
+          "content_type": "application/pdf",
+          "credits_used": 7,
+          "data": {
+            "invoice_number": "INV-2024-0042",
+            "total_amount": 1234.56,
+            "vendor_name": "Acme Corp"
+          },
+          "extraction_method": "text",
+          "field_status": {
+            "invoice_number": {
+              "confidence": 0.96,
+              "required": false,
+              "status": "found",
+              "type": "string"
+            },
+            "total_amount": {
+              "confidence": 0.91,
+              "required": true,
+              "status": "found",
+              "type": "number"
+            },
+            "vendor_name": {
+              "confidence": 0.94,
+              "required": false,
+              "status": "found",
+              "type": "string"
+            }
+          },
+          "filename": "invoice.pdf",
+          "model_used": "fast",
+          "pages_processed": 50,
+          "schema_format": "typed",
+          "success": true,
+          "text_length": 2450,
+          "total_pages": 1200
+        }
+      },
+      "FieldStatusInfo": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/FieldStatusValue",
+            "description": "Whether the field was found"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "description": "Calibrated confidence score (0.0\u20131.0)"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "description": "Expected type from schema"
+          },
+          "required": {
+            "type": "boolean",
+            "title": "Required",
+            "description": "Whether the field was marked required"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "confidence",
+          "type",
+          "required"
+        ],
+        "title": "FieldStatusInfo",
+        "description": "Per-field extraction status (typed schemas only)."
+      },
+      "FieldStatusValue": {
+        "type": "string",
+        "enum": [
+          "found",
+          "not_found"
+        ],
+        "title": "FieldStatusValue",
+        "description": "Whether a field was found during extraction."
+      },
+      "FileCategory": {
+        "type": "string",
+        "enum": [
+          "image",
+          "video",
+          "pdf",
+          "document",
+          "spreadsheet",
+          "presentation",
+          "markdown",
+          "code",
+          "text",
+          "unsupported"
+        ],
+        "title": "FileCategory",
+        "description": "Supported file categories for thumbnail generation."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthCheck": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "degraded",
+              "error"
+            ],
+            "title": "Status",
+            "description": "Component status"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message",
+            "description": "Additional details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "HealthCheck",
+        "description": "Individual health check result."
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "healthy",
+              "degraded",
+              "unhealthy"
+            ],
+            "title": "Status",
+            "description": "Overall status"
+          },
+          "service": {
+            "type": "string",
+            "title": "Service",
+            "description": "Service name",
+            "default": "the-drive-api"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "description": "Service version"
+          },
+          "checks": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/HealthCheck"
+            },
+            "type": "object",
+            "title": "Checks",
+            "description": "Individual component checks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "version",
+          "checks"
+        ],
+        "title": "HealthResponse",
+        "description": "Health check response.",
+        "example": {
+          "checks": {
+            "handlers": {
+              "message": "7 handlers registered",
+              "status": "ok"
+            },
+            "storage": {
+              "status": "ok"
+            }
+          },
+          "service": "the-drive-api",
+          "status": "healthy",
+          "version": "3.0.0"
+        }
+      },
+      "JobCreatedResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "job_id": {
+            "type": "string",
+            "title": "Job Id",
+            "description": "Unique job identifier for polling"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobStatus",
+            "default": "pending"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Instructions for the client",
+            "default": "Job created. Poll /api/v1/thumbnails/jobs/{job_id} for status."
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id"
+        ],
+        "title": "JobCreatedResponse",
+        "description": "Response when an async job is created.",
+        "example": {
+          "job_id": "job_abc123",
+          "message": "Job created. Poll /api/v1/thumbnails/jobs/{job_id} for status.",
+          "status": "pending",
+          "success": true
+        }
+      },
+      "JobStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "processing",
+          "completed",
+          "failed"
+        ],
+        "title": "JobStatus",
+        "description": "Job processing status."
+      },
+      "JobStatusResponse": {
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "title": "Job Id",
+            "description": "Unique job identifier"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobStatus",
+            "description": "Current job status"
+          },
+          "progress": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 100.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progress",
+            "description": "Progress percentage"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ThumbnailResponse"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Result when job is completed"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error",
+            "description": "Error message if job failed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At",
+            "description": "When the job was created"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At",
+            "description": "When the job completed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id",
+          "status",
+          "created_at"
+        ],
+        "title": "JobStatusResponse",
+        "description": "Response for job status queries.",
+        "example": {
+          "created_at": "2024-01-15T10:30:00Z",
+          "job_id": "job_abc123",
+          "progress": 50,
+          "status": "processing"
+        }
+      },
+      "MarkdownResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "markdown": {
+            "type": "string",
+            "title": "Markdown",
+            "description": "Converted markdown content"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename",
+            "description": "Original filename or URL"
+          },
+          "content_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Type",
+            "description": "Detected MIME type"
+          },
+          "content_length": {
+            "type": "integer",
+            "title": "Content Length",
+            "description": "Length of the markdown output in characters"
+          }
+        },
+        "type": "object",
+        "required": [
+          "markdown",
+          "filename",
+          "content_length"
+        ],
+        "title": "MarkdownResponse",
+        "description": "Response for markdown conversion.",
+        "example": {
+          "content_length": 1234,
+          "content_type": "application/pdf",
+          "filename": "document.pdf",
+          "markdown": "# Document Title\n\nThis is the content...",
+          "success": true
+        }
+      },
+      "MarkdownSupportedTypesResponse": {
+        "properties": {
+          "supported_types": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Supported Types",
+            "description": "Supported types grouped by category"
+          }
+        },
+        "type": "object",
+        "required": [
+          "supported_types"
+        ],
+        "title": "MarkdownSupportedTypesResponse",
+        "description": "Response listing supported types for markdown conversion.",
+        "example": {
+          "supported_types": {
+            "documents": [
+              "pdf",
+              "docx",
+              "doc"
+            ],
+            "spreadsheets": [
+              "xlsx",
+              "csv"
+            ],
+            "websites": [
+              "Any URL"
+            ]
+          }
+        }
+      },
+      "ResponseType": {
+        "type": "string",
+        "enum": [
+          "url",
+          "base64"
+        ],
+        "title": "ResponseType",
+        "description": "Response format for thumbnail delivery."
+      },
+      "SchemaFormat": {
+        "type": "string",
+        "enum": [
+          "typed"
+        ],
+        "title": "SchemaFormat",
+        "description": "Schema format used for extraction/analysis."
+      },
+      "SupportedTypesResponse": {
+        "properties": {
+          "handlers": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Handlers",
+            "description": "Supported extensions grouped by handler"
+          },
+          "total_extensions": {
+            "type": "integer",
+            "title": "Total Extensions",
+            "description": "Total number of supported file extensions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "handlers",
+          "total_extensions"
+        ],
+        "title": "SupportedTypesResponse",
+        "description": "Response listing all supported file types.",
+        "example": {
+          "handlers": {
+            "code": [
+              "py",
+              "js",
+              "ts",
+              "java",
+              "go"
+            ],
+            "document": [
+              "docx",
+              "doc",
+              "odt"
+            ],
+            "image": [
+              "jpg",
+              "jpeg",
+              "png",
+              "gif",
+              "webp"
+            ],
+            "pdf": [
+              "pdf"
+            ],
+            "video": [
+              "mp4",
+              "avi",
+              "mov",
+              "webm"
+            ]
+          },
+          "total_extensions": 55
+        }
+      },
+      "ThumbnailMetadata": {
+        "properties": {
+          "original_filename": {
+            "type": "string",
+            "title": "Original Filename",
+            "description": "Original filename"
+          },
+          "file_type": {
+            "type": "string",
+            "title": "File Type",
+            "description": "File extension (e.g., 'pdf', 'png')"
+          },
+          "file_category": {
+            "$ref": "#/components/schemas/FileCategory",
+            "description": "File category"
+          },
+          "file_size": {
+            "type": "integer",
+            "title": "File Size",
+            "description": "Original file size in bytes"
+          },
+          "mime_type": {
+            "type": "string",
+            "title": "Mime Type",
+            "description": "MIME type of the original file"
+          },
+          "thumbnail_width": {
+            "type": "integer",
+            "title": "Thumbnail Width",
+            "description": "Thumbnail width in pixels"
+          },
+          "thumbnail_height": {
+            "type": "integer",
+            "title": "Thumbnail Height",
+            "description": "Thumbnail height in pixels"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At",
+            "description": "When the thumbnail was created"
+          }
+        },
+        "type": "object",
+        "required": [
+          "original_filename",
+          "file_type",
+          "file_category",
+          "file_size",
+          "mime_type",
+          "thumbnail_width",
+          "thumbnail_height",
+          "created_at"
+        ],
+        "title": "ThumbnailMetadata",
+        "description": "Metadata about the generated thumbnail."
+      },
+      "ThumbnailRequest": {
+        "properties": {
+          "url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "URL to fetch the file from"
+          },
+          "url_headers": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Headers",
+            "description": "Custom headers for URL fetching (e.g., Authorization)",
+            "example": {
+              "Authorization": "Bearer token123"
+            }
+          },
+          "width": {
+            "type": "integer",
+            "maximum": 2000.0,
+            "minimum": 50.0,
+            "title": "Width",
+            "description": "Maximum thumbnail width",
+            "default": 600
+          },
+          "height": {
+            "type": "integer",
+            "maximum": 2000.0,
+            "minimum": 50.0,
+            "title": "Height",
+            "description": "Maximum thumbnail height",
+            "default": 400
+          },
+          "quality": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Quality",
+            "description": "JPEG quality (1-100)",
+            "default": 95
+          },
+          "sync": {
+            "type": "boolean",
+            "title": "Sync",
+            "description": "If true, wait for result. If false, return job_id immediately.",
+            "default": true
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "URL to POST the result when processing completes (for async requests)"
+          },
+          "response_type": {
+            "$ref": "#/components/schemas/ResponseType",
+            "description": "Response format: 'url' returns storage URL, 'base64' returns encoded image",
+            "default": "url"
+          }
+        },
+        "type": "object",
+        "title": "ThumbnailRequest",
+        "description": "Request model for thumbnail generation.\n\nEither `url` must be provided (for URL-based fetching) or a file must be\nuploaded via multipart form data. When using the JSON body, only `url` is supported.",
+        "example": {
+          "height": 400,
+          "quality": 95,
+          "response_type": "url",
+          "sync": true,
+          "url": "https://example.com/document.pdf",
+          "url_headers": {
+            "Authorization": "Bearer token123"
+          },
+          "width": 600
+        }
+      },
+      "ThumbnailResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "job_id": {
+            "type": "string",
+            "title": "Job Id",
+            "description": "Unique job identifier"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobStatus",
+            "default": "completed"
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url",
+            "description": "URL to the thumbnail image"
+          },
+          "thumbnail_base64": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Base64",
+            "description": "Base64-encoded thumbnail (if response_type='base64')"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ThumbnailMetadata",
+            "description": "Thumbnail metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id",
+          "metadata"
+        ],
+        "title": "ThumbnailResponse",
+        "description": "Response for a completed thumbnail generation.",
+        "example": {
+          "job_id": "job_abc123",
+          "metadata": {
+            "created_at": "2024-01-15T10:30:00Z",
+            "file_category": "pdf",
+            "file_size": 102400,
+            "file_type": "pdf",
+            "mime_type": "application/pdf",
+            "original_filename": "document.pdf",
+            "thumbnail_height": 400,
+            "thumbnail_width": 600
+          },
+          "status": "completed",
+          "success": true,
+          "thumbnail_url": "https://storage.example.com/thumbnails/thumb_abc123.jpg"
+        }
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "screenshots",
+      "description": "Screenshot and thumbnail generation"
+    },
+    {
+      "name": "markdown",
+      "description": "URL and document to markdown conversion"
+    },
+    {
+      "name": "extraction",
+      "description": "Structured data extraction from documents"
+    },
+    {
+      "name": "thumbnails",
+      "description": "Thumbnail generation via file upload or URL"
+    },
+    {
+      "name": "health",
+      "description": "Service health and readiness probes"
+    }
+  ]
+}

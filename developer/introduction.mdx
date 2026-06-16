@@ -1,0 +1,87 @@
+---
+title: "Developer Platform"
+description: "Extract, analyze, and cross-reference any document with a single API call"
+---
+
+## What is the Developer API?
+
+The Drive AI Developer API turns any document into structured data. Upload a PDF, spreadsheet, image, or URL — get back typed JSON matching your schema.
+
+Three core endpoints:
+
+<CardGroup cols={3}>
+  <Card title="Extract" icon="file-export" href="/developer/quickstart">
+    Pull structured fields from a document. Fast, schema-enforced, type-safe.
+  </Card>
+  <Card title="Analyze" icon="magnifying-glass-chart" href="/developer/analyze">
+    Compute, reason, and derive answers that aren't explicitly written in the document.
+  </Card>
+  <Card title="Cross-Analyze" icon="code-compare" href="/developer/cross-analyze">
+    Validate and cross-reference across 2-5 documents simultaneously.
+  </Card>
+</CardGroup>
+
+## How it works
+
+1. **Define a schema** — Describe the fields you want, with types
+2. **Send a document** — Upload a file or pass a URL
+3. **Get structured data** — Typed JSON, confidence scores, source citations
+
+```python
+from thedriveai import TheDriveAI
+
+client = TheDriveAI(api_key="tda_live_...")
+
+result = client.extract(
+    file="invoice.pdf",
+    schema={
+        "vendor": {"type": "string", "description": "Company name"},
+        "total": {"type": "number", "description": "Total amount due"},
+        "line_items": {
+            "type": "array",
+            "description": "Each line item",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "description": {"type": "string"},
+                    "amount": {"type": "number"}
+                }
+            }
+        }
+    },
+)
+
+print(result.data["vendor"])      # "Acme Corp"
+print(result.data["total"])       # 1234.56
+print(result.data["line_items"])  # [{"description": "Consulting", "amount": 1234.56}]
+```
+
+## Supported formats
+
+PDF, DOCX, XLSX, PPTX, CSV, JSON, XML, images (JPG, PNG, TIFF), and any public URL (rendered with a headless browser).
+
+## Authentication
+
+All API requests require an `X-API-Key` header. Get your key at [dev.thedrive.ai/dashboard/api-keys](https://dev.thedrive.ai/dashboard/api-keys).
+
+```bash
+curl -X POST https://dev.thedrive.ai/api/v1/extract \
+  -H "X-API-Key: tda_live_..." \
+  -F file=@invoice.pdf \
+  -F 'schema={"vendor": {"type": "string", "description": "Company name"}}'
+```
+
+## SDKs
+
+<CardGroup cols={2}>
+  <Card title="Python" icon="python">
+    ```bash
+    pip install thedriveai
+    ```
+  </Card>
+  <Card title="TypeScript" icon="js">
+    ```bash
+    npm install @thedriveai/sdk
+    ```
+  </Card>
+</CardGroup>

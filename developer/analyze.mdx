@@ -1,0 +1,100 @@
+---
+title: "Analyze"
+description: "Compute, reason, and derive answers from documents"
+---
+
+Unlike `/extract` which pulls explicitly stated values, `/analyze` can **compute, reason, and derive** answers that aren't written in the document.
+
+## When to use Analyze vs Extract
+
+| Use case | Endpoint |
+|----------|----------|
+| "What is the invoice number?" | `/extract` |
+| "What is the sum of all line items?" | `/analyze` |
+| "Does this contract auto-renew?" | `/analyze` |
+| "Rate the legal risk: low/medium/high" | `/analyze` |
+| "Pull the vendor name and address" | `/extract` |
+| "Are any line items duplicated?" | `/analyze` |
+
+## Example
+
+<CodeGroup>
+```python Python
+from thedriveai import TheDriveAI
+
+client = TheDriveAI(api_key="tda_live_...")
+
+result = client.analyze(
+    file="contract.pdf",
+    schema={
+        "total_value": {
+            "type": "number",
+            "description": "Total contract value (sum all payment amounts)"
+        },
+        "auto_renews": {
+            "type": "boolean",
+            "description": "Does this contract auto-renew?"
+        },
+        "termination_notice_days": {
+            "type": "integer",
+            "description": "How many days notice required to terminate?"
+        },
+        "risk_level": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "Overall legal risk level"
+        },
+    },
+)
+
+print(result.data)
+# {"total_value": 250000, "auto_renews": true, "termination_notice_days": 90, "risk_level": "medium"}
+
+print(result.reasoning["auto_renews"])
+# "Section 8.2 states 'This agreement shall automatically renew for successive one-year terms
+#  unless either party provides written notice of non-renewal at least 90 days prior...'"
+
+print(result.sources["total_value"])
+# ["Year 1: $100,000 (Section 4.1)", "Year 2: $150,000 (Section 4.2)"]
+```
+
+```bash cURL
+curl -X POST https://dev.thedrive.ai/api/v1/analyze \
+  -H "X-API-Key: tda_live_..." \
+  -F file=@contract.pdf \
+  -F 'schema={
+    "total_value": {"type": "number", "description": "Total contract value"},
+    "auto_renews": {"type": "boolean", "description": "Does this contract auto-renew?"}
+  }'
+```
+</CodeGroup>
+
+## Response structure
+
+Every field in the response includes:
+
+| Field | Description |
+|-------|-------------|
+| `data` | The computed answers, type-enforced |
+| `confidence` | Per-field confidence score (0.0 - 1.0) |
+| `reasoning` | Step-by-step explanation of how each answer was derived |
+| `sources` | Exact text snippets from the document supporting the answer |
+| `steps` | Agent tool call trace (when `include_steps=true`) |
+
+## How it works
+
+The analyze endpoint uses a multi-step reasoning agent that can:
+
+1. **Search** the document semantically and by keyword
+2. **Read** specific pages or sections
+3. **Extract tables** and structured data
+4. **Run Python code** for calculations (sums, averages, date math)
+5. **View page images** for scanned/chart content (PDFs only)
+6. **Regex search** for patterns (dates, amounts, IDs)
+
+The agent plans its approach, gathers evidence from multiple sections, cross-references data, and uses code for all arithmetic — never mental math.
+
+## Pricing
+
+- **Documents**: 2 credits per page (minimum 5)
+- **Websites**: 10 credits flat

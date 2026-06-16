@@ -1,0 +1,193 @@
+---
+title: "Async & Webhooks"
+description: "Process documents asynchronously with webhook notifications"
+---
+
+Any endpoint that accepts `sync=false` will return immediately with a `task_id` and process in the background. When complete, the result is available via polling or delivered to your webhook URL.
+
+## Async processing
+
+<CodeGroup>
+```python Python
+from thedriveai import TheDriveAI
+
+client = TheDriveAI(api_key="tda_live_...")
+
+# Submit async
+task = client.extract_async(
+    file="large_report.pdf",
+    schema={"title": {"type": "string", "description": "Document title"}},
+    webhook_url="https://your-app.com/webhooks/thedrive",
+)
+print(task.task_id)  # "task_a1b2c3d4e5f6"
+
+# Or poll for result
+result = client.wait_for_task(task.task_id, timeout=300)
+print(result.status)  # "completed"
+print(result.result)  # The extraction result
+```
+
+```bash cURL
+# Submit
+curl -X POST https://dev.thedrive.ai/api/v1/extract \
+  -H "X-API-Key: tda_live_..." \
+  -F file=@report.pdf \
+  -F 'schema={"title": {"type": "string", "description": "Title"}}' \
+  -F sync=false \
+  -F webhook_url=https://your-app.com/webhooks/thedrive
+
+# Response: {"task_id": "task_a1b2c3d4e5f6", "status": "pending", "poll_url": "/api/v1/jobs/task_a1b2c3d4e5f6"}
+
+# Poll
+curl https://dev.thedrive.ai/api/v1/jobs/task_a1b2c3d4e5f6 \
+  -H "X-API-Key: tda_live_..."
+```
+</CodeGroup>
+
+## Webhook payload
+
+When the task completes, we POST the result to your `webhook_url`:
+
+```json
+{
+  "task_id": "task_a1b2c3d4e5f6",
+  "status": "completed",
+  "created_at": "2025-06-15T10:30:00Z",
+  "completed_at": "2025-06-15T10:30:12Z",
+  "credits_used": 7,
+  "result": {
+    "success": true,
+    "data": {"title": "Q3 Financial Report"},
+    "confidence": {"title": 0.96},
+    ...
+  }
+}
+```
+
+## Verifying webhooks
+
+Every webhook includes two security headers:
+
+| Header | Purpose |
+|--------|---------|
+| `X-TDA-Signature` | HMAC-SHA256 signature of the raw request body |
+| `X-TDA-Delivery-ID` | Unique delivery ID for deduplication |
+
+**Verify the signature** to ensure the payload is authentic and hasn't been tampered with:
+
+<CodeGroup>
+```python Python
+import hmac
+import hashlib
+
+def verify_webhook(raw_body: bytes, signature_header: str, secret: str) -> bool:
+    expected = "sha256=" + hmac.new(
+        secret.encode(), raw_body, hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(expected, signature_header)
+
+# In your webhook handler (e.g. Flask/FastAPI):
+@app.post("/webhooks/thedrive")
+async def handle_webhook(request: Request):
+    body = await request.body()
+    signature = request.headers.get("X-TDA-Signature", "")
+
+    if not verify_webhook(body, signature, "your-webhook-signing-secret"):
+        raise HTTPException(status_code=401, detail="Invalid signature")
+
+    payload = await request.json()
+    # Process the result...
+```
+
+```typescript TypeScript
+import crypto from "crypto";
+
+function verifyWebhook(rawBody: Buffer, signature: string, secret: string): boolean {
+  const expected = "sha256=" + crypto
+    .createHmac("sha256", secret)
+    .update(rawBody)
+    .digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
+}
+
+// In your Express handler:
+app.post("/webhooks/thedrive", express.raw({ type: "application/json" }), (req, res) => {
+  const signature = req.headers["x-tda-signature"] as string;
+
+  if (!verifyWebhook(req.body, signature, "your-webhook-signing-secret")) {
+    return res.status(401).send("Invalid signature");
+  }
+
+  const payload = JSON.parse(req.body.toString());
+  // Process the result...
+  res.sendStatus(200);
+});
+```
+</CodeGroup>
+
+<Warning>
+  Always verify the `X-TDA-Signature` header before trusting a webhook payload. Without verification, anyone who discovers your webhook URL could send forged payloads.
+</Warning>
+
+## Retry policy
+
+Failed webhook deliveries are retried automatically:
+
+| Phase | Timing |
+|-------|--------|
+| Inline retries | 3 attempts with exponential backoff (immediate, 2s, 4s) |
+| Background retries | 1min, 5min, 15min, 30min, 1hr, 2hr, 4hr |
+| **Total** | **8 attempts over ~8 hours** |
+
+- **4xx responses** are treated as permanent failures (not retried)
+- **5xx responses** and timeouts are retried
+- Your endpoint should return `200` to acknowledge receipt
+
+## Checking delivery status
+
+If you didn't receive a webhook, check the delivery log:
+
+```bash
+curl https://dev.thedrive.ai/api/v1/jobs/task_a1b2c3d4e5f6/deliveries \
+  -H "X-API-Key: tda_live_..."
+```
+
+```json
+{
+  "task_id": "task_a1b2c3d4e5f6",
+  "deliveries": [
+    {
+      "id": "whd_a1b2c3d4e5f6g7h8",
+      "status": "delivered",
+      "status_code": 200,
+      "attempts": 1,
+      "created_at": "2025-06-15T10:30:12Z",
+      "delivered_at": "2025-06-15T10:30:13Z"
+    }
+  ]
+}
+```
+
+Delivery statuses:
+- `pending` — Not yet attempted
+- `delivered` — Successfully received (2xx response)
+- `failed` — Will be retried
+- `dead` — Exhausted all retry attempts or permanent 4xx failure
+
+## Deduplication
+
+Use the `X-TDA-Delivery-ID` header to deduplicate retries. If your server crashes after processing but before responding, the retry will carry the same delivery ID.
+
+```python
+@app.post("/webhooks/thedrive")
+async def handle_webhook(request: Request):
+    delivery_id = request.headers.get("X-TDA-Delivery-ID")
+
+    # Check if already processed
+    if await db.exists("processed_webhooks", delivery_id):
+        return {"ok": True}  # Already handled, just ACK
+
+    # Process...
+    await db.insert("processed_webhooks", {"id": delivery_id})
+    return {"ok": True}
+```

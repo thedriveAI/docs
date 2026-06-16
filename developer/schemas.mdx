@@ -1,0 +1,113 @@
+---
+title: "Schemas"
+description: "Define what to extract with typed JSON schemas"
+---
+
+Every API call takes a `schema` parameter that describes the fields you want. Each field must have a `type` and `description`.
+
+## Supported types
+
+| Type | Returns | Example |
+|------|---------|---------|
+| `string` | Text | `"Acme Corp"` |
+| `number` | Float | `1234.56` |
+| `integer` | Whole number | `42` |
+| `boolean` | true/false | `true` |
+| `array` | List | `[{"item": "Widget", "qty": 3}]` |
+| `object` | Nested object | `{"street": "123 Main", "city": "NYC"}` |
+
+## Basic schema
+
+```json
+{
+  "vendor": {"type": "string", "description": "Company name on the invoice"},
+  "total": {"type": "number", "description": "Total amount due including tax"},
+  "is_paid": {"type": "boolean", "description": "Whether the invoice is marked as paid"}
+}
+```
+
+## Enums
+
+Constrain a field to specific allowed values:
+
+```json
+{
+  "status": {
+    "type": "string",
+    "enum": ["paid", "unpaid", "overdue"],
+    "description": "Payment status"
+  },
+  "risk_level": {
+    "type": "string",
+    "enum": ["low", "medium", "high"],
+    "description": "Legal risk assessment"
+  }
+}
+```
+
+## Required fields
+
+Mark fields as required — the response will set `success: false` if any required field is missing:
+
+```json
+{
+  "invoice_number": {
+    "type": "string",
+    "description": "Invoice reference number",
+    "required": true
+  },
+  "vendor": {
+    "type": "string",
+    "description": "Company name"
+  }
+}
+```
+
+## Arrays
+
+Extract lists of items with a defined shape:
+
+```json
+{
+  "line_items": {
+    "type": "array",
+    "description": "Each line item on the invoice",
+    "items": {
+      "type": "object",
+      "properties": {
+        "description": {"type": "string", "description": "Item description"},
+        "quantity": {"type": "integer", "description": "Quantity"},
+        "unit_price": {"type": "number", "description": "Price per unit"},
+        "total": {"type": "number", "description": "Line total"}
+      }
+    }
+  }
+}
+```
+
+## Nested objects
+
+```json
+{
+  "vendor": {
+    "type": "object",
+    "description": "Vendor information",
+    "properties": {
+      "name": {"type": "string", "description": "Company name"},
+      "address": {"type": "string", "description": "Full address"},
+      "tax_id": {"type": "string", "description": "Tax identification number"}
+    }
+  }
+}
+```
+
+## Field limits
+
+- Maximum **10 fields** per request (top-level, excluding `_`-prefixed meta keys)
+- No limit on nested properties within arrays or objects
+
+## Type guarantees
+
+When you define a field as `"type": "number"`, the API guarantees the returned value is a number (not a string like `"$1,234.56"`). The AI parses, cleans, and type-coerces values automatically.
+
+If a field can't be found in the document, it returns `null` (not an empty string or zero).
