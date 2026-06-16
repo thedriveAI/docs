@@ -5,7 +5,7 @@ description: "Extract structured data from a document in under 5 minutes"
 
 ## 1. Get an API key
 
-Sign up at [dev.thedrive.ai](https://dev.thedrive.ai) and create an API key from the dashboard.
+Sign up at [dev.thedrive.ai](https://dev.thedrive.ai) and create an API key from the dashboard. Free tier includes 100 credits/month.
 
 ## 2. Install the SDK
 
@@ -45,11 +45,12 @@ print(result.confidence)
 
 ```typescript TypeScript
 import { TheDriveAI } from "@thedriveai/sdk";
+import { readFileSync } from "fs";
 
 const client = new TheDriveAI({ apiKey: "tda_live_..." });
 
 const result = await client.extract({
-  file: new Blob([fs.readFileSync("invoice.pdf")]),
+  file: readFileSync("invoice.pdf"),
   schema: {
     invoice_number: { type: "string", description: "The invoice number" },
     vendor: { type: "string", description: "Company name" },
@@ -74,11 +75,12 @@ curl -X POST https://dev.thedrive.ai/api/v1/extract \
 ```
 </CodeGroup>
 
-## 4. Use Pydantic models (Python)
+## 4. Or use Pydantic / Zod
 
-Instead of writing dict schemas, define a Pydantic model:
+Instead of writing raw JSON schemas, use the tools you already know.
 
-```python
+<CodeGroup>
+```python Pydantic
 from pydantic import BaseModel, Field
 from thedriveai import TheDriveAI
 
@@ -92,9 +94,125 @@ client = TheDriveAI(api_key="tda_live_...")
 result = client.extract(file="invoice.pdf", schema=Invoice)
 
 print(result.data["vendor"])  # "Acme Corp"
+print(result.data["total"])   # 1234.56
 ```
 
-## What's next?
+```typescript Zod
+import { TheDriveAI, fromZod } from "@thedriveai/sdk";
+import { readFileSync } from "fs";
+import { z } from "zod";
+
+const Invoice = z.object({
+  invoice_number: z.string().describe("The invoice number"),
+  vendor: z.string().describe("Company name"),
+  total: z.number().describe("Total amount due"),
+  is_paid: z.boolean().describe("Whether the invoice is marked as paid"),
+});
+
+const client = new TheDriveAI({ apiKey: "tda_live_..." });
+const result = await client.extract({
+  file: readFileSync("invoice.pdf"),
+  schema: fromZod(Invoice),
+});
+
+console.log(result.data.vendor); // "Acme Corp"
+console.log(result.data.total);  // 1234.56
+```
+</CodeGroup>
+
+Both approaches support nested objects, arrays, enums, and optional fields. See [Schemas](/developer/schemas) for the full reference.
+
+## 5. Extract from a URL
+
+You can pass a URL instead of uploading a file. Works with any public URL — the API renders JavaScript-heavy pages with a headless browser.
+
+<CodeGroup>
+```python Python
+result = client.extract(
+    url="https://example.com/pricing",
+    schema={
+        "plans": {
+            "type": "array",
+            "description": "Available pricing plans",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string", "description": "Plan name"},
+                    "price": {"type": "number", "description": "Monthly price"},
+                }
+            }
+        }
+    },
+)
+```
+
+```typescript TypeScript
+const result = await client.extract({
+  url: "https://example.com/pricing",
+  schema: {
+    plans: {
+      type: "array",
+      description: "Available pricing plans",
+      items: {
+        type: "object",
+        properties: {
+          name: { type: "string", description: "Plan name" },
+          price: { type: "number", description: "Monthly price" },
+        },
+      },
+    },
+  },
+});
+```
+</CodeGroup>
+
+## What's in the response
+
+Every extraction returns:
+
+| Field | Description |
+|-------|-------------|
+| `data` | Extracted values, type-enforced to match your schema |
+| `confidence` | Per-field confidence scores (0.0 - 1.0) |
+| `citations` | Per-field source text snippets from the document |
+| `field_status` | Per-field found/not_found status with type info |
+| `credits_used` | Credits consumed for this request |
+
+## Error handling
+
+<CodeGroup>
+```python Python
+from thedriveai import TheDriveAI, TheDriveAIError
+
+try:
+    result = client.extract(file="doc.pdf", schema={...})
+except TheDriveAIError as e:
+    print(e.status_code)  # 400, 413, 503, etc.
+    print(e.detail)       # Error detail from the API
+```
+
+```typescript TypeScript
+import { TheDriveAI, TheDriveAIError } from "@thedriveai/sdk";
+
+try {
+  const result = await client.extract({...});
+} catch (e) {
+  if (e instanceof TheDriveAIError) {
+    console.log(e.statusCode); // 400, 413, 503, etc.
+    console.log(e.detail);     // Error detail from the API
+  }
+}
+```
+</CodeGroup>
+
+| Status | Meaning |
+|--------|---------|
+| `400` | Invalid schema, missing file/URL, or bad request |
+| `401` | Missing or invalid API key |
+| `413` | File too large (max 50 MB) |
+| `503` | AI service temporarily unavailable |
+
+## What's next
 
 <CardGroup cols={2}>
   <Card title="Analyze" icon="magnifying-glass-chart" href="/developer/analyze">
@@ -104,7 +222,7 @@ print(result.data["vendor"])  # "Acme Corp"
     Validate an invoice against a contract, reconcile spreadsheets, compare agreements.
   </Card>
   <Card title="Schemas" icon="brackets-curly" href="/developer/schemas">
-    Supported types, arrays, nested objects, enums, and required fields.
+    Full type reference — arrays, nested objects, enums, required fields, Pydantic, Zod.
   </Card>
   <Card title="Async & Webhooks" icon="webhook" href="/developer/webhooks">
     Process documents asynchronously with webhook notifications.

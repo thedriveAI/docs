@@ -3,11 +3,11 @@ title: "Developer Platform"
 description: "Extract, analyze, and cross-reference any document with a single API call"
 ---
 
-## What is the Developer API?
+The same document intelligence that powers [The Drive AI](https://thedrive.ai), available as an API. Upload a PDF, spreadsheet, image, or URL — get back typed JSON matching your schema.
 
-The Drive AI Developer API turns any document into structured data. Upload a PDF, spreadsheet, image, or URL — get back typed JSON matching your schema.
-
-Three core endpoints:
+<Note>
+  This is not a full API for The Drive AI product. These are standalone document intelligence endpoints — the same ones we use internally — exposed for developers and AI agents that need to process documents programmatically.
+</Note>
 
 <CardGroup cols={3}>
   <Card title="Extract" icon="file-export" href="/developer/quickstart">
@@ -23,11 +23,12 @@ Three core endpoints:
 
 ## How it works
 
-1. **Define a schema** — Describe the fields you want, with types
-2. **Send a document** — Upload a file or pass a URL
-3. **Get structured data** — Typed JSON, confidence scores, source citations
+1. Define a schema — describe the fields you want, with types
+2. Send a document — upload a file or pass a URL
+3. Get structured data — typed JSON, confidence scores, source citations
 
-```python
+<CodeGroup>
+```python Python
 from thedriveai import TheDriveAI
 
 client = TheDriveAI(api_key="tda_live_...")
@@ -53,16 +54,79 @@ result = client.extract(
 
 print(result.data["vendor"])      # "Acme Corp"
 print(result.data["total"])       # 1234.56
-print(result.data["line_items"])  # [{"description": "Consulting", "amount": 1234.56}]
+print(result.confidence["total"]) # 0.95
 ```
+
+```typescript TypeScript
+import { TheDriveAI } from "@thedriveai/sdk";
+
+const client = new TheDriveAI({ apiKey: "tda_live_..." });
+
+const result = await client.extract({
+  file: readFileSync("invoice.pdf"),
+  schema: {
+    vendor: { type: "string", description: "Company name" },
+    total: { type: "number", description: "Total amount due" },
+  },
+});
+
+console.log(result.data.vendor); // "Acme Corp"
+console.log(result.data.total);  // 1234.56
+```
+</CodeGroup>
+
+## Define schemas your way
+
+Write raw JSON, or use Pydantic (Python) and Zod (TypeScript) to define schemas with the tools you already use.
+
+<CodeGroup>
+```python Pydantic
+from pydantic import BaseModel, Field
+from thedriveai import TheDriveAI
+
+class Invoice(BaseModel):
+    vendor: str = Field(description="Company name")
+    total: float = Field(description="Total amount due")
+    is_paid: bool = Field(description="Whether the invoice is paid")
+
+client = TheDriveAI(api_key="tda_live_...")
+result = client.extract(file="invoice.pdf", schema=Invoice)
+```
+
+```typescript Zod
+import { TheDriveAI, fromZod } from "@thedriveai/sdk";
+import { z } from "zod";
+
+const Invoice = z.object({
+  vendor: z.string().describe("Company name"),
+  total: z.number().describe("Total amount due"),
+  is_paid: z.boolean().describe("Whether the invoice is paid"),
+});
+
+const client = new TheDriveAI({ apiKey: "tda_live_..." });
+const result = await client.extract({
+  file: readFileSync("invoice.pdf"),
+  schema: fromZod(Invoice),
+});
+```
+</CodeGroup>
+
+The SDK converts your Pydantic models and Zod schemas to the typed format automatically — including nested objects, arrays, enums, and optional fields.
 
 ## Supported formats
 
-PDF, DOCX, XLSX, PPTX, CSV, JSON, XML, images (JPG, PNG, TIFF), and any public URL (rendered with a headless browser).
+| Category | Formats |
+|----------|---------|
+| Documents | PDF, DOCX, DOC, ODT, RTF |
+| Spreadsheets | XLSX, CSV, TSV |
+| Presentations | PPTX |
+| Data | JSON, XML |
+| Images | JPG, PNG, TIFF, WEBP |
+| Web | Any public URL (rendered with a headless browser) |
 
 ## Authentication
 
-All API requests require an `X-API-Key` header. Get your key at [dev.thedrive.ai/dashboard/api-keys](https://dev.thedrive.ai/dashboard/api-keys).
+All requests require an `X-API-Key` header. Get your key at [dev.thedrive.ai](https://dev.thedrive.ai).
 
 ```bash
 curl -X POST https://dev.thedrive.ai/api/v1/extract \
@@ -71,17 +135,25 @@ curl -X POST https://dev.thedrive.ai/api/v1/extract \
   -F 'schema={"vendor": {"type": "string", "description": "Company name"}}'
 ```
 
-## SDKs
+## Install
 
-<CardGroup cols={2}>
-  <Card title="Python" icon="python">
-    ```bash
-    pip install thedriveai
-    ```
-  </Card>
-  <Card title="TypeScript" icon="js">
-    ```bash
-    npm install @thedriveai/sdk
-    ```
-  </Card>
-</CardGroup>
+<CodeGroup>
+```bash Python
+pip install thedriveai
+```
+```bash TypeScript
+npm install @thedriveai/sdk
+```
+</CodeGroup>
+
+## Pricing
+
+| Endpoint | Cost |
+|----------|------|
+| Extract | 1 credit/page (min 3), 5 credits for websites |
+| Analyze | 2 credits/page (min 5), 10 credits for websites |
+| Cross-Analyze | 5 credits/doc + 3 credits/page (min 10) |
+| Markdown | 1 credit |
+| Thumbnail | 1 credit |
+
+Free tier includes 100 credits/month. [Purchase more](https://dev.thedrive.ai/dashboard/billing).

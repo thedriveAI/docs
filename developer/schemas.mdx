@@ -1,22 +1,13 @@
 ---
 title: "Schemas"
-description: "Define what to extract with typed JSON schemas"
+description: "Define what to extract with typed JSON schemas, Pydantic models, or Zod objects"
 ---
 
-Every API call takes a `schema` parameter that describes the fields you want. Each field must have a `type` and `description`.
+Every API call takes a `schema` parameter that describes the fields you want. You can define schemas three ways: raw JSON, Pydantic models (Python), or Zod objects (TypeScript).
 
-## Supported types
+## Typed JSON schema
 
-| Type | Returns | Example |
-|------|---------|---------|
-| `string` | Text | `"Acme Corp"` |
-| `number` | Float | `1234.56` |
-| `integer` | Whole number | `42` |
-| `boolean` | true/false | `true` |
-| `array` | List | `[{"item": "Widget", "qty": 3}]` |
-| `object` | Nested object | `{"street": "123 Main", "city": "NYC"}` |
-
-## Basic schema
+Each field is an object with a `type` and `description`:
 
 ```json
 {
@@ -26,7 +17,18 @@ Every API call takes a `schema` parameter that describes the fields you want. Ea
 }
 ```
 
-## Enums
+### Supported types
+
+| Type | Returns | Example value |
+|------|---------|---------------|
+| `string` | Text | `"Acme Corp"` |
+| `number` | Float | `1234.56` |
+| `integer` | Whole number | `42` |
+| `boolean` | true/false | `true` |
+| `array` | List | `[{"item": "Widget", "qty": 3}]` |
+| `object` | Nested object | `{"street": "123 Main", "city": "NYC"}` |
+
+### Enums
 
 Constrain a field to specific allowed values:
 
@@ -36,16 +38,11 @@ Constrain a field to specific allowed values:
     "type": "string",
     "enum": ["paid", "unpaid", "overdue"],
     "description": "Payment status"
-  },
-  "risk_level": {
-    "type": "string",
-    "enum": ["low", "medium", "high"],
-    "description": "Legal risk assessment"
   }
 }
 ```
 
-## Required fields
+### Required fields
 
 Mark fields as required — the response will set `success: false` if any required field is missing:
 
@@ -55,15 +52,11 @@ Mark fields as required — the response will set `success: false` if any requir
     "type": "string",
     "description": "Invoice reference number",
     "required": true
-  },
-  "vendor": {
-    "type": "string",
-    "description": "Company name"
   }
 }
 ```
 
-## Arrays
+### Arrays
 
 Extract lists of items with a defined shape:
 
@@ -77,15 +70,14 @@ Extract lists of items with a defined shape:
       "properties": {
         "description": {"type": "string", "description": "Item description"},
         "quantity": {"type": "integer", "description": "Quantity"},
-        "unit_price": {"type": "number", "description": "Price per unit"},
-        "total": {"type": "number", "description": "Line total"}
+        "unit_price": {"type": "number", "description": "Price per unit"}
       }
     }
   }
 }
 ```
 
-## Nested objects
+### Nested objects
 
 ```json
 {
@@ -101,13 +93,98 @@ Extract lists of items with a defined shape:
 }
 ```
 
-## Field limits
+## Pydantic models (Python)
 
-- Maximum **10 fields** per request (top-level, excluding `_`-prefixed meta keys)
-- No limit on nested properties within arrays or objects
+Pass a Pydantic `BaseModel` class directly as the schema. The SDK converts it automatically — including nested models, `Optional` fields, `Literal` enums, and `Field(description=...)`.
+
+```python
+from pydantic import BaseModel, Field
+from typing import Optional
+from enum import Enum
+
+class Status(str, Enum):
+    paid = "paid"
+    unpaid = "unpaid"
+    overdue = "overdue"
+
+class LineItem(BaseModel):
+    description: str = Field(description="Item description")
+    quantity: int = Field(description="Quantity")
+    unit_price: float = Field(description="Price per unit")
+
+class Invoice(BaseModel):
+    invoice_number: str = Field(description="The invoice number")
+    vendor: str = Field(description="Company name")
+    total: float = Field(description="Total amount due")
+    status: Status = Field(description="Payment status")
+    notes: Optional[str] = Field(default=None, description="Additional notes")
+    line_items: list[LineItem] = Field(description="Invoice line items")
+
+result = client.extract(file="invoice.pdf", schema=Invoice)
+```
+
+This generates the equivalent typed JSON schema behind the scenes. Every Pydantic feature maps to a schema type:
+
+| Pydantic | Schema type |
+|----------|-------------|
+| `str` | `string` |
+| `float` | `number` |
+| `int` | `integer` |
+| `bool` | `boolean` |
+| `list[T]` | `array` with items |
+| Nested `BaseModel` | `object` with properties |
+| `Optional[T]` | Nullable field |
+| `Literal["a", "b"]` or `Enum` | `string` with `enum` |
+| `Field(description="...")` | Field description |
+
+## Zod schemas (TypeScript)
+
+Use `fromZod()` to convert a Zod object schema. Supports `z.string()`, `z.number()`, `z.boolean()`, `z.array()`, `z.object()`, `z.enum()`, and `.describe()`.
+
+```typescript
+import { TheDriveAI, fromZod } from "@thedriveai/sdk";
+import { z } from "zod";
+
+const LineItem = z.object({
+  description: z.string().describe("Item description"),
+  quantity: z.number().describe("Quantity"),
+  unit_price: z.number().describe("Price per unit"),
+});
+
+const Invoice = z.object({
+  invoice_number: z.string().describe("The invoice number"),
+  vendor: z.string().describe("Company name"),
+  total: z.number().describe("Total amount due"),
+  status: z.enum(["paid", "unpaid", "overdue"]).describe("Payment status"),
+  notes: z.string().optional().describe("Additional notes"),
+  line_items: z.array(LineItem).describe("Invoice line items"),
+});
+
+const result = await client.extract({
+  file: readFileSync("invoice.pdf"),
+  schema: fromZod(Invoice),
+});
+```
+
+| Zod | Schema type |
+|-----|-------------|
+| `z.string()` | `string` |
+| `z.number()` | `number` |
+| `z.boolean()` | `boolean` |
+| `z.array(T)` | `array` with items |
+| `z.object({...})` | `object` with properties |
+| `z.enum([...])` | `string` with `enum` |
+| `.optional()` | Nullable field |
+| `.describe("...")` | Field description |
 
 ## Type guarantees
 
-When you define a field as `"type": "number"`, the API guarantees the returned value is a number (not a string like `"$1,234.56"`). The AI parses, cleans, and type-coerces values automatically.
+When you define a field as `"type": "number"`, the API guarantees the returned value is a JSON number — not a string like `"$1,234.56"`. The AI parses, cleans, and type-coerces values automatically.
 
 If a field can't be found in the document, it returns `null` (not an empty string or zero).
+
+## Limits
+
+- Maximum **10 top-level fields** per request (excluding `_`-prefixed meta keys)
+- No limit on nested properties within arrays or objects
+- Descriptions improve accuracy — always include them

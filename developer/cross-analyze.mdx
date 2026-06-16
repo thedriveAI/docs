@@ -3,7 +3,7 @@ title: "Cross-Analyze"
 description: "Validate and cross-reference across multiple documents"
 ---
 
-Cross-analyze lets the agent reason **across** 2-5 documents simultaneously. Unlike batch processing (which handles documents independently), cross-analyze compares, validates, and reconciles data between documents.
+Cross-analyze lets the agent reason **across** 2-5 documents simultaneously. Unlike `/analyze/batch` (which processes documents independently), cross-analyze compares, validates, and reconciles data between documents.
 
 ## Use cases
 
@@ -48,9 +48,28 @@ print(result.sources["rates_match"])
 print(result.reasoning["rates_match"])
 # "Invoice hourly rate ($150) differs from contract rate ($125). Discrepancy of $25/hr."
 
-# Per-document metadata
 for doc in result.documents:
     print(f"{doc.label}: {doc.total_pages} pages")
+```
+
+```typescript TypeScript
+import { TheDriveAI } from "@thedriveai/sdk";
+import { readFileSync } from "fs";
+
+const client = new TheDriveAI({ apiKey: "tda_live_..." });
+
+const result = await client.analyzeCross({
+  files: [readFileSync("invoice.pdf"), readFileSync("contract.pdf")],
+  documentLabels: ["invoice", "contract"],
+  schema: {
+    rates_match: { type: "boolean", description: "Do the hourly rates on the invoice match the contract?" },
+    total_valid: { type: "boolean", description: "Does the invoice total equal the sum of line items?" },
+    correct_vendor: { type: "boolean", description: "Is the vendor name consistent?" },
+  },
+});
+
+console.log(result.data.rates_match);       // false
+console.log(result.sources?.rates_match);   // ['[invoice] "Rate: $150.00/hr"', '[contract] "Hourly rate: $125.00"']
 ```
 
 ```bash cURL
@@ -66,33 +85,65 @@ curl -X POST https://dev.thedrive.ai/api/v1/analyze/cross \
 ```
 </CodeGroup>
 
+Works with Pydantic and Zod too — see [Schemas](/developer/schemas).
+
 ## Providing documents
 
-You can mix files and URLs:
+You can mix uploaded files and URLs in a single request:
 
-```python
+<CodeGroup>
+```python Python
 result = client.analyze_cross(
     files=["local_invoice.pdf"],
     urls={"contract": "https://example.com/contract.pdf"},
-    document_labels=["invoice"],  # labels for uploaded files only
+    document_labels=["invoice"],
     schema={...},
 )
 ```
 
-**URL formats:**
-- **Array**: `urls=["https://a.com/doc1.pdf", "https://b.com/doc2.pdf"]` (auto-labeled from filename)
-- **Object**: `urls={"invoice": "https://a.com/inv.pdf", "contract": "https://b.com/ctr.pdf"}` (custom labels)
+```typescript TypeScript
+const result = await client.analyzeCross({
+  files: [readFileSync("local_invoice.pdf")],
+  urls: { contract: "https://example.com/contract.pdf" },
+  documentLabels: ["invoice"],
+  schema: {...},
+});
+```
+</CodeGroup>
 
-## Document labels
+### URL formats
 
-Each document gets a label used in source citations (`[invoice] "..."`, `[contract] "..."`). Labels are auto-generated from filenames, or you can set them explicitly via `document_labels`.
+| Format | Example | Label behavior |
+|--------|---------|----------------|
+| Array | `urls=["https://a.com/inv.pdf", "https://b.com/ctr.pdf"]` | Auto-generated from filename |
+| Object | `urls={"invoice": "https://a.com/inv.pdf"}` | Uses the key as the label |
+
+### Document labels
+
+Each document gets a label used in source citations (`[invoice] "..."`, `[contract] "..."`). Labels are auto-generated from filenames, or you can set them explicitly via `document_labels` (for uploaded files) or URL object keys (for URLs).
+
+## Response
+
+Same structure as `/analyze`, plus per-document metadata:
+
+| Field | Description |
+|-------|-------------|
+| `data` | Computed answers, type-enforced |
+| `confidence` | Per-field confidence scores (0.0 - 1.0) |
+| `reasoning` | Per-field explanation referencing specific documents |
+| `sources` | Per-field text snippets prefixed with `[doc_label]` |
+| `documents` | List of `{label, filename, content_type, total_pages, text_length}` |
+| `total_pages` | Combined page count across all documents |
+| `credits_used` | Credits consumed |
 
 ## Limits
 
-- **2-5 documents** per request
-- **100 MB** total combined size
-- **10 fields** per schema
-- **5 minute** timeout (use `sync=false` for async processing)
+| Constraint | Value |
+|------------|-------|
+| Documents per request | 2 - 5 |
+| Total combined size | 100 MB |
+| Fields per schema | 10 |
+| Timeout | 5 minutes (use `sync=false` for async) |
 
 ## Pricing
 
