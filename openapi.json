@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "The Drive AI API",
-    "description": "\n## The Drive AI API\n\nOne API for screenshots, markdown extraction, structured data extraction,\nand more. 107+ file formats supported.\n\n## Endpoints\n\n| Endpoint | Credits | Description |\n|----------|---------|-------------|\n| `GET /{url}` | 1 | Screenshot any URL |\n| `GET /md/{url}` | 1 | Convert any URL to markdown |\n| `POST /api/v1/thumbnails/generate` | 1 | Generate thumbnail from file or URL |\n| `POST /api/v1/markdown/convert` | 1 | Convert file/URL to markdown |\n| `POST /api/v1/extract` | 1/page or 5/site | Extract structured data |\n| `POST /api/v1/analyze` | 2/page or 10/site | Analyze \u2014 compute, reason, derive |\n\n## Authentication\n\nAll protected endpoints require an `X-API-Key` header:\n```bash\ncurl https://dev.thedrive.ai/stripe.com \\\n  -H \"X-API-Key: tda_live_your_key_here\"\n```\n\nGet your API key at https://dev.thedrive.ai/login\n\n## Pricing\n\n- **Free**: 100 credits/month, no card required\n- **Pro**: $0.01/credit, pay-as-you-go\n- **Enterprise**: Volume pricing, contact us\n",
-    "version": "1.3.0"
+    "description": "\n## The Drive AI API\n\nOne API for screenshots, markdown extraction, structured data extraction,\nand more. 107+ file formats supported.\n\n**[Developer Guide & SDK Docs](https://docs.thedrive.ai)** \u2014 Quickstart, guides, Pydantic/Zod examples, webhook verification.\n\nThis page is the interactive API reference. For tutorials and SDK usage, see the developer guide.\n\n## Endpoints\n\n| Endpoint | Credits | Description |\n|----------|---------|-------------|\n| `GET /{url}` | 1 | Screenshot any URL |\n| `GET /md/{url}` | 1 | Convert any URL to markdown |\n| `POST /api/v1/thumbnails/generate` | 1 | Generate thumbnail from file or URL |\n| `POST /api/v1/markdown/convert` | 1 | Convert file/URL to markdown |\n| `POST /api/v1/extract` | 1/page or 5/site | Extract structured data |\n| `POST /api/v1/analyze` | 2/page or 10/site | Analyze \u2014 compute, reason, derive |\n| `POST /api/v1/analyze/cross` | 5/doc + 3/page | Cross-reference multiple documents |\n\n## Authentication\n\nAll protected endpoints require an `X-API-Key` header:\n```bash\ncurl https://dev.thedrive.ai/stripe.com \\\n  -H \"X-API-Key: tda_live_your_key_here\"\n```\n\nGet your API key at https://dev.thedrive.ai/login\n\n## Pricing\n\n- **Free**: 100 credits/month, no card required\n- **Pro**: $0.01/credit, pay-as-you-go\n- **Enterprise**: Volume pricing, contact us\n",
+    "version": "1.4.0"
   },
   "paths": {
     "/api/v1/thumbnails/generate": {
@@ -914,6 +914,99 @@
         }
       }
     },
+    "/api/v1/decide": {
+      "post": {
+        "tags": [
+          "decision"
+        ],
+        "summary": "Make a Decision",
+        "description": "Make **one coherent decision** about a document (or pure context), guided by\nexplicit instructions and caller-supplied context.\n\nUnlike `/analyze` \u2014 which researches each schema field independently \u2014 `/decide`\nanswers the whole schema in a single reasoning pass with tools (reading, search,\ncomputation, vision) available on the way. Use it when the fields are facets of\none judgment: where to file a document, which branch a workflow should take,\nwhat to rename a file.\n\n**Request parts**:\n- `instructions` (required): what decision to make and what makes it correct.\n- `context` (optional): JSON array of `{\"label\": ..., \"content\": ...}` blocks \u2014\n  folder listings, sibling decisions, established facts. Authoritative for the decision.\n- `schema` (required): typed schema of the decision fields.\n- `file`/`url` (optional): the document. Omit both for context-only decisions.\n\n**Response**: `data` (schema-shaped, enforced by structured outputs), per-field\n`confidence`, a single `reasoning` string for the whole decision, and `sources`.\n\n**Failures are errors**: provider overload returns `503` with `Retry-After`;\nprovider errors return `502`. A `200` always contains a real decision.\n\n**Pricing**: 2 credits/page (min 5) for documents, 10 for websites, 5 for context-only.",
+        "operationId": "decide_document_api_v1_decide_post",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "X-Api-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_decide_document_api_v1_decide_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecideResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "File too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "AI provider failed (not retryable)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "AI provider overloaded (retry with backoff)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/extract/batch": {
       "post": {
         "tags": [
@@ -1122,7 +1215,7 @@
           "jobs"
         ],
         "summary": "Get Webhook Deliveries",
-        "description": "Check the delivery status of webhooks for a task. Returns a list of\ndelivery attempts with status, response code, and timestamps.\n\nUseful for debugging \"I didn't receive my webhook\" scenarios.",
+        "description": "Check the delivery status of webhooks for a task. Returns a list of\ndelivery attempts with status, response code, and timestamps.\n\nUseful for debugging \"I didn't receive my webhook\" scenarios.\n\n## Webhook Verification\n\nEvery webhook includes two headers for security:\n\n- **`X-TDA-Delivery-ID`** \u2014 Unique delivery ID. Use this to deduplicate retries.\n- **`X-TDA-Signature`** \u2014 HMAC-SHA256 signature of the raw request body.\n\n**To verify a webhook is authentic**, compute the HMAC of the raw body using\nyour webhook signing secret and compare:\n\n```python\nimport hmac, hashlib\n\ndef verify_webhook(raw_body: bytes, signature_header: str, secret: str) -> bool:\n    expected = \"sha256=\" + hmac.new(\n        secret.encode(), raw_body, hashlib.sha256\n    ).hexdigest()\n    return hmac.compare_digest(expected, signature_header)\n\n# In your webhook handler:\nis_valid = verify_webhook(\n    raw_body=request.body(),\n    signature_header=request.headers[\"X-TDA-Signature\"],\n    secret=\"your-webhook-signing-secret\",\n)\n```\n\n## Retry Policy\n\nFailed deliveries are retried automatically: 3 immediate retries, then\nbackground retries at 1m, 5m, 15m, 30m, 1h, 2h, 4h (8 total attempts).\n4xx responses are treated as permanent failures and are not retried.\n\nDelivery statuses: `pending`, `delivered`, `failed` (will retry), `dead` (exhausted).",
         "operationId": "get_webhook_deliveries_api_v1_jobs__task_id__deliveries_get",
         "parameters": [
           {
@@ -1742,7 +1835,7 @@
               }
             ],
             "title": "Webhook Url",
-            "description": "URL to POST the result to when async processing completes."
+            "description": "URL to POST the result to when async processing completes. Signed with HMAC-SHA256 (see GET /api/v1/jobs/{task_id}/deliveries for verification docs)."
           }
         },
         "type": "object",
@@ -1790,7 +1883,7 @@
               }
             ],
             "title": "Webhook Url",
-            "description": "URL to POST results when the entire batch completes"
+            "description": "URL to POST results when the entire batch completes. Signed with HMAC-SHA256 (see GET /api/v1/jobs/{task_id}/deliveries for verification docs)."
           }
         },
         "type": "object",
@@ -1856,7 +1949,7 @@
               }
             ],
             "title": "Webhook Url",
-            "description": "URL to POST results when the entire batch completes"
+            "description": "URL to POST results when the entire batch completes. Signed with HMAC-SHA256 (see GET /api/v1/jobs/{task_id}/deliveries for verification docs)."
           }
         },
         "type": "object",
@@ -1989,7 +2082,7 @@
               }
             ],
             "title": "Webhook Url",
-            "description": "URL to POST the result to when async processing completes."
+            "description": "URL to POST the result to when async processing completes. Signed with HMAC-SHA256 (see GET /api/v1/jobs/{task_id}/deliveries for verification docs)."
           }
         },
         "type": "object",
@@ -1997,6 +2090,99 @@
           "schema"
         ],
         "title": "Body_cross_analyze_api_v1_analyze_cross_post"
+      },
+      "Body_decide_document_api_v1_decide_post": {
+        "properties": {
+          "file": {
+            "anyOf": [
+              {
+                "type": "string",
+                "contentMediaType": "application/octet-stream"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File",
+            "description": "Document to decide about"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "URL to fetch the document from"
+          },
+          "url_headers": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url Headers",
+            "description": "JSON-encoded headers for URL auth"
+          },
+          "instructions": {
+            "type": "string",
+            "title": "Instructions",
+            "description": "What decision to make, and what makes it correct"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context",
+            "description": "JSON array of {\"label\", \"content\"} context blocks"
+          },
+          "schema": {
+            "type": "string",
+            "title": "Schema",
+            "description": "Typed schema of the decision fields"
+          },
+          "include_steps": {
+            "type": "boolean",
+            "title": "Include Steps",
+            "description": "Include the agent's tool-call trace",
+            "default": false
+          },
+          "sync": {
+            "type": "boolean",
+            "title": "Sync",
+            "description": "Set to false to process asynchronously. Returns a task_id to poll.",
+            "default": true
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url",
+            "description": "URL to POST the result to when async processing completes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "instructions",
+          "schema"
+        ],
+        "title": "Body_decide_document_api_v1_decide_post"
       },
       "Body_extract_structured_data_api_v1_extract_post": {
         "properties": {
@@ -2076,7 +2262,7 @@
               }
             ],
             "title": "Webhook Url",
-            "description": "URL to POST the result to when async processing completes."
+            "description": "URL to POST the result to when async processing completes. Signed with HMAC-SHA256 (see GET /api/v1/jobs/{task_id}/deliveries for verification docs)."
           }
         },
         "type": "object",
@@ -2315,6 +2501,136 @@
           "success": true,
           "total_pages": 10,
           "total_text_length": 16200
+        }
+      },
+      "DecideResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Data",
+            "description": "Decision values keyed by field name"
+          },
+          "confidence": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Confidence",
+            "description": "Per-field confidence scores (0.0\u20131.0)"
+          },
+          "reasoning": {
+            "type": "string",
+            "title": "Reasoning",
+            "description": "One coherent explanation of the decision as a whole",
+            "default": ""
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sources",
+            "description": "Quotes from the document/context that support the decision"
+          },
+          "steps": {
+            "items": {
+              "$ref": "#/components/schemas/AgentStepResponse"
+            },
+            "type": "array",
+            "title": "Steps",
+            "description": "Agent tool-call trace. Empty unless include_steps=true."
+          },
+          "filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filename",
+            "description": "Original filename or URL (null for context-only decisions)"
+          },
+          "content_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Type",
+            "description": "Detected MIME type"
+          },
+          "model_used": {
+            "type": "string",
+            "title": "Model Used",
+            "description": "Model used for the decision"
+          },
+          "text_length": {
+            "type": "integer",
+            "title": "Text Length",
+            "description": "Length of extracted document text (0 for context-only)",
+            "default": 0
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Total pages in the document (0 for non-paginated files)",
+            "default": 0
+          },
+          "credits_used": {
+            "type": "integer",
+            "title": "Credits Used",
+            "description": "Credits consumed",
+            "default": 0
+          },
+          "schema_format": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SchemaFormat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Schema format: always 'typed'"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "model_used"
+        ],
+        "title": "DecideResponse",
+        "description": "Response for /decide \u2014 ONE coherent decision over the whole schema.\n\nUnlike /analyze, `reasoning` is a single string and `sources` a single\nlist: the fields are facets of one judgment, so they share one rationale.\nA failed decision is an HTTP error, never a null-with-zero-confidence.",
+        "example": {
+          "confidence": {
+            "destination_path": 0.92
+          },
+          "content_type": "application/pdf",
+          "credits_used": 5,
+          "data": {
+            "destination_path": "billing/Acme Corp/2026/Apr"
+          },
+          "filename": "invoice.pdf",
+          "model_used": "gpt-5.1",
+          "reasoning": "The invoice names Acme Corp and is dated April 2026; the instruction files by client, then year, then month, and 'billing/Acme Corp' already exists in the provided folder list.",
+          "sources": [
+            "Bill To: Acme Corp",
+            "Invoice Date: April 3, 2026"
+          ],
+          "success": true,
+          "text_length": 3200,
+          "total_pages": 2
         }
       },
       "DocumentInfo": {

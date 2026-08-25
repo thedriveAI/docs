@@ -80,6 +80,7 @@
             "group": "Guides",
             "pages": [
               "developer/analyze",
+              "developer/decide",
               "developer/cross-analyze",
               "developer/webhooks"
             ]
@@ -97,6 +98,12 @@
               "POST /api/v1/analyze",
               "POST /api/v1/analyze/cross",
               "POST /api/v1/analyze/batch"
+            ]
+          },
+          {
+            "group": "Decision",
+            "pages": [
+              "POST /api/v1/decide"
             ]
           },
           {

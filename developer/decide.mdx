@@ -1,0 +1,139 @@
+---
+title: "Decide"
+description: "Make one coherent decision about a document, guided by your instructions and context"
+---
+
+`/analyze` researches each schema field independently. `/decide` answers the whole schema in a **single reasoning pass** — use it when the fields are facets of one judgment: where to file a document, which branch a workflow should take, what to rename a file.
+
+## When to use Decide vs Analyze
+
+| Use case | Endpoint |
+|----------|----------|
+| "Sum all line items" and "Does it auto-renew?" (independent facts) | `/analyze` |
+| "Which folder does this belong in, and what should it be named?" | **`/decide`** |
+| "Approve, reject, or escalate this claim — and why?" | **`/decide`** |
+| "Rate the legal risk of each clause" | `/analyze` |
+| "Route this ticket to the right team with a priority" | **`/decide`** |
+
+Rule of thumb: if the fields are separate questions about the document, use `/analyze`. If they describe one decision — where every field must be consistent with the others — use `/decide`.
+
+## What makes it different
+
+- **`instructions` is a first-class parameter** — you state the task and what makes a decision correct, instead of encoding it into field descriptions.
+- **`context` carries your situational data** — folder trees, sibling decisions, established facts. Labeled blocks the agent treats as authoritative.
+- **One reasoning pass** — every field comes from the same judgment, so `reasoning` is a single string and the fields never contradict each other.
+- **Failures are errors** — provider overload returns `503` with `Retry-After`, provider errors return `502`. A `200` always contains a real decision, never null answers with zero confidence.
+- **The document is optional** — pass only `context` for pure-context decisions.
+
+## Example
+
+<CodeGroup>
+```python Python
+from thedriveai import TheDriveAI
+
+client = TheDriveAI(api_key="tda_live_...")
+
+result = client.decide(
+    file="invoice_march.pdf",
+    instructions="Choose the best folder for this document and a clear filename.",
+    context=[
+        {"label": "folders", "content": "/Finance/2025\n/Legal/Contracts\n/HR"},
+        {"label": "naming convention", "content": "type-year-month-vendor.pdf"},
+    ],
+    schema={
+        "folder": {"type": "string", "description": "Destination folder path"},
+        "rename_to": {"type": "string", "description": "Filename following the convention"},
+    },
+)
+
+print(result.data)
+# {"folder": "/Finance/2025", "rename_to": "invoice-2025-03-acme.pdf"}
+
+print(result.reasoning)
+# "March invoice from Acme — belongs with the other 2025 finance documents.
+#  Named per the type-year-month-vendor convention."
+
+print(result.confidence)
+# {"folder": 0.95, "rename_to": 0.9}
+```
+
+```typescript TypeScript
+import { TheDriveAI } from "@thedriveai/sdk";
+import { readFileSync } from "fs";
+
+const client = new TheDriveAI({ apiKey: "tda_live_..." });
+
+const result = await client.decide({
+  file: readFileSync("invoice_march.pdf"),
+  instructions: "Choose the best folder for this document and a clear filename.",
+  context: [
+    { label: "folders", content: "/Finance/2025\n/Legal/Contracts\n/HR" },
+    { label: "naming convention", content: "type-year-month-vendor.pdf" },
+  ],
+  schema: {
+    folder: { type: "string", description: "Destination folder path" },
+    rename_to: { type: "string", description: "Filename following the convention" },
+  },
+});
+
+console.log(result.data.folder);     // "/Finance/2025"
+console.log(result.reasoning);       // one rationale for the whole decision
+```
+
+```bash cURL
+curl -X POST https://dev.thedrive.ai/api/v1/decide \
+  -H "X-API-Key: tda_live_..." \
+  -F file=@invoice_march.pdf \
+  -F 'instructions=Choose the best folder for this document and a clear filename.' \
+  -F 'context=[
+    {"label": "folders", "content": "/Finance/2025\n/Legal/Contracts\n/HR"},
+    {"label": "naming convention", "content": "type-year-month-vendor.pdf"}
+  ]' \
+  -F 'schema={
+    "folder": {"type": "string", "description": "Destination folder path"},
+    "rename_to": {"type": "string", "description": "Filename following the convention"}
+  }'
+```
+</CodeGroup>
+
+Works with Pydantic and Zod too — see [Schemas](/developer/schemas).
+
+## Request parts
+
+| Part | Required | Description |
+|------|----------|-------------|
+| `instructions` | Yes | What decision to make, and what makes it correct. Up to 20,000 chars. |
+| `schema` | Yes | Typed schema of the decision fields (max 10 fields). |
+| `context` | No | JSON array of `{"label", "content"}` blocks, or a JSON string. Up to 50 blocks / 200,000 chars total. |
+| `file` / `url` | No | The document. Omit both for context-only decisions. |
+| `include_steps` | No | Include the agent's tool-call trace. |
+
+At least one of `file`, `url`, or `context` is required — a decision needs something to decide from.
+
+## Response
+
+| Field | Description |
+|-------|-------------|
+| `data` | The decision, shaped by your schema and enforced by structured outputs |
+| `confidence` | Per-field confidence scores (0.0 - 1.0) |
+| `reasoning` | A **single** rationale for the whole decision |
+| `sources` | Text snippets supporting the decision |
+| `steps` | Agent tool call trace (only when `include_steps=true`) |
+| `credits_used` | Credits consumed |
+
+## Error handling
+
+A `200` always contains a real decision. Upstream AI failures surface as real HTTP errors:
+
+| Status | Meaning | What to do |
+|--------|---------|------------|
+| `503` | Provider overloaded or rate-limited | Retry with backoff — honors the `Retry-After` header (the SDKs do this automatically) |
+| `502` | Provider failed (not retryable) | Surface the error |
+
+## Pricing
+
+| Input | Cost |
+|-------|------|
+| Documents | 2 credits/page (minimum 5) |
+| Websites | 10 credits flat |
+| Context-only | 5 credits flat |
