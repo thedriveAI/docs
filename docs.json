@@ -22,12 +22,23 @@
             ]
           },
           {
+            "group": "The Agent",
+            "pages": [
+              "agent/overview",
+              "agent/connected-drives",
+              "agent/browser-extension"
+            ]
+          },
+          {
+            "group": "Workflows",
+            "pages": [
+              "workflows/overview"
+            ]
+          },
+          {
             "group": "Core Features",
             "pages": [
               "features/uploading-files",
-              "features/auto-organization",
-              "features/chat-mode",
-              "features/agent-mode",
               "features/pdf-tools",
               "features/e-sign",
               "features/document-creation",
@@ -40,9 +51,9 @@
           {
             "group": "Integrations",
             "pages": [
-              "integrations/google-drive-import",
-              "integrations/onedrive-import",
-              "integrations/dropbox-import",
+              "integrations/google-drive",
+              "integrations/onedrive",
+              "integrations/dropbox",
               "integrations/email-integration",
               "integrations/slack",
               "integrations/microsoft-teams",
@@ -52,7 +63,8 @@
           {
             "group": "Account & Billing",
             "pages": [
-              "account/plans-pricing"
+              "account/plans-pricing",
+              "account/members-and-roles"
             ]
           },
           {
@@ -154,6 +166,32 @@
       ]
     }
   },
+  "redirects": [
+    {
+      "source": "/features/chat-mode",
+      "destination": "/agent/overview"
+    },
+    {
+      "source": "/features/agent-mode",
+      "destination": "/agent/overview"
+    },
+    {
+      "source": "/features/auto-organization",
+      "destination": "/workflows/overview"
+    },
+    {
+      "source": "/integrations/google-drive-import",
+      "destination": "/integrations/google-drive"
+    },
+    {
+      "source": "/integrations/onedrive-import",
+      "destination": "/integrations/onedrive"
+    },
+    {
+      "source": "/integrations/dropbox-import",
+      "destination": "/integrations/dropbox"
+    }
+  ],
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -164,7 +202,7 @@
         "label": "Contact",
         "href": "https://thedrive.ai/contact"
       },
-       {
+      {
         "label": "Get a demo",
         "href": "https://cal.com/bigyan"
       }

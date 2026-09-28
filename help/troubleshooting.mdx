@@ -1,253 +1,116 @@
 ---
 title: "Troubleshooting"
-description: "Solutions to common issues with The Drive AI"
+description: "Fixes for common problems with the agent, connected drives, uploads, workflows and your account"
 ---
 
-## Upload Issues
+## The agent says it can't see my Google Drive
+
+This applies to OneDrive, SharePoint and Dropbox too. Check these in order:
+
+1. **Your plan includes connected drives.** Connected drives come with Max, Team, Business and Enterprise. On other plans, connecting is blocked and the agent only sees files stored in The Drive AI. See [Plans & Pricing](/account/plans-pricing).
+2. **The drive is connected to this workspace.** Open **Settings** > **Integrations** and look under **Cloud storage**. If the drive says **Not connected**, click it and connect it. Connections belong to a workspace, so if you have several workspaces, check you're in the right one.
+3. **It's the right account.** The agent sees the account that was connected. If the file is in a different Google or Microsoft account, click **Add account** and connect that one too.
+4. **Cataloguing has finished.** After connecting, the agent builds a catalog of the drive first. In **Settings** > **Integrations** the account shows **Agent: cataloguing** until it's done, then **Agent: ready**. Large drives take longer. If it shows **Agent: needs attention**, open **Settings** > **Agent**, expand **What the agent can see** and click **Re-scan**.
+5. **For a Shared Drive or SharePoint library, it's been added.** Your own drive appears automatically. A Google Shared Drive or SharePoint library has to be added by a workspace owner or admin in **Settings** > **Agent** with **Add shared drive** or **Add library**. See [Connected drives](/agent/connected-drives#personal-drives-and-shared-drives).
+6. **It's a file the agent can read.** On connected drives, the agent reads text, PDFs, Word and Excel files. It can't read the content of audio, video, images or scanned PDFs stored there.
+
+In the [browser extension](/agent/browser-extension), a note above the chat tells you which of these applies to the page you're on.
+
+## The agent stopped, or I reached my limit
+
+<AccordionGroup>
+  <Accordion title="&quot;You've used your 5 assistant tasks for today&quot;" icon="gauge">
+    The Free plan includes 5 agent tasks in any 24 hours. Each message you send is one task. The message tells you when the next one frees up. Paid plans have unlimited tasks (fair use). See [Plans & Pricing](/account/plans-pricing), and check your usage in **Settings** > **Usage** under **Assistant tasks today**.
+  </Accordion>
+
+  <Accordion title="The agent says a task covers too many files" icon="files">
+    Each plan sets how many files the agent can read in one task (50 on the Free plan). Narrow the request to one folder or a smaller set of files, or upgrade.
+  </Accordion>
+
+  <Accordion title="The agent stopped partway through a big job" icon="circle-pause">
+    A single task has a size limit. When the agent reaches it, it stops and tells you where it got to. Ask it to continue, which starts a new task. Owners and admins can raise **Steps per request** in **Settings** > **Agent** under **Limits and approvals**.
+  </Accordion>
+
+  <Accordion title="I clicked Stop" icon="stop">
+    The conversation shows **Stopped.** Changes already applied stay applied, and you can undo them from their cards. Send a new message to carry on.
+  </Accordion>
+
+  <Accordion title="&quot;The agent is not enabled for this workspace&quot;" icon="toggle-off">
+    The agent is switched off for this workspace. A workspace owner or admin can turn it on in **Settings** > **Agent** with **Available in this workspace**.
+  </Accordion>
+
+  <Accordion title="A change is waiting and nothing happens" icon="hourglass">
+    Look for a card that says **Needs your OK** in the conversation. Click **Apply** (or **Allow**) to go ahead, or **Not now** to skip it. A proposal that isn't applied before the conversation's run ends expires. Ask again if you still want it.
+  </Accordion>
+</AccordionGroup>
+
+## Uploads
 
 <AccordionGroup>
   <Accordion title="Files won't upload" icon="upload">
-    **Possible causes and solutions:**
-
-    1. **Internet connection**: Check that you have a stable internet connection.
-
-    2. **File size**: Large files take longer to upload. Try uploading smaller files first.
-
-    3. **Storage limit reached**: Check your storage usage in **Settings** > **Plan & Billing**.
-       - Free plan: 5 GB
-       - Premium plan: 100 GB
-
-    4. **Unsupported file type**: Verify the file type is supported.
-       - Free: PDF, DOCX, DOC, TXT, RTF, XLSX, XLS, CSV, PPTX, PPT
-       - Premium: All of the above plus images, audio, and video
-
-    5. **Browser issue**: Try refreshing the page or using a different browser.
+    - Check your internet connection and try a smaller batch.
+    - Check you have storage left in **Settings** > **Usage**. Files in the Trash still count until you delete them there.
+    - Your plan limits how many files you can upload at once. The app tells you if you pick too many.
   </Accordion>
 
-  <Accordion title="Upload stuck at processing" icon="spinner">
-    **Possible causes and solutions:**
-
-    1. **Large or complex file**: PDFs with many images or large documents take longer to process. Wait a few minutes.
-
-    2. **Refresh the page**: Sometimes the UI doesn't update. Refresh to see current status.
-
-    3. **Re-upload**: If stuck for more than 10 minutes, try uploading the file again.
-
-    4. **File corruption**: The file might be corrupted. Try opening it locally to verify it works.
-  </Accordion>
-
-  <Accordion title="Uploaded file appears blank" icon="file-circle-question">
-    **Possible causes and solutions:**
-
-    1. **Scanned PDF without OCR**: If the PDF is a scanned image, the AI might not extract text. Premium includes OCR for better results.
-
-    2. **Encrypted/password-protected file**: Remove password protection before uploading.
-
-    3. **Processing incomplete**: Wait for the file to finish processing before accessing.
+  <Accordion title="The agent can't read a file I uploaded" icon="file-circle-question">
+    - Wait a few minutes. Large files take longer to process.
+    - Reading images, audio and video needs a plan that includes every file type, with an active subscription. On a paused or ended team subscription, new uploads of these files are not read until it is reactivated.
+    - Password-protected files can't be read. Remove the password and upload again.
   </Accordion>
 </AccordionGroup>
 
-## AI Issues
+## Connections and workflows
 
 <AccordionGroup>
-  <Accordion title="AI not responding" icon="robot">
-    **Possible causes and solutions:**
-
-    1. **Daily limit reached**: Free plan has 5 AI queries per day. Check your usage in **Settings** > **Plan & Billing**.
-
-    2. **Server busy**: During peak times, responses may be slower. Wait a moment and try again.
-
-    3. **Internet connection**: Ensure you have a stable connection.
-
-    4. **Browser refresh**: Refresh the page and try again.
-
-    5. **Sign out and back in**: This can resolve session-related issues.
+  <Accordion title="Connecting an account does nothing" icon="plug-circle-xmark">
+    - Allow pop-ups for The Drive AI. Sign-in opens in a new window.
+    - Make sure your plan includes connected accounts.
+    - For SharePoint, OneDrive for work or Teams, your Microsoft 365 administrator may need to approve The Drive AI first. See [Connected drives](/agent/connected-drives).
   </Accordion>
 
-  <Accordion title="AI giving wrong or irrelevant answers" icon="circle-xmark">
-    **Possible causes and solutions:**
-
-    1. **Be more specific**: Rephrase your question with more context and keywords.
-
-    2. **File not processed**: The file may still be processing. Wait until processing completes.
-
-    3. **Wrong mode**: Make sure you're in Chat Mode for questions and Agent Mode for actions.
-
-    4. **Specify files or folders**: Mention which files you're asking about: "In the Q4 report, what was..."
+  <Accordion title="Email attachments aren't being saved" icon="envelope">
+    Connecting Gmail or Outlook doesn't save attachments by itself. A workflow with an **Email Attachment** trigger has to save them. Check that one exists and is **Active**, and look at its **Activity**. Also check the sender isn't in **Blocked senders** or the workspace **Email Blocklist**.
   </Accordion>
 
-  <Accordion title="Agent Mode command didn't work" icon="wand-magic-sparkles">
-    **Possible causes and solutions:**
-
-    1. **Check you're in Agent Mode**: Agent Mode must be selected for actions to execute.
-
-    2. **Ambiguous command**: Be more specific. Instead of "organize these," try "create folders by file type and move files accordingly."
-
-    3. **Permission issue**: Some operations may require confirmation. Check the notification panel.
-
-    4. **File locked or in use**: If a file is open elsewhere, some operations may fail.
-  </Accordion>
-</AccordionGroup>
-
-## Organization Issues
-
-<AccordionGroup>
-  <Accordion title="Auto-organization not working" icon="folder-tree">
-    **Possible causes and solutions:**
-
-    1. **Not uploading to root**: Automatic organization triggers when files are uploaded to the workspace root. Uploading directly to a subfolder skips auto-organization.
-
-    2. **Monthly limit reached**: Free plan has 5 auto-organized files per month. Check your usage.
-
-    3. **Use Command+K**: For existing files, press Command+K (Ctrl+K on Windows) to manually trigger organization.
-
-    4. **Files still processing**: Wait until file processing completes before organization can occur.
-  </Accordion>
-
-  <Accordion title="Files organized incorrectly" icon="shuffle">
-    **Possible causes and solutions:**
-
-    1. **Ambiguous content**: Files with generic content may be placed in unexpected folders.
-
-    2. **Move manually**: Drag files to the correct location. The AI learns from your adjustments.
-
-    3. **Re-organize**: Use Command+K to re-run organization with additional context.
-
-    4. **Provide hints**: Rename files with descriptive names to help the AI understand their purpose.
-  </Accordion>
-
-  <Accordion title="Command+K not doing anything" icon="keyboard">
-    **Possible causes and solutions:**
-
-    1. **Make sure you're in the correct folder**: Navigate to the folder you want to organize.
-
-    2. **Empty folder**: Command+K won't do anything in an empty folder.
-
-    3. **Browser keyboard shortcut conflict**: Some browsers use Command+K. Try right-clicking and selecting "Organize with AI" instead.
-
-    4. **Already organized**: If files are already well-organized, the AI may make no changes.
-  </Accordion>
-</AccordionGroup>
-
-## Integration Issues
-
-<AccordionGroup>
-  <Accordion title="Can't connect to Google Drive" icon="google-drive">
-    **Possible causes and solutions:**
-
-    1. **Pop-up blocked**: Enable pop-ups for The Drive AI in your browser settings.
-
-    2. **Wrong Google account**: Make sure you're signing into the correct Google account.
-
-    3. **Permission denied**: You must grant The Drive AI permission to access your Drive files.
-
-    4. **Try again**: Disconnect and reconnect the integration in **Settings** > **Integrations**.
-  </Accordion>
-
-  <Accordion title="Email attachments not importing" icon="envelope">
-    **Possible causes and solutions:**
-
-    1. **Premium required**: Email integration is only available on the Premium plan.
-
-    2. **Integration paused**: Check if import is paused in **Settings** > **Integrations** > **Email**.
-
-    3. **Folder not monitored**: Verify that the email folder is included in your monitoring settings.
-
-    4. **File type filtered**: Check your file type filters to ensure the attachment type is included.
-
-    5. **Storage full**: Attachments won't import if you've reached your storage limit.
+  <Accordion title="A workflow didn't run on a file" icon="diagram-project">
+    - Open the Workflows page and check the workflow is **Active**.
+    - Look under **Activity** for the file. Filter by **Needs attention**.
+    - Check **Approvals**. A run waiting for a decision stays paused.
+    - If the page says **Monthly file limit reached**, the workspace has used its workflow files for the month.
   </Accordion>
 
   <Accordion title="MCP connection failing" icon="plug">
-    **Possible causes and solutions:**
-
-    1. **Verify the server URL**: Use `https://thedriveai.fastmcp.app/mcp`
-
-    2. **Re-authorize**: Disconnect and reconnect the integration.
-
-    3. **Check client compatibility**: Ensure your MCP client supports the Drive AI server.
-
-    4. **Sign into Drive AI**: You must be signed into your Drive AI account for MCP to work.
+    - Use the server URL `https://thedriveai.fastmcp.app/mcp`.
+    - Disconnect and reconnect the tool, and sign in to The Drive AI when prompted.
   </Accordion>
 </AccordionGroup>
 
-## Account Issues
+## Account and billing
 
 <AccordionGroup>
   <Accordion title="Can't sign in" icon="right-to-bracket">
-    **Possible causes and solutions:**
-
-    1. **Pop-up blocked**: Google Sign-in uses a pop-up. Allow pop-ups for The Drive AI.
-
-    2. **Clear cookies**: Clear your browser cookies and try again.
-
-    3. **Try incognito mode**: Test in an incognito/private window.
-
-    4. **Different browser**: Try a different browser to rule out browser-specific issues.
-
-    5. **Google account issue**: Ensure your Google account is working by signing into Gmail.
+    - Allow pop-ups for The Drive AI.
+    - Try a private window or another browser.
+    - Make sure you use the same sign-in method as before: Google, Microsoft, Apple, or email and password.
   </Accordion>
 
-  <Accordion title="Storage showing incorrect amount" icon="hard-drive">
-    **Possible causes and solutions:**
-
-    1. **Processing delay**: Storage updates may take a few minutes after deletions.
-
-    2. **Trash not emptied**: Deleted files count toward storage until you empty the Trash.
-
-    3. **Refresh the page**: The storage display may need a refresh to update.
+  <Accordion title="I can't see Billing" icon="credit-card">
+    Only the workspace owner sees **Settings** > **Billing**. Ask the owner to change the plan or seats.
   </Accordion>
 
-  <Accordion title="Subscription not activating" icon="credit-card">
-    **Possible causes and solutions:**
-
-    1. **Payment failed**: Check your payment method and try again.
-
-    2. **Refresh the page**: After payment, refresh to see updated plan status.
-
-    3. **Sign out and back in**: This forces a refresh of your account status.
-
-    4. **Contact support**: If Premium doesn't activate within 5 minutes of payment, reach out to support.
+  <Accordion title="My new plan isn't showing" icon="rotate">
+    Refresh the page, or sign out and back in. If it still hasn't changed after a few minutes, email [contact@thedrive.ai](mailto:contact@thedrive.ai).
   </Accordion>
 </AccordionGroup>
 
-## Performance Issues
-
-<AccordionGroup>
-  <Accordion title="The Drive AI is slow" icon="gauge-simple-low">
-    **Possible causes and solutions:**
-
-    1. **Large folder**: Folders with many files take longer to load. Consider organizing into subfolders.
-
-    2. **Browser performance**: Close unnecessary tabs. Try refreshing the page.
-
-    3. **Internet speed**: A slow connection affects load times. Test your connection speed.
-
-    4. **Clear browser cache**: Cached data can sometimes cause slowdowns.
-  </Accordion>
-
-  <Accordion title="Search is slow or not finding files" icon="magnifying-glass">
-    **Possible causes and solutions:**
-
-    1. **Recent uploads**: Newly uploaded files may take time to be indexed for search.
-
-    2. **Use Chat Mode**: For content search, use Chat Mode: "Find files about [topic]"
-
-    3. **Check spelling**: Verify you're searching for the correct terms.
-
-    4. **File type limitation**: On Free plan, only text files are searchable.
-  </Accordion>
-</AccordionGroup>
-
-## Getting More Help
-
-If you can't resolve your issue with the troubleshooting steps above:
+## Getting more help
 
 <CardGroup cols={2}>
   <Card title="FAQ" icon="circle-question" href="/help/faq">
-    Check our frequently asked questions for more answers.
+    More answers to common questions.
   </Card>
-  <Card title="Contact Support" icon="headset" href="mailto:contact@thedrive.ai">
-    Email our support team for personalized help.
+  <Card title="Contact us" icon="headset" href="mailto:contact@thedrive.ai">
+    Email our team for help.
   </Card>
 </CardGroup>

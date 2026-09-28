@@ -1,105 +1,63 @@
 ---
 title: "E-Sign"
-description: "Send PDFs for legally binding electronic signatures — no account needed for signers"
+description: "Send PDFs for electronic signatures. Signers don't need an account."
 ---
 
 ## Overview
 
-Send any PDF for electronic signatures directly from your Drive AI workspace. Recipients sign from their browser—no account or software required. Every signature is legally binding with a full audit trail.
+Send any PDF in your workspace for electronic signatures. Recipients sign in their browser, with no account or software needed.
 
-## How It Works
+<Note>
+  Sending documents for signature needs a plan that includes e-sign. See [Plans & Pricing](/account/plans-pricing). Viewers and guests can't send signature requests.
+</Note>
 
-### Starting an E-Sign Request
+## Start a signature request
 
-There are two ways to start:
+- **From the file browser:** click **⋮** on a PDF and choose **Request Signature**.
+- **From the PDF viewer:** open the PDF and click the **Request Signature** button in the toolbar.
+- **From the agent:** ask, for example, "Send this NDA to jane@example.com for signature." The agent prepares a draft, shows where the fields go, and sends it only after you allow it.
 
-**From the file browser** — right-click on a PDF and select **Request Signature** from the context menu.
+If you have saved templates, you're asked first whether to **Start from scratch** or use a template.
 
-<Frame>
-  <img src="/images/e-sign-1.png" alt="Right-click a PDF and select Request Signature from the context menu" />
-</Frame>
-
-**From the document viewer** — open a PDF and click the **E-Sign** icon in the top toolbar.
-
-<Frame>
-  <img src="/images/e-sign-2.png" alt="Click the E-Sign icon in the document viewer toolbar" />
-</Frame>
-
-### Sender Workflow
+## Prepare and send
 
 <Steps>
-  <Step title="Set Up Recipients and Settings">
-    The first screen lets you configure the signing request:
-
-    - **Subject** — a title for the signing request
-    - **Message** — optional message to include in the email
-    - **Recipients** — enter each signer's email (required) and name (optional)
-    - **Signing order** — sign in any order (parallel) or sequential
-    - **Expiration** — optionally set an expiration date
-    - **Auto-reminder** — off by default; enable to send automatic reminders
-    - **Require email verification** — if enabled, recipients must verify their identity with a 6-digit code sent to their email before signing
+  <Step title="Recipients">
+    - **Subject**: the email subject, "Please sign: …" by default. Click **Add a message** to include a note.
+    - **Recipients**: an email and optional name for each person, as a **Signer** or **CC**
+    - **Settings**:
+      - Signing order: **Sign in any order** or **Sign in sequence**
+      - **Expires**: an optional expiry date
+      - **Auto-remind**: **Off**, **Every day**, **Every 2 days**, **Every 3 days** or **Every week**
+      - **Require email verification**: signers enter a one-time code sent to their email before they can sign
 
     <Frame>
-      <img src="/images/e-sign-3.png" alt="E-Sign recipients and settings screen" />
+      <img src="/images/e-sign-3.png" alt="The Recipients step with subject, recipients and settings" />
     </Frame>
   </Step>
-  <Step title="Place Fields on the Document">
-    Click on the document to place fields. The left sidebar shows the available field types:
-    - **Signature**
-    - **Initials**
-    - **Text**
-    - **Date**
-    - **Checkbox**
-    - **Dropdown**
-
-    Fields can be resized and repositioned. Each field is assigned to a specific recipient. You can also save the setup as a template for reuse.
+  <Step title="Place Fields">
+    Click the document to place fields: **Signature**, **Initials**, **Text**, **Date**, **Checkbox** and **Dropdown**. Assign each field to a recipient. You can resize and move fields, and mark them required.
 
     <Frame>
-      <img src="/images/e-sign-4.png" alt="Place signature fields on the document" />
+      <img src="/images/e-sign-4.png" alt="Placing signature fields on the document" />
     </Frame>
   </Step>
   <Step title="Send">
-    Click **Send to recipient(s)** to send the signing request. Recipients receive a secure email link to sign.
-  </Step>
-  <Step title="Track and Download">
-    Monitor signing progress in real time. Once all parties have signed, download the completed PDF.
+    Click **Send to N recipients**. To finish later, click **Save draft**. To reuse this setup, click **Save as Template**.
   </Step>
 </Steps>
 
-### Recipient Experience
+## Track requests
 
-Recipients do not need a Drive AI account or any software:
+Open **Settings** > **Signatures** to see every request you've sent. Filter by **All**, **Waiting**, **Completed** and **Voided**. Open a request to see each signer's progress and its audit trail.
 
-1. They receive an email with a secure signing link
-2. They review and accept the ESIGN Act disclosure
-3. They review the document and fill in their assigned fields
-4. They submit their signature
+Saved templates are in **Settings** > **Signing Templates**.
 
-The entire process happens in the browser.
+## What recipients do
 
-## Reminders and Expiration
-
-### Auto-Reminders
-
-Enable automatic reminders for signers who have not yet completed:
-
-| Cadence | Description |
-|---------|-------------|
-| **Daily** | Reminder sent every day |
-| **Every few days** | A moderate reminder cadence |
-| **Weekly** | A light-touch weekly reminder |
-
-### Expiration
-
-Set an expiration date to automatically close stale signing requests. Expired requests can no longer be signed.
-
-## Reusable Templates
-
-Save your prepared documents as templates for recurring signatures:
-
-- Set up fields and recipients once
-- Reuse the template for new signers with one click
-- Ideal for NDAs, offer letters, lease agreements, and other standard documents
+1. They open the secure link in the email.
+2. They review and accept the electronic signature disclosure.
+3. They fill in the fields assigned to them and sign.
 
 ## Identity Verification
 
@@ -137,36 +95,14 @@ After all parties sign:
 - All parties receive an email with a link to the completed document
 - The full audit trail is attached to the document
 
-## Use Cases
 
-<CardGroup cols={3}>
-  <Card title="Law Firms" icon="scale-balanced">
-    NDAs, retainers, settlements
-  </Card>
-  <Card title="Real Estate" icon="house">
-    Leases, purchase contracts
-  </Card>
-  <Card title="HR Teams" icon="users">
-    Offer letters, employment agreements
-  </Card>
-  <Card title="Freelancers" icon="laptop">
-    Consulting agreements, SOWs
-  </Card>
-  <Card title="Finance" icon="building-columns">
-    Loans, compliance forms
-  </Card>
-  <Card title="Sales" icon="handshake">
-    Proposals, contracts
-  </Card>
-</CardGroup>
-
-## What's Next?
+## What's next?
 
 <CardGroup cols={2}>
   <Card title="PDF Tools" icon="file-pdf" href="/features/pdf-tools">
-    Merge, split, compress, and manipulate your PDFs.
+    Merge, split and fill PDFs.
   </Card>
   <Card title="File Requests" icon="inbox" href="/features/file-requests">
-    Collect documents from anyone via email.
+    Collect documents from anyone with a secure link.
   </Card>
 </CardGroup>

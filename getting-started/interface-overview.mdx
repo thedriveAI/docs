@@ -1,151 +1,86 @@
 ---
 title: "Interface Overview"
-description: "Navigate The Drive AI workspace with confidence"
+description: "Find your way around The Drive AI: the sidebar, the file browser, the agent panel and Settings"
 ---
 
-<Frame>
-  <img src="/images/panels.jpg" alt="The Drive AI Interface Overview" />
-</Frame>
+## Layout
 
-## Workspace Layout
+The web app has three parts:
 
-The Drive AI interface is designed to be intuitive and familiar, while providing powerful AI capabilities at your fingertips.
+- **The left sidebar**, for moving around your workspace
+- **The file browser** in the middle
+- **The agent panel** on the right, which you open with **Agent** in the toolbar
 
-### Main Components
+## Left sidebar
 
-<CardGroup cols={2}>
-  <Card title="Workspace Switcher" icon="building">
-    At the top of the left sidebar, click your workspace name to switch between workspaces or create new team workspaces.
-  </Card>
-  <Card title="File Browser" icon="folder-open">
-    The central area displays your files and folders in a familiar layout. Browse, select, and manage files just like a traditional file explorer.
-  </Card>
-  <Card title="AI Chat Panel" icon="message-bot">
-    The chat interface where you interact with AI. Switch between Chat Mode and Agent Mode to ask questions or execute commands.
-  </Card>
-  <Card title="Navigation Sidebar" icon="bars">
-    Quick access to your workspace sections, recent files, and integrations.
-  </Card>
-  <Card title="Command Bar" icon="keyboard">
-    Press `Command+P` to access the command palette for quick file search.
-  </Card>
-</CardGroup>
+From top to bottom:
 
-## Workspace Switcher
+- **Workspace switcher.** Click your workspace name to switch workspaces, or click **Create team workspace**.
+- **Search.** Finds files and folders by name. Press `⌘P` (Mac) or `Ctrl+P` (Windows). You can filter by type and date.
+- **Shared.** Files and folders others have shared with you.
+- **Trash.** Deleted files, which you can restore.
+- **Connected.** Your connected drives (Google Drive, OneDrive, SharePoint, Dropbox) that the agent can see. Click one to browse it. This section only appears once a drive is connected.
+- **Recent.** Files you opened recently.
+- **Feedback.** Send us feedback.
+- **Settings.** Opens Settings. See [Settings](#settings) below.
+- **Your account.** Your name, plan and email. Click it to open your profile.
 
-The workspace switcher is located at the top of the left sidebar, showing your current workspace name.
+## File browser
 
-### Switching Workspaces
+The toolbar above your files has:
 
-1. Click the **workspace name** at the top of the sidebar
-2. A dropdown appears showing all your workspaces
-3. Click on a workspace to switch to it
+- **New**, with **New File**, **New Folder**, **Upload** and **Import from Cloud**
+- **List view** and **Grid view**
+- Sort options
 
-### Creating a Team Workspace
+Each file has a **⋮** menu with **Open**, **Rename**, **Make a Copy**, **Move to**, **Share**, **Download**, **Export to Cloud**, **Details** and **Delete**. PDFs also have **Request Signature**.
 
-1. Click the workspace name to open the dropdown
-2. Click **Create Workspace** at the bottom of the list
-3. Enter a name for your new team workspace
-4. Start your 1-month free trial
+Right-click the file browser for **Organize this folder (⌘K)**, **Create New File**, **Create New Folder**, **Upload Files** and **Import from Cloud**.
 
-<Info>
-  Everyone starts with a **Personal Workspace** (1 user only). You can create additional **Team Workspaces** for collaboration with up to 50 members.
-</Info>
+**Organize this folder** asks AI to file everything in the folder you're looking at into sensible subfolders, right away. It has its own monthly allowance, shown in **Settings** > **Usage**. For filing that happens automatically as files arrive, use a [workflow](/workflows/overview).
 
-## File Browser
+## Agent panel
 
-The file browser is the heart of your workspace.
+Click **Agent** in the toolbar, or press `⌘J` (Mac) or `Ctrl+J` (Windows), to open the agent. It works on the folder or file you have open. See [The agent](/agent/overview).
 
-### Viewing Files
+## Settings
 
-- **Grid View**: See file thumbnails in a grid layout
-- **List View**: View files in a detailed list with metadata
-- **Sort Options**: Sort by name, date, size, or type
+Settings opens as a window over the app, with tabs down the side. Which tabs you see depends on your role.
 
-### Selecting Files
+| Tab | What it's for |
+|-----|---------------|
+| **Profile** | Your account |
+| **General** | Workspace name and details |
+| **Members** | Invite people and set roles (team workspaces) |
+| **Billing** | Plan, seats and payment (owner only) |
+| **Usage** | Assistant tasks, workflow files, folder organizes and storage used |
+| **Workflows** | A summary of workflows, with **Open workflows** |
+| **Integrations** | Connect Gmail, Outlook, Slack, Teams, Google Drive, OneDrive, SharePoint and Dropbox |
+| **Agent** | What the agent can see and remember, and (for owners and admins) whether it's on and its limits |
+| **File Requests** | Create and track [file requests](/features/file-requests) |
+| **Signatures** and **Signing Templates** | Track [signature requests](/features/e-sign) and reuse templates |
+| **MCP** | The [MCP server](/integrations/mcp-server) URL for other AI tools |
 
-- **Single Click**: Select one file
-- **Command+Click** (Mac) or **Ctrl+Click** (Windows): Select multiple files
-- **Shift+Click**: Select a range of files
+Owners and admins also see **Auto Organization**, **Activity Log**, **Email Blocklist** and **Import History**. The owner of a team workspace also sees **Danger Zone**.
 
-### File Actions
-
-Right-click on any file or folder to access actions:
-
-- **Open**: View the file contents
-- **Rename**: Change the file or folder name
-- **Move**: Move to a different location
-- **Copy**: Create a duplicate
-- **Share**: Generate a sharing link
-- **Delete**: Move to trash
-- **Organize with AI**: Trigger AI-powered organization
-
-## AI Chat Panel
-
-The chat panel is where you interact with The Drive AI's intelligence.
-
-<Frame>
-  <img src="/images/agent-chat-mode.jpg" alt="Agent Chat Mode UI" />
-</Frame>
-
-### Chat Mode
-
-<Info>
-  **Chat Mode** is for asking questions and getting answers. The AI reads your files and responds but doesn't take any actions.
-</Info>
-
-Use Chat Mode when you want to:
-- Search for information across your files
-- Get summaries of documents
-- Ask questions about file contents
-- Find specific data without knowing which file it's in
-
-### Agent Mode
-
-<Info>
-  **Agent Mode** is for taking actions. The AI can create, rename, move, share, organize, and delete files based on your commands.
-</Info>
-
-Use Agent Mode when you want to:
-- Organize files automatically
-- Rename multiple files at once
-- Create folder structures
-- Move files based on criteria
-- Perform bulk operations
-
-### Switching Modes
-
-Toggle between Chat Mode and Agent Mode using the mode selector in the chat panel. Make sure you're in the right mode before entering your command.
-
-## Keyboard Shortcuts
-
-Speed up your workflow with these shortcuts:
+## Keyboard shortcuts
 
 | Shortcut | Action |
 |----------|--------|
-| `Command+K` / `Ctrl+K` | Trigger AI organization |
-| `Command+P` / `Ctrl+P` | Search Pallete |
-| `Command+C` / `Ctrl+C` | Copy file or folder |
-| `Command+V` / `Ctrl+V` | Paste file or folder |
-| `Space` | AI Assistant on Editor |
+| `⌘J` / `Ctrl+J` | Show or hide the agent |
+| `⌘P` / `Ctrl+P` | Search files and folders |
+| `⌘K` / `Ctrl+K` | Organize this folder |
+| `⌘C`, `⌘X`, `⌘V` / `Ctrl+C`, `Ctrl+X`, `Ctrl+V` | Copy, cut and paste files |
+| `⌘A` / `Ctrl+A` | Select all |
+| `⌘`-click / `Ctrl`-click | Select several files |
 
-## Notifications
-
-The Drive AI keeps you informed about:
-
-- **Upload Progress**: Track file uploads in real-time
-- **Organization Status**: See when AI is organizing your files
-- **Errors**: Receive alerts if something goes wrong
-
-## What's Next?
-
-Now that you know your way around, dive into the core features:
+## What's next?
 
 <CardGroup cols={2}>
   <Card title="Uploading Files" icon="upload" href="/features/uploading-files">
-    Learn all the ways to get files into your workspace.
+    Get files into your workspace.
   </Card>
-  <Card title="Auto-Organization" icon="folder-tree" href="/features/auto-organization">
-    Master AI-powered file organization.
+  <Card title="The agent" icon="robot" href="/agent/overview">
+    Put the agent to work.
   </Card>
 </CardGroup>

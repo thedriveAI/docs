@@ -1,0 +1,77 @@
+---
+title: "Dropbox"
+description: "Connect Dropbox so the agent and workflows can work in it, and import or export files"
+---
+
+## Overview
+
+Connecting Dropbox lets The Drive AI work with your files where they already are:
+
+- **The agent** can find, read and organize files in Dropbox. Every change is shown for your approval and can be undone. See [Connected drives](/agent/connected-drives).
+- **Workflows** can start when a file is added to Dropbox, and can save files there. See [Workflows](/workflows/overview).
+- **Import and export** copy files between Dropbox and The Drive AI when you want a copy on the other side.
+
+Connecting Dropbox needs a plan that includes connected drives. See [Plans & Pricing](/account/plans-pricing).
+
+## Connect Dropbox
+
+<Steps>
+  <Step title="Open Integrations">
+    Open **Settings** and choose **Integrations**. Under **Cloud storage**, click **Dropbox**.
+  </Step>
+  <Step title="Sign in">
+    Click **Connect Dropbox** and sign in with your Dropbox account in the window that opens. If nothing opens, allow pop-ups for The Drive AI and try again.
+  </Step>
+  <Step title="Let the agent catalog it">
+    The account appears in the list. While the agent builds its catalog, the account shows **Agent: cataloguing**. When it's done, it shows **Agent: ready**.
+  </Step>
+</Steps>
+
+To connect another Dropbox account, click **Add account**. Every member can see which accounts are connected to the workspace, and who connected them. Only the person who connected an account can browse it or import from it.
+
+## Import files into The Drive AI
+
+1. In the file browser, open the folder you want the files in.
+2. Click **New** and choose **Import from Cloud**.
+3. Pick the Dropbox account, browse to the files or folders, and select them.
+4. Leave **Skip duplicates** on so files you've already imported are skipped, then click **Import**.
+
+Imported files are copies. Your originals in Dropbox stay where they are, and later changes on either side aren't copied across. You can follow progress under **Transfers** in the sidebar.
+
+## Export files to Dropbox
+
+1. Click **⋮** on a file and choose **Export to Cloud**, or select several files and click **Export**.
+2. Choose the Dropbox account and the destination folder, then click **Export here**.
+
+## Disconnect
+
+In **Settings** > **Integrations**, open **Dropbox** and click **Disconnect** next to the account.
+
+- You can disconnect accounts you connected. Owners and admins can disconnect any account.
+- Workflows that use the account are paused, and the confirmation lists them.
+- Files you already imported stay in The Drive AI.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connecting fails or nothing happens" icon="plug-circle-xmark">
+    - Allow pop-ups for The Drive AI, then try again.
+    - Make sure you sign in with the right Dropbox account.
+    - Check that your plan includes connected drives.
+  </Accordion>
+  <Accordion title="The agent can't find a file" icon="magnifying-glass">
+    - Wait until the account shows **Agent: ready** in **Settings** > **Integrations**.
+    - See [The agent says it can't see my drive](/help/troubleshooting#the-agent-says-it-cant-see-my-google-drive).
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    What the agent can and can't do in Dropbox.
+  </Card>
+  <Card title="Browser extension" icon="chrome" href="/agent/browser-extension">
+    Use the agent next to Dropbox in Chrome.
+  </Card>
+</CardGroup>

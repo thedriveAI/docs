@@ -1,0 +1,89 @@
+---
+title: "Connected Drives"
+description: "How the agent works in Google Drive, OneDrive, SharePoint and Dropbox, and what it can't do there"
+---
+
+## Overview
+
+The agent can work directly in your Google Drive, OneDrive, SharePoint and Dropbox. It can find and read files, and move, rename or organize them where they are. Nothing is copied into The Drive AI to make this work.
+
+Connected drives need a plan that includes them: Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+
+## Connect a drive
+
+Any member of a workspace on one of those plans can connect their own account.
+
+<Steps>
+  <Step title="Open Integrations">
+    Open **Settings** and choose **Integrations**. Under **Cloud storage**, click **Google Drive**, **OneDrive**, **SharePoint** or **Dropbox**.
+  </Step>
+  <Step title="Sign in">
+    Click **Connect Google Drive** (or the button for your drive) and sign in to your account in the window that opens. Allow pop-ups if your browser blocks it.
+  </Step>
+  <Step title="Wait for cataloguing">
+    The agent first builds a catalog of what's in the drive. While it does, the account shows **Agent: cataloguing**. When it's done it shows **Agent: ready**.
+  </Step>
+</Steps>
+
+To connect another account on the same service, open it again and click **Add account**.
+
+<Note>
+  Some Microsoft 365 organizations need an administrator to approve The Drive AI first. If you see **Administrator approval is required**, ask your Microsoft 365 administrator to approve access in Microsoft Entra, then click **Check approval & finish connecting**.
+</Note>
+
+## Personal drives and shared drives
+
+**Your own drive appears automatically.** When you connect Google Drive (My Drive), OneDrive or Dropbox, the agent catalogs your drive. Only you can see it through the agent.
+
+**Shared drives are added by an admin.** A Google Shared Drive or a SharePoint document library is shared with the whole workspace, so a workspace owner or admin adds it:
+
+1. Connect the Google Drive or SharePoint account that can see the shared drive or library.
+2. Open **Settings** > **Agent**, and find the account under **What the agent can see**.
+3. Click **Add shared drive** (Google Drive) or **Add library** (SharePoint), and choose it from the list.
+
+Once catalogued, it's visible to the agent of every member of the workspace.
+
+The drives the agent can see are listed in the left sidebar under **Connected**. Click one to browse it.
+
+## Check what the agent can see
+
+Open **Settings** > **Agent** and expand **What the agent can see**. Each drive shows one status:
+
+| Status | Meaning |
+|--------|---------|
+| **Cataloguing** | The agent is still building its catalog. Some files won't be found yet. |
+| **Ready** | The catalog is complete and kept up to date. |
+| **Retrying** | Recent updates failed and it's trying again. |
+| **Stopped** | Updates stopped. Click **Re-scan** to start again. |
+| **Paused** | The drive isn't being updated, for example after it was disconnected. |
+
+Changes you make in the drive itself reach the agent within about a minute.
+
+## What the agent can do in a connected drive
+
+- Find files by name, and by content using the drive's own search
+- Read text files, PDFs, Word documents and Excel spreadsheets
+- Move, rename and organize files and create folders, with the same [approve-and-undo](/agent/overview#approving-and-undoing-changes) cards as in The Drive AI
+- Save files it makes into a folder on the drive when you choose **Save to a folder**
+
+## What it can't do
+
+- **It can't move or copy files between two different storages in one change**, for example from Google Drive into The Drive AI, or from OneDrive to Dropbox. A [workflow](/workflows/overview) with a **Save a Copy** step can: it puts a copy of each file it handles into The Drive AI or another connected account, as files arrive or on a schedule over an existing folder. For a one-off copy, you can also use **Import from Cloud** and **Export to Cloud** (see [Google Drive](/integrations/google-drive)).
+- **It can't read audio, video or images stored in a connected drive, or scanned PDFs without a text layer.** Files stored in The Drive AI are different: they are read when you upload them (images, audio and video on plans that include every file type), so the agent can work with them.
+- **It can't edit Google files that have no text form**, like Slides decks and Drawings.
+- **It doesn't delete files in Dropbox.** In OneDrive and SharePoint it can move files to the recycle bin, but it can't restore them from there. Google Drive supports both.
+
+## Disconnecting
+
+In **Settings** > **Integrations**, open the drive and click **Disconnect** next to the account. You can disconnect accounts you connected yourself. Owners and admins can disconnect anyone's. Disconnecting also pauses any workflows that use the account, and the confirmation tells you which ones.
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Browser extension" icon="chrome" href="/agent/browser-extension">
+    Use the agent right next to the drive you're browsing.
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/help/troubleshooting">
+    The agent says it can't see your drive.
+  </Card>
+</CardGroup>

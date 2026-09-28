@@ -1,0 +1,99 @@
+---
+title: "The Agent"
+description: "Ask the agent to find, read, organize and create files. It shows every change and can undo it."
+---
+
+## What the agent does
+
+The agent works on your files for you. Describe what you want in plain language, and it looks through the files, then answers or makes the change. For example:
+
+- "What is in here, and what looks out of place?"
+- "Find duplicate files and tell me how much space they take."
+- "Organize the invoices by vendor and year."
+- "Summarize the contracts in a one-page PDF."
+
+It can find, read, move, rename, copy and trash files, create folders, and make new documents and spreadsheets. It can also work across many files at once. For example, it can read every invoice in a folder and total them, or rename each file by what's inside it.
+
+With your approval, it can also do things in the workspace for you. It can share files, invite members, create [file requests](/features/file-requests), prepare documents for [e-signature](/features/e-sign), and draft [workflows](/workflows/overview). It does these with your own permissions, so it can't do anything you couldn't do yourself.
+
+<Note>
+  An owner or admin must turn the agent on for each workspace. If the panel says **The agent is not enabled for this workspace**, ask one of them to open **Settings** > **Agent** and switch on **Available in this workspace**.
+</Note>
+
+## Where you can use it
+
+- **In the web app.** Click **Agent** in the toolbar, or press `⌘J` (Mac) or `Ctrl+J` (Windows). Press it again, or click **Hide agent**, to close the panel.
+- **In your browser, next to Google Drive, OneDrive, SharePoint or Dropbox.** The [browser extension](/agent/browser-extension) opens the same agent in Chrome's side panel.
+- **In the mobile app**, on iOS and Android.
+
+## What it works on
+
+The agent works on what you're looking at. A chip next to the message box shows its current place:
+
+- **A folder name** when you're in a folder. That folder is "here".
+- **A file name** when you have a file open. That file is "this".
+- **Workspace** when you're at the top level.
+
+The chip follows you as you move around, so to point the agent somewhere else, open that folder or file.
+
+Besides the files stored in The Drive AI, the agent can work in [connected drives](/agent/connected-drives) (Google Drive, OneDrive, SharePoint and Dropbox) on plans that include them. When a drive is connected, the panel lists it under **Also sees**.
+
+## Approving and undoing changes
+
+The agent never changes files silently. Every change shows up in the chat as a card that lists exactly what will change, such as "4 moves · 1 new folder".
+
+- **Small changes apply right away.** The card says **Applied**, and you can still undo it.
+- **Bigger changes ask first.** The card says **Needs your OK**. Click **Apply N changes** (for example **Apply 5 changes**) to go ahead, or **Not now** to skip it. Click **Add a note** to tell the agent what to do differently.
+- **Very large changes ask you to confirm the count.** Click again on **Yes, apply N changes** to confirm.
+- **Moving files to the trash always asks first.**
+
+To reverse a change, click **Undo** on its card, or ask the agent to undo it. If you changed a file yourself after the agent created it, undo keeps your version and says so.
+
+Owners and admins can set how big a change may be before the agent asks. In **Settings** > **Agent**, open **Limits and approvals** and set **Apply on its own** and **Ask once**.
+
+Actions other than file changes, like sharing a file, inviting someone or saving a workflow, always ask first. Choose **Allow** or **Not now**.
+
+## Attaching files and getting files back
+
+**Attach a file** by clicking the paperclip or dropping files onto the panel. You can attach up to 10 files per message, up to 25 MB each. Attached files belong to the conversation only. They aren't saved to your workspace.
+
+**Files the agent makes**, like a PDF summary or a spreadsheet, appear in the chat as a card. From the card you can:
+
+- **View** it
+- **Download** it (several files come as **Download all**, a single zip)
+- Choose **Save to a folder** (or **Save all to a folder**) and pick where it goes. The card then shows where it was saved.
+
+Until you save a file, the card says **Only in this chat**. An owner or admin can switch on **Save the files it makes** in **Settings** > **Agent**, which saves new files straight into the workspace.
+
+## Conversations
+
+- Click **+** (**New conversation**) to start a fresh conversation. Open conversations appear as tabs at the top of the panel.
+- Click **History** to find, rename or archive past conversations.
+- While the agent is working, the send button becomes **Stop**.
+- The agent may ask you a question when it needs to know something. Answer in the card, or type your own reply.
+
+## Tasks and limits
+
+Each message you send starts one **task**.
+
+- **Free plan:** 5 tasks in any 24 hours, and up to 50 files read per task. When you reach the limit, the agent tells you when your next task frees up.
+- **Paid plans:** unlimited tasks, subject to fair use, and far more files per task.
+
+See [Plans & Pricing](/account/plans-pricing) for each plan's allowance. To check what you've used, open **Settings** > **Usage** and look at **Assistant tasks today**.
+
+## What the agent can't do
+
+- It can't browse the web.
+- It can't read or send your email.
+- It can't move or copy files between two different storages in one change, for example from Google Drive into The Drive AI, or from OneDrive to Dropbox. A [workflow](/workflows/overview) with a **Save a Copy** step can, as files arrive or on a schedule. See [Connected drives](/agent/connected-drives).
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    Use the agent in Google Drive, OneDrive, SharePoint and Dropbox.
+  </Card>
+  <Card title="Browser extension" icon="chrome" href="/agent/browser-extension">
+    Use the agent next to the drive you're browsing.
+  </Card>
+</CardGroup>

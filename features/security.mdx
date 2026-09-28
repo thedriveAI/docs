@@ -5,7 +5,7 @@ description: "How The Drive AI protects your data with enterprise-grade security
 
 ## Overview
 
-The Drive AI is built with security at every layer. Your files are protected by enterprise-grade encryption, real-time threat detection, and strict privacy controls. Your data is never used to train AI models.
+The Drive AI is built with security at every layer. Your files are protected by encryption, malware scanning, and strict privacy controls. Your data is never used to train AI models.
 
 ## Encryption
 
@@ -15,35 +15,24 @@ All files stored in The Drive AI are encrypted using **AES-256** encryption—th
 
 ### Data in Transit
 
-All data transmitted between your device and The Drive AI servers is protected with **TLS 1.3**, the latest and most secure transport encryption protocol.
+All data sent between your device and The Drive AI is encrypted with **TLS**.
 
 | Layer | Standard | Details |
 |-------|----------|---------|
 | **At rest** | AES-256 | Files encrypted on storage servers |
-| **In transit** | TLS 1.3 | All connections encrypted end-to-end |
-
-## Certifications & Compliance
-
-<CardGroup cols={2}>
-  <Card title="CASA Certified" icon="certificate">
-    The Drive AI has passed the Cloud Application Security Assessment (CASA), an independent security evaluation for cloud applications.
-  </Card>
-  <Card title="Microsoft Verified Partner" icon="shield-check">
-    Verified by Microsoft as a trusted application partner, meeting their security and quality standards.
-  </Card>
-</CardGroup>
+| **In transit** | TLS | Connections to The Drive AI are encrypted |
 
 ## Threat Detection
 
-### Real-Time Malware Scanning
+### Malware Scanning
 
-Every file uploaded to The Drive AI is automatically scanned for malware and viruses in real time. Infected files are blocked before they enter your workspace.
+Every file uploaded to The Drive AI is automatically scanned for malware and viruses. Files found to be infected are blocked.
 
 - Scans run automatically on every upload
 - Known threats are blocked immediately
 - Scanning applies to all file types
 
-## Zero-Knowledge AI
+## Your Data and AI
 
 <Info>
   **Your data is never used to train AI models.** The Drive AI processes your files to provide features like search, organization, and chat—but your content is never used as training data for any AI model.
@@ -52,7 +41,7 @@ Every file uploaded to The Drive AI is automatically scanned for malware and vir
 Your files are:
 
 - **Processed only for your benefit** — AI reads your files to organize, search, and answer questions
-- **Never shared with third parties** — your content stays in your workspace
+- **Never sold** — your content is never sold or used for advertising
 - **Never used for model training** — no AI model is trained on your data
 - **Isolated per workspace** — team workspaces are fully isolated from each other
 
@@ -62,10 +51,10 @@ Your files are:
 
 The Drive AI supports secure authentication through:
 
-- Google OAuth
-- Microsoft OAuth
-- GitHub OAuth
-- Email and password with verification
+- Google sign-in
+- Microsoft sign-in
+- Apple sign-in
+- Email and password
 
 ### Workspace Isolation
 
@@ -78,22 +67,15 @@ Each workspace is fully isolated:
 
 ### Role-Based Access
 
-Team workspaces include role-based access control:
-
-| Role | Capabilities |
-|------|-------------|
-| **Owner** | Full workspace control, billing, member management |
-| **Admin** | Manage members, settings, all files |
-| **Member** | Upload, organize, share files |
-| **Viewer** | Read-only access |
+Team workspaces have roles (Owner, Admin, Member, Viewer and Guest) that set what each person can do. See [Members and roles](/account/members-and-roles).
 
 ### File-Level Permissions
 
 Granular permission controls on individual files and folders:
 
-- Set viewer, editor, or admin access per file
-- Revoke access at any time
-- Track who has access to what
+- Share with **Read**, **Write** or **Full Access** per file or folder
+- Change or remove access at any time
+- See who has access from the **Share** dialog
 
 ## Infrastructure
 
@@ -103,6 +85,17 @@ The Drive AI runs on enterprise-grade cloud infrastructure with:
 - Automatic backups
 - High availability architecture
 - Regular security audits
+
+## Certifications & Compliance
+
+<CardGroup cols={2}>
+  <Card title="CASA Certified" icon="certificate">
+    The Drive AI has passed the Cloud Application Security Assessment (CASA), the independent security evaluation Google requires of apps that access Google user data.
+  </Card>
+  <Card title="Microsoft verified publisher" icon="shield-check">
+    Our Microsoft app is publisher-verified, so your organization sees The Drive AI's verified identity when it approves access.
+  </Card>
+</CardGroup>
 
 ## Privacy Practices
 

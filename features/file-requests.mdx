@@ -1,169 +1,72 @@
 ---
 title: "File Requests"
-description: "Collect documents from anyone via email with checklists, reminders, and automatic organization"
+description: "Collect documents from anyone with a secure upload link, a checklist and reminders"
 ---
 
 ## Overview
 
-File Requests let you collect documents from clients, vendors, or anyone by email. Recipients upload files through a secure link or simply reply with attachments—no account needed. Files land in your workspace, automatically renamed and organized.
+A file request collects documents from clients, vendors or anyone else. Each recipient gets an email with their own upload link. They open the link, upload their files, and the files land in the folder you chose. Recipients don't need an account.
 
-## Managing File Requests
+<Note>
+  Creating file requests needs a plan that includes them. See [Plans & Pricing](/account/plans-pricing).
+</Note>
 
-Navigate to **Settings** > **File Requests** to see all your file requests, their status, and create new ones.
+## Where to find file requests
 
-<Frame>
-  <img src="/images/file-request-1.png" alt="File Requests dashboard showing past requests and their status" />
-</Frame>
+Open **Settings** and choose **File Requests**. It lists every request with its recipients, the files received, and its status.
 
-Each request shows the number of respondents, files received, time since creation, and status (**Active** or **Closed**). Click **+ New request** to create a new one.
-
-## How It Works
+## Create a request
 
 <Steps>
-  <Step title="Create a Request">
-    Click **+ New request** to open the request form. Fill in the details:
-
-    - **Title** (required) — e.g., "Q4 Tax Documents"
-    - **Message to recipients** (optional) — instructions for your recipients
-    - **Recipients** — email (required) and name (optional), add as many as needed
-    - **Required documents** (optional) — add a checklist of specific documents you need
-    - **Destination** — choose which folder files land in (defaults to Root)
-    - **Expires** — optionally set an expiration date
-    <Frame>
-      <img src="/images/file-request-2.png" alt="New file request modal with title, recipients, and settings" />
-    </Frame>
-
-    Expand **More options** for additional settings:
-
-    - **Auto-organize uploads** — AI sorts incoming files into subfolders automatically (off by default)
-    - **Rename uploaded files** — define a naming pattern using variables like `{recipient_name}`, `{original_name}`, `{recipient}`, `{email}`, `{date}`, `{title}`, `{document_name}`
-    - **Smart reminders** — auto-remind recipients who haven't uploaded yet (off by default)
-    - **Completion email** — get notified by email when a recipient uploads files (on by default)
-
-    <Frame>
-      <img src="/images/file-request-3.png" alt="More options: auto-organize, rename pattern, smart reminders, and completion email" />
-    </Frame>
-
-    Click **Send Request** when ready.
+  <Step title="Start a new request">
+    In **Settings** > **File Requests**, click **New request**. The **Request files** form opens.
   </Step>
-  <Step title="They Upload or Reply">
-    Recipients receive an email with a secure link. They see the request title, your message, and the document checklist. They can upload files to each slot, replace uploaded files, or upload additional files. They can also reply to the request email with attachments instead.
-
-    No Drive AI account is required.
-
-    <Frame>
-      <img src="/images/file-request-4.png" alt="Recipient view showing the file upload page with document checklist and progress" />
-    </Frame>
+  <Step title="Fill in the details">
+    - **Title**: required, for example "Q4 Tax Documents"
+    - **Message to recipients**: optional instructions
+    - **Recipients**: an email (required) and a name (optional) for each person. Click **Add recipient** to add more.
+    - **Required documents**: optional checklist. Click **Add document** for each item. You can add helper text to an item, or choose **Use template** to load a saved checklist.
+    - **Destination**: the folder uploads go to (**Workspace root** by default)
+    - **Expires**: optional date after which the link stops working (**No expiry** by default)
   </Step>
-  <Step title="Files Organize Automatically">
-    Uploaded documents land in your workspace, auto-renamed and organized based on your rules.
+  <Step title="Set more options (optional)">
+    Open **More options** for:
+
+    - **Rename uploaded files**: a naming pattern built from variables: **Original name** `{original_name}`, **Recipient** `{recipient_name}`, **Email** `{recipient_email}`, **Date** `{date}`, **Title** `{request_title}` and **Document name** `{slot_name}`
+    - **Smart reminders**: reminds recipients who haven't uploaded yet, **Every day**, **Every 2 days**, **Every 3 days**, **Every 5 days** or **Weekly**
+    - **Completion email**: emails you when a recipient uploads files
+    - **Save as template**: saves the checklist so you can reuse it (shown when the request has a checklist)
+  </Step>
+  <Step title="Send">
+    Click **Send Request**. Each recipient gets an email with their link. The confirmation screen also lists every recipient's link with **Copy link**, so you can share the links yourself.
   </Step>
 </Steps>
 
-## Document Checklists
+## What recipients see
 
-Specify the exact documents you need from each recipient. For example:
+Recipients open their link in a browser. They see your title, your message and the checklist, and they can drop files onto the page or browse for them. Each checklist item has its own **Upload** button, and **Replace** swaps a file they already uploaded.
 
-- W-2 forms
-- Profit & loss statements
-- Bank statements
-- Government-issued ID
-- Signed contracts
+Uploads only go through the link. If the link has expired or you've closed the request, the page says so.
 
-Recipients see a clear checklist interface and upload each file to the correct slot. You can track completion per recipient in real time.
+## Track and manage a request
 
-## Two Ways to Respond
+Open a request from **Settings** > **File Requests** to see:
 
-Recipients can submit files in whichever way is easiest for them:
+- Each recipient's status: **Pending**, **In progress** or **Complete** (**Received** when there's no checklist)
+- Each checklist item, marked as received, **Missing** or **Optional**
 
-| Method | How It Works |
-|--------|-------------|
-| **Upload via secure link** | Recipients click the link, see a clean upload page, and drag-and-drop files. No login required. |
-| **Reply with attachments** | Recipients simply reply to the request email with files attached. They are captured automatically. |
+While a request is active you can:
 
-<Tip>
-  The reply-with-attachments option is great for less technical recipients who are more comfortable with email.
-</Tip>
+- **Copy upload link** for a recipient
+- **Send reminder** to a recipient who hasn't finished
+- Add a recipient, or **Remove recipient**
+- **Close request**, which stops further uploads
 
-## Smart Reminders
-
-Stop chasing people for documents. Enable auto-reminders for incomplete submissions:
-
-- **Daily** — a reminder every day until complete
-- **Every 3 days** — a gentler cadence
-- **Weekly** — a light-touch reminder
-
-Reminders are sent automatically to recipients who have not yet submitted all requested documents.
-
-## Reusable Templates
-
-Save your document checklists as templates and reuse them:
-
-1. Create a checklist (e.g., "New Client Onboarding" with ID, contract, tax forms)
-2. Save it as a template
-3. Apply the template in one click for future requests
-
-This is especially useful for recurring workflows like tax season, employee onboarding, or client intake.
-
-## Organization Rules
-
-Control how incoming files are organized in your workspace:
-
-| Option | Description |
-|--------|-------------|
-| **Destination folder** | Choose the folder where files are placed |
-| **Rename patterns** | Use variables like `{recipient}_{document}` for consistent naming |
-| **Plain English rules** | Describe your organization rules in natural language and the AI handles placement |
-
-### Auto-Rename
-
-Files arrive consistently named based on patterns you define. No more `IMG_4032.pdf` or `Document (3).docx`—every file follows your naming convention.
-
-## Tracking Submissions
-
-Each file request includes a tracking dashboard where you can see:
-
-- **Per-recipient status** — pending, in progress, or complete
-- **Which documents** each person has submitted
-- **Which documents** are still missing
-- **Submission timestamps** for each file
-
-## Use Cases
-
-<CardGroup cols={2}>
-  <Card title="Accountants" icon="calculator">
-    Collect tax documents and financial statements from clients at year-end.
-  </Card>
-  <Card title="Real Estate" icon="house">
-    Gather contracts, inspections, and disclosures from buyers and title companies.
-  </Card>
-  <Card title="Law Firms" icon="scale-balanced">
-    Request discovery documents, agreements, and evidence from clients and opposing counsel.
-  </Card>
-  <Card title="HR Teams" icon="users">
-    Collect onboarding paperwork, IDs, and signed offer letters from new hires.
-  </Card>
-  <Card title="Insurance" icon="shield-halved">
-    Request certificates, policy documents, and claims evidence.
-  </Card>
-  <Card title="Agencies" icon="briefcase">
-    Collect deliverables, approvals, and signed SOWs from clients.
-  </Card>
-</CardGroup>
-
-## Security
-
-- **Unique, time-limited links** — each request generates a secure upload link specific to that recipient
-- **AES-256 encryption** — files are encrypted at rest and in transit (TLS)
-- **No account required** — recipients upload without creating an account
-- **Workspace isolation** — only workspace members can access uploaded files
-- **Large file support** — supports files larger than typical email attachment limits
-
-## What's Next?
+## What's next?
 
 <CardGroup cols={2}>
   <Card title="File Sharing" icon="share-nodes" href="/features/file-sharing">
-    Share files and folders with granular permissions.
+    Share files and folders with people.
   </Card>
   <Card title="E-Sign" icon="signature" href="/features/e-sign">
     Send PDFs for electronic signatures.

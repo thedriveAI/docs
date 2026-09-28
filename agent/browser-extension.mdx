@@ -1,0 +1,73 @@
+---
+title: "Browser Extension"
+description: "Use the agent in Chrome's side panel, next to the Google Drive, OneDrive, SharePoint or Dropbox page you're on"
+---
+
+## Overview
+
+The Drive AI browser extension opens the agent in Chrome's side panel. It knows which Google Drive, OneDrive, SharePoint or Dropbox folder or file you're looking at, so you can say "this folder" or "these files" without explaining where they are.
+
+It is the same agent as in the web app, with the same [approvals and undo](/agent/overview#approving-and-undoing-changes) and the same task limits.
+
+## Install
+
+1. Open [The Drive AI in the Chrome Web Store](https://chromewebstore.google.com/detail/the-drive-ai/dielhikhcaoicomkojmkaebadghicngm) and click **Add to Chrome**.
+2. Pin the extension to your toolbar so it's easy to find.
+
+The extension works in Google Chrome and other Chromium browsers that support side panels.
+
+## Sign in
+
+1. Click The Drive AI icon in the toolbar. The side panel opens.
+2. Click **Sign in**. A tab opens where you sign in to The Drive AI.
+3. When it says **Login Successful**, the tab closes and the side panel is ready.
+
+If you belong to more than one workspace, pick one from the workspace menu at the top of the panel.
+
+## Work with the page you're on
+
+Open a folder or file in one of these, then ask the agent about it:
+
+- Google Drive (drive.google.com) and Google Docs, Sheets and Slides
+- OneDrive, personal or work
+- SharePoint
+- Dropbox
+- The Drive AI web app
+
+The chip next to the message box shows the name of the folder or file the agent treats as "here" or "this". On pages without a single folder or file, like search results or **Recent**, it shows **Workspace**.
+
+For the agent to act on a drive, that drive must be [connected](/agent/connected-drives) to your workspace. The extension only tells the agent where you are. It doesn't give the agent access.
+
+## When the agent can't see the page
+
+A note above the chat tells you why, and it rechecks every 30 seconds:
+
+| The note says | What to do |
+|---------------|------------|
+| "… isn't connected to this workspace, so the assistant can't see this page." | Click **Connect** and connect that drive. |
+| "Connecting … is part of the Max and Team plans." | Your plan doesn't include connected drives. Click **See plans**, or ask your workspace owner. |
+| "The assistant hasn't reached this item in … yet." | The drive is still being catalogued. Try again shortly. |
+| "This item is in a drive you haven't connected, so the assistant can't see it." | The file is in someone else's drive or a shared drive that isn't added. Connect the account that owns it, or ask an admin to add the shared drive. |
+| "The agent is not enabled for this workspace." | Ask a workspace owner or admin to turn it on in **Settings** > **Agent**. |
+
+## Account menu
+
+Click **⋮** at the top of the panel to open the **Account** menu. It shows:
+
+- The email you're signed in with
+- Your plan and how many tasks you've used today
+- **Connected accounts**, which opens **Settings** > **Integrations** in the web app
+- **Plans**
+- **Theme**
+- **Sign out**
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    Connect Google Drive, OneDrive, SharePoint or Dropbox.
+  </Card>
+  <Card title="The agent" icon="robot" href="/agent/overview">
+    What the agent can do.
+  </Card>
+</CardGroup>

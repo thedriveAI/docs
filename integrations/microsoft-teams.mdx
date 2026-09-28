@@ -1,131 +1,56 @@
 ---
 title: "Microsoft Teams Integration"
-description: "Automatically organize files shared in your Microsoft Teams channels"
+description: "Connect Microsoft Teams so workflows can file the files shared in your channels"
 ---
 
 ## Overview
 
-The Drive AI integrates with Microsoft Teams to automatically capture and organize files shared across your Teams channels. Important documents shared during conversations are automatically imported and organized in your Drive AI workspace.
+Connect Microsoft Teams, and [workflows](/workflows/overview) can act on files shared in your Teams channels: read them, rename them and save them to the right folder.
 
-## How It Works
+Connecting Teams doesn't save anything by itself. Files are saved only when a workflow with a **Microsoft Teams** trigger saves them. The Teams integration is in beta.
 
-Once connected, The Drive AI monitors your Teams channels for shared files:
+<Note>
+  Microsoft Teams needs a plan that includes connected accounts. See [Plans & Pricing](/account/plans-pricing).
+</Note>
 
-1. **A file is shared** in a Teams channel or chat
-2. **The Drive AI detects** the file automatically
-3. **The file is imported** to your workspace
-4. **AI organizes** the file into the appropriate folder based on its content
+## Connect Microsoft Teams
 
-All of this happens in real time—no manual intervention required.
-
-## Connecting Microsoft Teams
+Only a workspace owner or admin can connect Teams.
 
 <Steps>
-  <Step title="Navigate to Integrations">
-    Go to **Settings** > **Integrations** > **Microsoft Teams**.
+  <Step title="Open Integrations">
+    Open **Settings** and choose **Integrations**. Under **Email and messaging**, click **Teams**.
   </Step>
-  <Step title="Connect Your Microsoft Account">
-    Click **Connect Microsoft Teams** and sign in with your Microsoft account.
+  <Step title="Sign in">
+    Click **Connect Teams** and sign in with your Microsoft account. To connect another account, click **Add Microsoft account**.
   </Step>
-  <Step title="Authorize Access">
-    Grant The Drive AI permission to access files shared in your Teams channels. Authentication uses secure OAuth—your Microsoft password is never stored.
+  <Step title="Choose which teams are covered">
+    Owners and admins can choose which teams the connection covers.
   </Step>
-  <Step title="Select Channels">
-    Choose which Teams channels The Drive AI should monitor for files.
+  <Step title="Set up a workflow">
+    Create a workflow that starts with **Microsoft Teams** to decide what happens to shared files. See [Workflows](/workflows/overview).
   </Step>
 </Steps>
 
-## What Gets Imported
-
-The Drive AI imports files shared in your connected Teams channels:
-
-- **Documents**: PDF, DOCX, DOC, TXT, RTF
-- **Spreadsheets**: XLSX, XLS, CSV
-- **Presentations**: PPTX, PPT
-- **Images**: PNG, JPG, GIF (Premium)
-
 <Note>
-  Only files shared in monitored channels are imported. Private chats are not monitored unless you explicitly enable them.
+  Some Microsoft 365 organizations need an administrator to approve The Drive AI before anyone can connect. If sign-in asks for admin approval, ask your Microsoft 365 administrator.
 </Note>
 
-## Organization
+## Import past files
 
-Imported Teams files are organized based on:
+To bring in files shared before you connected, open the connection's **…** menu in **Settings** > **Integrations** > **Teams** and choose **Historical sync**.
 
-| Factor | Example |
-|--------|---------|
-| **Content** | Invoice detected → Finance folder |
-| **Channel context** | Shared in Engineering → Engineering folder |
-| **File type** | Presentation → relevant project folder |
+## Disconnect
 
-The AI uses both the file content and the Teams channel context to determine the best location for each file.
+Open the connection's **…** menu and choose **Disconnect**. Files already saved stay in your workspace.
 
-## Configuration
-
-### Choosing Channels
-
-Select which channels to monitor:
-
-1. Go to **Settings** > **Integrations** > **Microsoft Teams**
-2. Click **Manage Channels**
-3. Toggle channels on or off
-
-### File Type Filtering
-
-Control which file types are imported:
-
-1. Go to **Settings** > **Integrations** > **Microsoft Teams**
-2. Click **File Settings**
-3. Enable or disable specific file types
-
-## Managing Your Connection
-
-### Disconnecting
-
-1. Go to **Settings** > **Integrations** > **Microsoft Teams**
-2. Click **Disconnect**
-3. Confirm the disconnection
-
-<Warning>
-  Disconnecting stops future file imports. Files already imported to your workspace are not deleted.
-</Warning>
-
-## Privacy & Security
-
-<AccordionGroup>
-  <Accordion title="What data do you access?" icon="eye">
-    The Drive AI only accesses files shared in your selected Teams channels. We do not read or store your Teams messages—only the files attached to them.
-  </Accordion>
-  <Accordion title="Is my data secure?" icon="shield-halved">
-    All data transfers are encrypted. Your Microsoft credentials are handled through secure OAuth—we never see or store your password.
-  </Accordion>
-  <Accordion title="Can I revoke access?" icon="key">
-    Yes. You can disconnect The Drive AI from Microsoft Teams at any time. You can also revoke access from your Microsoft account settings.
-  </Accordion>
-</AccordionGroup>
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="Files Not Importing" icon="file-circle-xmark">
-    - Check that the Teams integration is connected and not paused
-    - Verify the channel is in your monitored channels list
-    - Ensure the file type is supported and not filtered out
-    - Check that you have sufficient storage space
-  </Accordion>
-  <Accordion title="Wrong Channel Files Importing" icon="filter">
-    - Review your monitored channels list in Settings > Integrations > Microsoft Teams
-    - Disable channels you do not want monitored
-  </Accordion>
-</AccordionGroup>
-
-## What's Next?
+## What's next?
 
 <CardGroup cols={2}>
-  <Card title="Slack Integration" icon="slack" href="/integrations/slack">
-    Auto-organize files from Slack.
+  <Card title="Slack" icon="slack" href="/integrations/slack">
+    Let workflows act on files shared in Slack.
   </Card>
-  <Card title="Email Integration" icon="envelope" href="/integrations/email-integration">
-    Auto-import attachments from Gmail and Outlook.
+  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
+    Decide what happens to each file.
   </Card>
 </CardGroup>
