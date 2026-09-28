@@ -77,6 +77,14 @@
       "allowIn": [
         "account/plans-pricing"
       ]
+    },
+    {
+      "id": "personal-to-team",
+      "pattern": "\\b(upgrade|switch|convert|change|turn)\\w*\\s+(your\\s+|a\\s+|the\\s+)?personal\\s+(workspace|plan|account)\\s+(in)?to\\s+(a\\s+)?team",
+      "flags": "i",
+      "why": "A personal workspace never becomes a team workspace; a team plan is a separate workspace created with Create team workspace.",
+      "instead": "create a team workspace (your personal workspace stays as it is)",
+      "allowIn": []
     }
   ],
   "requiredPages": [
