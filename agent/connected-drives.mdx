@@ -35,15 +35,24 @@ To connect another account on the same service, open it again and click **Add ac
 
 **Your own drive appears automatically.** When you connect Google Drive (My Drive), OneDrive or Dropbox, the agent catalogs your drive. Only you can see it through the agent.
 
-**Shared drives are added by an admin.** A Google Shared Drive or a SharePoint document library is shared with the whole workspace, so a workspace owner or admin adds it:
+**Shared drives are added by an admin.** A workspace owner or admin chooses which Google Shared Drives and SharePoint document libraries the agent catalogs:
 
-1. Connect the Google Drive or SharePoint account that can see the shared drive or library.
-2. Open **Settings** > **Agent**, and find the account under **What the agent can see**.
-3. Click **Add shared drive** (Google Drive) or **Add library** (SharePoint), and choose it from the list.
+1. Connect your own Google Drive or SharePoint account, one that is a member of the shared drive or library. You can only add a drive with an account you connected yourself.
+2. Open **Settings** > **Agent**, find your account under **What the agent can see**, and click **Add shared drive** (Google Drive) or **Add library** (SharePoint). Once the service is listed under **Connected** in the left sidebar, you can also point at it there and click **+**.
+3. Choose the shared drive from the list. For SharePoint, search for the site by name (or paste a link to it), then choose the library.
 
-Once catalogued, it's visible to the agent of every member of the workspace.
+A drive only needs to be added once per workspace. If it's already added, it shows as **Added**.
 
-The drives the agent can see are listed in the left sidebar under **Connected**. Click one to browse it.
+**Each member reaches a shared drive through their own account.** Adding a drive doesn't give anyone access to it. A member sees a shared drive, and can use the agent on it, when:
+
+- they've connected their own Google or Microsoft account in this workspace, and
+- that account can open the drive in Google Drive or SharePoint.
+
+There's nothing else to do: once both are true, the drive appears for them the next time they open the agent. The agent works in the drive as that person, with their permissions. If their account can only view the drive, the agent can find and read files there but can't change them. Workspace viewers and guests don't see shared drives.
+
+If someone can't see a shared drive a teammate can, they should connect the Google or Microsoft account that's a member of it, or ask the drive's owner in Google Drive or SharePoint for access.
+
+The drives the agent can see are listed in the left sidebar under **Connected**, grouped by service, with SharePoint libraries under their site. Click one to browse it.
 
 ## Check what the agent can see
 
