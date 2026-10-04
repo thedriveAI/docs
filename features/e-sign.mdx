@@ -1,77 +1,326 @@
 ---
 title: "E-Sign"
-description: "Send PDFs for electronic signatures. Signers don't need an account."
+description: "Send PDFs for electronic signature, track every request, and get a signed copy with a Certificate of Completion. Signers don't need an account."
 ---
 
 ## Overview
 
-Send any PDF in your workspace for electronic signatures. Recipients sign in their browser, with no account or software needed.
+Send any PDF in your workspace for electronic signature. You add recipients, place fields where each signer fills in or signs, and send. Each recipient gets an email with their own link. Signers open it in a browser and sign. They don't need an account or any software.
+
+When everyone has signed, a signed copy is saved next to the original PDF and emailed to every party.
 
 <Note>
-  Sending documents for signature needs a plan that includes e-sign. See [Plans & Pricing](/account/plans-pricing). Viewers and guests can't send signature requests.
+  Sending documents for signature needs a plan that includes e-sign. See [Plans & Pricing](/account/plans-pricing).
 </Note>
+
+## Who can send
+
+- **Owners, admins and members** can send signature requests. Viewers and guests can't.
+- **Only PDFs** can be sent. Convert other files to PDF first (see [PDF Tools](/features/pdf-tools)).
+- **Requests are private to the sender.** Only the person who created a request can see it, send reminders, reassign, void or download it. Other people in the workspace, including owners and admins, don't see your requests.
 
 ## Start a signature request
 
-- **From the file browser:** click **⋮** on a PDF and choose **Request Signature**.
-- **From the PDF viewer:** open the PDF and click the **Request Signature** button in the toolbar.
-- **From the agent:** ask, for example, "Send this NDA to jane@example.com for signature." The agent prepares a draft, shows where the fields go, and sends it only after you allow it.
+- **From the PDF viewer:** open the PDF and click the signature icon (**Request Signature**) in the toolbar. If your workspace has saved [templates](#templates), you choose **Start from scratch** or a template first.
+- **From the file browser:** click **⋮** on a PDF and choose **Request Signature**. The editor opens in a new tab. This path doesn't offer templates.
+- **From the agent:** see [Send through the agent](#send-through-the-agent).
 
-When you start from the PDF viewer and have saved templates, you're asked first whether to **Start from scratch** or use a template.
+If you already have a draft request for the same PDF, a banner says **A draft request already exists for this document**. Click **Continue that draft** to pick it up, or **Start fresh** to begin a new request.
 
 ## Prepare and send
 
 <Steps>
   <Step title="Recipients">
-    - **Subject**: the email subject, "Please sign: …" by default. Click **Add a message** to include a note.
-    - **Recipients**: an email and optional name for each person, as a **Signer** or **CC**
+    - **Subject**: the request's title. It's filled in as "Please sign: …" with the file name, and it appears in the email subject line. Click **Add a message** to include a note. Signers see the note at the top of the document.
+    - **Recipients**: an email and an optional name for each person. Choose **Signer** or **CC** for each one. Click **Add another** for more.
     - **Settings**:
-      - Signing order: **Sign in any order** or **Sign in sequence**
-      - **Expires**: an optional expiry date
-      - **Auto-remind**: **Off**, **Every day**, **Every 2 days**, **Every 3 days** or **Every week**
-      - **Require email verification**: signers enter a one-time code sent to their email before they can sign
+      - **Sign in any order** (default) or **Sign in sequence**. See [Signing order](#signing-order).
+      - **Expires**: an optional date. **No expiration** by default.
+      - **Auto-remind**: **Off** (default), **Every day**, **Every 2 days**, **Every 3 days** or **Every week**.
+      - **Require email verification**: signers must enter a code sent to their email before they can sign. See [Email verification](#email-verification).
+
+    Recipient rules:
+
+    - You need at least one **Signer**. CC recipients don't sign.
+    - Each email address can appear only once in a request.
+    - Rows with no email are ignored.
+
+    Click **Next** or **Continue** when you're done.
 
     <Frame>
       <img src="/images/e-sign-3.png" alt="The Recipients step with subject, recipients and settings" />
     </Frame>
   </Step>
   <Step title="Place Fields">
-    Click the document to place fields: **Signature**, **Initials**, **Text**, **Date**, **Checkbox** and **Dropdown**. Assign each field to a recipient. You can resize and move fields. Fields are required by default; you can mark one optional.
+    1. If there's more than one signer, choose who the field is for in **Assign to**. Each signer has their own color.
+    2. Choose a field type: **Signature**, **Initials**, **Text**, **Date**, **Checkbox** or **Dropdown**.
+    3. Click the document where the field should go. Drag a field to move it, or drag its edge to resize it.
+
+    Fields belong to signers only. If you switch a recipient to **CC**, their fields are removed.
 
     <Frame>
       <img src="/images/e-sign-4.png" alt="Placing signature fields on the document" />
     </Frame>
   </Step>
   <Step title="Send">
-    Click **Send to N recipients**. To finish later, click **Save draft**. To reuse this setup, click **Save as Template**.
+    Click **Send to N recipients**, or **Send** at the top. You need a subject, at least one signer and at least one field.
+
+    To finish later, click **Save draft**. To reuse the layout, click **Save as Template**.
   </Step>
 </Steps>
 
-## Track requests
+### Field settings
 
-Open **Settings** > **Signatures** to see every request you've sent. Filter by **All**, **Waiting** (including drafts), **Completed** and **Voided** (including declined and expired requests). Open a request to see each signer's progress and its audit trail.
+Every field you place is listed under **Placed (N)**, with its page number. For each field you can:
 
-Saved templates are in **Settings** > **Signing Templates**.
+- **Configure** (gear icon, **Text** and **Dropdown** fields only):
+  - **Label**: what the field asks for, for example "Company Name". The signer sees it as the placeholder.
+  - **Options (one per line)**: the choices in a **Dropdown** field.
+  - **Required**: on or off.
+- Toggle **Req** / **Opt**. Fields are required by default. A signer can't finish until every required field is filled. Optional fields have a dashed border on the signer's page.
+- **Duplicate** the field onto the page you're viewing.
+- **Delete** the field.
 
-## What recipients do
+Keyboard shortcuts work when a field is selected and you aren't typing in a box:
 
-1. They open the secure link in the email.
-2. They review and accept the electronic signature disclosure.
-3. They fill in the fields assigned to them and sign.
+| Shortcut | What it does |
+|----------|--------------|
+| `Ctrl+C` then `Ctrl+V` (`Cmd` on Mac) | Copy the field and paste it on the current page |
+| `Delete` or `Backspace` | Delete the field |
+| `Esc` | Stop placing fields and clear the selection |
 
-## Identity Verification
+{/* Screenshot: the Placed list with a Dropdown field's Configure popover open, showing Label, Options and Required */}
 
-For added security, enable email-based identity verification:
+### Signing order
 
-- Recipients receive a one-time 6-digit code to their email
-- They must enter the code before accessing the document
-- Adds an extra layer of identity assurance
+| Setting | Who is emailed when you send | What happens next |
+|---------|------------------------------|-------------------|
+| **Sign in any order** | Every signer and every CC | Signers can sign at the same time. |
+| **Sign in sequence** | The first signer and every CC | Each signer is emailed when the one before them finishes. Signers follow the order of the recipient list. |
 
-## Legal Compliance
+In sequence, a signer who opens their link before it's their turn sees **Waiting for previous signers to complete**.
+
+## Drafts
+
+A draft is a request that hasn't been sent. Nobody is emailed.
+
+- **Save a draft:** click **Save draft** in the editor. You need a subject, at least one signer and at least one field.
+- **Find your drafts:** in **Settings** > **Signatures**, under **Waiting**. They show the **Draft** status.
+- **Finish a draft:** open it and click **Edit & send**.
+- **Delete a draft:** click **Discard** on the draft, or **Discard draft** in the editor. The draft is removed for good.
+
+Drafts the [agent](#send-through-the-agent) prepares for you are regular drafts. You can open, edit, send or discard them the same way.
+
+## Templates
+
+A template saves a field layout so you can reuse it on similar documents, such as a standard NDA.
+
+### Save a template
+
+1. Prepare a request and place at least one field.
+2. Click **Save as Template**.
+3. Enter a name and click **Save**.
+
+A template keeps:
+
+- The fields: their type, position, size, label, options and whether they're required
+- How many recipients there are
+- The signing order
+- The message
+- Whether email verification is required
+
+It doesn't keep recipients' emails, the expiry date or auto-remind.
+
+### Use a template
+
+1. Open the PDF and click **Request Signature** in the toolbar.
+2. Choose the template. Each one shows how many roles and fields it has.
+3. Enter each recipient's email. The template adds one empty recipient row for each role.
+4. Check the fields, then send.
+
+If the template has fields on pages this PDF doesn't have, those fields are removed and a message tells you how many.
+
+### Manage templates
+
+Templates are shared across the workspace. Anyone who can open workspace settings sees them in the template picker and in **Settings** > **Signing Templates**. Each template shows its name, roles, fields and the date it was made.
+
+Only the person who created a template can delete it. To delete one, click **⋯** next to it and choose **Delete**.
+
+## What signers do
+
+<Steps>
+  <Step title="Open the link">
+    The email's subject is "*Sender* has sent you a document to sign: *subject*". Each signer has their own link.
+  </Step>
+  <Step title="Agree to sign electronically">
+    The **Review and Sign** screen explains that the signer is agreeing to use electronic signatures. They click **Continue to Document**, or **I decline to sign**.
+  </Step>
+  <Step title="Verify their email (if required)">
+    See [Email verification](#email-verification).
+  </Step>
+  <Step title="Fill in the fields">
+    The document opens at the first field they need to fill. A progress bar shows how many required fields are done, and **Next** jumps to the next one.
+
+    - **Signature** and **Initials**: click **Sign here** or **Initial here**, then **Draw**, **Type** or **Upload** a signature and click **Apply Signature**. Once they've signed one field, other signature fields show **Click to apply**, with **Change signature** to use a different one.
+    - **Date**: click it to fill in today's date.
+    - **Text**: type in the box.
+    - **Checkbox**: click to check or uncheck.
+    - **Dropdown**: pick an option.
+  </Step>
+  <Step title="Finish">
+    They click **Finish** once every required field is filled. They see **Signing Complete**. Everyone gets a copy when the last signer finishes.
+  </Step>
+</Steps>
+
+<Note>
+  An uploaded signature must be a PNG or JPG image of 500 KB or less.
+</Note>
+
+### Email verification
+
+When you turn on **Require email verification**, each signer proves they control their email address before they can sign:
+
+1. After agreeing to sign electronically, they click **Send Verification Code**.
+2. A 6-digit code is emailed to them. The screen shows a masked version of their address.
+3. They enter the code and click **Verify**.
+
+The code is valid for 5 minutes. If it expires or doesn't arrive, they click **Didn't receive it? Send again** to get a new one.
+
+### Declining
+
+A signer can decline from the first screen (**I decline to sign**) or from the document (**Decline**). They can give a reason, which is optional.
+
+When a signer declines:
+
+- The whole request stops. Its status becomes **Declined**, and nobody else can sign it.
+- You get an email naming who declined, with their reason.
+- The other recipients get an email saying the request was cancelled.
+- The reason appears next to the signer on the request's page.
+
+To try again, start a new request.
+
+## Track and manage requests
+
+Open **Settings** > **Signatures** to see every request you've sent in this workspace. Each row shows the title, status, file name, how many signers have signed, and the recipients. Hover over a recipient to see their status.
+
+Filter the list:
+
+| Filter | Shows |
+|--------|-------|
+| **All** | Every request |
+| **Waiting** | **Draft**, **Sent** and **In Progress** requests |
+| **Completed** | **Completed** requests |
+| **Voided** | **Voided**, **Declined** and **Expired** requests |
+
+Click **⋯** on a row for **View Details**, **Open File**, **Send Reminder** and **Void Request**. Click a row to open the request's page.
+
+### Request statuses
+
+| Status | Meaning |
+|--------|---------|
+| **Draft** | Saved, not sent |
+| **Sent** | Sent; no recipient has opened it yet |
+| **In Progress** | At least one recipient has opened it |
+| **Completed** | Every signer has signed |
+| **Declined** | A signer declined |
+| **Expired** | The expiry date passed before everyone signed |
+| **Voided** | You cancelled it |
+
+Each recipient also has a status: **Pending** (not emailed yet, for example waiting their turn in a sequence), **Notified**, **Viewed**, **Signed** or **Declined**.
+
+### The request page
+
+The request's page shows each recipient's status and signing date, the **Audit Trail** of everything that happened, and the request ID, creation date, completion date and expiry date.
+
+Depending on the status, you can:
+
+- **Remind**: email a reminder now
+- **Void**: cancel the request
+- **Original**: download the PDF as it was sent
+- **Signed PDF**: download the signed copy (completed requests)
+- **Edit & send** or **Discard** (drafts)
+- **Reassign** a recipient (click **⋯** next to them)
+
+{/* Screenshot: a request page in progress, showing recipients with statuses, the Remind and Void buttons, and the Audit Trail */}
+
+### Reminders
+
+**Remind** (or **Send Reminder** in the list) emails the signers whose turn it is and who haven't signed yet. In a sequence, only the current signer is reminded. CC recipients aren't reminded.
+
+**Auto-remind** sends the same reminder on a schedule while the request is waiting. The count starts when the request is created and restarts each time a reminder goes out, including one you send yourself.
+
+### Reassign a signer
+
+If someone can't sign, hand their part to someone else:
+
+1. On the request's page, click **⋯** next to the recipient and choose **Reassign**.
+2. Enter the new email address and, optionally, a name.
+3. Click **Reassign**.
+
+The new person gets a new link, and the old link stops working. Anything the previous person filled in is cleared. If it's the new person's turn, they're emailed right away; in a sequence, they're emailed when their turn comes. You can't reassign someone who has already signed, or use an email that's already on the request.
+
+### Void a request
+
+Voiding cancels a request that hasn't completed. It can't be undone.
+
+- Signing links stop working.
+- Everyone who had already been emailed about the request gets a notice that it was cancelled. People who were never emailed, such as later signers in a sequence, aren't contacted.
+
+## Expiry
+
+If you set an expiry date, signing links stop working once that date is reached, and the request becomes **Expired**. Signers who open their link see **This signing request has expired**.
+
+You can't change the expiry date after sending. To give people more time, send a new request.
+
+## When everyone has signed
+
+When the last signer finishes, the request becomes **Completed** and:
+
+- **A signed copy is saved in your workspace**, in the same folder as the original, named "*original name* (Signed).pdf". The original PDF isn't changed.
+- **Every party gets an email**: you, every signer and every CC. The subject is "Completed: All parties have signed …". The signed PDF is attached, as "*original name* - signed.pdf", when it's 25 MB or less. Your email also links to the request in The Drive AI.
+- **A Certificate of Completion** is added to the end of the signed PDF.
+
+The Certificate of Completion includes:
+
+- The request title, file name, request ID, completion date, and the SHA-256 hash of the original document
+- For each signer: name, email, status, when they signed, when they gave consent and from which IP address, and whether their email was verified
+- The audit trail: each event with its time, who did it and their IP address
+
+<Tip>
+  If you delete or move the signed copy in your files, you can still download it from the request's page with **Signed PDF**.
+</Tip>
+
+<Note>
+  If the signed PDF is larger than 25 MB, it isn't attached. You can download it from the request's page and send it to the other parties yourself.
+</Note>
+
+## If you delete the original PDF
+
+When a PDF with signature requests is permanently deleted (see [Versions and Trash](/features/versions-and-trash)):
+
+- **Drafts** for it are deleted.
+- **Requests still waiting for signatures** are voided, and their links stop working. Recipients aren't emailed about this.
+- **Completed, declined, expired and voided requests** stay in your list. The **Original** download no longer works, but **Signed PDF** still does.
+
+## Send through the agent
+
+You can ask the [agent](/agent/overview) to prepare and send a request, for example: "Send this NDA to jane@example.com for signature, signature and date at the end."
+
+1. **The agent prepares a draft.** It places the fields next to the document's signature lines, or in the free space at the end of a page. It won't place a field over printed text. Nothing is sent yet.
+2. **You review the card.** It lists each recipient, their role, their position in a sequence and how many fields they have, plus the expiry date. It shows the pages with the fields drawn on them.
+3. **You decide.** Click **Allow** to send, or **Not now**. To move or add fields first, click **Adjust in the editor**. When you allow it, the draft is sent as it is at that moment, including your edits.
+
+The agent can also list your requests, check one's progress, send reminders and void a request. Reminders and voiding ask you first, too. If you decline the card, the draft stays, and you can still **Open in the editor**.
+
+<Note>
+  The agent can only send PDFs stored in your workspace. To send a file from a connected drive, copy it into the workspace first. The agent doesn't add **Dropdown** fields or turn on email verification; add those in the editor before you allow the send.
+</Note>
+
+## Legal compliance
 
 The Drive AI's E-Sign captures a complete audit trail for every document:
 
-| Detail | What Is Recorded |
+| Detail | What is recorded |
 |--------|-----------------|
 | **Consent** | Explicit ESIGN Act consent with timestamp and IP address |
 | **Document integrity** | SHA-256 hash of the original document when it's sent, and of the signed PDF when it's complete |
@@ -87,14 +336,40 @@ Compliant with:
   Electronic signatures created through The Drive AI carry the same legal weight as handwritten signatures for most documents.
 </Info>
 
-## Post-Signature
+## Troubleshooting
 
-After all parties sign:
+<AccordionGroup>
+  <Accordion title="I can't find Request Signature">
+    It only appears for PDFs. Only owners, admins and members can send requests; if you're a viewer or guest, ask an admin to change your role. If the editor shows an upgrade prompt, your plan doesn't include e-sign.
+  </Accordion>
+  <Accordion title="Send is grayed out">
+    You need a subject, at least one recipient set to **Signer** with an email, and at least one field.
+  </Accordion>
+  <Accordion title="I get an error that an email is listed twice">
+    Each email can appear only once in a request. Remove the duplicate row.
+  </Accordion>
+  <Accordion title="A signer says their link doesn't work">
+    The page tells them why:
 
-- The signed PDF is saved as a new file in your workspace (the original remains unchanged)
-- You, every signer and every CC receive an email with the signed PDF attached (when it's 25 MB or less). Your email also links to the request in The Drive AI.
-- A **Certificate of Completion** page is added to the end of the signed PDF, with each signer's details and the audit trail
-
+    - **Waiting for previous signers to complete**: it's not their turn yet in a sequence.
+    - **This signing request has expired**: the expiry date passed.
+    - **You have already signed this document**: they've finished their part.
+    - **This document is no longer available for signing**: the request was voided, declined or completed.
+    - **Invalid or expired signing link**: the link was replaced, for example because you reassigned their part.
+  </Accordion>
+  <Accordion title="A signer didn't get the verification code">
+    Ask them to check spam, then click **Didn't receive it? Send again**. Each code works for 5 minutes.
+  </Accordion>
+  <Accordion title="A signer can't upload their signature">
+    Use a PNG or JPG of 500 KB or less, or draw or type the signature instead.
+  </Accordion>
+  <Accordion title="I can't see a colleague's request">
+    Signature requests are visible only to the person who sent them.
+  </Accordion>
+  <Accordion title="I can't delete a template">
+    Only the person who created a template can delete it.
+  </Accordion>
+</AccordionGroup>
 
 ## What's next?
 
