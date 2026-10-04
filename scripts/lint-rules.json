@@ -29,11 +29,13 @@
       "id": "auto-organization",
       "pattern": "\\bauto[- ]?organi[sz](e|es|ed|ing|ation|ations)\\b",
       "flags": "i",
-      "why": "Auto-organization was retired 2026-09-06; workflows replace it. Exception: Settings still has a tab literally labelled \"Auto Organization\" (now only a hand-off screen that builds a workflow from old instructions), so the pages that list Settings tabs or explain the migration (getting-started/interface-overview, workflows/overview) may name it.",
+      "why": "Auto-organization was retired 2026-09-06; workflows replace it. Exception: Settings still has a tab literally labelled \"Auto Organization\" (now only a hand-off screen that builds a workflow from old instructions), so the pages that list Settings tabs or explain the migration (getting-started/interface-overview, workflows/overview, account/settings-reference, account/members-and-roles) may name it.",
       "instead": "a workflow (or asking the agent)",
       "allowIn": [
         "getting-started/interface-overview",
-        "workflows/overview"
+        "workflows/overview",
+        "account/settings-reference",
+        "account/members-and-roles"
       ]
     },
     {

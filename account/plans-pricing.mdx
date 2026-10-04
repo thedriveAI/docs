@@ -1,16 +1,18 @@
 ---
 title: "Plans & Pricing"
-description: "Compare The Drive AI plans for personal and team workspaces, and manage your subscription"
+description: "Compare The Drive AI plans for personal and team workspaces, upgrade, create a team workspace and manage your subscription"
 ---
 
 import Plans from '/snippets/generated/plans.mdx';
 
 ## Workspaces and plans
 
-Every plan belongs to a workspace.
+Every plan belongs to a workspace, not to a person.
 
-- **Personal workspace:** you get one automatically when you sign up. Only you use it, and it stays personal: it can't be turned into a team workspace.
+- **Personal workspace:** you get one automatically when you sign up. Only you use it, and it stays personal: it can't be turned into a team workspace. It's on **Free** until you upgrade it to **Premium** or **Max**.
 - **Team workspace:** for working with other people, billed per seat. Team plans include everything in Max for every member, plus admin controls and one bill for the whole team. Business and Enterprise are arranged with our team.
+
+You can belong to several workspaces at once, each on its own plan. Switch between them with the workspace switcher at the top of the left sidebar.
 
 ## Compare plans
 
@@ -18,35 +20,115 @@ Every plan belongs to a workspace.
 
 ## A few things worth knowing
 
-- **Assistant tasks.** A task is a request the assistant acts on. Every plan includes a monthly number, pooled across the workspace on team plans: see the table above. They come back on your billing date, or on Free, on the day of the month the workspace was created. See [The agent](/agent/overview#tasks-and-limits).
+- **Assistant tasks.** A task is a request the agent acts on. Every plan includes a monthly number, pooled across the workspace on team plans. See [The agent](/agent/overview#tasks-and-limits).
+- **Per seat, pooled.** On team plans, storage, assistant tasks and workflow files are the per-seat figure times the seats you pay for, shared by everyone in the workspace. An empty seat still adds to the pool.
 - **Connected drives and accounts.** Google Drive, OneDrive, SharePoint, Dropbox, Gmail, Outlook, Slack and Microsoft Teams connections come with Max, Team, Business and Enterprise.
-- **Workflow files.** Each plan includes a number of files that workflows can process each month. Owners can buy more when a workspace runs out.
-- **Members don't see prices.** In a team workspace, only the owner sees billing. Members see what the plan includes, not what it costs.
+- **Workflow files.** Each plan includes a number of files that workflows can process each month. On paid plans, the owner can buy more. See [Workflow files](/workflows/workflow-files).
+- **Checking what you've used.** Open **Settings** > **Usage**. See [Usage and limits](/account/usage-and-limits).
 
-## Upgrade
+## Upgrade your personal workspace
 
-**Personal workspace**
+Only you can change your personal workspace's plan.
 
-1. Open **Settings** and choose **Billing**.
-2. Next to **Plan**, click **View plans** and choose a plan.
+<Steps>
+  <Step title="Open your plans">
+    Make sure you're in your personal workspace. Open **Settings** > **Billing** and, next to **Plan**, click **View plans**. The plans page opens in a new tab.
+  </Step>
+  <Step title="Choose a plan">
+    Pick monthly or annual billing, then click the button on the plan you want.
+  </Step>
+  <Step title="Pay">
+    The first time you upgrade, you go to checkout to enter your payment details. If you already pay for a plan, the change is made straight away and you see **Plan updated**.
+  </Step>
+</Steps>
 
-**Team workspace**
+The plan you're on shows **ACTIVE**. To switch the same plan between monthly and annual billing, choose the other billing period and click **SWITCH TO ANNUAL** or **SWITCH TO MONTHLY**.
 
-A team plan doesn't upgrade your personal workspace. You create a separate team workspace, and your personal workspace stays as it is.
+**To cancel**, choose **Free** on the plans page and click **DOWNGRADE**. You go to the billing portal, where you cancel. When a personal plan ends, the workspace goes back to Free. Your files stay.
 
-1. Click your workspace name at the top of the left sidebar, then click **Create team workspace**.
-2. Enter a name, choose monthly or annual billing, and click **Create Workspace**.
-3. Enter your payment details at checkout. Team plans start with a free trial (see the table above), once per person, and you're charged when it ends. The workspace is created when checkout is complete, and you're its owner.
-4. Invite your team. See [Members and roles](/account/members-and-roles).
+## Create a team workspace
 
-## Manage a subscription
+A team plan doesn't upgrade your personal workspace. You create a separate team workspace, and your personal workspace stays as it is. Anyone can create a team workspace, and the person who creates it becomes its owner.
 
-Only the workspace owner can see and change billing. Open **Settings** > **Billing** to see the plan, its status, the renewal date and the billing email.
+<Steps>
+  <Step title="Open Create Team Workspace">
+    Click your workspace name at the top of the left sidebar, then click **Create team workspace**. You can also click **CREATE TEAM WORKSPACE** on the Team plan on the plans page.
+  </Step>
+  <Step title="Name it and choose seats">
+    Enter a workspace name. Set **Seats** with the **−** and **+** buttons or by typing a number. The minimum is shown under the picker. You can add or remove seats later.
+  </Step>
+  <Step title="Choose billing">
+    Choose **Annual** or **Monthly**. The dialog shows the price per seat and the total.
+  </Step>
+  <Step title="Check out">
+    Click **Create Workspace** and enter your payment details at checkout. The workspace is created when checkout is complete, and you're its owner.
+  </Step>
+  <Step title="Invite your team">
+    See [Members and roles](/account/members-and-roles).
+  </Step>
+</Steps>
 
-- **Seats (team workspaces):** shows how many seats are in use. Change the number with the **+** and **−** buttons. If you're paying for seats nobody uses, click **Release** to drop them.
-- **Payment method, invoices and cancellation (team workspaces):** next to **Manage subscription**, click **Manage**.
+{/* Screenshot: the Create Team Workspace dialog showing the Seats picker, Annual/Monthly choice and the trial line */}
 
-Owners, admins and members can see usage, such as **Assistant tasks this month** and workflow files, in **Settings** > **Usage**.
+### The free trial
+
+Team plans start with a free trial (see the table above). A card is required, and nothing is charged until the trial ends. Each person gets the trial once: if you've already had a team trial, a new team workspace you create is charged from the start.
+
+While the trial runs, **Settings** > **Billing** shows **Free trial ends** with the date of the first charge.
+
+## Manage billing
+
+Only the workspace owner sees **Settings** > **Billing**. Admins and members don't see it, and they don't see prices. In a personal workspace, you're the owner.
+
+The **Billing** tab shows:
+
+| Row | What it shows |
+|-----|---------------|
+| **Plan** | The plan, and whether this is a personal or team workspace |
+| **Status** | **Active**, **Payment failed**, **Paused**, **Ended** or **No subscription** |
+| **Renews**, **Free trial ends** or **Ends** | The next renewal date. During a trial, the date the trial ends. After you cancel, the date the plan ends. |
+| **Seats** | Team workspaces: how many seats are in use and how many you pay for |
+| **Billing email** | Where invoices go |
+| **Manage subscription** | Team workspaces: click **Manage** to update your payment method, cancel, or download invoices |
+| **Plan** | Personal workspaces: click **View plans** to change your plan |
+
+### Change the number of seats
+
+<Steps>
+  <Step title="Open Billing">
+    Open **Settings** > **Billing**.
+  </Step>
+  <Step title="Pick a new number">
+    Next to **Seats**, use **−** and **+** to pick a number.
+  </Step>
+  <Step title="Save">
+    Click **Set to N**. You see **Workspace now has N seats**.
+  </Step>
+</Steps>
+
+You can't go below the plan's minimum, or below the number of people already in the workspace. To go lower, [remove members](/account/members-and-roles#remove-someone) first. Removing a member frees their seat for someone else but doesn't lower the bill.
+
+### Stop paying for unused seats
+
+If you pay for more seats than are in use, Billing says **You are paying for N unused seats** with the monthly cost. Click **Release N** to drop them. Your next invoice is prorated.
+
+### Pause, export or delete a team workspace
+
+The owner of a team workspace can pause billing, download everything, or delete the workspace in **Settings** > **Danger Zone**. A paused workspace is read-only and workflows stop. See the [Settings reference](/account/settings-reference#danger-zone).
+
+### If a payment fails or a team plan ends
+
+If a payment fails, **Status** shows **Payment failed**. The workspace keeps working while the payment is retried. Update the card with **Manage**.
+
+If a team plan ends, the workspace becomes read-only. The owner can reactivate it with a new checkout. A team workspace that stays ended is deleted after a period, and the owner is warned before that happens.
+
+## Subscriptions bought in the mobile app
+
+If you subscribed in the iOS or Android app, the subscription is managed by the Apple App Store or Google Play, not on the web. Change or cancel it in your App Store or Google Play account. If you try to change it on the web, you see a message saying it's managed by the App Store or Google Play, and seats can't be changed from **Billing**.
+
+## Buy more workflow files
+
+On a paid plan with a workflow file limit, the owner sees a button to buy a pack of files under **Workflow files this period** in **Settings** > **Usage**. Packs apply to the current period and don't roll over. See [Workflow files](/workflows/workflow-files).
 
 ## Need help?
 

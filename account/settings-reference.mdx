@@ -1,0 +1,159 @@
+---
+title: "Settings Reference"
+description: "Every tab in The Drive AI Settings: what it contains, who sees it, and where to learn more"
+---
+
+## Open Settings
+
+Click **Settings** at the bottom of the left sidebar. To go straight to your profile, click your name below it.
+
+Settings opens as a window over the app, with tabs down the side in four groups: **Account**, **Workspace**, **Advanced**, and **Danger Zone** on its own at the bottom. **Account** tabs are about you. The rest are about the workspace you're in, so switch workspace first if you want to change a different one.
+
+## Who sees which tabs
+
+| Tab | Owner | Admin | Member | Viewer, Guest |
+|-----|:-----:|:-----:|:------:|:-------------:|
+| **Profile**, **Notifications** | ✓ | ✓ | ✓ | ✓ |
+| **General**, **Usage**, **Workflows**, **Integrations**, **Agent**, **File Requests**, **Signatures**, **Signing Templates**, **MCP** | ✓ | ✓ | ✓ | |
+| **Members** (team workspaces only) | ✓ | ✓ | ✓ | |
+| **Billing** | ✓ | | | |
+| **Auto Organization**, **Activity Log**, **Email Blocklist**, **Import History** | ✓ | ✓ | | |
+| **Danger Zone** (team workspaces only) | ✓ | | | |
+
+Seeing a tab doesn't always mean you can change everything on it. The sections below say who can change what.
+
+## Account
+
+### Profile
+
+Your name, photo, email, sign-in method, password and theme (**Light**, **Dark** or **System**), plus **Delete account** and **Sign out**. Everyone sees it.
+
+See [Profile and sign-in](/account/profile-and-sign-in).
+
+### Notifications
+
+**Browser alerts** and the topics that can interrupt you in this browser (**Assistant**, **Workspace activity**, **Product news**), and the emails you get (**Missed activity**, **Product news**). Everyone sees it.
+
+See [Notifications](/account/notifications).
+
+## Workspace
+
+### General
+
+The workspace's **Name** and **Description**, how many **Members** it has, **Storage** used, when it was **Created**, and its **Workspace ID**. Owners and admins can edit the name and description. Members can see them.
+
+### Members
+
+Invite people, change roles, remove people and transfer ownership. Shows **Pending invites** separately. Only in team workspaces. Owners, admins and members see it; owners and admins manage it.
+
+See [Members and roles](/account/members-and-roles).
+
+### Billing
+
+**Plan**, **Status**, renewal or trial end date, **Seats**, **Billing email**, and **Manage subscription** (team workspaces) or **View plans** (personal workspace). Owner only.
+
+See [Plans & Pricing](/account/plans-pricing#manage-billing).
+
+### Usage
+
+Meters for **Assistant tasks this month**, **Workflow files this period**, **Folder organizes this month** and **Storage**, with when each resets. Owners, admins and members see it. Only the owner can buy more workflow files here.
+
+See [Usage and limits](/account/usage-and-limits).
+
+### Workflows
+
+A summary of the workspace's workflows, with **Open workflows** to go to the Workflows page. Owners and admins also get **New workflow**. Members see that workflows are set up by admins.
+
+See [Workflows](/workflows/overview).
+
+### Integrations
+
+Connections in two groups: **Email and messaging** (Gmail, Outlook, Slack, Microsoft Teams) and **Cloud storage** (Google Drive, OneDrive, SharePoint, Dropbox). Owners, admins and members see it. Connecting accounts needs a plan that includes them, and only owners and admins can connect Slack or Microsoft Teams.
+
+See [Google Drive](/integrations/google-drive), [OneDrive](/integrations/onedrive), [Dropbox](/integrations/dropbox), [Email](/integrations/email-integration), [Slack](/integrations/slack) and [Microsoft Teams](/integrations/microsoft-teams).
+
+### Auto Organization
+
+Explains that automatic filing on upload has been replaced by workflows, and helps you build a workflow from your old instructions with **Build a workflow from these instructions** or **Build the workflow for me**. Owners and admins.
+
+See [Workflows](/workflows/overview).
+
+### Agent
+
+Everyone who sees it gets:
+
+- **What the agent can see**: the files and connected storage the agent can work in
+- **What the agent can do elsewhere**: tools from MCP servers you connect
+- **What the agent remembers**: short notes every request starts with
+
+Owners and admins also get **Available in this workspace** (turns the agent on or off), **Save the files it makes**, **How it behaves** (**Persona** and **Workspace rules**) and **Limits and approvals** (**Task size**, **Apply on its own**, **Ask once**).
+
+See [Agent settings](/agent/settings), [Memory and instructions](/agent/memory-and-instructions) and [MCP tools](/agent/mcp-tools).
+
+### Activity Log
+
+Recent actions in this workspace. Owners and admins.
+
+### File Requests
+
+Create and track requests that collect files from anyone with a link. Owners, admins and members.
+
+See [File requests](/features/file-requests).
+
+### Signatures
+
+Track documents you've sent for signing. Owners, admins and members.
+
+See [E-Sign](/features/e-sign).
+
+### Signing Templates
+
+Reusable field layouts for documents you send for signature often. You save a template from a completed envelope. Owners, admins and members.
+
+See [E-Sign](/features/e-sign).
+
+## Advanced
+
+### MCP
+
+The **Server URL** to add to Claude, ChatGPT, Cursor and other MCP-compatible tools, so they can reach your workspace. Owners, admins and members.
+
+See [MCP server](/integrations/mcp-server).
+
+### Email Blocklist
+
+Block email addresses or domains for every email and messaging connection in the workspace. Includes **Allow members to manage their own blocked senders**. Owners and admins.
+
+See [Email](/integrations/email-integration).
+
+### Import History
+
+Files brought in by historical imports from email and messaging accounts. Owners and admins.
+
+## Danger Zone
+
+Only the owner of a team workspace sees this tab. A personal workspace has no Danger Zone.
+
+| Action | What it does |
+|--------|--------------|
+| **Export workspace** | Click **Download** to get every folder and file in the workspace as one zip. Works while the workspace is read-only. |
+| **Pause billing** | Click **Pause**, then **Pause billing**. Nothing is charged, members keep read access, the workspace is read-only, and workflows stop. Every file stays. A pause has a time limit, shown on the tab, and we email you before it runs out. If you don't resume by then, the subscription ends. Only shown while the subscription is active. |
+| **Resume billing** | Click **Resume** to restore full access straight away, with no new checkout. Billing picks up at your next cycle. Only shown while paused. |
+| **Delete workspace** | Click **Delete**, then **Yes, delete**. The workspace and all its data are permanently destroyed, and its subscription is cancelled. You're taken to your personal workspace. |
+
+<Warning>
+  Deleting a workspace can't be undone. Export it first if you might need the files.
+</Warning>
+
+{/* Screenshot: Settings > Danger Zone for a team owner, showing Export workspace, Pause billing and Delete workspace */}
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Interface Overview" icon="desktop" href="/getting-started/interface-overview">
+    Find your way around the app.
+  </Card>
+  <Card title="Members and roles" icon="users" href="/account/members-and-roles">
+    What each role can do.
+  </Card>
+</CardGroup>

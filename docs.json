@@ -18,34 +18,53 @@
             "pages": [
               "getting-started/introduction",
               "getting-started/quick-start",
-              "getting-started/interface-overview"
+              "getting-started/interface-overview",
+              "getting-started/mobile-app"
+            ]
+          },
+          {
+            "group": "Files",
+            "pages": [
+              "features/uploading-files",
+              "features/browsing-and-search",
+              "features/versions-and-trash",
+              "features/document-scanning",
+              "features/file-sharing"
             ]
           },
           {
             "group": "The Agent",
             "pages": [
               "agent/overview",
+              "agent/conversations",
+              "agent/approving-and-undoing",
+              "features/document-creation",
+              "agent/charts-and-diagrams",
+              "features/pdf-tools",
+              "agent/memory-and-instructions",
+              "agent/settings",
               "agent/connected-drives",
-              "agent/browser-extension"
+              "agent/browser-extension",
+              "agent/mcp-tools"
             ]
           },
           {
             "group": "Workflows",
             "pages": [
-              "workflows/overview"
+              "workflows/overview",
+              "workflows/triggers",
+              "workflows/steps",
+              "workflows/building-with-the-agent",
+              "workflows/approvals-and-activity",
+              "workflows/workflow-files"
             ]
           },
           {
-            "group": "Core Features",
+            "group": "Collaboration",
             "pages": [
-              "features/uploading-files",
-              "features/pdf-tools",
+              "account/members-and-roles",
               "features/e-sign",
-              "features/document-creation",
-              "features/document-scanning",
-              "features/file-sharing",
-              "features/file-requests",
-              "features/security"
+              "features/file-requests"
             ]
           },
           {
@@ -61,10 +80,14 @@
             ]
           },
           {
-            "group": "Account & Billing",
+            "group": "Account",
             "pages": [
               "account/plans-pricing",
-              "account/members-and-roles"
+              "account/usage-and-limits",
+              "account/notifications",
+              "account/profile-and-sign-in",
+              "account/settings-reference",
+              "features/security"
             ]
           },
           {

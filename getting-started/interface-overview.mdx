@@ -1,6 +1,6 @@
 ---
 title: "Interface Overview"
-description: "Find your way around The Drive AI: the sidebar, the file browser, the agent panel and Settings"
+description: "Find your way around The Drive AI: the sidebar, the file browser, the toolbar, the agent panel and Settings"
 ---
 
 ## Layout
@@ -8,61 +8,114 @@ description: "Find your way around The Drive AI: the sidebar, the file browser, 
 The web app has three parts:
 
 - **The left sidebar**, for moving around your workspace
-- **The file browser** in the middle
+- **The file browser** in the middle, with a toolbar above it
 - **The agent panel** on the right, which you open with **Agent** in the toolbar
+
+{/* Screenshot: the whole app with the sidebar, a folder open in the file browser, and the agent panel open on the right */}
+
+On a narrow screen or phone browser, the sidebar is hidden. Tap the menu button at the top left to open it.
 
 ## Left sidebar
 
 From top to bottom:
 
-- **Workspace switcher.** Click your workspace name to switch workspaces, or click **Create team workspace**.
-- **Search.** Finds files and folders by name. Press `⌘P` (Mac) or `Ctrl+P` (Windows). You can filter by type and date.
-- **Shared.** Files and folders others have shared with you.
-- **Workflows.** Opens your [workflows](/workflows/overview).
-- **Trash.** Deleted files, which you can restore.
-- **Connected.** Your connected drives (Google Drive, OneDrive, SharePoint, Dropbox) that the agent can see. Click one to browse it. This section only appears once a drive is connected.
-- **Recent.** Files you opened recently.
-- **Feedback.** Send us feedback.
-- **Settings.** Opens Settings. See [Settings](#settings) below.
-- **Your account.** Your name, plan and email. Click it to open your profile.
+| Item | What it does |
+|------|--------------|
+| **Workspace switcher** | Shows the workspace you're in. Click it to switch workspace or click **Create team workspace**. See [Workspace switcher](#workspace-switcher). |
+| **Search** | Finds files and folders by name. You can filter by type, date and index status. Press `⌘P` (Mac) or `Ctrl+P` (Windows). See [Browsing and search](/features/browsing-and-search). |
+| **Shared** | Files and folders others have shared with you. |
+| **Workflows** | Opens the Workflows page. See [Workflows](/workflows/overview). |
+| **Trash** | Deleted files, which you can restore. See [Versions and Trash](/features/versions-and-trash). |
+| **Connected** | Your connected drives (Google Drive, OneDrive, SharePoint, Dropbox), grouped by service. Click one to browse it. This section only appears once a drive is connected. See [Connected drives](/agent/connected-drives). |
+| **Recent** | The files changed most recently. |
+| **Transfers** | Appears while files are being imported from or exported to cloud storage, with overall progress. Click it to see each transfer. |
+| **Feedback** | Send us feedback. |
+| **Settings** | Opens Settings. See [Settings](#settings) below. |
+| **Your account** | Your name, plan and email. Click it to open **Settings** > **Profile**. |
 
 ## File browser
 
-The toolbar above your files has:
+The file browser shows the folder you have open. The breadcrumb at the top shows where you are; click any part of it to go back up.
 
-- **New**, with **New File**, **New Folder**, **Upload** and **Import from Cloud**
+### File browser toolbar
+
+Above your files:
+
+- **New**, with **New File**, **New Folder**, **Upload** and **Import from Cloud**. Viewers and guests don't see **New**.
 - **List view** and **Grid view**
 - Sort options
 
+### File menu
+
 Each file has a **⋮** menu with **Open**, **Rename**, **Make a Copy**, **Move to**, **Share**, **Download**, **Export to Cloud**, **Details** and **Delete**. PDFs also have **Request Signature**.
 
-Right-click the file browser for **Organize this folder (⌘K)**, **Create New File**, **Create New Folder**, **Upload Files** and **Import from Cloud**.
+### Right-click menu
 
-**Organize this folder** asks AI to file everything in the folder you're looking at into sensible subfolders, right away. It has its own monthly allowance, shown in **Settings** > **Usage**. For filing that happens automatically as files arrive, use a [workflow](/workflows/overview).
+Right-click an empty part of the file browser for **Organize this folder (⌘K)**, **Create New File**, **Create New Folder**, **Upload Files** and **Import from Cloud**.
+
+**Organize this folder** asks AI to file everything in the folder you're looking at into sensible subfolders, right away. It has its own monthly allowance, shown in **Settings** > **Usage**. See [Usage and limits](/account/usage-and-limits). For filing that happens automatically as files arrive, use a [workflow](/workflows/overview).
+
+### Selecting files
+
+- Click a file to select it.
+- `⌘`-click (Mac) or `Ctrl`-click (Windows) to add or remove a file from the selection.
+- `Shift`-click to select a range.
+- Drag across empty space to select several files.
+- Press `⌘A` or `Ctrl+A` to select everything in the folder.
+
+## Top toolbar
+
+The bar at the very top shows where you are, and on the right:
+
+| Item | When you see it | What it does |
+|------|-----------------|--------------|
+| Upload progress | While files are uploading | Shows each upload and whether it finished. |
+| **Share** | Inside a folder or file | Shares the folder or file you have open. See [File sharing](/features/file-sharing). |
+| **Publish** (globe icon) | With a file open | Publishes the file with a public link. See [File sharing](/features/file-sharing#public-links). |
+| Bell | Always | Your notifications. A number shows how many are unread. See [Notifications](/account/notifications). |
+| **Agent** | Always | Shows or hides the agent panel. A number on it means a conversation needs you. |
 
 ## Agent panel
 
-Click **Agent** in the toolbar, or press `⌘J` (Mac) or `Ctrl+J` (Windows), to open the agent. It works on the folder or file you have open. See [The agent](/agent/overview).
+Click **Agent** in the toolbar, or press `⌘J` (Mac) or `Ctrl+J` (Windows), to open the agent. It works on the folder or file you have open.
+
+{/* Screenshot: the agent panel open next to a folder, with a change card showing Apply and Not now */}
+
+See [The agent](/agent/overview), [Conversations](/agent/conversations) and [Approving and undoing](/agent/approving-and-undoing).
+
+## Workspace switcher
+
+Everything you see belongs to one workspace at a time: files, members, connected accounts, workflows and usage. Click your workspace name at the top of the left sidebar to:
+
+- **Switch workspace.** The list shows your other workspaces, with a **Personal** badge on your personal workspace and an icon for your role in each. Click one to switch to it.
+- **Create a team workspace.** Click **Create team workspace**. See [Plans & Pricing](/account/plans-pricing#create-a-team-workspace).
 
 ## Settings
 
-Settings opens as a window over the app, with tabs down the side. Which tabs you see depends on your role.
+Click **Settings** at the bottom of the left sidebar. Settings opens as a window over the app, with tabs down the side. On a phone it fills the screen. The tabs you see depend on your role in the workspace you're in.
 
-| Tab | What it's for |
-|-----|---------------|
-| **Profile** | Your account |
-| **General** | Workspace name and details |
-| **Members** | Invite people and set roles (team workspaces) |
-| **Billing** | Plan, seats and payment (owner only) |
-| **Usage** | Assistant tasks, workflow files, folder organizes and storage used |
-| **Workflows** | A summary of workflows, with **Open workflows** |
-| **Integrations** | Connect Gmail, Outlook, Slack, Teams, Google Drive, OneDrive, SharePoint and Dropbox |
-| **Agent** | What the agent can see and remember, and (for owners and admins) whether it's on and its limits |
-| **File Requests** | Create and track [file requests](/features/file-requests) |
-| **Signatures** and **Signing Templates** | Track [signature requests](/features/e-sign) and reuse templates |
-| **MCP** | The [MCP server](/integrations/mcp-server) URL for other AI tools |
+| Tab | What it's for | Who sees it |
+|-----|---------------|-------------|
+| **Profile** | Your name, photo, sign-in, theme, deleting your account | Everyone |
+| **Notifications** | Browser alerts and emails | Everyone |
+| **General** | Workspace name, description and details | Owners, admins, members |
+| **Members** | Invite people and set roles | Owners, admins, members (team workspaces only) |
+| **Billing** | Plan, seats and payment | Owner only |
+| **Usage** | Assistant tasks, workflow files, folder organizes and storage used | Owners, admins, members |
+| **Workflows** | A summary of workflows, with **Open workflows** | Owners, admins, members |
+| **Integrations** | Connect Gmail, Outlook, Slack, Teams, Google Drive, OneDrive, SharePoint and Dropbox | Owners, admins, members |
+| **Auto Organization** | Explains that automatic filing is now done by workflows | Owners, admins |
+| **Agent** | What the agent can see and remember, and (for owners and admins) whether it's on and its limits | Owners, admins, members |
+| **Activity Log** | Recent actions in the workspace | Owners, admins |
+| **File Requests** | Create and track [file requests](/features/file-requests) | Owners, admins, members |
+| **Signatures** | Track [signature requests](/features/e-sign) | Owners, admins, members |
+| **Signing Templates** | Reusable field layouts for documents you send for signature | Owners, admins, members |
+| **MCP** | The [MCP server](/integrations/mcp-server) URL for other AI tools | Owners, admins, members |
+| **Email Blocklist** | Block email addresses or domains for every email and messaging connection in the workspace | Owners, admins |
+| **Import History** | Files brought in by historical imports from email and messaging | Owners, admins |
+| **Danger Zone** | Export, pause billing, or delete the workspace | Owner of a team workspace |
 
-Owners and admins also see **Auto Organization**, **Activity Log**, **Email Blocklist** and **Import History**. The owner of a team workspace also sees **Danger Zone**.
+Viewers and guests see only **Profile** and **Notifications**. For more about each tab, see the [Settings reference](/account/settings-reference).
 
 ## Keyboard shortcuts
 
@@ -73,7 +126,10 @@ Owners and admins also see **Auto Organization**, **Activity Log**, **Email Bloc
 | `⌘K` / `Ctrl+K` | Organize this folder |
 | `⌘C`, `⌘X`, `⌘V` / `Ctrl+C`, `Ctrl+X`, `Ctrl+V` | Copy, cut and paste files |
 | `⌘A` / `Ctrl+A` | Select all |
-| `⌘`-click / `Ctrl`-click | Select several files |
+| `⌘`-click / `Ctrl`-click | Add a file to the selection |
+| `Shift`-click | Select a range of files |
+
+Shortcuts for files don't work while you're typing in a text box.
 
 ## What's next?
 
