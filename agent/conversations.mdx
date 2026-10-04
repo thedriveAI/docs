@@ -1,0 +1,178 @@
+---
+title: "Conversations"
+description: "Work with several agent conversations at once: tabs, history, alerts when one needs you, questions, stopping and continuing, attachments, and what the agent sees"
+---
+
+## Overview
+
+Each request you make to the [agent](/agent/overview) lives in a conversation. You can keep several open as tabs, switch between them while they work, and find older ones in **History**.
+
+Your conversations are private. Other members of the workspace can't see them, and each workspace has its own list.
+
+{/* Screenshot: the agent panel header with three conversation tabs, one with an amber dot, plus the + and History buttons */}
+
+## Conversation tabs
+
+The open conversations are tabs across the top of the agent panel. The highlighted tab is the one you're looking at.
+
+- **Start a new conversation.** Click **+** (**New conversation**). If you're already in a new, empty conversation, there's nowhere new to go.
+- **Switch.** Click a tab. Press `⌘⇧]` and `⌘⇧[` (Mac) or `Ctrl+Shift+]` and `Ctrl+Shift+[` (Windows) to step through the tabs.
+- **More tabs than fit.** The rest gather under **+N**. Click it to see them. Its dot shows the most urgent status among them.
+- **Close a tab.** Point at it and click **×**. The conversation isn't deleted: it stays in **History**. You can't close a tab while the agent is still working in it.
+
+Switching tabs or starting a new conversation doesn't stop anything. A conversation you leave keeps working, and its tab shows how it's going. Each conversation keeps its own unsent message and attachments.
+
+A conversation that's working, needs you, or finished while you were away appears as a tab even if you closed it, so nothing new is out of sight.
+
+### Status dots
+
+A dot on a tab, and on each conversation in **History**, shows what it's doing. Point at a tab to see the word.
+
+| Dot | Status | Meaning |
+|-----|--------|---------|
+| Blue, pulsing | **Working** | The agent is working on it. |
+| Amber | **Needs you** | It's waiting for your approval or an answer, or it stopped at its size limit and can keep going. |
+| Green | **Finished** | It finished while you were elsewhere. |
+| Red | **Stopped** | It stopped before it finished. |
+
+### Several at once
+
+You can have up to 3 conversations working at the same time. A conversation that's waiting on you doesn't count toward that. If you try to start a fourth, the agent asks you to wait for one to finish or stop it.
+
+## History
+
+Click **History** (the clock icon) in the panel's header to see all your conversations in this workspace.
+
+- **Search.** Type in **Search conversations**. It matches the words in conversation titles.
+- **Groups.** Conversations are grouped by when they were last active: **Today**, **Yesterday**, **Previous 7 days**, **Previous 30 days** and **Older**.
+- **Open one.** Click it. It opens as a tab.
+- **Rename.** Point at a conversation and click the pencil. Type a name and press `Enter`. A conversation you don't rename is named after your first message.
+- **Archive.** Point at a conversation and click the archive icon. Archived conversations leave your list and never appear as tabs. Stop a conversation before you archive it.
+- **See archived conversations.** Click **Show archived** at the bottom of the list. They appear under **Archived**, where you can unarchive one. Click **Hide archived** to put them away again.
+
+## When a conversation needs you
+
+You don't have to watch a conversation while it works. The agent tells you when one needs you or finishes.
+
+**While the panel is closed**, the **Agent** button in the toolbar shows an amber number: how many conversations need you. Point at it to read, for example, "Show agent · 2 conversations need you". While one is working and none needs you, the button shows a pulsing dot instead.
+
+**While you're on another conversation or page**, a message appears in the corner of the screen, such as "Tidy invoices needs your approval". Click **Open** to go straight to that conversation, even if it's in another workspace. You get one message per conversation; a newer status replaces it.
+
+| Message ends with | What happened |
+|-------------------|---------------|
+| **needs your approval** | A change or action is waiting for you to allow it. |
+| **has a question** | The agent asked you something. |
+| **can keep going** | The task grew bigger than one turn and stopped. Open it and say "continue". |
+| **finished** | It's done. |
+| **stopped** | It stopped before it finished. |
+
+You don't get a message for the conversation you're reading.
+
+**While you're in another tab or app**, your computer can show a notification instead, if you allow browser notifications for The Drive AI. Turn them on in **Settings** > **Notifications** with **Browser alerts** and the **Assistant** topic. If you haven't allowed them, the message waits and appears when you come back. See [Notifications](/account/notifications).
+
+## Answering the agent's questions
+
+When the agent needs to know something, it asks in a **Question** card marked **Needs an answer**.
+
+- Click one of the suggested answers, or
+- Type your own in **Or say it your way** (or **Type an answer**) and click **Send**.
+
+The conversation continues from your answer. Afterwards the card shows **Answered** and what you said. While a question is waiting, you can't send from the message box at the bottom (it says **Answer the question above to continue**): answer in the card.
+
+Answering a question doesn't count as a task.
+
+## Stop and continue
+
+**Stop.** While the agent is working, the send button becomes a square **Stop** button. Click it to stop the task. The conversation shows **Stopped.** A task you stop still counts.
+
+Stopping doesn't undo changes the agent already applied. Use **Undo** on their cards. See [Approving and undoing](/agent/approving-and-undoing).
+
+**Continue.** If a task grows bigger than one turn, the agent stops and says: "This task got bigger than one turn can finish, so I stopped here. Say "continue" and I'll pick up where I left off." Type "continue" to carry on. Continuing counts as a new task. How big one turn may be is the workspace's [task size](/agent/settings#task-size).
+
+If the agent couldn't make progress three times in a row, it stops and asks you to say "continue" to try again.
+
+## What you see while it works
+
+- **Steps.** Each thing the agent looks at or does shows as one short line, such as reading a folder. Several steps fold into one line, like "Took 12 steps". Click a line to open it.
+- **Plan.** For bigger requests, the agent may write a short plan. Click **Plan** to read it.
+- **Cards.** Changes, actions, questions and files appear as cards. See [Approving and undoing](/agent/approving-and-undoing).
+- **Cards that take you somewhere.** When something needs a screen of its own, like connecting a drive or upgrading, the agent shows a card with one button that opens it. A card marked **Needs an admin** tells you who can do it.
+- **When it's done**, a line under the answer says how long it worked and how many steps it took.
+
+Each message you send shows where you were when you sent it, such as "in Invoices" or "viewing contract.pdf", whenever that changed.
+
+## Attach files
+
+Attach files to give the agent something that isn't in your workspace, like a document from your computer.
+
+<Steps>
+  <Step title="Add the files">
+    Click **+** (**Attach a file**) next to the message box and choose files, or drag files onto the panel and drop them on **Drop to attach to this conversation**.
+  </Step>
+  <Step title="Wait for the upload">
+    Each file shows its upload progress above the message box. Once it's uploaded, click it to preview it. Click **×** on a file to remove it before you send. A file that couldn't upload says **failed**.
+  </Step>
+  <Step title="Send your message">
+    Say what to do with them, for example "Compare these two quotes." You can send attachments without any text.
+  </Step>
+</Steps>
+
+**Limits:**
+
+- Up to 10 files per message.
+- Up to 25 MB per file.
+- Up to 200 attachments in one conversation.
+- Attachments are kept for 30 days, then they expire from the conversation.
+
+Attached files belong to the conversation only. They aren't saved to your workspace. To keep one, ask the agent to save it into a folder.
+
+For files the agent makes and how to save them, see [Document creation](/features/document-creation#getting-the-file).
+
+## What the agent sees
+
+The agent works from where you are when you send each message. A chip next to the message box shows it:
+
+- **A folder name**: you're in that folder. The agent treats it as "here".
+- **A file name**: you have a file open, for example a PDF in the viewer. The agent treats that file as "this", and its folder as "here". Ask "summarize this" or "what's the total on this invoice?" without naming the file.
+- **Workspace**: you're at the top level.
+
+Point at the chip to see what "here" or "this" means right now. To change it, open another folder or file. You don't need to start a new conversation.
+
+A new conversation also lists any [connected drives](/agent/connected-drives) the agent can reach, under **Also sees**. A drive still being catalogued says **(cataloguing)**, and one with a problem says **(needs attention)**.
+
+## Hide the agent
+
+Click **Hide agent** in the panel's header, or press `⌘J` (Mac) or `Ctrl+J` (Windows). Nothing stops: conversations keep working, and the **Agent** button tells you when one needs you. Press the shortcut or click **Agent** to bring the panel back.
+
+In the [browser extension](/agent/browser-extension), close Chrome's side panel instead.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The send button is greyed out" icon="ban">
+    The agent may be waiting for you to answer a question card, or a file is still uploading. If the agent is turned off for the workspace, the panel says so.
+  </Accordion>
+  <Accordion title="It says I already have conversations working" icon="layer-group">
+    You can have 3 conversations working at once. Wait for one to finish, or open it and click **Stop**.
+  </Accordion>
+  <Accordion title="It says the assistant is busy" icon="hourglass">
+    "The assistant is busy right now. Try again in a little while." Nothing is wrong with your account. Send your message again in a few minutes.
+  </Accordion>
+  <Accordion title="An attachment didn't upload" icon="paperclip">
+    Check that it's 25 MB or smaller and that the message has 10 files or fewer.
+  </Accordion>
+  <Accordion title="I don't get alerts in other tabs" icon="bell-slash">
+    Turn on **Browser alerts** and the **Assistant** topic in **Settings** > **Notifications**. If your browser blocked notifications for the site, allow them in the browser's settings first.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Approving and undoing" icon="circle-check" href="/agent/approving-and-undoing">
+    Every card the agent shows, and how to undo a change.
+  </Card>
+  <Card title="Memory and instructions" icon="brain" href="/agent/memory-and-instructions">
+    Teach the agent how you like things done.
+  </Card>
+</CardGroup>

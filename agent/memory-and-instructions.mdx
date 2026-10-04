@@ -1,0 +1,134 @@
+---
+title: "Memory and Instructions"
+description: "Teach the agent how you and your workspace work: notes it remembers for you or for everyone, a persona, and standing workspace rules"
+---
+
+## Overview
+
+You can shape how the [agent](/agent/overview) works in two ways:
+
+- **What the agent remembers.** Short notes it starts every request with, such as how your workspace files invoices or how you like replies. Some are yours alone; some apply to everyone in the workspace.
+- **How it behaves.** A persona and a set of workspace rules that an owner or admin writes once for the whole workspace.
+
+Both live in **Settings** > **Agent**.
+
+## What the agent remembers
+
+The agent keeps short notes about **procedures and preferences**, not the contents of your documents. For example:
+
+- "Invoices are filed under Finance/Vendor/Year. Never rename a signed contract."
+- "Keep replies short. Ask before moving anything out of my Inbox folder."
+
+Every new request in the workspace starts with these notes. A note you add or change applies from your next request.
+
+### Yours and the workspace's
+
+| Notes | Who they apply to | Who can see them | Who can add, change or delete them |
+|-------|-------------------|------------------|------------------------------------|
+| **Yours** | Only your requests | Only you | You |
+| **Workspace** | Everyone's requests in the workspace | Everyone who can open **Settings** > **Agent** | Owners and admins |
+
+Notes belong to one workspace. Your notes in one workspace don't follow you into another.
+
+### Ask the agent to remember
+
+Tell the agent in a conversation:
+
+```text
+Remember that I want dates in file names as YYYY-MM-DD.
+```
+
+```text
+Remember that client folders live under /Clients/<Client>/<Matter>.
+```
+
+The agent saves a note for you. It may also write one on its own when it notices a way of working you repeat.
+
+**For the whole workspace.** If you're an owner or admin, ask the agent to remember something "for the whole workspace". It shows a card titled, for example, "Remember "invoice-filing" for the whole workspace", with the note and a warning that "Every member's assistant will follow this from their next conversation on." Click **Allow** to save it. Members can't save workspace notes. Ask an owner or admin to add one.
+
+To remove a note, ask: "Forget the note about invoice filing."
+
+Asking the agent to remember or forget something doesn't count as a [task](/agent/overview#tasks-and-limits).
+
+### See and edit notes
+
+<Steps>
+  <Step title="Open the notes">
+    Open **Settings** > **Agent** and expand **What the agent remembers**. Notes are listed under **Workspace** and **Yours**. Each shows its name, its first lines and when it was written.
+  </Step>
+  <Step title="Edit a note">
+    Click a note to open it. Change the text and click **Save**, or **Cancel**.
+  </Step>
+  <Step title="Delete a note">
+    Click the trash icon next to the note and confirm. The agent no longer starts with it.
+  </Step>
+</Steps>
+
+You can open workspace notes to read them even if you can't change them.
+
+{/* Screenshot: Settings > Agent > What the agent remembers, expanded, with a Workspace note and a note under Yours */}
+
+### Add a note yourself
+
+<Steps>
+  <Step title="Start a note">
+    In **What the agent remembers**, click **Add a note** under **Yours**, or under **Workspace** if you're an owner or admin.
+  </Step>
+  <Step title="Name it and write it">
+    Give the note a short name, such as `invoice-filing`. Names use lowercase letters, numbers and dashes; anything else is turned into a dash, and the box shows what it will be saved as. Then write the note in plain text or Markdown.
+  </Step>
+  <Step title="Save">
+    Click **Remember**.
+  </Step>
+</Steps>
+
+Each note can be up to 4,000 characters. A note with the same name as an existing one replaces it.
+
+<Tip>
+  Keep notes about how to do things, not about what's in your files. Facts from documents go out of date, and the agent can always look them up.
+</Tip>
+
+## How it behaves
+
+Owners and admins can give the agent a persona and standing rules for the whole workspace. Open **Settings** > **Agent** and expand **How it behaves**. Members don't see this section.
+
+| Field | What it does |
+|-------|--------------|
+| **Persona** | Replaces the agent's default persona. Leave it blank to keep the default. For example: "You are the file assistant for Acme Legal. Be brief and formal." |
+| **Workspace rules** | Added to the agent's standing instructions: filing conventions, naming rules, what never to touch. For example: `Client files live under /Clients/<Client>/<Matter>. Never move anything out of /Archive.` |
+
+Write either in plain text or Markdown. Then click **Save changes** at the bottom of the tab, or **Discard** to undo your edits. The collapsed section shows, for example, "custom persona · 3 lines of workspace rules".
+
+Both apply to every member's requests in the workspace.
+
+### Memory or workspace rules?
+
+Both reach every request. Use whichever fits:
+
+- **Workspace rules** are one place for the standing policy an admin owns, edited only in Settings.
+- **Workspace notes** are separate, named notes. The agent can propose them in a conversation, and an admin approves each one.
+
+## Tips
+
+<AccordionGroup>
+  <Accordion title="Be specific" icon="bullseye">
+    "File invoices under Finance/Vendor/Year" works better than "keep invoices organized".
+  </Accordion>
+  <Accordion title="Say what never to touch" icon="lock">
+    Rules like "Never move anything out of /Archive" or "Never rename a signed contract" stop changes you'd otherwise have to decline. The agent still shows every change it makes.
+  </Accordion>
+  <Accordion title="Correct a note instead of repeating yourself" icon="pen">
+    If the agent keeps doing something you don't want, check **What the agent remembers** for a note that says otherwise, and edit it.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Agent settings" icon="sliders" href="/agent/settings">
+    Every setting for the agent in one place.
+  </Card>
+  <Card title="Conversations" icon="comments" href="/agent/conversations">
+    Tabs, history, alerts and attachments.
+  </Card>
+</CardGroup>
