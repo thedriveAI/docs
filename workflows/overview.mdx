@@ -5,100 +5,148 @@ description: "Automate what happens to files as they arrive or on a schedule: fi
 
 ## Overview
 
-A workflow runs on its own. It starts when something happens, such as a file being uploaded or an email attachment arriving, or on a schedule. It then checks the file and does something with it, such as moving it to the right folder, renaming it or asking someone to approve.
+A workflow runs on its own. It starts when something happens, such as a file being uploaded or an email attachment arriving, or on a schedule. It then checks each file and does something with it, such as moving it to the right folder, renaming it, sending a message or asking someone to approve.
+
+Every workflow has the same shape:
+
+- **Sources**: what starts it. See [Triggers](/workflows/triggers).
+- **Decisions**: which path each file takes, decided by the file's details, by AI reading the file, or by a person.
+- **Actions**: what happens to the file. See [Steps](/workflows/steps) for both.
 
 Workflows replace the old automatic filing on upload. Nothing is filed automatically unless a workflow does it.
+
+## Example workflows
+
+- **File invoices from email**: when an attachment arrives in Gmail, save a copy to The Drive AI, check whether it's an invoice, then move it to a folder for the client and year.
+- **Rename scans**: when a file is uploaded to a scans folder, rename it with the date and document type read from the page.
+- **Clean up old files**: every Sunday, go through an archive folder and move anything older than 7 years to the trash, after an admin approves.
+- **Tell the team**: when a signed contract lands in a SharePoint library, post the client name and amount in a Slack channel.
+- **Split batch scans**: when a scanner drops a stack of leases as one PDF, split it into one file per lease.
 
 ## Who can use workflows
 
 - **Owners and admins** create, edit, run, pause and delete workflows.
-- **Members** can open any workflow to see its steps and settings, see its activity, and decide approvals that are addressed to them.
+- **Everyone else in the workspace** can open any workflow to see its steps and settings, read its activity, and decide approvals that are addressed to them. The editor shows **View only** for them.
 
-## Open workflows
+Some workflows watch each member's own inbox or drive. Those members choose for themselves whether to join. See [Approvals and activity](/workflows/approvals-and-activity#workflows-that-ask-to-use-your-account).
 
-Open **Settings** > **Workflows** and click **Open workflows**. The Workflows page has three tabs:
+Workflows on files in The Drive AI work on every plan. Watching or saving to a connected storage account, email or messaging app needs a plan that includes connected accounts. Each plan also includes a number of [workflow files](/workflows/workflow-files) a month. See [Plans & Pricing](/account/plans-pricing).
 
-- **Workflows**: every workflow in the workspace, with whether it's **Active** or **Paused** and when it last ran
-- **Approvals**: decisions waiting on you, and the ones already made
-- **Activity**: every run, filterable by **Needs attention**, **In progress** and **Completed**
+## The Workflows page
+
+Click **Workflows** in the left sidebar. You can also open **Settings** > **Workflows** and click **Open workflows**.
+
+{/* Screenshot: The Workflows page with the Workflows, Approvals and Activity tabs and two workflows listed */}
+
+The page has three tabs:
+
+| Tab | What's there |
+|-----|--------------|
+| **Workflows** | Every workflow in the workspace. Each row shows whether it's **Active** or **Paused**, its source, when it last ran and how that run went, and for a scheduled workflow, when it runs next. |
+| **Approvals** | Decisions waiting on you, decisions already made, and requests to use your account. |
+| **Activity** | Every run, newest first, which you can filter by status, workflow and file name. |
+
+Banners above the tabs tell you when something needs you, for example **2 approvals are waiting on you** or **1 workflow is asking to use your account**. Click **Review** to go to it. A banner also appears when the workspace is close to or out of its [monthly workflow files](/workflows/workflow-files).
+
+On a workflow's row, click **Activity** to see only its runs. Owners and admins can open the **…** menu to **Edit** or **Delete** it.
 
 ## Create a workflow
+
+You can create a workflow three ways. All three end on the same canvas, where you can check and change everything before you save.
+
+### Describe it
 
 <Steps>
   <Step title="Start a new workflow">
     On the Workflows page, click **New workflow**.
   </Step>
-  <Step title="Describe it">
-    Under **What would you like to automate?**, describe it in a sentence, for example "When I get email attachments, sort invoices into client folders". The builder assembles the steps on a canvas. To build it step by step yourself instead, click **Build manually instead** and drag steps from **Nodes**.
+  <Step title="Say what you want">
+    Under **What would you like to automate?**, describe it in a sentence or two, for example "When I get email attachments, sort invoices into client folders". The builder assembles the sources and steps on the canvas.
   </Step>
-  <Step title="Check and adjust">
-    Click any step to change its settings. Click **Validate** to check the workflow for problems.
+  <Step title="Check each step">
+    Click any step to open its settings and change them. Click **Validate** to check the workflow for problems.
   </Step>
-  <Step title="Save and turn it on">
-    Click **Save**, and set the switch to **Active**. To try it on a few real files first, click **Run now**, which runs it on up to 5 files.
+  <Step title="Save">
+    Click **Save**. A new workflow saves as **Active** unless you switch it to **Paused** first.
   </Step>
 </Steps>
 
-You can also ask [the agent](/agent/overview) to set one up, for example "Whenever a file lands here, file it by client and year." It shows you a draft that you can **Open in editor** or **Save**.
+### Build it on the canvas
 
-## Triggers: what starts a workflow
+<Steps>
+  <Step title="Start a new workflow">
+    On the Workflows page, click **New workflow**, then click **Build manually instead**.
+  </Step>
+  <Step title="Add steps">
+    Open the **Nodes** tab in the left panel. Tap a node to add it, or drag it onto the canvas. Nodes are grouped as **Sources**, **Decisions** and **Actions**, and you can search them.
+  </Step>
+  <Step title="Connect them">
+    Drag from a step's connection point to the next step. A decision has one exit per answer or path. Leave an exit unconnected to stop there and leave the file as it is.
+  </Step>
+  <Step title="Set up each step">
+    Click a step to open its settings. Settings that most workflows don't need are under **More options**.
+  </Step>
+  <Step title="Validate and save">
+    Click **Validate**, fix anything it lists, then click **Save**.
+  </Step>
+</Steps>
 
-| Trigger | Starts when |
-|---------|-------------|
-| **File Uploaded** | A file is added to The Drive AI or to a connected storage account |
-| **On a Schedule** | A set time comes round, for example every weekday at 9:00 |
-| **Email Attachment** | An attachment arrives in a connected Gmail or Outlook account |
-| **Slack** / **Microsoft Teams** | A file is shared in a connected channel |
+{/* Screenshot: The canvas with the Agent, Nodes and Activity tabs on the left, a few connected steps, and Validate, Active and Save in the toolbar */}
 
-Watching a connected storage account, email or messaging app needs that account connected in **Settings** > **Integrations**, on a plan that includes connected accounts. Workflows on files uploaded to The Drive AI work on every plan.
+### Ask the agent
 
-### Schedules
+Ask [the agent](/agent/overview) in any conversation, for example "Whenever a file lands in Inbox, file it by client and year." It shows you a draft that you can **Open in editor** or **Save**. On the canvas, the **Agent** tab beside **Nodes** lets you change the workflow in words. See [Building with the agent](/workflows/building-with-the-agent).
 
-An **On a Schedule** trigger goes through a folder in The Drive AI, or in a connected account, on a repeating schedule:
+<Tip>
+  Start with a narrow source, like one folder or one sender, and widen it once you've watched a few runs in **Activity**.
+</Tip>
 
-- **Repeat**: **Hourly**, **Daily**, **Weekly** or **Monthly**, at a time in your time zone
-- **Each run goes through**: **New and changed files only**, or **Every file, every run** (use this for rules based on a file's age)
+## Turn a workflow on or off
 
-## Steps
+In the editor's toolbar, use the switch next to **Validate**. It shows **Active** or **Paused**, and the change takes effect straight away without saving. A paused workflow ignores new files.
 
-**Decisions** send each file down a path:
+Turning a workflow on checks it again. If it uses a connected account that has been disconnected, you're asked to reconnect it first. If your plan no longer includes connected accounts, it can't be turned on until you upgrade.
 
-- **Check File Details**: by type, age, size, name or location
-- **Ask AI About the File**: AI reads the file and answers a question, like "Is this a signed contract?"
-- **Ask a Person to Approve**: pauses until someone decides
+If you save changes made by the agent that removed sources or steps from an active workflow, you're asked to confirm, because the removed parts stop working as soon as you save.
 
-**Actions** do something with the file:
+## Run now
 
-- **Move** and **Rename**: to a folder or name you set, or one the AI works out from the content
-- **Read Details from File**: pulls out values like client, date or amount so later steps can use them in names and folders
-- **Merge Files** and **Split Document**
-- **Save a Copy**: into The Drive AI or a connected account
-- **Move to Trash**: recoverable
-- **Send a Message**: to Slack or an email address
+A scheduled workflow can be tried without waiting for its next run. Save it, then click **Run now** in the editor's toolbar.
 
-## Approvals
+- It runs for real, on up to 5 files from the scheduled folder, newest first.
+- It works even while the workflow is **Paused**, so you can try one before turning it on.
+- It doesn't change when the next scheduled run happens.
+- The **Activity** tab opens so you can watch what happens.
 
-An **Ask a Person to Approve** step pauses the run and shows what would happen. The request appears under **Approvals** on the Workflows page, and a banner there counts the decisions waiting on you.
+**Run now** only appears on workflows with an **On a Schedule** source. Other workflows run when a file arrives.
 
-- Click **Approve** or **Reject**. Batches of files can be decided together with **Approve all** or **Reject all**.
-- Add a note to redirect the step, for example "this belongs to the Smith matter, not Jones".
-- An approval that isn't decided in time expires, and the workflow follows its expired path.
+## Delete a workflow
 
-The person who sets up the step chooses who may decide: admins, specific people, or everyone.
-
-## Limits
-
-Each plan includes a number of workflow files per month. When a workspace uses them all, the Workflows page says **Monthly file limit reached**, and the owner or an admin can click **Get more files**. See [Plans & Pricing](/account/plans-pricing).
+On the Workflows page, open the workflow's **…** menu and choose **Delete**. The workflow stops running and its activity history is removed. Files it already organized aren't affected. This can't be undone.
 
 ## Coming from Auto Organization
 
-If your workspace used automatic filing before, an owner or admin can open **Settings** > **Auto Organization**. Any organizing instructions you wrote are kept there, and one click turns them into a workflow: **Build a workflow from these instructions**, or **Build the workflow for me** if you never wrote any.
+If your workspace used automatic filing before, an owner or admin can open **Settings** > **Auto Organization**. Any organizing instructions you wrote are kept there, and one click turns them into a workflow: **Build a workflow from these instructions**, or **Build the workflow for me** if you never wrote any. The builder opens with the draft, and you review it before it runs.
+
+Organizing a folder on demand with ⌘K is separate and still works. It has its own monthly count in **Settings** > **Usage**.
 
 ## What's next?
 
 <CardGroup cols={2}>
-  <Card title="Email integration" icon="envelope" href="/integrations/email-integration">
-    Let workflows act on Gmail and Outlook attachments.
+  <Card title="Triggers" icon="bolt" href="/workflows/triggers">
+    Every way a workflow can start, and how to narrow it.
+  </Card>
+  <Card title="Steps" icon="list-check" href="/workflows/steps">
+    Every decision and action, with examples.
+  </Card>
+  <Card title="Building with the agent" icon="sparkles" href="/workflows/building-with-the-agent">
+    Create and change workflows by asking.
+  </Card>
+  <Card title="Approvals and activity" icon="clipboard-check" href="/workflows/approvals-and-activity">
+    See what ran, retry failures and make decisions.
+  </Card>
+  <Card title="Workflow files" icon="gauge" href="/workflows/workflow-files">
+    The monthly allowance and what happens when it runs out.
   </Card>
   <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
     Connect Google Drive, OneDrive, SharePoint and Dropbox.

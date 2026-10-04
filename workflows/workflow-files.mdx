@@ -1,0 +1,116 @@
+---
+title: "Workflow Files"
+description: "How the monthly workflow file allowance works, what happens when it runs out, and how to get more"
+---
+
+## Overview
+
+Each plan includes a number of workflow files a month. A workflow file is one file a workflow processes. When a workspace has used them all, workflows stop taking new files until the allowance resets or more are added.
+
+The number for each plan is on [Plans & Pricing](/account/plans-pricing). On team plans it's per seat, pooled across the workspace: everyone's workflows draw from the same total, so one member is never stopped while a colleague has room. Every seat the workspace pays for counts, including empty ones.
+
+## What counts
+
+Every file a workflow processes counts once, for example:
+
+- an upload it files
+- an email attachment it saves
+- a Google Drive file it renames
+- each file a scheduled workflow goes through
+
+**What doesn't cost extra:**
+
+- A run that fails gives its file back. If you then retry it and it succeeds, the file counts once.
+- A file that waits for an approval and then carries on counts once, not twice.
+- A file goes through a workflow once however many steps it has.
+
+**What to watch:**
+
+- A schedule set to **Every file, every run** counts every file it goes through, every time it runs. Narrow it to a folder and put **Check File Details** first. See [On a Schedule](/workflows/triggers#on-a-schedule).
+- Work the agent does on its own, like a live table that keeps itself up to date as files change, also counts as workflow files.
+
+Assistant tasks and organizing a folder on demand with ⌘K are counted separately. See [Usage and limits](/account/usage-and-limits).
+
+## When the count resets
+
+The allowance resets each month on your billing date, not on the 1st. The reset date shows in **Settings** > **Usage** and in every banner about the limit. Files you've bought apply to the current period only and don't roll over.
+
+## See your usage
+
+Open **Settings** > **Usage** and find **Workflow files this period**. It shows how many files have been used of the total, and underneath:
+
+- how many files weren't processed this period, if any
+- how many of the total were bought, if any
+- when it resets
+- on team plans, **Shared by every seat**
+
+Owners, admins and members can see it.
+
+The Workflows page stays quiet about the allowance until it matters. Once a workspace has used three quarters of it, a line above the tabs says so, for example **1,520 of 2,000 files used this month**, with the reset date.
+
+## When the limit is reached
+
+When all the files are used, a banner appears on the Workflows page, in **Settings** > **Workflows**, and on a workflow's **Activity** tab in the editor:
+
+- **Monthly file limit reached**, or **N files not processed this month** once files have been turned away.
+- It says new files are being left where they are, and when filing resumes.
+
+{/* Screenshot: The amber "12 files not processed this month" banner on the Workflows page, with Get more files */}
+
+**What happens to those files:**
+
+- They're left exactly where they are. Nothing is moved, renamed or deleted.
+- They show under **Activity** as skipped, with "Not filed — this workspace reached its monthly file limit." Up to the first 20 files each period are listed, and the count shows "20+ files" beyond that.
+- They don't count against the allowance.
+- They aren't processed later on their own when the allowance comes back. Uploads, attachments and shared files that arrived while the limit was reached stay as they are. A scheduled workflow may pick files up on a later run, depending on how it's set up.
+
+When there's room again, after the reset or after buying more, the banner changes to **N files not processed earlier this month** and says your workflows are running again.
+
+If the workspace's plan isn't active, for example billing is paused, the banner says **Workflows are paused on this workspace** instead. Filing starts again when the plan does. Buying files doesn't help in that case: click **View plan**.
+
+## Get more files
+
+You can add files for the current period, or move to a plan with a bigger allowance.
+
+### Buy a file pack
+
+**Before you start:**
+
+- You must be the workspace owner. In a personal workspace, that's you.
+- The workspace must be on a paid plan with a workflow file limit, and its plan must be active.
+- Packs can't be bought for a subscription managed through the App Store or Google Play.
+
+<Steps>
+  <Step title="Open Usage">
+    Open **Settings** > **Usage**.
+  </Step>
+  <Step title="Buy the pack">
+    Under **Workflow files this period**, click **Buy 1,000 files for $69**.
+  </Step>
+  <Step title="Pay">
+    Complete the checkout. The files are added to this period when the payment goes through, and the Usage row shows how many were bought.
+  </Step>
+</Steps>
+
+Packs apply to the current period and don't roll over. Buy another if you need more.
+
+### Change the plan
+
+On the Workflows page's banner, owners and admins see **Get more files**, which opens the plans page. See [Plans & Pricing](/account/plans-pricing) to upgrade or add seats.
+
+## Tips
+
+- **Narrow sources.** Watch the folder where new files land, not the whole account. A new **File Uploaded** source on The Drive AI starts on **Root only** for this reason.
+- **Skip duplicates.** **Skip duplicate files** on a source stops exact copies from being processed.
+- **Filter early.** On a schedule, use **New and changed files only** unless the rule is about age.
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Plans & Pricing" icon="credit-card" href="/account/plans-pricing">
+    Compare allowances across plans.
+  </Card>
+  <Card title="Approvals and activity" icon="clipboard-check" href="/workflows/approvals-and-activity">
+    Find the files that weren't processed.
+  </Card>
+</CardGroup>
