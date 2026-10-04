@@ -78,21 +78,25 @@ You can also find it in the app: open **Settings** and choose **MCP**.
 
 A connected tool acts as you, with your permissions. It reaches the files in your workspaces, including the connected drives you can see in The Drive AI. Moves and copies stay within one drive, and sharing changes apply to files in The Drive AI, not to Google, Microsoft or Dropbox permissions.
 
-Changes work the same way as with [the agent](/agent/overview#approving-and-undoing-changes):
+Changes work the same way as with [the agent](/agent/approving-and-undoing):
 
 - **Preview first.** The tool sees what a change would do before anything happens.
-- **You confirm bigger changes.** Larger changes, moving files to the trash and sharing ask for your confirmation. A confirmation is valid for 15 minutes.
+- **You confirm bigger changes.** By default, a change of up to 20 operations that doesn't trash anything applies on its own. Moving files to the trash, working outside the folder in focus, or more than 20 operations needs your confirmation, and over 5,000 operations you confirm the count. Sharing also asks first. Workspace admins can change these limits. A confirmation is tied to the exact change previewed and is valid for 15 minutes.
 - **Undo.** An applied change can be undone, with the same [limits on connected drives](/agent/connected-drives#undo-on-each-drive). Deleting moves files to the trash, and editing a file keeps its earlier version.
 
-When a tool hands a job to the agent, it counts as one of your [assistant tasks](/agent/overview#tasks-and-limits). Other tool calls don't count.
+When a tool hands a job to the agent, it counts as one of your [assistant tasks](/account/usage-and-limits). Other tool calls, like reading, searching and making changes, don't count.
 
-<Note>
-  To connect, your The Drive AI account must sign in with Google. Accounts created with Microsoft, Apple or email can't connect yet.
-</Note>
+## Requirements and limits
+
+- **Sign-in:** your The Drive AI account must sign in with Google. Accounts created with Microsoft, Apple or email can't connect yet.
+- **Plan:** files in The Drive AI work on every plan. Connected drives and accounts come with Max, Team, Business and Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Moves and copies** happen within each drive, not between two different clouds.
+- **Sharing tools** cover files in The Drive AI. They don't change Google, Microsoft or Dropbox permissions.
+- **Assistant tasks:** only handing a job to the agent counts as a task.
 
 ## Give the agent tools from other apps
 
-This works the other way round. Owners and admins can connect other apps' MCP servers so the agent can use them. Open **Settings** > **Agent**, go to **What the agent can do elsewhere**, and click **Add MCP server**. The agent asks before it takes any action other than reading through those tools.
+This works the other way round. Owners and admins can connect other apps' MCP servers so the agent can use them. Open **Settings** > **Agent**, go to **What the agent can do elsewhere**, and click **Add MCP server**. The agent asks before it takes any action other than reading through those tools. See [MCP tools](/agent/mcp-tools).
 
 ## What's next?
 

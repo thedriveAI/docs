@@ -1,17 +1,32 @@
 ---
 title: "Email Integration"
-description: "Connect Gmail or Outlook so workflows can file the attachments you receive"
+description: "Connect Gmail or Outlook so workflows can file the attachments you receive, and import attachments you already have"
 ---
 
 ## Overview
 
 Connect a Gmail or Outlook account, and [workflows](/workflows/overview) can act on the attachments that arrive in it. A workflow can read an attachment, decide what it is, rename it and save it to the right folder.
 
-Connecting an account doesn't save anything by itself. Attachments are saved only when a workflow with an **Email Attachment** trigger saves them.
+Connecting an account doesn't save anything by itself. Attachments are saved only when a workflow with an **Email Attachment** trigger saves them, or when you run a [historical import](#import-past-attachments). The agent doesn't read or send your email.
 
-<Note>
-  Email integration needs a plan that includes connected accounts. See [Plans & Pricing](/account/plans-pricing).
-</Note>
+Connected drives and accounts come with Max, Team, Business and Enterprise. See [Plans & Pricing](/account/plans-pricing).
+
+## Who can do what
+
+| Task | Who |
+|------|-----|
+| Connect a Gmail or Outlook account | Any member who can open **Settings**. Viewers and guests can't. |
+| See which email accounts are connected, and who connected them | Every member |
+| Run a historical import, or manage an account's blocked senders | Only the person who connected the account |
+| Approve or reject new connections, when approval is required | Owners and admins, in team workspaces |
+| Manage the workspace blocklist and see **Import History** | Owners and admins |
+| Create the workflows that file attachments | Owners and admins |
+| Disconnect an account | The person who connected it, or an owner or admin |
+
+## How many accounts you can connect
+
+- **Personal workspace:** one Gmail account and one Outlook account.
+- **Team workspace:** each member can connect several. Click **Add account** to connect another.
 
 ## Connect Gmail or Outlook
 
@@ -20,45 +35,136 @@ Connecting an account doesn't save anything by itself. Attachments are saved onl
     Open **Settings** and choose **Integrations**. Under **Email and messaging**, click **Gmail** or **Outlook**.
   </Step>
   <Step title="Sign in">
-    Click **Connect Gmail** (or **Connect Outlook**) and sign in to your account.
+    Click **Connect Gmail** (or **Connect Outlook**). A window opens where you choose your account and allow access. If nothing opens, allow pop-ups for The Drive AI and try again.
+  </Step>
+  <Step title="Import past attachments, if you want">
+    When the account is connected, the **Historical Sync** panel opens so you can bring in attachments you already received. You can close it and come back later. See [Import past attachments](#import-past-attachments).
   </Step>
   <Step title="Set up a workflow">
-    Create a workflow that starts with **Email Attachment** to decide what happens to incoming attachments. Only an owner or admin can create workflows. See [Workflows](/workflows/overview).
+    Create a workflow that starts with **Email Attachment** to decide what happens to incoming attachments. Only an owner or admin can create workflows. See [Triggers](/workflows/triggers).
   </Step>
 </Steps>
 
-In a team workspace, click **Add account** to connect more accounts. A personal workspace can connect one Gmail account and one Outlook account. Every member can see which email accounts are connected to the workspace.
+{/* Screenshot: Settings > Integrations > Gmail with one connected account and its … menu open showing Historical sync, Blocked senders and Disconnect */}
 
-In team workspaces, an owner or admin can switch on **Require approval for new connections**. New email connections then wait until an admin clicks **Approve**.
+Each connected account shows who connected it, when, and when its last import ran. Accounts you can't act on show **View only**.
+
+Workflows act on mail that arrives after you connect. Mail you already had is only brought in by a historical import.
+
+### What you allow
+
+- **Gmail:** Google asks you to let The Drive AI read your email and its attachments. It can't send, change or delete email.
+- **Outlook:** Microsoft asks you to let The Drive AI read mail in your own mailbox, read your basic profile, and stay connected without asking you to sign in again.
+
+The Drive AI connects through Google or Microsoft sign-in and never sees your password.
+
+### Outlook with a work or school account
+
+Many organizations require their Microsoft 365 administrator to approve The Drive AI before anyone can connect Outlook. If yours does, the sign-in window shows **Outlook Integration Failed** with a message that your organisation requires an administrator to approve The Drive AI. Ask your administrator to approve it, then connect again.
+
+Outlook only connects mailboxes hosted by Microsoft: Outlook.com, Hotmail.com and Live.com addresses, Microsoft 365, and custom domains that use Microsoft email hosting. Other addresses show **Email Not Supported**. For a Gmail address, use **Gmail** instead.
+
+## Require approval for new connections
+
+In a team workspace, owners and admins can make new email connections wait for approval:
+
+1. Open **Settings** > **Integrations** > **Gmail** (or **Outlook**).
+2. Under **Workspace settings**, turn on **Require approval for new connections**.
+
+Gmail and Outlook each have their own switch. When it's on:
+
+- A member's new connection shows **Pending** until an owner or admin approves it. Connections made by owners and admins don't wait.
+- Owners and admins see **Approve** and **Reject** on pending connections. **Reject** asks for a reason, which is shown on the member's row as **Rejected**.
 
 ## Import past attachments
 
-Workflows handle mail that arrives after you connect. To bring in attachments you already received:
+To bring in attachments you received before connecting:
 
-1. In **Settings** > **Integrations**, open **Gmail** or **Outlook**.
-2. Open the **…** menu on your account and choose **Historical sync**.
-3. Choose a **Time range**, then click **Start Import**.
+<Steps>
+  <Step title="Open Historical sync">
+    In **Settings** > **Integrations**, open **Gmail** or **Outlook**. Open the **…** menu on your account and choose **Historical sync**.
+  </Step>
+  <Step title="Choose what to import">
+    Choose a **Time range**: **Last 30 days**, **Last 90 days** or **Last 180 days (6 months)**. Outlook also offers **Last 365 days (1 year)**. Tick **Include sent emails** to also import attachments from mail you sent.
+  </Step>
+  <Step title="Start">
+    Click **Start Import**. It runs in the background, so you can close the panel.
+  </Step>
+</Steps>
 
-Imported attachments are saved to the top level of your workspace. Owners and admins can review past imports in **Settings** > **Import History**.
+{/* Screenshot: The Historical Sync panel with the Time range menu, Include sent emails checkbox and Start Import button */}
+
+What to expect:
+
+- **Where files go:** imported attachments are saved to the top level of your workspace, as they are. They aren't filed or renamed.
+- **Workflows:** imported attachments don't start **Email Attachment** workflows. A workflow that watches uploads to The Drive AI can file them. Click **Set up a workflow** in the panel to make one.
+- **Progress:** reopen **Historical sync** to see how many emails have been processed, and how many files were imported and skipped. Click **Cancel Sync** to stop it. When it finishes, the panel shows **Previous sync complete** with the totals.
+- **One at a time:** each account can run one import at a time.
+
+These are skipped and not saved:
+
+- Images and calendar files (such as .ics invitations)
+- Attachments from [blocked senders](#block-senders)
+- Attachments whose content was already imported into the workspace by an earlier import
+- Files found to contain malware
+
+If the workspace runs out of storage, the import pauses with **Workspace storage limit reached. Free up space or upgrade to continue.** If the provider is busy, it pauses and continues by itself.
+
+### Import History
+
+Owners and admins can open **Settings** > **Import History** to see every file brought in by imports, with totals for **Imported**, **Failed** and **Skipped**. Filter by source (**Gmail**, **Outlook**, **Slack**, **Teams**) or by type, and click a file to open it.
 
 ## Block senders
 
-- **For one account:** open the account's **…** menu and choose **Blocked senders**, then add email addresses or whole domains.
-- **For the whole workspace:** owners and admins can open **Settings** > **Email Blocklist**.
+Blocked senders' attachments aren't imported, and workflows skip them. The workflow's activity says the attachment was skipped because the sender is on a blocklist.
+
+You can block an exact email address or a whole domain, such as `example.com`, and add a reason.
+
+**For one account:** open the account's **…** menu and choose **Blocked senders**. Type an address or domain in **Block an email or domain** and click **Block**. To unblock one, remove it from the list and click **Unblock Sender**.
+
+**For the whole workspace (owners and admins):** open **Settings** > **Email Blocklist**. Blocks here apply to every connected email account in the workspace. Click **Remove** to unblock.
+
+On the same page, **Allow members to manage their own blocked senders** decides whether members can use **Blocked senders** on their own accounts. When it's off, they see **Your workspace admin has not enabled user-level email blocklisting.**
 
 ## Disconnect
 
-Open the account's **…** menu and choose **Disconnect**. You can disconnect accounts you connected. Owners and admins can disconnect any account. Attachments already saved stay in your workspace.
+Open the account's **…** menu and choose **Disconnect**, then confirm. Owners and admins can also click **Disconnect** on anyone's account.
 
-## Privacy
+- Workflows that use the account are paused. If the same account is connected again later, workflows paused only because of the disconnect start again on their own.
+- Attachments already saved stay in your workspace.
+- The Drive AI stops using the account, but the access you allowed is still listed in your Google or Microsoft account. To remove it there too, remove The Drive AI's access in your Google or Microsoft account settings.
 
-The Drive AI connects through Google or Microsoft sign-in and never sees your password. You can also revoke access at any time from your Google or Microsoft account settings.
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="An attachment wasn't filed" icon="paperclip">
+    - Check that a workflow with an **Email Attachment** trigger is active and watches this account. See [Approvals and activity](/workflows/approvals-and-activity) for its runs.
+    - Mail that arrived before you connected isn't handled by workflows. Use **Historical sync**.
+    - Check whether the sender is blocked for the account or the workspace.
+  </Accordion>
+  <Accordion title="The account says live updates are paused" icon="pause">
+    The Drive AI lost its live connection to the mailbox and is reconnecting by itself. Depending on the message, new mail still comes through a few minutes late, or comes through once it reconnects.
+  </Accordion>
+  <Accordion title="My connection says Pending" icon="hourglass">
+    Your workspace requires approval for new connections. Ask an owner or admin to approve it.
+  </Accordion>
+  <Accordion title="Outlook says an administrator has to approve" icon="user-shield">
+    Your organization requires its Microsoft 365 administrator to approve The Drive AI. Ask them to approve it, then connect again. If the message mentions Conditional Access, ask them to allow The Drive AI under your organization's sign-in policies.
+  </Accordion>
+  <Accordion title="A historical import paused" icon="circle-pause">
+    - **Workspace storage limit reached:** free up space or upgrade, then start it again.
+    - **Authentication expired. Please reconnect your account.:** disconnect and connect the account again.
+  </Accordion>
+  <Accordion title="I can't add another account" icon="circle-plus">
+    A personal workspace can connect one Gmail and one Outlook account. Disconnect the current one first, or connect in a team workspace.
+  </Accordion>
+</AccordionGroup>
 
 ## What's next?
 
 <CardGroup cols={2}>
-  <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
-    Decide what happens to each attachment.
+  <Card title="Workflow triggers" icon="bolt" href="/workflows/triggers">
+    Start a workflow when an attachment arrives.
   </Card>
   <Card title="Slack" icon="slack" href="/integrations/slack">
     Let workflows act on files shared in Slack.

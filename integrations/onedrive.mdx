@@ -1,6 +1,6 @@
 ---
 title: "OneDrive"
-description: "Connect OneDrive so the agent and workflows can work in it, and import or export files"
+description: "Connect OneDrive and SharePoint so the agent and workflows can work in them, and import or export files"
 ---
 
 ## Overview
@@ -11,7 +11,25 @@ Connecting OneDrive lets The Drive AI work with your files where they already ar
 - **Workflows** can start when a file is added to OneDrive, and can save files there. See [Workflows](/workflows/overview).
 - **Import and export** copy files between OneDrive and The Drive AI when you want a copy on the other side.
 
-Connecting OneDrive needs a plan that includes connected drives. See [Plans & Pricing](/account/plans-pricing).
+SharePoint document libraries work the same way, through a separate SharePoint connection. See [SharePoint](#sharepoint).
+
+Connected drives and accounts come with Max, Team, Business and Enterprise. See [Plans & Pricing](/account/plans-pricing).
+
+## Who can do what
+
+| Task | Who |
+|------|-----|
+| Connect a Microsoft account | Any member who can open **Settings**. Viewers and guests can't. |
+| See which accounts are connected, and who connected them | Every member |
+| Browse an account, import from it or export to it | Only the person who connected it |
+| Add a SharePoint library for the agent | Owners and admins, with a SharePoint account they connected themselves |
+| Disconnect an account | The person who connected it, or an owner or admin |
+
+## Before you start: work and school accounts
+
+You can connect a personal Microsoft account or a work or school account.
+
+With a work or school account, your Microsoft 365 administrator has to approve The Drive AI for your organization first. They only do this once. Personal Microsoft accounts don't need this. See [Administrator approval](#administrator-approval).
 
 ## Connect OneDrive
 
@@ -23,51 +41,129 @@ Connecting OneDrive needs a plan that includes connected drives. See [Plans & Pr
     Click **Connect OneDrive** and sign in with your Microsoft account in the window that opens. If nothing opens, allow pop-ups for The Drive AI and try again.
   </Step>
   <Step title="Let the agent catalog it">
-    The account appears in the list. While the agent builds its catalog, the account shows **Agent: cataloguing**. When it's done, it shows **Agent: ready**.
+    When you're done, you see **OneDrive connected** and the account appears under **Connected accounts**. While the agent builds its catalog of your OneDrive, the account shows **Agent: cataloguing**. When it's done, it shows **Agent: ready**.
   </Step>
 </Steps>
 
-To connect another Microsoft account, click **Add account**. Every member can see which accounts are connected to the workspace, and who connected them. Only the person who connected an account can browse it or import from it.
+{/* Screenshot: Settings > Integrations > OneDrive with one connected account showing "Connected by you · Connected <date> · Agent: ready" */}
+
+To connect another Microsoft account, click **Add account** at the bottom of the list. Each account is listed separately, with who connected it, when, and how many workflows use it. Accounts you can't act on show **View only**.
+
+If your plan doesn't include connected drives, clicking **OneDrive** opens a message saying which plans include them, instead of the sign-in window.
+
+### What you allow
+
+Microsoft asks you to let The Drive AI:
+
+- Read and write files your account can already open
+- Read your basic profile, to show which account is connected
+- Stay connected without asking you to sign in again
+
+The Drive AI uses the account with your own Microsoft permissions. It can't open anything your account can't. The agent only changes files when you ask, and shows each change on a card you can undo.
+
+## Administrator approval
+
+When a work or school account needs approval, you see **Administrator approval is required**. If no account is connected yet, the OneDrive page then says **Administrator approval is pending**.
+
+1. Ask your Microsoft 365 administrator to approve The Drive AI in Microsoft Entra.
+2. Once they have, click **Check approval & finish connecting** and sign in again.
 
 ## SharePoint
 
-SharePoint is connected separately: under **Cloud storage**, click **SharePoint**. An owner or admin then adds document libraries for the agent with their own SharePoint account, with **Add library** in **Settings** > **Agent** (or **+** beside **SharePoint** under **Connected** in the left sidebar, once a library is there). Each member reaches a library through their own connected Microsoft account, if that account can open it. See [Connected drives](/agent/connected-drives#personal-drives-and-shared-drives).
+SharePoint is connected separately from OneDrive, and needs a work or school account. There's no personal SharePoint drive: you work with document libraries on SharePoint sites.
 
-With a work or school account, your Microsoft 365 administrator has to approve The Drive AI first. Personal Microsoft accounts don't need this. If you see **Administrator approval is required**, ask your Microsoft 365 administrator to approve access in Microsoft Entra, then try again.
+<Steps>
+  <Step title="Connect SharePoint">
+    In **Settings** > **Integrations**, under **Cloud storage**, click **SharePoint**, then click **Connect SharePoint** and sign in. Your administrator has to approve The Drive AI for SharePoint first.
+  </Step>
+  <Step title="Add libraries for the agent (owners and admins)">
+    Open **Settings** > **Agent**, find your SharePoint account under **What the agent can see**, and click **Add library**. Search for the site by name or paste a link to it, choose the library, and click **Add library**. Once a library is there, you can also click **+** beside **SharePoint** under **Connected** in the left sidebar.
+  </Step>
+</Steps>
+
+Each member reaches a library through their own connected SharePoint account, if that account can open it. See [Connected drives](/agent/connected-drives#personal-drives-and-shared-drives).
+
+SharePoint asks you to let The Drive AI read and write SharePoint sites your account can already open, read your basic profile, and stay connected.
 
 ## Import files into The Drive AI
 
-1. In the file browser, open the folder you want the files in.
-2. Click **New** and choose **Import from Cloud**.
-3. Pick the Microsoft account, browse to the files or folders, and select them.
-4. Leave **Skip duplicates** on so files you've already imported are skipped, then click **Import**.
+Importing makes a copy in The Drive AI. You don't need to import a file for the agent to work on it: the agent can read and organize files in your connected drive where they are.
 
-Imported files are copies. Your originals in OneDrive stay where they are, and later changes on either side aren't copied across. You can follow progress under **Transfers** in the sidebar.
+<Steps>
+  <Step title="Open the folder">
+    In the file browser, open the folder you want the files in.
+  </Step>
+  <Step title="Start the import">
+    Click **New** and choose **Import from Cloud**. You can also right-click an empty part of the folder and choose **Import from Cloud**.
+  </Step>
+  <Step title="Pick the account">
+    Under **Connected accounts**, click your OneDrive or SharePoint account. Only accounts you connected yourself are listed.
+  </Step>
+  <Step title="SharePoint only: choose the site and library">
+    Under **SharePoint site**, search for the site or paste a link to it. Then choose the **Document library**.
+  </Step>
+  <Step title="Choose files and folders">
+    Browse to what you want and tick it. You can select up to 100 items per import. A selected folder counts as one item and is imported with everything in it.
+  </Step>
+  <Step title="Import">
+    Leave **Skip duplicates** on, then click **Import** (the button shows how many items, for example **Import 3 items**).
+  </Step>
+</Steps>
 
-## Export files to OneDrive
+What to expect:
 
-1. Click **⋮** on a file and choose **Export to Cloud**, or select several files and click **Export**.
-2. Choose the Microsoft account and the destination folder, then click **Export here**.
+- **Progress** shows under **Transfers** in the left sidebar while the import runs.
+- **Skip duplicates** is on by default. With it on, a file whose content is already somewhere in the workspace is skipped, and a folder with the same name already in the same place is reused.
+- **Folders** are imported up to 10 levels deep.
+- **Imported files are copies.** Your originals stay where they are, and later changes on either side aren't copied across.
+
+## Export files to OneDrive or SharePoint
+
+<Steps>
+  <Step title="Choose what to export">
+    Click **⋮** on a file or folder and choose **Export to Cloud**. To export several at once, select them and click **Export** in the selection bar.
+  </Step>
+  <Step title="Pick the account and folder">
+    Choose your account. For SharePoint, choose the site and document library. Then open the destination folder.
+  </Step>
+  <Step title="Export">
+    Click **Export here**. Progress shows under **Transfers**.
+  </Step>
+</Steps>
+
+Only the person who connected an account can export to it. Viewers and guests can't export.
 
 ## Disconnect
 
-In **Settings** > **Integrations**, open **OneDrive** and click **Disconnect** next to the account.
+In **Settings** > **Integrations**, open **OneDrive** (or **SharePoint**) and click **Disconnect** next to the account. The confirmation lists the workflows that will pause, or says **No workflows depend on this account.**
 
-- You can disconnect accounts you connected. Owners and admins can disconnect any account.
-- Workflows that use the account are paused, and the confirmation lists them.
+When you disconnect:
+
+- Workflows that use the account are paused. If the same account is connected again later, workflows paused only because of the disconnect start again on their own.
+- The agent stops seeing the drive or libraries. In **Settings** > **Agent**, they show as **Paused**.
 - Files you already imported stay in The Drive AI.
+- The Drive AI stops using the account, but the access you allowed is still recorded with Microsoft. To remove it there too, remove The Drive AI's access in your Microsoft account settings, or ask your administrator.
 
 ## Troubleshooting
 
 <AccordionGroup>
+  <Accordion title="Administrator approval is required" icon="user-shield">
+    Your organization hasn't approved The Drive AI yet. Ask your Microsoft 365 administrator to approve it in Microsoft Entra, then click **Check approval & finish connecting**.
+  </Accordion>
   <Accordion title="Connecting fails or nothing happens" icon="plug-circle-xmark">
-    - Allow pop-ups for The Drive AI, then try again.
+    - If you see **Popup blocked**, allow pop-ups for The Drive AI, then try again.
     - Make sure you sign in with the right Microsoft account.
-    - Check that your plan includes connected drives.
+    - SharePoint only works with a work or school account.
+    - If a message about plans appears instead of the sign-in window, your plan doesn't include connected drives.
+  </Accordion>
+  <Accordion title="I can't browse or import from an account" icon="lock">
+    Only the person who connected an account can browse it. If a teammate's account shows **View only**, connect your own Microsoft account with **Add account**.
   </Accordion>
   <Accordion title="The agent can't find a file" icon="magnifying-glass">
     - Wait until the account shows **Agent: ready** in **Settings** > **Integrations**.
-    - See [The agent says it can't see my drive](/help/troubleshooting#the-agent-says-it-cant-see-my-google-drive).
+    - If it shows **Agent: needs attention**, open **Settings** > **Agent** to see why, and click **Re-scan**.
+    - For SharePoint, check that an owner or admin added the library, and that your own SharePoint account can open it.
+    - See [Troubleshooting](/help/troubleshooting).
   </Accordion>
 </AccordionGroup>
 
@@ -75,9 +171,9 @@ In **Settings** > **Integrations**, open **OneDrive** and click **Disconnect** n
 
 <CardGroup cols={2}>
   <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
-    What the agent can and can't do in OneDrive.
+    What the agent can and can't do in OneDrive and SharePoint.
   </Card>
   <Card title="Browser extension" icon="chrome" href="/agent/browser-extension">
-    Use the agent next to OneDrive in Chrome.
+    Use the agent next to OneDrive or SharePoint in Chrome.
   </Card>
 </CardGroup>
