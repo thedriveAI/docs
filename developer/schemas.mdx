@@ -185,6 +185,6 @@ If a field can't be found in the document, it returns `null` (not an empty strin
 
 ## Limits
 
-- Maximum **10 top-level fields** per request (excluding `_`-prefixed meta keys)
+- Analyze, Cross-Analyze and Decide accept up to **10 top-level fields** per request (excluding `_`-prefixed meta keys). Extract has no field limit.
 - No limit on nested properties within arrays or objects
 - Descriptions improve accuracy — always include them
