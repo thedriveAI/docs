@@ -71,16 +71,29 @@ Changes you make in the drive itself reach the agent within about a minute.
 ## What the agent can do in a connected drive
 
 - Find files by name, and by content using the drive's own search
-- Read text files, PDFs, Word documents and Excel spreadsheets
-- Move, rename and organize files and create folders, with the same [approve-and-undo](/agent/overview#approving-and-undoing-changes) cards as in The Drive AI
+- Read text files, PDFs (including scanned ones), Word, Excel and PowerPoint files, and Google Docs, Sheets and Slides
+- Read audio and video recordings, on plans that include every file type. A recording is transcribed the first time you ask about it, which can take a minute or more, and the transcript is then searchable.
+- Move, rename, copy and organize files, create folders, edit documents and move files to the drive's trash, with the same [approve-and-undo](/agent/overview#approving-and-undoing-changes) cards as in The Drive AI
 - Save files it makes into a folder on the drive when you choose **Save to a folder**
 
 ## What it can't do
 
 - **It can't move or copy files between two different storages in one change**, for example from Google Drive into The Drive AI, or from OneDrive to Dropbox. A [workflow](/workflows/overview) with a **Save a Copy** step can: it puts a copy of each file it handles into The Drive AI or another connected account, as files arrive or on a schedule over an existing folder. For a one-off copy, you can also use **Import from Cloud** and **Export to Cloud** (see [Google Drive](/integrations/google-drive)).
-- **It can't read audio, video or images stored in a connected drive, or scanned PDFs without a text layer.** Files stored in The Drive AI are different: they are read when you upload them (images, audio and video on plans that include every file type), so the agent can work with them.
+- **It can't read images stored in a connected drive.** Images stored in The Drive AI are different: they are read when you upload them, on plans that include every file type.
 - **It can't edit Google files that have no text form**, like Slides decks and Drawings.
-- **It doesn't delete files in Dropbox.** In OneDrive and SharePoint it can move files to the recycle bin, but it can't restore them from there. Google Drive supports both.
+
+## Undo on each drive
+
+When the agent moves a file to a drive's trash, whether **Undo** can bring it back depends on the drive:
+
+| Drive | Undo a move to the trash |
+|-------|--------------------------|
+| **Google Drive** | Yes |
+| **Dropbox** | Yes. A folder comes back file by file. |
+| **OneDrive (personal)** | Yes |
+| **OneDrive (work or school) and SharePoint** | Yes, once your Microsoft account, or your Microsoft 365 admin, allows SharePoint access. Otherwise restore it from the recycle bin on the web, and the card tells you so. |
+
+Other changes, like moves, renames and new folders, can be undone on every drive. An edit to a document can be undone unless its earlier version was too large to keep a copy of.
 
 ## Disconnecting
 

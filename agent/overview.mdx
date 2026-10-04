@@ -1,6 +1,6 @@
 ---
 title: "The Agent"
-description: "Ask the agent to find, read, organize and create files. It shows every change and can undo it."
+description: "Ask the agent to find, read, organize and create files. It shows every change and lets you undo it."
 ---
 
 ## What the agent does
@@ -48,6 +48,11 @@ The agent never changes files silently. Every change shows up in the chat as a c
 - **Moving files to the trash always asks first.**
 
 To reverse a change, click **Undo** on its card, or ask the agent to undo it. If you changed a file yourself after the agent created it, undo keeps your version and says so.
+
+A few changes can't be undone from The Drive AI. The card tells you before you apply, and doesn't offer **Undo** for that part afterwards:
+
+- **Moving files to the trash on a drive that can't restore from here.** The card names where the file went, such as the SharePoint recycle bin, so you can restore it there. See [Connected drives](/agent/connected-drives#undo-on-each-drive).
+- **An edit whose earlier version was too large to keep a copy of.**
 
 Owners and admins can set how big a change may be before the agent asks. In **Settings** > **Agent**, open **Limits and approvals** and set **Apply on its own** and **Ask once**.
 
