@@ -1,65 +1,129 @@
 ---
 title: "Uploading Files"
-description: "Get files and folders into your The Drive AI workspace"
+description: "Every way to get files and folders into The Drive AI, the limits on uploads, and what happens to a file after it arrives"
 ---
+
+## Before you start
+
+- **Your role.** Owners, admins and members can upload. Viewers and guests can't, so they don't see **New** or the upload buttons. See [Members and roles](/account/members-and-roles).
+- **Your workspace's state.** While a team workspace's subscription is paused or ended, the workspace is read-only and nothing new can be uploaded.
+- **Storage.** Each file has to fit in the storage your plan has left. See [Storage](#storage).
 
 ## Ways to upload
 
 ### Drag and drop
 
-Drag files or whole folders from your computer onto the file browser. When **Drop Files or Folders here** appears, let go. Folders keep their structure.
+Drag files or whole folders from your computer onto the file browser. When **Drop Files or Folders here** appears, let go. The files go into the folder you have open, and folders keep their structure.
 
-### The New button
+### The upload window
 
 <Steps>
   <Step title="Open the folder">
     Go to the folder you want the files in.
   </Step>
-  <Step title="Choose Upload">
-    Click **New** in the toolbar and choose **Upload**. You can also right-click the file browser and choose **Upload Files**.
+  <Step title="Open the upload window">
+    Click **New** in the toolbar and choose **Upload**. You can also right-click an empty part of the file browser and choose **Upload Files**. In an empty folder, click **Upload files**.
   </Step>
-  <Step title="Pick files or a folder">
-    Drop files into the window, or click to browse. Choose **select a folder** to upload a whole folder. Use **Add more** to add files or folders, then click **Upload**.
+  <Step title="Add files or a folder">
+    Drop files into the window, or click to browse. To upload a whole folder, click **select a folder**. Once something is listed, use **Add more** > **Files** or **Folder** to add more, or **Clear all** to start again. Point at a file or folder in the list and click its **×** to take it out.
+  </Step>
+  <Step title="Upload">
+    Click **Upload**. The button shows how many files will go.
   </Step>
 </Steps>
 
-Your plan sets how many files you can upload at once. If you pick more, the app tells you the limit.
+{/* Screenshot: the upload window with a folder and two files listed, showing Add more, Clear all and Upload (3) */}
+
+While files upload, a progress button appears in the toolbar. Click it to see **Current Tasks**, with each file's progress: **Waiting...**, **Finalizing...**, **Done**, or the reason it failed. New files show in the folder straight away, faded until they finish.
 
 ### Other ways in
 
-- **From Google Drive, OneDrive, SharePoint or Dropbox:** click **New** and choose **Import from Cloud**. See [Google Drive](/integrations/google-drive).
-- **From your phone:** scan paper documents with the mobile app. See [Document scanning](/features/document-scanning).
-- **From other people:** send a [file request](/features/file-requests).
-- **From email, Slack and Teams:** set up a [workflow](/workflows/overview) that saves incoming files.
-- **From the agent:** files the agent makes can be saved to a folder from the chat. See [The agent](/agent/overview#attaching-files-and-getting-files-back).
+| From | How |
+|------|-----|
+| **Google Drive, OneDrive, SharePoint or Dropbox** | Click **New** and choose **Import from Cloud**, or right-click the file browser. Needs a plan with connected drives. See [Google Drive](/integrations/google-drive). |
+| **Your phone** | In the [mobile app](/getting-started/mobile-app), tap **+** to pick files, or the scan button to [scan paper documents](/features/document-scanning). |
+| **Other people** | Send a [file request](/features/file-requests). Their uploads land in the folder you choose. |
+| **Email, Slack and Teams** | Set up a [workflow](/workflows/overview) that saves incoming attachments. |
+| **The agent** | Files the agent makes can be saved to a folder from the chat. See [Document creation](/features/document-creation#save-it-to-a-folder). |
+
+## Limits
+
+These limits apply to files you upload yourself, from the web app or the phone. Files that arrive through workflows, imports, file requests or the agent aren't counted against them.
+
+| | **Free** | **Premium** | **Max**, **Team**, **Business**, **Enterprise** |
+|---|---|---|---|
+| Files in one upload | 20 | 50 | 100 |
+| Files uploaded per hour, per workspace | 50 | 500 | No hourly limit |
+| Files in the workspace | 50 | 500 | No limit |
+
+- **Files in one upload.** On Free and Premium, the upload window stops you adding more than your limit. On Max and team plans, the window lets you add more than 100, but an upload of more than 100 files is refused. Upload a big folder in parts, for example one subfolder at a time.
+- **Files uploaded per hour** counts everyone in the workspace together. The message tells you how many minutes until it resets.
+- **Files in the workspace** doesn't count folders or anything in the Trash.
+
+Storage and the other plan limits are in [Plans and pricing](/account/plans-pricing).
+
+## Duplicates
+
+The Drive AI doesn't check for duplicates when you upload. Uploading the same file twice, or a file with the same name as one already in the folder, gives you two files side by side.
+
+To find duplicates later, ask the [agent](/agent/overview): "Find duplicate files in this folder and tell me how much space they take."
+
+## Malware scanning
+
+Every uploaded file is scanned for malware. If a file is flagged, it's removed and you see **File rejected: malware detected. The file has been removed.** The other files in the upload aren't affected.
 
 ## What happens after upload
 
 The Drive AI reads each file so you can search it and the agent can work with it:
 
-- Text is extracted from documents, spreadsheets, presentations and PDFs.
-- Scanned PDFs are read with OCR. Each plan reads up to a set number of pages per file; pages past that aren't read.
-- Images are read, and audio and video are transcribed, on plans that include every file type (see [Plans and pricing](/account/plans-pricing)).
+- **Documents.** Text is extracted from documents, spreadsheets, presentations and PDFs.
+- **Scanned PDFs** are read with OCR, up to a set number of pages per file. Pages past the limit are stored but not read.
+- **Images, audio and video** are read, and recordings transcribed, on plans that include every file type: Premium and above. On Free they're stored but not read, and a crown icon next to the file means **Upgrade to unlock**.
 
-On the Free plan, images, audio and video are stored but not read. While a team workspace's subscription is paused or ended, the workspace is read-only, so nothing new can be uploaded.
+| Plan | Scanned pages read per file |
+|------|-----------------------------|
+| **Free** | 5 |
+| **Premium** | 200 |
+| **Max** | 1,000 |
+| **Team** | 100 |
+| **Business** | 500 |
+| **Enterprise** | 1,000 |
 
-Uploading files doesn't file them into folders by itself. To file uploads automatically, set up a [workflow](/workflows/overview) with a **File Uploaded** trigger. To file what's already in a folder, right-click and choose **Organize this folder (⌘K)**, or ask the [agent](/agent/overview).
+A sparkle icon next to a file means it's **Included in assistant's knowledge**. A faded warning icon means **File type is not supported by the assistant**.
+
+A file uploaded into a shared folder is shared with the same people, and a file uploaded into a published folder is published too. See [File sharing](/features/file-sharing).
+
+Uploading doesn't file anything into folders by itself. To file uploads automatically, set up a [workflow](/workflows/overview) with a **File Uploaded** trigger. To file what's already in a folder, right-click and choose **Organize this folder (⌘K)**, or ask the [agent](/agent/overview).
 
 ## Storage
 
-Each plan includes an amount of storage. See [Plans & Pricing](/account/plans-pricing). To see how much you've used, open **Settings** > **Usage** and look at **Storage**. Moving a file to the Trash frees its storage, and restoring it counts it again.
+Each plan includes an amount of storage. See [Plans and pricing](/account/plans-pricing). To see how much you've used, open **Settings** > **Usage** and look at **Storage**. Moving a file to the [Trash](/features/versions-and-trash) frees its storage, and restoring it counts it again.
 
-## Troubleshooting
+## Errors and what they mean
 
 <AccordionGroup>
-  <Accordion title="Upload failed" icon="circle-exclamation">
-    - Check your internet connection.
-    - Check you have storage left in **Settings** > **Usage**.
-    - Try a smaller batch.
+  <Accordion title="Too many files. Your plan allows up to N files per upload." icon="layer-group">
+    The upload had more files than your plan takes at once. Nothing in it was uploaded. Upload fewer files at a time, for example one subfolder at a time.
   </Accordion>
-  <Accordion title="The agent can't read a file" icon="hourglass">
+  <Accordion title="Workspace upload rate limit reached" icon="clock">
+    Your workspace has uploaded its hourly allowance. The message says how many minutes until it resets. Max and team plans have no hourly limit.
+  </Accordion>
+  <Accordion title="File limit reached" icon="files">
+    The workspace already holds as many files as the plan allows (50 on Free, 500 on Premium). Delete files you don't need, or upgrade. Files in the [Trash](/features/versions-and-trash) don't count.
+  </Accordion>
+  <Accordion title="Upload would exceed workspace storage quota." icon="database">
+    The files don't fit in the storage you have left. Check **Settings** > **Usage**, free some space, or upgrade.
+  </Accordion>
+  <Accordion title="Cannot upload files - workspace is in read-only mode." icon="lock">
+    The team workspace's subscription is paused or ended. The owner can resume or reactivate it in **Settings** > **Billing**.
+  </Accordion>
+  <Accordion title="Server is busy, or too many concurrent uploads" icon="hourglass">
+    **Server is busy processing uploads. Please try again shortly.** or **Too many concurrent uploads. Please wait for current uploads to complete.** Wait for your current uploads to finish, then try again.
+  </Accordion>
+  <Accordion title="The agent can't read a file" icon="file-circle-question">
     - Large files take longer to process. Wait a few minutes.
-    - Images, audio and video need a paid plan to be read.
+    - Images, audio and video need Premium or above to be read.
+    - Only the first pages of a long scanned PDF are read. See the table above.
     - Password-protected files can't be read. Remove the password and upload again.
   </Accordion>
 </AccordionGroup>
@@ -67,8 +131,8 @@ Each plan includes an amount of storage. See [Plans & Pricing](/account/plans-pr
 ## What's next?
 
 <CardGroup cols={2}>
-  <Card title="The agent" icon="robot" href="/agent/overview">
-    Ask questions about your files and reorganize them.
+  <Card title="Browsing and search" icon="folder-open" href="/features/browsing-and-search">
+    Find, open, move and organize your files.
   </Card>
   <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
     File new uploads automatically.

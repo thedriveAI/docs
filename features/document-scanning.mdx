@@ -1,100 +1,103 @@
 ---
 title: "Document Scanning"
-description: "Scan physical documents with your phone camera and save them as PDFs the agent can read"
+description: "Scan paper documents with the mobile app and save them as PDFs in a folder, or hand them straight to the agent"
 ---
 
 ## Overview
 
-The Drive AI mobile app turns your phone into a document scanner. Capture physical documents with your camera and save them as PDFs in your workspace. The text is read with OCR when the scan is uploaded, so you can search, query and organize scans just like any other file.
+The Drive AI [mobile app](/getting-started/mobile-app) turns your phone into a document scanner. You can scan in two places:
 
-## How It Works
+- **In a folder**, to save the scan as a PDF in that folder.
+- **In the agent chat**, to hand the scan to the agent with a message, for example "File this receipt somewhere sensible."
+
+## Before you start
+
+- Install the app on iOS or Android and sign in. See [Get the app](#get-the-app).
+- To save scans into a folder, you need to be able to add files to the workspace: owners, admins and members can, viewers and guests can't. In a read-only team workspace, nobody can.
+- Allow the app to use your camera when your phone asks.
+
+## Scan into a folder
 
 <Steps>
-  <Step title="Open the Mobile App">
-    Open The Drive AI app on your iOS or Android device.
+  <Step title="Open the folder">
+    In the app, go to the folder you want the scan in.
   </Step>
-  <Step title="Tap Scan">
-    Tap the scan button to activate your camera.
+  <Step title="Tap the scan button">
+    It's the document-scanner button at the bottom right, just above the **+** button.
   </Step>
-  <Step title="Capture the Document">
-    Point your camera at the document. The app automatically detects document edges and captures a clean image.
+  <Step title="Scan the pages">
+    Your phone's document scanner opens. Point the camera at the page. The scanner finds the edges of the page and crops it. Scan each page of the document in turn. On Android, one scan holds up to 20 pages.
   </Step>
   <Step title="Save">
-    When you finish, the scan is uploaded as a PDF named `Scan_<date and time>.pdf` to the folder you have open.
+    Finish in the scanner. The pages become one PDF, with one page per scan, and it uploads to the folder you have open.
   </Step>
 </Steps>
 
-## Features
+{/* Screenshot: the mobile file browser showing the scan button above the + button */}
 
-### Automatic Edge Detection
+The PDF is named `Scan_` followed by the date and time, for example `Scan_2026-03-14T09-30-12.pdf`. The time is in UTC. To rename it, press and hold it and choose **Rename**.
 
-The scanner automatically detects the edges of your document, correcting for angle and perspective. You get a clean, straight scan even if you capture it at an angle.
+A scan is an upload like any other:
 
-### OCR Text Extraction
+- It counts toward your plan's upload limits and storage. See [Uploading files](/features/uploading-files#limits).
+- A [workflow](/workflows/overview) with a **File Uploaded** trigger runs on it, so a workflow can read the scan and file it.
+- Its text is read with OCR, up to your plan's number of scanned pages per file (5 on Free). See [What happens after upload](/features/uploading-files#what-happens-after-upload).
 
-Every scanned document is processed with OCR (Optical Character Recognition) when it's uploaded. Each plan reads up to a set number of pages per file. This means your scanned documents are:
+If something goes wrong, the app shows **Scan Failed** (the scanner couldn't make the PDF) or **Scan Upload Failed** (the upload didn't finish), with the reason.
 
-- **Readable by the agent**: ask the agent about what a scanned document says
-- **Ready for workflows**: a workflow can read a scan and file it in the right folder
+## Scan in the agent chat
 
-### Multi-Page Scanning
+<Steps>
+  <Step title="Open the agent">
+    Swipe left from your files, or tap the message bar at the bottom.
+  </Step>
+  <Step title="Tap + and choose Scan">
+    Tap **+** next to the message box. Under **Add files**, choose **Scan**. **Photos** and **Files** are there too.
+  </Step>
+  <Step title="Scan and send">
+    Scan the pages as above. The scan is attached to your message as one PDF. Type what you want done with it and send.
+  </Step>
+</Steps>
 
-Scan multiple pages in sequence to create a single multi-page PDF. This is perfect for:
+A scan attached in the chat isn't saved to a folder. It belongs to the conversation, and the agent reads it from there. Ask the agent to save it if you want to keep it: it proposes where, and saves it once you allow it. Attachments you don't save are deleted after 30 days.
 
-- Multi-page contracts
-- Receipts and expense reports
-- Meeting notes and handwritten documents
-- Forms and applications
+You can attach up to 10 files to a message, each up to 25 MB.
 
-### Automatic Upload
-
-Scanned documents are automatically uploaded to your Drive AI workspace. Once uploaded, they are read like any other file, so the agent and workflows can work with them.
-
-## What You Can Scan
-
-| Document Type | Examples |
-|---------------|----------|
-| **Business documents** | Contracts, invoices, receipts, business cards |
-| **Personal documents** | IDs, passports, insurance cards, medical records |
-| **Handwritten notes** | Meeting notes, whiteboards, sticky notes |
-| **Forms** | Tax forms, applications, registration documents |
-| **Printed material** | Articles, book pages, manuals |
-
-## Tips for Better Scans
+## Tips for better scans
 
 <AccordionGroup>
-  <Accordion title="Good Lighting" icon="sun">
-    Scan in well-lit areas for the best results. Avoid shadows falling across the document.
+  <Accordion title="Good lighting" icon="sun">
+    Scan in a well-lit place and avoid shadows across the page.
   </Accordion>
-  <Accordion title="Flat Surface" icon="table">
-    Place documents on a flat, contrasting surface. A dark document on a light surface (or vice versa) helps with edge detection.
+  <Accordion title="A contrasting surface" icon="table">
+    Lay the page flat on a surface of a different color, so the scanner can find its edges.
   </Accordion>
-  <Accordion title="Steady Hand" icon="hand">
-    Hold your phone steady while capturing. The app works quickly, but a stable hand produces sharper results.
+  <Accordion title="One document per scan" icon="copy">
+    Scan all the pages of one document in one go, so they end up in one PDF.
   </Accordion>
-  <Accordion title="Multiple Pages" icon="copy">
-    For multi-page documents, scan all pages in one session to create a single PDF rather than separate files.
+  <Accordion title="Long documents on a lower plan" icon="file-lines">
+    On Free, only the first 5 scanned pages of each PDF are read. Split a long document into several scans, or upgrade, if you need the agent to read all of it.
   </Accordion>
 </AccordionGroup>
 
-## Get the Mobile App
+## Get the app
 
 <CardGroup cols={2}>
-  <Card title="iOS App" icon="apple" href="https://apps.apple.com/us/app/the-drive-ai-file-organizer/id6758524851">
+  <Card title="iOS app" icon="apple" href="https://apps.apple.com/app/id6758524851">
     Download from the App Store.
   </Card>
-  <Card title="Android App" icon="android" href="https://play.google.com/store/apps/details?id=com.bigyankarki.thedriveai">
+  <Card title="Android app" icon="android" href="https://play.google.com/store/apps/details?id=com.bigyankarki.thedriveai">
     Download from Google Play.
   </Card>
 </CardGroup>
 
-## What's Next?
+## What's next?
 
 <CardGroup cols={2}>
+  <Card title="Mobile app" icon="mobile" href="/getting-started/mobile-app">
+    Everything else the app can do.
+  </Card>
   <Card title="Workflows" icon="diagram-project" href="/workflows/overview">
     File scanned documents automatically.
-  </Card>
-  <Card title="The agent" icon="robot" href="/agent/overview">
-    Ask questions about your scanned documents.
   </Card>
 </CardGroup>
