@@ -5,7 +5,7 @@ description: "Use your The Drive AI files from Claude, ChatGPT, Cursor and other
 
 ## Overview
 
-The Drive AI has an MCP (Model Context Protocol) server. With it, AI assistants such as Claude, ChatGPT and Cursor can work with the files in your workspace. They can browse and search your files, read them, create, write, rename, move, copy and delete files, and manage sharing.
+The Drive AI has an MCP (Model Context Protocol) server. With it, AI assistants such as Claude, ChatGPT and Cursor can work with the files in your workspace. They can browse, search and read your files, including connected Google Drive, OneDrive, SharePoint and Dropbox folders, make changes you can preview and undo, manage sharing, and hand bigger jobs to [the agent](/agent/overview).
 
 <Frame>
   <img src="/images/mcp.jpg" alt="Claude using The Drive AI through MCP" />
@@ -36,6 +36,27 @@ You can also find it in the app: open **Settings** and choose **MCP**.
     1. Open **Settings** > **MCP** in The Drive AI, or go to [thedrive.ai/mcp](https://thedrive.ai/mcp).
     2. Click **Cursor** to install it in one click.
   </Tab>
+  <Tab title="Command line">
+    Run the command for your tool:
+
+    <CodeGroup>
+    ```bash Claude Code
+    claude mcp add --scope local --transport http thedriveai https://thedriveai.fastmcp.app/mcp
+    ```
+
+    ```bash Codex CLI
+    codex mcp add --url https://thedriveai.fastmcp.app/mcp thedriveai
+    ```
+
+    ```bash Gemini CLI
+    gemini mcp add thedriveai https://thedriveai.fastmcp.app/mcp --transport http
+    ```
+
+    ```bash VS Code
+    code --add-mcp '{"name":"thedriveai","type":"http","url":"https://thedriveai.fastmcp.app/mcp"}'
+    ```
+    </CodeGroup>
+  </Tab>
   <Tab title="Other tools">
     Add the server URL to your tool's MCP configuration. For example:
 
@@ -55,9 +76,19 @@ You can also find it in the app: open **Settings** and choose **MCP**.
 
 ## What connected tools can reach
 
-A connected tool acts as you, in your The Drive AI workspace. It can reach the files you can reach there, and nothing outside The Drive AI.
+A connected tool acts as you, with your permissions. It reaches the files in your workspaces, including the connected drives you can see in The Drive AI. Moves and copies stay within one drive, and sharing changes apply to files in The Drive AI, not to Google, Microsoft or Dropbox permissions.
 
-Changes made through MCP are not the same as changes made by [the agent](/agent/overview). They don't show approval cards and they can't be undone from the agent's chat. Deleting a folder removes everything inside it, and writing to a file replaces its contents.
+Changes work the same way as with [the agent](/agent/overview#approving-and-undoing-changes):
+
+- **Preview first.** The tool sees what a change would do before anything happens.
+- **You confirm bigger changes.** Larger changes, moving files to the trash and sharing ask for your confirmation. A confirmation is valid for 15 minutes.
+- **Undo.** An applied change can be undone, with the same [limits on connected drives](/agent/connected-drives#undo-on-each-drive). Deleting moves files to the trash, and editing a file keeps its earlier version.
+
+When a tool hands a job to the agent, it counts as one of your [assistant tasks](/agent/overview#tasks-and-limits). Other tool calls don't count.
+
+<Note>
+  To connect, your The Drive AI account must sign in with Google. Accounts created with Microsoft, Apple or email can't connect yet.
+</Note>
 
 ## Give the agent tools from other apps
 
