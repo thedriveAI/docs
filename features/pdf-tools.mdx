@@ -1,53 +1,170 @@
 ---
 title: "PDF Tools"
-description: "Merge, split, compress, fill, watermark and convert PDFs by asking the agent, or with the free browser tools"
+description: "Merge, split, rotate, compress, watermark, protect and fill PDFs by asking the agent, or with the free browser tools"
 ---
 
 ## Ask the agent
 
-The [agent](/agent/overview) can work on PDFs for you. Open the folder with your PDFs, open the agent, and describe what you want:
+The [agent](/agent/overview) can work on your PDFs for you. Open the folder with your PDFs (or open the PDF itself), open the agent and describe what you want. You don't need to name a tool or a setting.
+
+### What you get back
+
+- **A new PDF**, such as a merged file or the pages you extracted, appears in the chat as a file card. **View** it, **Download** it, or click **Save to a folder**. See [Document Creation](/features/document-creation#getting-the-file).
+- **Several new PDFs**, such as the parts of a split, appear together on one card. Click **Download all** for a zip, or **Save all to a folder**.
+- **A change to a PDF you already have**, such as "rotate page 3 of this file", is made to that file. The agent asks first and keeps the previous version. On a connected drive, see [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
+
+If you'd rather keep the original as it is, ask for a copy: "Make a rotated copy of this PDF."
+
+## What it can do
+
+### Merge
 
 ```text
-Merge all the PDF invoices in this folder into one document
+Merge all the PDF invoices in this folder into one document, oldest first
 ```
+
+You get one PDF with the files in the order you asked for.
+
+### Split
 
 ```text
 Split this contract into separate files, one per section
 ```
 
 ```text
+Split this 40-page scan into files of 10 pages each
+```
+
+You get one PDF per part, together on one card.
+
+### Extract or delete pages
+
+```text
 Extract pages 5 to 10 into a new PDF
 ```
 
 ```text
-Add a "CONFIDENTIAL" watermark to this PDF
+Remove pages 1 and 12 from this report
 ```
+
+Extracting gives you a new PDF. Deleting pages changes the file, unless you ask for a copy.
+
+### Rotate
+
+```text
+Rotate pages 2 and 4 of this scan the right way up
+```
+
+### Reorder
+
+```text
+Put the signature page at the end of this agreement
+```
+
+### Compress
+
+```text
+Compress this PDF so it's small enough to email
+```
+
+You get a smaller copy. How much smaller depends on what's in the PDF.
+
+### Watermark
+
+```text
+Add a "CONFIDENTIAL" watermark to every page of this PDF
+```
+
+### Password-protect
+
+```text
+Protect this PDF with a password
+```
+
+The agent adds a password that's needed to open the file. To work on a PDF that already has a password, give the agent the password so it can open it.
+
+### Fill a form
 
 ```text
 Fill out this W-9 with the details from my company profile document
 ```
 
 ```text
-Compress this PDF so it's small enough to email
+Fill in this application using the details in /HR/Jane Doe/
 ```
 
-The agent can merge, split, rotate, reorder, extract pages, compress, watermark, password-protect and fill in PDF forms. It can also create new PDFs, such as a one-page summary of several contracts.
+See [Filling forms](#filling-forms) below.
 
-A new PDF appears in the chat as a file card. **View** or **Download** it, or choose **Save to a folder**. When the agent changes a PDF you already have, it asks first and keeps the previous version. On a connected drive, see [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
+### Create a PDF
+
+```text
+Summarize the contracts in this folder in a one-page PDF
+```
+
+```text
+Turn this note into a PDF I can print
+```
+
+See [Document Creation](/features/document-creation) for everything the agent can make.
+
+### Pull text and tables out
+
+```text
+Put the tables from this bank statement into a spreadsheet
+```
+
+The agent reads the PDF and gives you the tables as an Excel workbook or a CSV.
+
+## Filling forms
+
+The agent fills a form from your files. Point it at the form and at the document with the information, such as a profile, an ID or last year's return.
+
+**Forms with fields to fill in.** Many official forms have boxes you can type into. The agent reads every field, including checkboxes, option buttons and drop-down lists, and fills them from your source. It can flatten the result, so the answers become part of the page and can't be changed by accident, or leave the fields editable. Say which you want.
+
+**Forms without fields.** Many forms people keep, like a filed return, a signed application or a printed form, have no fields: the values are printed on the page. To change a value on one of these, the agent covers the old value and writes the new one in the same place, at a matching size. It looks at each changed page to check that every new value sits where the old one was, and tells you which values it changed and any it couldn't place.
+
+**Scans that are only pictures.** If a form is a scan with no text on it that the agent can find, it can't place new values reliably. It says so and stops, rather than giving you an unchanged copy under a new name.
 
 <Tip>
-  To fill a form, point the agent at the document that has the information: "Fill in this form using the details in my profile document."
+  Ask the agent to fill a copy if you want to keep the blank form: "Fill in a copy of this form using the details in my profile document."
 </Tip>
+
+## Limits
+
+- **Each PDF the agent works on can be up to 50 MB.**
+- **A finished file up to 25 MB appears in the chat.** A bigger one, up to 50 MB, can't appear in the chat, but the agent can save it straight into a folder you name.
+- **A file you don't save stays in the chat for 30 days.**
+- **The preview can't open password-protected PDFs.** Download the file and open it in a PDF app to enter the password.
+
+Each request counts as one task. See [Usage and limits](/account/usage-and-limits).
 
 ## Free browser tools
 
-The Drive AI also has free PDF tools that run in your browser, with no account needed, at [thedrive.ai/tools](https://thedrive.ai/tools):
+The Drive AI also has 15 free tools for PDFs and images at [thedrive.ai/tools](https://thedrive.ai/tools). They run in your browser, so your files stay on your device, and you don't need an account.
 
-- Merge PDF, split PDF, compress PDF
-- Rotate, reorder and delete PDF pages, add page numbers
-- Add a watermark, sign a PDF, create a signature
-- Convert PDF to JPG, and JPG, PNG or other images to PDF
-- Compress images
+{/* Screenshot: the thedrive.ai/tools page with the grid of tools */}
+
+| Tool | What it does |
+|------|--------------|
+| **Merge PDFs** | Combine up to 20 PDF files into one. Drag to reorder them first. |
+| **Split PDF** | Extract pages or split a PDF into separate files. |
+| **Compress PDF** | Make a PDF smaller. |
+| **Rotate PDF** | Rotate pages within a PDF. |
+| **Delete PDF Pages** | Remove pages you don't want. |
+| **Reorder PDF Pages** | Drag pages into a new order. |
+| **Add Page Numbers** | Number every page. Choose where, the format, the font size and the starting number. |
+| **Watermark PDF** | Add a text watermark across every page. |
+| **Sign PDF** | Add your signature to a PDF. |
+| **Signature Generator** | Create a signature and download it as a transparent PNG. |
+| **PDF to JPG** | Turn PDF pages into JPG images, one per page. |
+| **JPG to PDF** | Turn up to 50 JPG images into a PDF, one page each. |
+| **PNG to PDF** | Turn up to 50 PNG images into a PDF, one page each. |
+| **Image to PDF** | Turn up to 50 images (JPG, PNG, WebP, GIF, BMP or TIFF) into a PDF. |
+| **Compress Images** | Make up to 20 JPG or PNG images smaller. |
+
+<Note>
+  **Sign PDF** places your signature on a PDF yourself. To send a document for others to sign, use [E-Sign](/features/e-sign).
+</Note>
 
 ## What's next?
 

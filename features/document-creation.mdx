@@ -1,53 +1,187 @@
 ---
 title: "Document Creation"
-description: "Ask the agent to create PDFs, Word documents, spreadsheets and presentations from your files"
+description: "Ask the agent to make PDFs, Word documents, spreadsheets, presentations, notes and more from your files, then download them or save them to a folder"
 ---
 
 ## Overview
 
-The [agent](/agent/overview) doesn't only manage files you have. It can also create new ones. Describe the document you need, and it writes it, often using your existing files as the source.
+The [agent](/agent/overview) can make new files as well as work on the ones you have. Describe what you need, and it writes the file, usually reading your existing files for the facts. For example, it can read every invoice in a folder and build a spreadsheet of them, or turn a report into a slide deck.
 
-| Type | Formats |
-|------|---------|
-| **Documents** | PDF, Word (DOCX), text, Markdown |
-| **Spreadsheets** | Excel (XLSX), CSV |
-| **Presentations** | PowerPoint (PPTX) |
+A file the agent makes appears in the chat first. Nothing goes into your workspace until you save it to a folder.
 
-## Examples
+## What it can make
+
+| Format | Good for |
+|--------|----------|
+| **PDF** | Something fixed to send, sign or print: reports, letters, one-page summaries, certificates. It can also [work on PDFs you have](/features/pdf-tools). |
+| **Word (DOCX)** | Formal documents you or others will keep editing: contracts, memos, letters, reports with a cover page, tables and images. |
+| **Excel (XLSX)** | Workbooks with real formulas, several sheets, number formats and charts. Totals are formulas, so they recalculate when you change the inputs. |
+| **CSV and TSV** | Plain data to import into another tool, or a cleaned-up, merged or reshaped version of an export you have. |
+| **PowerPoint (PPTX)** | Slide decks: pitch decks, board and status reports, reviews and plans, with charts, tables and speaker notes. |
+| **Notes** | Meeting notes, plans, checklists, minutes and briefs you want to keep, edit and share inside the workspace. A note opens in the workspace editor. |
+| **Markdown and text (MD, TXT)** | A plain file to download, such as a README or a log. |
+| **HTML** | A standalone web page, usually converted from Markdown or a document. |
+| **Images (such as PNG)** | Pictures the agent draws with code, such as a chart to place inside a document or deck. |
+| **Charts and diagrams** | Interactive charts and diagrams you see right in the chat. See [Charts and diagrams](/agent/charts-and-diagrams). |
+
+It can also convert between formats, for example a Markdown file to Word or PDF, or a Word document to Markdown.
+
+<Note>
+  For something you only need to read once, like a quick summary or an answer, the agent writes it in the chat instead of making a file. Ask for a file or a note when you want to keep it.
+</Note>
+
+## How to ask
+
+Open the folder with your source files, open the agent and describe the file. Say the format, the structure and where the facts come from.
+
+### PDF
 
 ```text
 Summarize the contracts in this folder in a one-page PDF
 ```
 
 ```text
-Make a spreadsheet of every invoice here with vendor, date and total
+Write a letter to our landlord about the heating repair, as a PDF
 ```
 
-```text
-Create a project tracker spreadsheet with columns for task, owner, status and due date
-```
-
-```text
-Turn the Q3 report into a five-slide presentation
-```
+### Word
 
 ```text
 Draft an NDA for freelance contractors as a Word document
 ```
 
-The agent reads your files for the facts. For example, it can build a spreadsheet by reading every invoice in a folder.
+```text
+Turn these meeting notes into a formal project proposal in Word, with a cover page and a table of milestones
+```
+
+### Excel
+
+```text
+Make a spreadsheet of every invoice here with vendor, date and total, and a total row at the bottom
+```
+
+```text
+Create a project tracker workbook with columns for task, owner, status and due date
+```
+
+### CSV
+
+```text
+Merge the three customer exports into one CSV and remove the duplicates
+```
+
+```text
+Clean up sales.csv: fix the dates and keep the leading zeros on the account numbers
+```
+
+### PowerPoint
+
+```text
+Turn the Q3 report into a ten-slide presentation for the board
+```
+
+```text
+Make a deck comparing the three vendor proposals, with a chart of the prices
+```
+
+### Notes
+
+```text
+Add a note to /Meetings with the decisions and action items from today's call transcript
+```
+
+```text
+Write a checklist for onboarding a new client and save it as a note here
+```
+
+### Other formats
+
+```text
+Convert this Markdown file into a Word document
+```
+
+```text
+Turn the product brief into a standalone HTML page
+```
 
 ## Getting the file
 
-A new file appears in the chat as a file card:
+A file the agent makes appears in the chat as a file card. The card shows a preview of the top of the file, its name, type and size.
 
-- **View** it in place
-- **Download** it (several files download together with **Download all**)
-- **Save to a folder** to add it to your workspace or a connected drive
+{/* Screenshot: a file card in the agent panel, showing the preview, the View and Download buttons, and Save to a folder */}
 
-Until you save it, the file stays in the chat for 30 days. An owner or admin can switch on **Save the files it makes** in **Settings** > **Agent**, so the agent can save the files it makes into a folder without asking first.
+- **View** opens it in a preview. You can also click the preview itself. A PowerPoint deck shows its first slide only, and an HTML file shows its source text. Download them to see all of it.
+- **Download** saves it to your device.
+- **Save to a folder** puts it in your workspace or a connected drive. See [Save it to a folder](#save-it-to-a-folder).
 
-To change a file after it's made, just ask: "Add a section on Q2 projections." When the agent edits a file that's already in your workspace, it asks first and keeps the previous version. On a connected drive, see [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
+When the agent makes several files in a row, such as one per client or one per section, they share one card. Each file is a small tile: click a tile to view it, or point at it and click its own **Download** button.
+
+- **Download all** downloads every file in the card as one zip.
+- **Save all to a folder** saves the whole set in one go. If you already saved some of them, the button says **Save the other N to a folder**.
+- A card with more than four files shows the first three and **+N more**. Click it to see the rest.
+
+## Save it to a folder
+
+<Steps>
+  <Step title="Click Save to a folder">
+    On the file card, click **Save to a folder** (or **Save all to a folder** for several files).
+  </Step>
+  <Step title="Choose the folder">
+    Under **Suggested**, pick **Here** to save into the folder you're looking at, or **Workspace (top level)**. Otherwise, search with **Search folders…** and pick a folder from the list. The list includes folders on your connected drives.
+  </Step>
+</Steps>
+
+Clicking a folder saves the file straight away. There's no second confirmation. The card then shows **Saved to** with the file's path. Click the path to open it: a file in The Drive AI opens in the explorer, and a file on a connected drive opens on that drive. Once every file in a multi-file card is saved, it shows **All saved to** and the folder.
+
+If the folder already has a file with that name, the new one is saved as "name (2)" and the message tells you the name it got. To take a save back, ask the agent to undo it.
+
+You can also tell the agent where to put a file: "Save the report in /Finance/2025." When the agent saves a file itself, it asks you to confirm first.
+
+### Saving to a connected drive
+
+On plans with [connected drives](/agent/connected-drives), the folder list includes your Google Drive, OneDrive, SharePoint and Dropbox folders. The file is saved there, not in The Drive AI. You can only save into folders your account is allowed to add files to.
+
+## How long files stay in the chat
+
+- **A file you don't save stays in the chat for 30 days**, then it's deleted. Save or download anything you want to keep.
+- **The chat holds files up to 25 MB.** If a file the agent makes is bigger, it can't appear in the chat, but the agent can save it straight into a folder you name, for files up to 50 MB.
+- **Download all** takes up to 20 files and 200 MB at a time. Download larger sets one file at a time.
+
+The files the agent reads to make a document can each be up to 50 MB.
+
+## Lists and reports of many files
+
+When you ask for a list that's longer than a page, such as every PDF over 10 MB, every duplicate file, or every row of data the agent pulled out of your documents, the agent writes the whole list to a file instead of typing it in the chat. You get a CSV, or an Excel workbook if you ask for one.
+
+```text
+Export a list of every duplicate file in this folder as a spreadsheet, with which copy to keep
+```
+
+```text
+Give me a CSV of all the contracts here that mention "auto-renewal"
+```
+
+- One file holds up to 200,000 rows. If there are more, the agent says the file is partial and suggests narrowing it, for example to a subfolder or a date range.
+- A very large export runs in the background. The agent waits and posts the file when it's ready.
+- The card shows how many rows the file has. Save it to a folder like any other file.
+
+## Changing a file
+
+To change a file the agent just made, ask: "Add a section on Q2 projections." It makes the file again with your changes, as a new card in the chat.
+
+To change a file that's already in a folder, open it or name it: "In the vendor tracker, add a column for contract end date." The agent edits that file in place, so its link and sharing stay the same.
+
+- **It asks first.** An edit to an existing file shows a card that needs your OK. See [Approving and undoing](/agent/approving-and-undoing).
+- **The previous version is kept.** In The Drive AI, you can ask the agent to restore it (see [Versions and Trash](/features/versions-and-trash)), or undo the change from its card.
+- **On a connected drive**, the edit can be undone unless the earlier version was too large to keep a copy of. See [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
+
+For a note, the agent adds to it or replaces the exact passage you asked about, rather than rewriting the whole note. If someone has the note open, they see the change as it happens.
+
+## Save the files it makes
+
+By default, a file the agent makes stays in the chat until someone saves it. When you ask the agent to save one into a folder, it asks you to confirm where.
+
+An owner or admin can change this in **Settings** > **Agent** with **Save the files it makes**. When it's on, the agent no longer asks for that confirmation when it saves a new file into a folder. It still only saves a file into a folder when you ask it to, and other changes still ask as usual.
 
 ## Tips
 
@@ -56,20 +190,26 @@ To change a file after it's made, just ask: "Add a section on Q2 projections." W
     "Create a PDF report" gets you a PDF. "Create a report" leaves the choice to the agent.
   </Accordion>
   <Accordion title="Describe the structure" icon="list">
-    "A spreadsheet with columns for Name, Email, Phone and Company" gives the agent a clear target.
+    "A spreadsheet with columns for Name, Email, Phone and Company" or "a deck with one slide per region" gives the agent a clear target.
   </Accordion>
   <Accordion title="Point at the sources" icon="link">
-    Open the folder with the source files first, or name them: "Using the three vendor proposals, make a comparison table."
+    Open the folder with the source files first, or name them: "Using the three vendor proposals, make a comparison table." The agent takes figures from your files rather than making them up.
+  </Accordion>
+  <Accordion title="Give it your template" icon="palette">
+    To match your own styles, name a Word document or PowerPoint template to start from: "Use our letterhead.docx as the template."
+  </Accordion>
+  <Accordion title="Ask for a note when you'll keep editing" icon="note-sticky">
+    A note lives in the workspace and you can edit it, tick off its checklist items and share it. A note can't hold images. Ask for a Word document when you need images or exact layout.
   </Accordion>
 </AccordionGroup>
 
 ## What's next?
 
 <CardGroup cols={2}>
-  <Card title="The agent" icon="robot" href="/agent/overview">
-    Everything the agent can do.
+  <Card title="Charts and diagrams" icon="chart-column" href="/agent/charts-and-diagrams">
+    Make charts and diagrams you can hover, copy and save.
   </Card>
   <Card title="PDF Tools" icon="file-pdf" href="/features/pdf-tools">
-    Merge, split and fill PDFs.
+    Merge, split, compress and fill PDFs.
   </Card>
 </CardGroup>
