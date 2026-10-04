@@ -26,11 +26,9 @@ All data sent between your device and The Drive AI is encrypted with **TLS**.
 
 ### Malware Scanning
 
-Every file uploaded to The Drive AI is automatically scanned for malware and viruses. Files found to be infected are blocked.
+Files uploaded to The Drive AI, including email attachments that workflows save and files sent through file requests, are scanned for malware. A file found to be infected is rejected or removed.
 
-- Scans run automatically on every upload
-- Known threats are blocked immediately
-- Scanning applies to all file types
+Files in connected drives stay with Google, Microsoft or Dropbox and aren't scanned by The Drive AI.
 
 ## Your Data and AI
 
@@ -62,7 +60,7 @@ Each workspace is fully isolated:
 
 - Personal workspace files are private to you
 - Team workspace files are only accessible to workspace members
-- External collaborators can only see explicitly shared items
+- External collaborators can only see explicitly shared items, and anyone with a [public link](/features/file-sharing#public-links) can view that published file
 - No cross-workspace data access
 
 ### Role-Based Access

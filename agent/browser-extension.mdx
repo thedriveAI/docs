@@ -34,20 +34,22 @@ Open a folder or file in one of these, then ask the agent about it:
 - Dropbox
 - The Drive AI web app
 
-The chip next to the message box shows the name of the folder or file the agent treats as "here" or "this". On pages without a single folder or file, like search results or **Recent**, it shows **Workspace**.
+The chip next to the message box shows the name of the folder or file the agent treats as "here" or "this". On pages without a single folder or file, like search results or **Recent**, it shows the drive you're in, or **Workspace** when the extension can't tell which drive.
 
 For the agent to act on a drive, that drive must be [connected](/agent/connected-drives) to your workspace. The extension only tells the agent where you are. It doesn't give the agent access.
 
 ## When the agent can't see the page
 
-A note above the chat tells you why, and it rechecks every 30 seconds:
+A note in the panel tells you why. While the panel is open, it checks again every 30 seconds:
 
 | The note says | What to do |
 |---------------|------------|
 | "… isn't connected to this workspace, so the assistant can't see this page." | Click **Connect** and connect that drive. |
-| "Connecting … is part of the Max and Team plans." | Your plan doesn't include connected drives. Click **See plans**, or ask your workspace owner. |
+| "Connecting … comes with …" or "Connecting … isn't part of this workspace's plan." | Your plan doesn't include connected drives. Click **See plans**, or ask your workspace owner. |
 | "The assistant hasn't reached this item in … yet." | The drive is still being catalogued. Try again shortly. |
-| "This item is in a drive you haven't connected, so the assistant can't see it." | The file is in someone else's drive, a shared drive that isn't added, or a shared drive your connected account can't open. Connect the account that owns it or is a member of the shared drive, or ask an admin to add the shared drive. |
+| "This … is signed in to an account that isn't connected to this workspace…" | Connect that account, or switch to an account that's connected. |
+| "More than one … account is connected, and this page doesn't say which one it's signed in to." | Show the page's account, for example by opening the account menu on the drive's site, and the extension picks it up. |
+| "This item isn't in anything connected to this workspace, so the assistant can't see it." | The file is in someone else's drive, a shared drive that isn't added, or a shared drive your connected account can't open. Connect the account that owns it or is a member of the shared drive, or ask an admin to add the shared drive. |
 | "The agent is not enabled for this workspace." | Ask a workspace owner or admin to turn it on in **Settings** > **Agent**. |
 
 ## Account menu
@@ -55,7 +57,7 @@ A note above the chat tells you why, and it rechecks every 30 seconds:
 Click **⋮** at the top of the panel to open the **Account** menu. It shows:
 
 - The email you're signed in with
-- Your plan and how many tasks you've used today
+- Your plan and how many assistant tasks you've used
 - **Connected accounts**, which opens **Settings** > **Integrations** in the web app
 - **Plans**
 - **Theme**
