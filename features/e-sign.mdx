@@ -17,7 +17,7 @@ Send any PDF in your workspace for electronic signatures. Recipients sign in the
 - **From the PDF viewer:** open the PDF and click the **Request Signature** button in the toolbar.
 - **From the agent:** ask, for example, "Send this NDA to jane@example.com for signature." The agent prepares a draft, shows where the fields go, and sends it only after you allow it.
 
-If you have saved templates, you're asked first whether to **Start from scratch** or use a template.
+When you start from the PDF viewer and have saved templates, you're asked first whether to **Start from scratch** or use a template.
 
 ## Prepare and send
 
@@ -36,7 +36,7 @@ If you have saved templates, you're asked first whether to **Start from scratch*
     </Frame>
   </Step>
   <Step title="Place Fields">
-    Click the document to place fields: **Signature**, **Initials**, **Text**, **Date**, **Checkbox** and **Dropdown**. Assign each field to a recipient. You can resize and move fields, and mark them required.
+    Click the document to place fields: **Signature**, **Initials**, **Text**, **Date**, **Checkbox** and **Dropdown**. Assign each field to a recipient. You can resize and move fields. Fields are required by default; you can mark one optional.
 
     <Frame>
       <img src="/images/e-sign-4.png" alt="Placing signature fields on the document" />
@@ -49,7 +49,7 @@ If you have saved templates, you're asked first whether to **Start from scratch*
 
 ## Track requests
 
-Open **Settings** > **Signatures** to see every request you've sent. Filter by **All**, **Waiting**, **Completed** and **Voided**. Open a request to see each signer's progress and its audit trail.
+Open **Settings** > **Signatures** to see every request you've sent. Filter by **All**, **Waiting** (including drafts), **Completed** and **Voided** (including declined and expired requests). Open a request to see each signer's progress and its audit trail.
 
 Saved templates are in **Settings** > **Signing Templates**.
 
@@ -74,8 +74,8 @@ The Drive AI's E-Sign captures a complete audit trail for every document:
 | Detail | What Is Recorded |
 |--------|-----------------|
 | **Consent** | Explicit ESIGN Act consent with timestamp and IP address |
-| **Document integrity** | SHA-256 hash at every state transition |
-| **Action log** | Every action recorded: viewed, filled, signed, or declined |
+| **Document integrity** | SHA-256 hash of the original document when it's sent, and of the signed PDF when it's complete |
+| **Action log** | Each step recorded, such as sent, viewed, signed, declined, reminded and voided |
 | **Audit trail** | Immutable record of all events |
 
 Compliant with:
@@ -92,8 +92,8 @@ Compliant with:
 After all parties sign:
 
 - The signed PDF is saved as a new file in your workspace (the original remains unchanged)
-- All parties receive an email with a link to the completed document
-- The full audit trail is attached to the document
+- You, every signer and every CC receive an email with the signed PDF attached (when it's 25 MB or less). Your email also links to the request in The Drive AI.
+- A **Certificate of Completion** page is added to the end of the signed PDF, with each signer's details and the audit trail
 
 
 ## What's next?
