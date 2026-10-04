@@ -2,6 +2,14 @@
   "version": 1,
   "retired": [
     {
+      "id": "daily-task-limit",
+      "pattern": "in any 24 hours|tasks (for )?today",
+      "flags": "i",
+      "why": "Assistant tasks are counted per month on every plan since 2026-09-29; Free is 20 a month (AssistantQuota.ts).",
+      "instead": "a monthly number of tasks (see the plans table)",
+      "allowIn": []
+    },
+    {
       "id": "chat-mode",
       "pattern": "\\bChat Mode\\b",
       "flags": "i",
