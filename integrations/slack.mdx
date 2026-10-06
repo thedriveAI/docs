@@ -1,156 +1,131 @@
 ---
 title: "Slack Integration"
-description: "Automatically capture and organize files shared in your Slack channels"
+description: "Connect Slack so workflows can file the files shared in your channels and post messages"
 ---
 
 ## Overview
 
-The Drive AI integrates with Slack to automatically capture, organize, and make searchable every file shared in your Slack channels. Stop losing important documents in the endless scroll of messages—files shared in Slack are automatically saved and organized in your Drive AI workspace.
+Connect Slack, and [workflows](/workflows/overview) can act on files shared in your channels: read them, rename them and save them to the right folder. Workflows can also post messages to Slack.
 
-## How It Works
+Connecting Slack doesn't save anything by itself. Files are saved only when a workflow with a **Slack** trigger saves them, or when you run a [historical import](#import-past-files). The Slack integration is in beta.
 
-Once connected and invited to a channel, The Drive AI monitors for shared files:
+Connected drives and accounts come with Max, Team, Business and Enterprise. See [Plans & Pricing](/account/plans-pricing).
 
-1. **A file is shared** in a channel where The Drive AI app is invited
-2. **The AI reads the file content**, considers the channel context, and matches it against your existing folder structure
-3. **The file is imported and organized** into the appropriate folder automatically
+## Who can do what
 
-All of this happens in real time—no manual intervention required.
+| Task | Who |
+|------|-----|
+| Connect a Slack workspace | Workspace owners and admins |
+| See which Slack workspaces are connected | Every member who can open **Settings** |
+| Run a historical import | The person who connected the Slack workspace |
+| Disconnect | The person who connected it, or an owner or admin |
 
-## Connecting Slack
+## Connect Slack
 
 <Steps>
-  <Step title="Connect Your Slack Workspace">
-    Go to **Settings** > **Integrations** > **Slack** and click **Connect Slack**. Sign in to your Slack workspace and authorize The Drive AI app.
+  <Step title="Open Integrations">
+    Open **Settings** and choose **Integrations**. Under **Email and messaging**, click **Slack**.
   </Step>
-  <Step title="Invite The Drive AI to Channels">
-    In each Slack channel you want monitored, type:
+  <Step title="Install the app">
+    Click **Connect Slack**. In the window that opens, choose your Slack workspace and allow the app. Your Slack workspace's settings may require a Slack admin to approve new apps.
+  </Step>
+  <Step title="Add the app to channels">
+    The app only sees channels it has been added to. In each channel you want covered, type:
 
+    ```text
+    /invite @The Drive AI
     ```
-    /invite @the-drive-ai
-    ```
-
-    The Drive AI app **only has access to channels you explicitly invite it to**. It cannot see or access any channel it has not been added to.
+  </Step>
+  <Step title="Set up a workflow">
+    Create a workflow that starts with **Slack** to decide what happens to shared files. See [Triggers](/workflows/triggers).
   </Step>
 </Steps>
 
-<Info>
-  The app installs as a single connection per Slack workspace. You control access by inviting or removing it from specific channels.
-</Info>
+<Frame>
+  <img src="/images/integrations-slack.png" alt="Settings, Integrations, Slack, with a connected Slack workspace" />
+</Frame>
 
-## What Gets Imported
+After you connect, the **Historical Sync** panel opens so you can bring in files shared before. You can close it and come back later.
 
-The Drive AI imports files shared in channels where the app is invited:
+### More than one Slack workspace
 
-- **Documents**: PDF, DOCX, DOC, TXT, RTF
-- **Spreadsheets**: XLSX, XLS, CSV
-- **Presentations**: PPTX, PPT
-- **Images**: PNG, JPG, GIF
+You can connect several Slack workspaces to one workspace in The Drive AI, including a personal workspace. Click **Add workspace** at the bottom of the list. Each one is listed by its Slack workspace name.
 
-## Organization
+### What you allow
 
-The AI uses context-aware routing to place files in the right folders:
+When you install the app, Slack asks you to let The Drive AI:
 
-| Factor | Example |
-|--------|---------|
-| **File content** | Contract detected → Contracts folder |
-| **Channel context** | Shared in #legal → Legal folder |
-| **Existing structure** | Matches against your current folder structure |
+- See the public and private channels it has been added to, and read their messages and shared files
+- Post messages, including in public channels it hasn't been added to
+- See people's names and email addresses in your Slack workspace
 
-You can also define custom routing rules to override or refine automatic decisions.
+The app is installed for the whole Slack workspace, not just for you. If the person who connected it leaves your workspace in The Drive AI, the Slack connection keeps working.
 
-## Key Features
+## Choose which channels are covered
 
-### Full-Text Search
+A channel is covered once the app is in it. To stop covering a channel, remove the app from that channel in Slack.
 
-Search the content of every file shared in Slack—not just filenames. Once imported, files are fully indexed and searchable through Chat Mode or the search bar.
+When you set up a workflow with a **Slack** trigger, you choose the channels it watches, or **All channels**, meaning every channel the app is a member of.
 
-### Permanent Storage
+## Post messages from a workflow
 
-Files remain safe in your Drive AI workspace even when Slack deletes originals due to storage limits or retention policies.
+A workflow's **Send a Message** step can post to a Slack channel, for example to tell your team a signed contract arrived. See [Steps](/workflows/steps).
 
-### File Activity Audit
+## Import past files
 
-Complete logs showing who shared what, when, and where it was filed, with links back to the original Slack messages.
+To bring in files shared before you connected:
 
-### Real-Time Notifications
+<Steps>
+  <Step title="Open Historical sync">
+    In **Settings** > **Integrations** > **Slack**, open the **…** menu on the Slack workspace and choose **Historical sync**.
+  </Step>
+  <Step title="Choose a time range">
+    Choose **Last 30 days**, **Last 90 days** or **Last 180 days (6 months)**.
+  </Step>
+  <Step title="Start">
+    Click **Start Import**. It runs in the background, so you can close the panel.
+  </Step>
+</Steps>
 
-Get alerts for important files with filtering by file type, sender, or keywords.
+What to expect:
 
-### Slack Connect Support
+- **Which channels:** every channel the app is a member of, public or private, except archived channels.
+- **Where files go:** the top level of your workspace, as they are. Imported files don't start **Slack** workflows. A workflow that watches uploads to The Drive AI can file them.
+- **Skipped:** images, calendar files, files already imported, and files found to contain malware.
+- **Progress:** reopen **Historical sync** to see progress, or click **Cancel Sync** to stop. Owners and admins can see every imported file in **Settings** > **Import History**.
 
-The integration works with shared channels between organizations.
+## Disconnect
 
-## Managing Channels
+Open the Slack workspace's **…** menu and choose **Disconnect**, then confirm. Owners and admins can also click **Disconnect** on a Slack workspace someone else connected.
 
-### Adding a Channel
-
-Invite the app to any channel you want monitored:
-
-```
-/invite @the-drive-ai
-```
-
-### Removing from a Channel
-
-Remove the app from a channel to stop monitoring:
-
-```
-/remove @the-drive-ai
-```
-
-## Managing Your Connection
-
-### Disconnecting
-
-1. Go to **Settings** > **Integrations** > **Slack**
-2. Click **Disconnect**
-3. Confirm the disconnection
-
-<Warning>
-  Disconnecting stops future file imports. Files already imported to your workspace are not deleted.
-</Warning>
-
-## Privacy & Security
-
-<AccordionGroup>
-  <Accordion title="What data do you access?" icon="eye">
-    The Drive AI only accesses files shared in channels where the app has been invited. We do not read or store your Slack messages—only the files attached to them.
-  </Accordion>
-  <Accordion title="Which channels can the app see?" icon="hashtag">
-    Only channels where you explicitly invite the app using `/invite @the-drive-ai`. The app cannot see or access any other channels, DMs, or messages.
-  </Accordion>
-  <Accordion title="Is my data secure?" icon="shield-halved">
-    All data transfers are encrypted. Your Slack credentials are handled through secure OAuth—we never see or store your password.
-  </Accordion>
-  <Accordion title="Can I revoke access?" icon="key">
-    Yes. You can disconnect The Drive AI from Slack at any time. You can also revoke access from your Slack workspace settings.
-  </Accordion>
-</AccordionGroup>
+- Workflows that use it are paused. If the same Slack workspace is connected again later, workflows paused only because of the disconnect start again on their own.
+- Files already saved stay in your workspace.
+- The app stays installed in Slack. To remove it, remove it from your Slack workspace in Slack.
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="Files Not Importing" icon="file-circle-xmark">
-    - Make sure The Drive AI app is invited to the channel — type `/invite @the-drive-ai` in the channel
-    - Check that the Slack integration is connected in Settings
-    - Ensure the file type is supported
-    - Check that you have sufficient storage space
+  <Accordion title="Files shared in a channel aren't picked up" icon="hashtag">
+    - Check that the app is in the channel. Type `/invite @The Drive AI` in it.
+    - Check that a workflow with a **Slack** trigger is active and watches that channel. See [Approvals and activity](/workflows/approvals-and-activity) for its runs.
   </Accordion>
-  <Accordion title="App Not Appearing in Slack" icon="plug-circle-xmark">
-    - Verify you completed the authorization in Settings > Integrations > Slack
-    - You may need Slack workspace admin permissions to install apps
-    - Try disconnecting and reconnecting
+  <Accordion title="I can't connect Slack" icon="plug-circle-xmark">
+    - Only workspace owners and admins can connect Slack.
+    - If you see **Popup blocked**, allow pop-ups for The Drive AI.
+    - Your Slack workspace may need a Slack admin to approve the app.
+  </Accordion>
+  <Accordion title="A historical import found nothing" icon="clock-rotate-left">
+    The import covers just the channels the app is in. Add the app to the channels first, then start the import again.
   </Accordion>
 </AccordionGroup>
 
-## What's Next?
+## What's next?
 
 <CardGroup cols={2}>
   <Card title="Microsoft Teams" icon="users" href="/integrations/microsoft-teams">
-    Auto-organize files from Microsoft Teams.
+    Let workflows act on files shared in Teams.
   </Card>
-  <Card title="Email Integration" icon="envelope" href="/integrations/email-integration">
-    Auto-import attachments from Gmail and Outlook.
+  <Card title="Workflow triggers" icon="bolt" href="/workflows/triggers">
+    Start a workflow when a file is shared.
   </Card>
 </CardGroup>

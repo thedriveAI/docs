@@ -1,0 +1,183 @@
+---
+title: "Members and Roles"
+description: "Invite people to a team workspace, choose what each person can do, and change roles, remove people or transfer ownership"
+---
+
+## Overview
+
+A team workspace can have many members, and each one has a role. The role decides what they can see and change. A personal workspace has only you, so it has no members to manage.
+
+You manage members in **Settings** > **Members**. Owners, admins and members can open this tab; only owners and admins can change anything on it.
+
+## Roles
+
+| Role | In short |
+|------|----------|
+| **Owner** | Everything, including billing, seats, transferring ownership and deleting the workspace. Each workspace has exactly one owner. |
+| **Admin** | Runs the workspace: manages people below admin, workspace settings, integrations and workflows, and can turn the agent on or off. Can't see billing, delete the workspace or change the owner. |
+| **Member** | Works with content: creates, edits and deletes files, uses the agent, connects their own storage and email accounts, and sends file requests and signature requests. Can view workflows but not change them. |
+| **Viewer** | Views and downloads files, nothing else. Can't make changes or open workspace settings. |
+
+### What each role can do
+
+| | Owner | Admin | Member | Viewer |
+|---|:---:|:---:|:---:|:---:|
+| Create, edit and delete files | ✓ | ✓ | ✓ | |
+| Open workspace settings | ✓ | ✓ | ✓ | |
+| See the member list | ✓ | ✓ | ✓ | |
+| Invite people | ✓ | ✓ ¹ | | |
+| Change roles | ✓ | ✓ ² | | |
+| Remove people | ✓ | ✓ ² | | |
+| Transfer ownership | ✓ | | | |
+| Billing and seats | ✓ | | | |
+| Delete the workspace | ✓ | | | |
+| Edit workspace settings | ✓ | ✓ | | |
+| Create, edit and run [workflows](/workflows/overview) | ✓ | ✓ | View only | |
+| Connect Slack or Microsoft Teams | ✓ | ✓ | | |
+| Auto Organization, Activity Log, Email Blocklist and Import History | ✓ | ✓ | | |
+| Send [signature requests](/features/e-sign) | ✓ | ✓ | ✓ | |
+| Create [file requests](/features/file-requests) | ✓ | ✓ | ✓ | |
+| Manage other people's file requests | ✓ | ✓ | | |
+
+¹ Admins can invite members and viewers, not admins.
+² Admins can act only on members and viewers, and can only give those roles.
+
+A few details:
+
+- Any member can connect their own Google Drive, OneDrive, SharePoint, Dropbox, Gmail or Outlook account, if the plan includes connected accounts. Owners, admins and members can see which accounts are connected and who connected them. Only the person who connected an account can browse it or import from it.
+- Signature requests are private to the person who sent them, whatever their role. File requests are visible to everyone who can open workspace settings.
+- **Usage** in settings is open to owners, admins and members. **Billing** is the owner's only.
+
+## Invite people
+
+Owners and admins can invite people. Each invitation sends an email. The person must accept before they can see anything in the workspace.
+
+### Invite one person
+
+1. Open **Settings** and choose **Members**.
+2. Type an email in **Invite by email**.
+3. Pick a role next to it. **Member** is selected by default.
+4. Click **Invite**.
+
+### Invite several people
+
+1. Click **Invite multiple people at once**. The **Invite members** dialog opens.
+2. Enter an email and pick a role for each person. Click **Add another** for more. You can also paste several addresses separated by commas.
+3. Click **Send N invites**.
+
+You can't invite someone who's already a member or already has a pending invitation. The form tells you before you send.
+
+### Seats
+
+On plans billed per seat, every member and every pending invitation takes a seat. If all your seats are in use, a notice says how many more you need:
+
+- **If you're the owner**, the button changes to **Add seat & invite** (or **Add N seats & send N invites**). The notice shows the price per seat. The seats are added to your bill, prorated from today, and then the invitations go out.
+- **If you're an admin**, you can't add seats. The notice says to ask the workspace owner to add them in **Settings** > **Billing**.
+- **On some plans**, seats are added by our team. The notice says to contact support.
+
+See [Plans & Pricing](/account/plans-pricing) for seat pricing.
+
+{/* Screenshot: the Members tab with the seat notice and the Add seat & invite button */}
+
+### Pending invitations
+
+Invitations that haven't been accepted are listed under **Pending invites**. Owners and admins can change a pending invitation's role, or click **Remove** to cancel it. Cancelling an invitation makes the seat it was holding available again.
+
+## Change someone's role
+
+1. Open **Settings** > **Members**.
+2. Click the role next to the person's name and pick a new one.
+
+Who can change what:
+
+- **The owner** can change anyone's role except their own, and can make people admins.
+- **Admins** can switch people between **Member** and **Viewer**. They can't change another admin, and they can't make anyone an admin.
+- Nobody can change their own role here.
+- The owner's role changes only by [transferring ownership](#transfer-ownership).
+
+## Remove someone
+
+1. Open **Settings** > **Members**.
+2. Click **Remove** next to the person and confirm.
+
+What happens:
+
+- They lose access to the workspace right away.
+- Files they created stay in the workspace.
+- Storage and email accounts they connected in this workspace are disconnected, and their workflow enrollments end.
+
+Who can remove whom:
+
+- **The owner** can remove anyone except themselves.
+- **Admins** can remove members and viewers, but not other admins.
+- **The owner can't be removed.** Ownership must be transferred first.
+
+<Tip>
+  Removing someone doesn't reduce the seats you pay for. If you're the owner and seats are left unused, a message offers **Release N**. Releasing lowers your seat count, with the change prorated on your next invoice. You can't go below your plan's minimum.
+</Tip>
+
+## Transfer ownership
+
+Only the owner can transfer ownership, and only to someone who has already accepted their invitation.
+
+1. Open **Settings** > **Members**.
+2. Click **Make owner** next to the person.
+3. Confirm.
+
+The new owner takes over billing, member management and the right to delete the workspace. You become an admin. Only the new owner can transfer it back.
+
+## Leave a workspace
+
+There's no **Leave** button. To leave a workspace:
+
+- **Ask the [agent](/agent/overview)**, for example "Remove me from this workspace." It asks you to confirm first.
+- **Or ask an owner or admin** to remove you.
+
+**The owner can't leave.** Transfer ownership to someone else first, then leave as an admin.
+
+## What viewers see
+
+Viewers can't open workspace settings, so they don't see the member list. If they ask the agent who's in the workspace, they get the number of people in each role, not names or emails.
+
+## Manage members through the agent
+
+Owners and admins can ask the [agent](/agent/overview) to manage people, for example "Invite sam@example.com as a viewer" or "Make Priya an admin." The agent can:
+
+- List members and pending invitations
+- Invite people, with a role for each
+- Change a role, or transfer ownership
+- Remove people or cancel invitations
+- Send a pending invitation's email again
+
+It follows the same rules as the Members tab, and asks before each change. Click **Allow** or **Not now**.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="I don't see the Members tab">
+    The tab isn't shown in personal workspaces, or to viewers.
+  </Accordion>
+  <Accordion title="I can't invite anyone">
+    Only owners and admins can invite. If you're an admin and the workspace is out of seats, ask the owner to add seats.
+  </Accordion>
+  <Accordion title="I can't make someone an admin">
+    Only the owner can invite admins or make someone an admin.
+  </Accordion>
+  <Accordion title="Changing or removing an admin fails">
+    Only the owner can change or remove admins.
+  </Accordion>
+  <Accordion title="I'm the owner and want to leave">
+    Transfer ownership with **Make owner**, then ask the agent to remove you, or have the new owner remove you.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="File sharing" icon="share-nodes" href="/features/file-sharing">
+    Share individual files and folders.
+  </Card>
+  <Card title="Plans & Pricing" icon="credit-card" href="/account/plans-pricing">
+    Team plans are billed per seat.
+  </Card>
+</CardGroup>

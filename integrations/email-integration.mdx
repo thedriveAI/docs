@@ -1,284 +1,172 @@
 ---
 title: "Email Integration"
-description: "Automatically import and organize email attachments from Gmail and Outlook"
+description: "Connect Gmail or Outlook so workflows can file the attachments you receive, and import attachments you already have"
 ---
 
 ## Overview
 
-The Drive AI integrates with Gmail and Outlook to automatically import email attachments to your workspace. Stop manually downloading and organizing attachments—let The Drive AI handle it automatically.
+Connect a Gmail or Outlook account, and [workflows](/workflows/overview) can act on the attachments that arrive in it. A workflow can read an attachment, decide what it is, rename it and save it to the right folder.
 
-<Frame>
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="w-full aspect-video"
-    src="https://thedriveaistorage.blob.core.windows.net/rootpublic/UploadAssets/email_demo.mp4"
-  ></video>
-</Frame>
+Connecting an account doesn't save anything by itself. Attachments are saved only when a workflow with an **Email Attachment** trigger saves them, or when you run a [historical import](#import-past-attachments). The agent doesn't read or send your email.
 
-<Note>
-  Email integration is available on the **Premium plan** only.
-</Note>
+Connected drives and accounts come with Max, Team, Business and Enterprise. See [Plans & Pricing](/account/plans-pricing).
 
-## Why Connect Your Email?
+## Who can do what
 
-Email attachments are one of the biggest sources of document chaos:
+| Task | Who |
+|------|-----|
+| Connect a Gmail or Outlook account | Any member who can open **Settings**. Viewers can't. |
+| See which email accounts are connected, and who connected them | Every member |
+| Run a historical import, or manage an account's blocked senders | Only the person who connected the account |
+| Approve or reject new connections, when approval is required | Owners and admins, in team workspaces |
+| Manage the workspace blocklist and see **Import History** | Owners and admins |
+| Create the workflows that file attachments | Owners and admins |
+| Disconnect an account | The person who connected it, or an owner or admin |
 
-- Contracts buried in threads
-- Invoices scattered across months of emails
-- Reports you can never find when you need them
-- Important documents lost in your inbox
+## How many accounts you can connect
 
-With The Drive AI email integration:
+- **Personal workspace:** one Gmail account and one Outlook account.
+- **Team workspace:** each member can connect several. Click **Add account** to connect another.
 
-- **Attachments are automatically imported** to your workspace
-- **AI organizes them** into logical folders
-- **Find anything instantly** with natural language search
-- **Never lose an important document** again
-
-## Supported Email Providers
-
-| Provider | Status |
-|----------|--------|
-| Gmail | Supported |
-| Outlook | Supported |
-
-### Connection Limits
-
-The number of email accounts you can connect depends on your workspace type:
-
-| Workspace Type | Gmail Accounts | Outlook Accounts |
-|----------------|----------------|------------------|
-| Personal | 1 | 1 |
-| Team | Up to 50 | Up to 50 |
-
-## Connecting Gmail
+## Connect Gmail or Outlook
 
 <Steps>
-  <Step title="Navigate to Integrations">
-    Go to **Settings** > **Email Integrations**.
+  <Step title="Open Integrations">
+    Open **Settings** and choose **Integrations**. Under **Email and messaging**, click **Gmail** or **Outlook**.
   </Step>
-  <Step title="Select Gmail">
-    Click **Connect Gmail**.
+  <Step title="Sign in">
+    Click **Connect Gmail** (or **Connect Outlook**). A window opens where you choose your account and allow access. If nothing opens, allow pop-ups for The Drive AI and try again.
   </Step>
-  <Step title="Authorize Access">
-    Sign in to your Google account and grant The Drive AI permission to access your email attachments.
+  <Step title="Import past attachments, if you want">
+    When the account is connected, the **Historical Sync** panel opens so you can bring in attachments you already received. You can close it and come back later. See [Import past attachments](#import-past-attachments).
   </Step>
-   <Step title="Import Past attachments">
-    After successful authorization, you have an option to import past attachments:
-    - You will see an option to import historical file attachments
-    - Select how far back you want to go on history
-  </Step>
-  <Step title="Start Importing">
-    Click **Import** to start automatic attachment imports.
+  <Step title="Set up a workflow">
+    Create a workflow that starts with **Email Attachment** to decide what happens to incoming attachments. Only an owner or admin can create workflows. See [Triggers](/workflows/triggers).
   </Step>
 </Steps>
 
-## Connecting Outlook
+{/* Screenshot: Settings > Integrations > Gmail with one connected account and its … menu open showing Historical sync, Blocked senders and Disconnect */}
+
+Each connected account shows who connected it, when, and when its last import ran. Accounts you can't act on show **View only**.
+
+Workflows act on mail that arrives after you connect. Mail you already had is only brought in by a historical import.
+
+### What you allow
+
+- **Gmail:** Google asks you to let The Drive AI read your email and its attachments. It can't send, change or delete email.
+- **Outlook:** Microsoft asks you to let The Drive AI read mail in your own mailbox, read your basic profile, and stay connected without asking you to sign in again.
+
+The Drive AI connects through Google or Microsoft sign-in and never sees your password.
+
+### Outlook with a work or school account
+
+Many organizations require their Microsoft 365 administrator to approve The Drive AI before anyone can connect Outlook. If yours does, the sign-in window shows **Outlook Integration Failed** with a message that your organisation requires an administrator to approve The Drive AI. Ask your administrator to approve it, then connect again.
+
+Outlook only connects mailboxes hosted by Microsoft: Outlook.com, Hotmail.com and Live.com addresses, Microsoft 365, and custom domains that use Microsoft email hosting. Other addresses show **Email Not Supported**. For a Gmail address, use **Gmail** instead.
+
+## Require approval for new connections
+
+In a team workspace, owners and admins can make new email connections wait for approval:
+
+1. Open **Settings** > **Integrations** > **Gmail** (or **Outlook**).
+2. Under **Workspace settings**, turn on **Require approval for new connections**.
+
+Gmail and Outlook each have their own switch. When it's on:
+
+- A member's new connection shows **Pending** until an owner or admin approves it. Connections made by owners and admins don't wait.
+- Owners and admins see **Approve** and **Reject** on pending connections. **Reject** asks for a reason, which is shown on the member's row as **Rejected**.
+
+## Import past attachments
+
+To bring in attachments you received before connecting:
 
 <Steps>
-  <Step title="Navigate to Integrations">
-    Go to **Settings** > **Email Integrations**.
+  <Step title="Open Historical sync">
+    In **Settings** > **Integrations**, open **Gmail** or **Outlook**. Open the **…** menu on your account and choose **Historical sync**.
   </Step>
-  <Step title="Select Outlook">
-    Click **Connect Outlook**.
+  <Step title="Choose what to import">
+    Choose a **Time range**: **Last 30 days**, **Last 90 days** or **Last 180 days (6 months)**. Outlook also offers **Last 365 days (1 year)**. Tick **Include sent emails** to also import attachments from mail you sent.
   </Step>
-  <Step title="Authorize Access">
-    Sign in to your Microsoft account and grant The Drive AI permission to access your email attachments.
-  </Step>
-  <Step title="Import Past attachments">
-    After successful authorization, you have an option to import past attachments:
-    - You will see an option to import historical file attachments
-    - Select how far back you want to go on history
-  </Step>
-  <Step title="Start Importing">
-    Click **Import** to start automatic attachment imports.
+  <Step title="Start">
+    Click **Start Import**. It runs in the background, so you can close the panel.
   </Step>
 </Steps>
 
-## How It Works
+{/* Screenshot: The Historical Sync panel with the Time range menu, Include sent emails checkbox and Start Import button */}
 
-### Automatic Import
+What to expect:
 
-Once connected, The Drive AI monitors your inbox for new attachments:
+- **Where files go:** imported attachments are saved to the top level of your workspace, as they are. They aren't filed or renamed.
+- **Workflows:** imported attachments don't start **Email Attachment** workflows. A workflow that watches uploads to The Drive AI can file them. Click **Set up a workflow** in the panel to make one.
+- **Progress:** reopen **Historical sync** to see how many emails have been processed, and how many files were imported and skipped. Click **Cancel Sync** to stop it. When it finishes, the panel shows **Previous sync complete** with the totals.
+- **One at a time:** each account can run one import at a time.
 
-1. **New email arrives** with an attachment
-2. **The Drive AI detects** the attachment
-3. **Attachment is imported** to your workspace
-4. **AI organizes** the file into the appropriate folder
+These are skipped and not saved:
 
-All of this happens automatically—you don't need to do anything.
+- Images and calendar files (such as .ics invitations)
+- Attachments from [blocked senders](#block-senders)
+- Attachments whose content was already imported into the workspace by an earlier import
+- Files found to contain malware
 
-### What Gets Imported
+If the workspace runs out of storage, the import pauses with **Workspace storage limit reached. Free up space or upgrade to continue.** If the provider is busy, it pauses and continues by itself.
 
-By default, The Drive AI imports common document types:
+### Import History
 
-- **Documents**: PDF, DOCX, DOC, TXT
-- **Spreadsheets**: XLSX, XLS, CSV
-- **Presentations**: PPTX, PPT
-- **Images**: Images are not imported.
+Owners and admins can open **Settings** > **Import History** to see every file brought in by imports, with totals for **Imported**, **Failed** and **Skipped**. Filter by source (**Gmail**, **Outlook**, **Slack**, **Teams**) or by type, and click a file to open it.
 
-### Organization
+## Block senders
 
-Imported attachments are organized based on:
+Blocked senders' attachments aren't imported, and workflows skip them. The workflow's activity says the attachment was skipped because the sender is on a blocklist.
 
-| Factor | Example |
-|--------|---------|
-| **Content** | Invoice detected → Invoices folder |
+You can block an exact email address or a whole domain, such as `example.com`, and add a reason.
 
-## Configuration Options
+**For one account:** open the account's **…** menu and choose **Blocked senders**. Type an address or domain in **Block an email or domain** and click **Block**. To unblock one, remove it from the list and click **Unblock Sender**.
 
-### Blocking Email Addresses and Domains
+**For the whole workspace (owners and admins):** open **Settings** > **Email Blocklist**. Blocks here apply to every connected email account in the workspace. Click **Remove** to unblock.
 
-You can block attachments from specific senders or entire domains to prevent unwanted files from being imported. Blocking can be configured at two levels:
+On the same page, **Allow members to manage their own blocked senders** decides whether members can use **Blocked senders** on their own accounts. When it's off, they see **Your workspace admin has not enabled user-level email blocklisting.**
 
-**Integration Level**
+## Disconnect
 
-Block senders for a specific email integration (Gmail or Outlook):
+Open the account's **…** menu and choose **Disconnect**, then confirm. Owners and admins can also click **Disconnect** on anyone's account.
 
-1. Go to **Settings** > **Email Integrations**
-2. Select the integration you want to configure
-3. Click **Blocked Senders**
-4. Add email addresses (e.g., `spam@example.com`) or domains (e.g., `@marketing.com`)
-
-**Workspace Level**
-
-Block senders across all email integrations in your workspace:
-
-1. Go to **Settings** > **Workspace** > **Email Blocklist**
-2. Add email addresses or domains to the block list
-3. These rules apply to all connected email accounts
-
-<Tip>
-  Use domain blocking (e.g., `@newsletters.com`) to block all emails from a specific domain at once.
-</Tip>
-
-### Import Frequency
-The Drive AI imports files real-time.
-
-## Fetching Past Email Attachments
-
-You can import historical email attachments from both Gmail and Outlook. This allows you to bring in attachments from emails received before you connected The Drive AI.
-
-<Steps>
-  <Step title="Navigate to Email Settings">
-    Go to **Settings** > **Email Integrations** and select the connected account.
-  </Step>
-  <Step title="Select Import History">
-    Click **Import History** or **Fetch Past Attachments**.
-  </Step>
-  <Step title="Choose Date Range">
-    Select the time period for historical import:
-    - Last 30 days
-    - Last 90 days
-  </Step>
-  <Step title="Start Import">
-    Click **Start Import** to begin fetching historical attachments. The import runs in the background.
-  </Step>
-</Steps>
-
-<Note>
-  Historical import may take some time depending on the number of emails and attachments in the selected date range.
-</Note>
-
-## Activity History
-
-Track all email attachment activity in your workspace with the Activity History feature. This gives you complete visibility into what files are being imported and their status.
-
-### Viewing Activity History
-
-1. Go to **Settings** > **Email Integrations**
-2. Click **Activity History** or **View Activity**
-
-### Activity Statuses
-
-Each imported attachment shows one of the following statuses:
-
-| Status | Description |
-|--------|-------------|
-| **Uploaded** | File was successfully imported to your workspace |
-| **Skipped** | File was skipped based on your filter settings (blocked sender, excluded file type, etc.) |
-| **Duplicate** | File was already imported previously and skipped to avoid duplicates |
-| **Unsupported** | File type is not supported for import |
-
-### Activity Details
-
-For each activity entry, you can see:
-
-- File name and type
-- Sender email address
-- Email subject
-- Date and time of activity
-- Status and any relevant notes
-
-<Tip>
-  Use the Activity History to troubleshoot import issues and understand why certain attachments may not have been imported.
-</Tip>
-
-### Email Metadata
-
-Imported attachments retain metadata about their source:
-
-- Sender email address
-- Email subject
-- Date received
-- Original filename
-
-## Managing Your Email Connection
-
-### Disconnecting
-
-To completely disconnect your email:
-
-1. Go to **Settings** > **Integrations** > **Email**
-2. Click **Disconnect** next to the email account
-3. Confirm the disconnection
-
-<Warning>
-  Disconnecting does not delete already-imported attachments. It only stops future imports.
-</Warning>
-
-## Privacy & Security
-
-<AccordionGroup>
-  <Accordion title="What data do you access?" icon="eye">
-    The Drive AI only accesses email attachments. We do not read, store, or process the text content of your emails. Only attachment files are imported to your workspace.
-  </Accordion>
-  <Accordion title="Is my data secure?" icon="shield-halved">
-    Yes. All data transfers are encrypted. Your email credentials are handled through secure OAuth—we never see or store your password.
-  </Accordion>
-  <Accordion title="Can I revoke access?" icon="key">
-    Yes. You can disconnect The Drive AI from your email account at any time. You can also revoke access from your Google or Microsoft account settings.
-  </Accordion>
-</AccordionGroup>
+- Workflows that use the account are paused. If the same account is connected again later, workflows paused only because of the disconnect start again on their own.
+- Attachments already saved stay in your workspace.
+- The Drive AI stops using the account, but the access you allowed is still listed in your Google or Microsoft account. To remove it there too, remove The Drive AI's access in your Google or Microsoft account settings.
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="Attachments Not Importing" icon="file-circle-xmark">
-    - Check that the email integration is enabled (not paused)
-    - Verify the attachment file type is in your include list
-    - Ensure you have sufficient storage space
-    - Check that the email folder is being monitored
-    - Check the **Activity History** to see if files were skipped or marked as unsupported
+  <Accordion title="An attachment wasn't filed" icon="paperclip">
+    - Check that a workflow with an **Email Attachment** trigger is active and watches this account. See [Approvals and activity](/workflows/approvals-and-activity) for its runs.
+    - Mail that arrived before you connected isn't handled by workflows. Use **Historical sync**.
+    - Check whether the sender is blocked for the account or the workspace.
   </Accordion>
-  <Accordion title="Missing Old Attachments" icon="clock-rotate-left">
-    By default, only new attachments (after connection) are imported. Use the **Fetch Past Attachments** feature to import historical attachments from before you connected. See [Fetching Past Email Attachments](#fetching-past-email-attachments) for details.
+  <Accordion title="The account says live updates are paused" icon="pause">
+    The Drive AI lost its live connection to the mailbox and is reconnecting by itself. Depending on the message, new mail still comes through a few minutes late, or comes through once it reconnects.
   </Accordion>
-  <Accordion title="Duplicate Files" icon="copy">
-    Enable **Skip Duplicates** in your settings to prevent the same attachment from being imported multiple times. You can view duplicate detections in the **Activity History**.
+  <Accordion title="My connection says Pending" icon="hourglass">
+    Your workspace requires approval for new connections. Ask an owner or admin to approve it.
+  </Accordion>
+  <Accordion title="Outlook says an administrator has to approve" icon="user-shield">
+    Your organization requires its Microsoft 365 administrator to approve The Drive AI. Ask them to approve it, then connect again. If the message mentions Conditional Access, ask them to allow The Drive AI under your organization's sign-in policies.
+  </Accordion>
+  <Accordion title="A historical import paused" icon="circle-pause">
+    - **Workspace storage limit reached:** free up space or upgrade, then start it again.
+    - **Authentication expired. Please reconnect your account.:** disconnect and connect the account again.
+  </Accordion>
+  <Accordion title="I can't add another account" icon="circle-plus">
+    A personal workspace can connect one Gmail and one Outlook account. Disconnect the current one first, or connect in a team workspace.
   </Accordion>
 </AccordionGroup>
 
-## What's Next?
+## What's next?
 
 <CardGroup cols={2}>
-  <Card title="Google Drive Import" icon="google-drive" href="/integrations/google-drive-import">
-    Import files from Google Drive.
+  <Card title="Workflow triggers" icon="bolt" href="/workflows/triggers">
+    Start a workflow when an attachment arrives.
   </Card>
-  <Card title="MCP Server" icon="plug" href="/integrations/mcp-server">
-    Connect The Drive AI to other AI tools.
+  <Card title="Slack" icon="slack" href="/integrations/slack">
+    Let workflows act on files shared in Slack.
   </Card>
 </CardGroup>

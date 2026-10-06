@@ -1,0 +1,135 @@
+---
+title: "Tools from Other Apps"
+description: "Give the agent tools from other services, such as a CRM or a ticketing system, by connecting their MCP servers"
+---
+
+## Overview
+
+Many services offer an MCP (Model Context Protocol) server: a way for AI assistants to use that service's tools, such as looking up a customer in a CRM or opening a ticket. An owner or admin can connect an MCP server to your workspace, and the [agent](/agent/overview) can then use its tools in every member's conversations.
+
+- **Tools that only read**, like a search, run without asking.
+- **Tools that can change something** on the other service ask you first, every time, and show exactly what would be sent.
+
+<Note>
+  This page is about the agent using other services. To use your The Drive AI files from Claude, ChatGPT, Cursor and other AI tools, see [MCP Server](/integrations/mcp-server).
+</Note>
+
+## Before you start
+
+- You need to be an owner or admin of the workspace.
+- You need the server's URL from the service, and its token or API key if it needs one. The service's own documentation usually lists them.
+- The server must be reachable on the public internet over `https`. Local and private network addresses aren't allowed, and the URL can't contain a username or password.
+
+## Add an MCP server
+
+<Steps>
+  <Step title="Open the section">
+    Open **Settings** > **Agent** and expand **What the agent can do elsewhere**. Click **Add MCP server**.
+  </Step>
+  <Step title="Name it">
+    In **Name**, type the service's name, such as `HubSpot`. The agent's tools from this server are named after it, for example `hubspot_search`. The name needs at least two letters or digits, and can't match a server you've already added or one of the agent's own tool families.
+  </Step>
+  <Step title="Enter the server URL">
+    Paste the address into **Server URL**, for example `https://mcp.example.com/mcp`.
+  </Step>
+  <Step title="Choose the transport">
+    Leave **Transport** on **Streamable HTTP (recommended)** unless the service says to use **Server-sent events (older servers)**.
+  </Step>
+  <Step title="Choose how it signs in">
+    In **Authentication**, choose one:
+
+    - **No authentication**, for a server that doesn't need a key.
+    - **Bearer token**, then paste the token into **Bearer token**.
+    - **API key in a header**, then enter the **Header name** the service expects (`X-API-Key` by default) and paste the key into **Header value**.
+
+    The token or key is stored encrypted and never shown again.
+  </Step>
+  <Step title="Add and test">
+    Click **Add and test**. The Drive AI connects to the server and lists its tools. If it works, you see, for example, **HubSpot connected** and how many tools are available to the agent. If it can't reach the server, the server is still saved, and you see **HubSpot saved, but it could not be reached** with the reason.
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/agent-mcp-add.png" alt="The Add an MCP server dialog with name, server URL, transport and authentication" />
+</Frame>
+
+The agent picks up the new tools from the next request. A workspace can have up to 20 MCP servers.
+
+<Warning>
+  The token or key you enter is used for everyone in the workspace. Whatever that account can do on the other service, every member's agent can do through it, after they allow each action that changes something. Use a token with only the access your team needs.
+</Warning>
+
+## How the agent uses the tools
+
+You don't need to name a tool. Ask for what you want, and the agent uses a connected service's tools when they fit:
+
+```text
+Look up Acme Corp in HubSpot and file their signed contract under /Clients/Acme.
+```
+
+```text
+Open a ticket for each invoice in this folder that's missing a PO number.
+```
+
+**Read-only tools run without asking.** The service marks which of its tools only read. The agent uses those freely, like searching a CRM.
+
+**Every other tool asks first.** The agent shows a card labelled with the service, for example **On HubSpot**. It says the action "Acts on HubSpot, outside your files, and cannot be undone here," and lists each value it would send. Click **Allow** to run it, or **Not now** to skip it.
+
+These actions happen on the other service, so **Undo** in The Drive AI can't reverse them. To reverse one, do it on that service.
+
+See [Approving and undoing](/agent/approving-and-undoing#actions-on-other-services).
+
+## Manage servers
+
+Each server in **What the agent can do elsewhere** shows its name, its address and one status line:
+
+| Status | Meaning |
+|--------|---------|
+| **N tools · checked 2 min ago** | Working. The agent has these tools. |
+| **Unreachable** · reason | The last check couldn't connect. The section is flagged until it's fixed. |
+| **Not checked yet** | It hasn't been tested. It's checked on the next request, or click **Test**. |
+| **Off** | Its tools aren't offered to the agent. |
+
+Owners and admins can:
+
+- **Test** a server. Click **Test** to connect again and see the tools it lists.
+- **Turn it off or on** with its switch. Off keeps the server's settings but hides its tools from the agent.
+- **Change it.** Click the server's name, change the details, and click **Save and test**. To keep the current token or key, leave the secret field blank. Changing the address or the sign-in details clears the last check. If you rename a server, its tools keep their original names.
+- **Remove it.** Click the trash icon and confirm. The agent no longer has its tools.
+
+## What members see
+
+Members see the same list in **Settings** > **Agent** > **What the agent can do elsewhere**: each server's name, address and status. They can't add, test, change or remove servers. If none are connected, the section says **No MCP servers are connected. A workspace admin can add one.**
+
+Every member can use the servers' tools through the agent, and every action that changes something asks the member who's in the conversation.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="It says the server URL must use https" icon="lock">
+    Use the server's `https://` address. Plain `http` isn't accepted.
+  </Accordion>
+  <Accordion title="It says the server must be reachable on the public internet" icon="globe">
+    The Drive AI connects to the server from the internet, so it can't reach `localhost` or an address on a private network. Use the service's public MCP address.
+  </Accordion>
+  <Accordion title="The server shows Unreachable" icon="plug-circle-xmark">
+    Check the URL, the transport and the token or key with the service, then click **Test**. If the service needs sign-in in a browser window rather than a token or key, it can't be connected here: The Drive AI supports no authentication, a bearer token, or an API key in a header.
+  </Accordion>
+  <Accordion title="The name is refused" icon="tag">
+    Choose another name. It can't be the same as a server already added, or clash with one of the agent's own tool names.
+  </Accordion>
+  <Accordion title="A tool is slow or its answer is cut short" icon="hourglass">
+    A tool has 60 seconds to answer. Very long answers are shortened before the agent reads them. Ask for something narrower, such as one customer instead of all of them.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="MCP Server" icon="server" href="/integrations/mcp-server">
+    Use your The Drive AI files from Claude, ChatGPT and other AI tools.
+  </Card>
+  <Card title="Agent settings" icon="sliders" href="/agent/settings">
+    Every setting for the agent in one place.
+  </Card>
+</CardGroup>

@@ -1,0 +1,131 @@
+---
+title: "Building with the Agent"
+description: "Ask the agent to create, change, run and check workflows, and review its drafts before they run"
+---
+
+## Overview
+
+You can build a workflow by describing it to [the agent](/agent/overview). It works out the sources and steps, finds the real folders and channels, checks the result the same way the **Save** button does, and shows you a draft. Nothing runs until the workflow is saved.
+
+You can ask from any conversation with the agent, or from the **Agent** tab inside the workflow editor.
+
+**Before you start:**
+
+- Only owners and admins can create, change, save, switch on or off, run or retry workflows, whether in the editor or through the agent. Everyone can ask the agent what a workflow does and what it did.
+- Connect any account the workflow should watch or save to in **Settings** > **Integrations**. See [Triggers](/workflows/triggers).
+
+## Ask for a workflow
+
+Say what should happen, when, and to which files. For example:
+
+- "Whenever a file lands in Inbox, file it by client and year."
+- "When an invoice arrives by email from @acme.com, save it to Google Drive under Acme/Invoices and post the amount in #accounts."
+- "Every Sunday, move anything in Archive older than 7 years to the trash, but ask me first."
+- "Watch our Contracts library in SharePoint and rename signed contracts with the client and date."
+
+You don't need to say how to find each value. "By client and year" is enough: the steps read each document when they run. The agent asks only what it can't decide for you, such as:
+
+- Which SharePoint site, when it isn't named. The agent never picks a site for you.
+- Which folder, when several match the name.
+- The address for **Send to Another App**.
+- Where rejected or unwanted files should go, when the path you described deletes files.
+- Whether "our drive" means one shared drive or each person's own drive.
+
+If you don't name a folder, it builds the workflow for every new file in that place and tells you so. Say the word and it narrows it.
+
+## Review the draft
+
+The agent shows a card with the draft: the workflow's name, a **Draft** label, what starts it, and its steps.
+
+<Frame>
+  <img src="/images/workflow-draft-card.png" alt="A workflow draft card in the agent panel with the Draft label, a preview of its steps, and Open in editor and Save" />
+</Frame>
+
+- **Open in editor** opens the draft on the canvas, where you can check every step's settings, change anything, and save it yourself.
+- **Save** saves it as shown. You're asked to confirm: "Once saved it runs on real files whenever its trigger fires. It can be switched off any time from Workflows."
+
+When the draft changes a workflow you already have, the card says **Proposed change** and the button is **Save changes**. Saving keeps the workflow running as it is, with the changes, from the next file.
+
+Once saved, the card shows **Saved** and an **Open** link.
+
+<Note>
+  An unsaved draft lives only in its card. The Workflows page lists saved workflows only. Open a draft again from the card.
+</Note>
+
+You can also tell the agent "save it". It then shows a card asking you to **Allow** it, with **Not now** to decline and **Adjust in the editor** to open the draft first.
+
+## Build in the editor with the Agent tab
+
+In the workflow editor, the left panel has an **Agent** tab beside **Nodes**, and **Activity** once the workflow is saved. Messages you send there are about the workflow on screen.
+
+<Frame>
+  <img src="/images/workflow-canvas-agent.png" alt="The workflow editor with the Agent tab open beside Nodes, after asking the agent to change the schedule" />
+</Frame>
+
+<Steps>
+  <Step title="Open the Agent tab">
+    Open a workflow, or click **New workflow** on the Workflows page, and choose **Agent** in the left panel.
+  </Step>
+  <Step title="Ask for a change">
+    For example "Also watch my OneDrive", "Ask Sarah before anything is moved", or "Only do this for PDFs".
+  </Step>
+  <Step title="Check what changed">
+    The change appears straight on the canvas. A summary lists **What changed on the canvas**: steps and sources added, updated or removed. If it changed or removed something that was already there, click **Undo this change** to put it back.
+  </Step>
+  <Step title="Validate and save">
+    Click **Validate**, then **Save**. Changes from the agent aren't saved until you click **Save**.
+  </Step>
+</Steps>
+
+If the agent proposes a separate workflow, or a change to a different one, the workflow on screen isn't touched. A message offers **Open it** to see that draft on its own canvas.
+
+Saving an active workflow after the agent removed sources or steps asks you to confirm first, because the removed parts stop working as soon as you save.
+
+## Validate
+
+**Validate** in the editor's toolbar checks the workflow the same way **Save** does. It shows **Valid** when there's nothing to fix. Otherwise a count appears: click it to see **Validation issues**, and click an issue to jump to its step.
+
+Some items are only **Worth a look** and are marked **won't block saving**. Common issues:
+
+- A step isn't connected to anything.
+- A source is missing: "Add a source — where should files come from?"
+- A step needs a file that's already saved somewhere: add **Save a Copy** before it, set to keep working on the copy.
+- A step checks where a file sits, but the source doesn't know which folder a file is in: use a schedule.
+
+When you save, you may also see a warning that the workflow runs alongside, or may overlap, another workflow on the same files. Saving still works. The agent asks you before it builds a workflow that changes files another active workflow already handles.
+
+## What else the agent can do
+
+| Ask | What happens | Who can |
+|-----|--------------|---------|
+| "What workflows do we have?" or "What does the invoice workflow do?" | Lists workflows, or describes one's sources and steps | Everyone |
+| "What did the invoice workflow do today?" | Shows recent runs: which file, what happened, and whether it worked | Everyone |
+| "Turn off the archive workflow" | Switches it on or off | Owners and admins |
+| "Run the Sunday cleanup now" | Runs a scheduled workflow now, on a few files, for real | Owners and admins |
+| "Retry the failed runs" | Retries a failed run from the step that failed | Owners and admins |
+| "What's waiting for approval?" | Lists approvals, with what each would do | Everyone |
+| "Approve the Acme invoice" | Approves or rejects, optionally with a note | The people the approval asks, and owners and admins |
+
+Every one of these that changes something shows you a card first, and does nothing until you click **Allow**. See [Approving and undoing](/agent/approving-and-undoing).
+
+The agent can't delete a workflow. Delete it from the Workflows page.
+
+## Tips
+
+- **Name the place.** "My Dropbox Inbox folder" or "the Contracts library on the Legal site" gets a narrower, safer workflow than "my files".
+- **Say what to leave alone.** Files that don't match are left untouched by default, so you don't need to ask for that.
+- **Ask for review first.** "Ask me before filing" adds an approval step. "Only ask me if you're unsure" approves confident filing on its own.
+- **One workflow, several places.** "Also do this for my Google Drive" adds a source to the same workflow instead of making a second one.
+- **Folders that don't exist yet.** The agent can create the folder after you agree, or set the workflow to wait until it appears.
+- **Accounts a teammate connected.** The agent can only look inside accounts you connected yourself. For a teammate's account, it builds the workflow without a folder and tells you that the account's owner can pick one in the source's settings.
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Steps" icon="list-check" href="/workflows/steps">
+    What each step in a draft does.
+  </Card>
+  <Card title="Approvals and activity" icon="clipboard-check" href="/workflows/approvals-and-activity">
+    Watch what a new workflow does.
+  </Card>
+</CardGroup>

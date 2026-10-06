@@ -3,7 +3,7 @@
   "info": {
     "title": "The Drive AI API",
     "description": "\n## The Drive AI API\n\nOne API for screenshots, markdown extraction, structured data extraction,\nand more. 107+ file formats supported.\n\n**[Developer Guide & SDK Docs](https://docs.thedrive.ai)** \u2014 Quickstart, guides, Pydantic/Zod examples, webhook verification.\n\nThis page is the interactive API reference. For tutorials and SDK usage, see the developer guide.\n\n## Endpoints\n\n| Endpoint | Credits | Description |\n|----------|---------|-------------|\n| `GET /{url}` | 1 | Screenshot any URL |\n| `GET /md/{url}` | 1 | Convert any URL to markdown |\n| `POST /api/v1/thumbnails/generate` | 1 | Generate thumbnail from file or URL |\n| `POST /api/v1/markdown/convert` | 1 | Convert file/URL to markdown |\n| `POST /api/v1/extract` | 1/page or 5/site | Extract structured data |\n| `POST /api/v1/analyze` | 2/page or 10/site | Analyze \u2014 compute, reason, derive |\n| `POST /api/v1/analyze/cross` | 5/doc + 3/page | Cross-reference multiple documents |\n\n## Authentication\n\nAll protected endpoints require an `X-API-Key` header:\n```bash\ncurl https://dev.thedrive.ai/stripe.com \\\n  -H \"X-API-Key: tda_live_your_key_here\"\n```\n\nGet your API key at https://dev.thedrive.ai/login\n\n## Pricing\n\n- **Free**: 100 credits/month, no card required\n- **Pro**: $0.01/credit, pay-as-you-go\n- **Enterprise**: Volume pricing, contact us\n",
-    "version": "1.4.0"
+    "version": "1.5.0"
   },
   "paths": {
     "/api/v1/thumbnails/generate": {
@@ -2002,6 +2002,38 @@
             "title": "Use Llm",
             "description": "Use LLM for image descriptions (costs tokens)",
             "default": false
+          },
+          "structure": {
+            "type": "boolean",
+            "title": "Structure",
+            "description": "Also return the document's structure: `pages` for a PDF (a scanned page transcribed in its place) or a presentation's slides, `sheets` for a workbook. For callers that cite locations.",
+            "default": false
+          },
+          "ocr": {
+            "type": "boolean",
+            "title": "Ocr",
+            "description": "Transcribe image-only pages and picture-only documents (one vision call per page). A caller whose plan does not cover transcription turns it off; the text layer is read either way.",
+            "default": true
+          },
+          "ocr_max_pages": {
+            "type": "integer",
+            "maximum": 1000.0,
+            "minimum": 0.0,
+            "title": "Ocr Max Pages",
+            "description": "With structure=true: the most pages to transcribe (the caller's plan limit); 0 is the default cap",
+            "default": 0
+          },
+          "filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filename",
+            "description": "The file's name, for a URL that does not carry it (a signed blob URL, a pre-authenticated download link): its extension picks the converter. Giving it also says the URL is a FILE, not a website, so a refused fetch (401/403) is reported as one instead of rendered in a browser."
           }
         },
         "type": "object",
@@ -2956,6 +2988,7 @@
           "markdown",
           "code",
           "text",
+          "ebook",
           "unsupported"
         ],
         "title": "FileCategory",
@@ -3224,6 +3257,66 @@
             "type": "integer",
             "title": "Content Length",
             "description": "Length of the markdown output in characters"
+          },
+          "pages": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/PageText"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pages",
+            "description": "With structure=true: a PDF's pages or a deck's slides"
+          },
+          "sheets": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/SheetText"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sheets",
+            "description": "With structure=true: a workbook's sheets"
+          },
+          "scanned_pages": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scanned Pages",
+            "description": "With structure=true, for a PDF: the pages that are images of text (reported even with ocr=false)"
+          },
+          "transcribed_pages": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transcribed Pages",
+            "description": "With structure=true, for a PDF: the pages whose text is a transcription of the image"
           }
         },
         "type": "object",
@@ -3279,6 +3372,27 @@
           }
         }
       },
+      "PageText": {
+        "properties": {
+          "number": {
+            "type": "integer",
+            "title": "Number",
+            "description": "1-based page or slide number"
+          },
+          "markdown": {
+            "type": "string",
+            "title": "Markdown",
+            "description": "The page's text (a scanned page's transcription)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "number",
+          "markdown"
+        ],
+        "title": "PageText",
+        "description": "One page of a PDF, or one slide of a presentation."
+      },
       "ResponseType": {
         "type": "string",
         "enum": [
@@ -3295,6 +3409,32 @@
         ],
         "title": "SchemaFormat",
         "description": "Schema format used for extraction/analysis."
+      },
+      "SheetText": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "index": {
+            "type": "integer",
+            "title": "Index",
+            "description": "0-based position in the workbook"
+          },
+          "markdown": {
+            "type": "string",
+            "title": "Markdown",
+            "description": "The sheet's values as a markdown table"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "index",
+          "markdown"
+        ],
+        "title": "SheetText",
+        "description": "One sheet of a workbook."
       },
       "SupportedTypesResponse": {
         "properties": {

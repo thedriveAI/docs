@@ -1,0 +1,119 @@
+---
+title: "Browser Extension"
+description: "Use the agent in Chrome's side panel, next to the Google Drive, OneDrive, SharePoint or Dropbox page you're on"
+---
+
+## Overview
+
+The Drive AI browser extension opens the agent in Chrome's side panel. It knows which Google Drive, OneDrive, SharePoint or Dropbox folder or file you're looking at, so you can say "this folder" or "these files" without explaining where they are.
+
+It is the same agent as in the web app, with the same [approvals and undo](/agent/approving-and-undoing), the same task limits, and the same conversations: a conversation you start in the side panel is there in the web app too, in the same workspace.
+
+## Install
+
+1. Open [The Drive AI in the Chrome Web Store](https://chromewebstore.google.com/detail/the-drive-ai/dielhikhcaoicomkojmkaebadghicngm) and click **Add to Chrome**.
+2. Pin the extension to your toolbar so it's easy to find.
+
+The extension works in Google Chrome and other Chromium browsers that support side panels.
+
+## Sign in
+
+1. Click The Drive AI icon in the toolbar. The side panel opens and shows **Your files and the assistant, in the side of any tab.**
+2. Click **Sign in**. A tab opens where you sign in to The Drive AI, if you aren't already.
+3. When it says **Login Successful**, the tab closes by itself after a couple of seconds and the side panel is ready.
+
+{/* Screenshot: The side panel signed in, with the workspace menu at the top, the ⋮ button, and the agent below */}
+
+If you belong to more than one workspace, pick one from the workspace menu at the top of the panel. Your personal workspace is marked **(personal)**. The panel remembers your choice. Switching workspaces switches to that workspace's conversations.
+
+Signing in or out in one window's panel applies to the extension in every window.
+
+## Work with the page you're on
+
+Open a folder or file in one of these, then ask the agent about it:
+
+- Google Drive (drive.google.com) and Google Docs, Sheets and Slides
+- OneDrive, personal or work
+- SharePoint
+- Dropbox
+- The Drive AI web app
+
+The chip next to the message box shows the name of the folder or file the agent treats as "here" or "this". On pages without a single folder or file, like search results or **Recent**, it shows the drive you're in, or **Workspace** when the extension can't tell which drive. Point at the chip to see what the agent will treat as "here".
+
+The chip follows the tab you're on. Switch tabs or open another folder, and it updates.
+
+For the agent to act on a drive, that drive must be [connected](/agent/connected-drives) to your workspace. The extension only tells the agent where you are. It doesn't give the agent access.
+
+### Which account a page is signed in to
+
+If you've connected more than one account on the same service, the extension works out which one the page belongs to:
+
+- **Google Drive and Docs:** it reads the account from the Google account button on the page.
+- **Dropbox:** the page only shows your account while its account menu is open. When the extension needs to know, it asks you to open it. See **Check** below.
+- **OneDrive and SharePoint:** it uses the page's address, when that shows the account.
+
+Once a page has shown which account it's signed in to, the extension remembers that for the site until you close the browser, so later pages that don't show it still count as that account.
+
+## When the agent can't see the page
+
+A note under the top of the panel says why, and what the agent is working in instead:
+
+| The note says | What it means and what to do |
+|---------------|------------|
+| "… isn't connected to this workspace, so the assistant can't see this page." | Click **Connect** and connect that drive. |
+| "Connecting … comes with …" or "Connecting … isn't part of this workspace's plan." | Your plan doesn't include connected drives. Click **See plans**, or ask your workspace owner. |
+| "The assistant hasn't reached this item in … yet. It will once the drive finishes syncing." | The drive is still being catalogued. Try again shortly. |
+| "This folder hasn't synced yet, so the assistant is working in …" | The folder is newer than the agent's catalog. The agent works in the whole drive meanwhile. |
+| "Assuming …: this page doesn't say which … account it's signed in to." | The agent picked the connected account it thinks is right. If it's wrong, show the page's account (on Dropbox, click **Check**). |
+| "This … is signed in to an account that isn't connected to this workspace, so the assistant is working over the workspace." | Connect that account, or switch the page to an account that's connected. |
+| "More than one … account is connected, and this page doesn't say which one it's signed in to." | Show the page's account. On Dropbox, click **Check**. |
+| "This item isn't in anything connected to this workspace, so the assistant can't see it." | The file is in someone else's drive, a shared drive that isn't added, or a shared drive your connected account can't open. Connect the account that owns it or is a member of the shared drive, or ask an admin to add the shared drive. |
+
+**Check (Dropbox):** click **Check**, then open your Dropbox account menu (your initials, top right). The note says **Watching for it…** and picks up the account as soon as the menu shows it. It waits up to 30 seconds.
+
+When the note is about connecting, a drive that's still syncing, or an account that isn't connected, the panel checks again every 30 seconds while it's open, so it clears once you've fixed it, even if you did that in another tab. It also checks again when you come back to the window.
+
+If the agent says **The agent is not enabled for this workspace.**, ask a workspace owner or admin to turn it on in **Settings** > **Agent**.
+
+## Account menu
+
+Click **⋮** at the top of the panel to open the **Account** menu. It shows:
+
+- The email you're signed in with
+- Your plan and how many assistant tasks you've used
+- **Connected accounts**, which opens **Settings** > **Integrations** in the web app
+- **Plans**
+- **Theme**: **System**, **Light** or **Dark**
+- **Sign out**
+
+## Privacy
+
+The extension only works on the sites listed above. On those pages it reads the page's address, and on Google and Dropbox pages, the email of the account the page shows. It sends these only to The Drive AI, to work out where you are. What it remembers about accounts is cleared when you close the browser.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The panel says it can't reach The Drive AI" icon="wifi">
+    **Can't reach The Drive AI. Check your connection and try again.** means the panel couldn't load the agent. Check your connection and click **Try again**. If it says **The assistant didn't finish opening.**, click **Reload**.
+  </Accordion>
+  <Accordion title="Sign-in didn't finish" icon="right-to-bracket">
+    If the sign-in tab shows **Something went wrong**, close it and click **Sign in** in the panel again.
+  </Accordion>
+  <Accordion title="The chip shows Workspace on a drive page" icon="location-dot">
+    The extension couldn't tell where you are, or the drive isn't connected. Read the note at the top of the panel for what to do.
+  </Accordion>
+  <Accordion title="The agent is working in the wrong account" icon="user">
+    Show the page's account so the extension can pick it up: on Dropbox, click **Check** and open the account menu. Make sure that account is connected in **Settings** > **Integrations**.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    Connect Google Drive, OneDrive, SharePoint or Dropbox.
+  </Card>
+  <Card title="The agent" icon="robot" href="/agent/overview">
+    What the agent can do.
+  </Card>
+</CardGroup>

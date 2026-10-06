@@ -18,31 +18,61 @@
             "pages": [
               "getting-started/introduction",
               "getting-started/quick-start",
-              "getting-started/interface-overview"
+              "getting-started/interface-overview",
+              "getting-started/mobile-app"
             ]
           },
           {
-            "group": "Core Features",
+            "group": "Files",
             "pages": [
               "features/uploading-files",
-              "features/auto-organization",
-              "features/chat-mode",
-              "features/agent-mode",
-              "features/pdf-tools",
-              "features/e-sign",
-              "features/document-creation",
+              "features/browsing-and-search",
+              "features/versions-and-trash",
               "features/document-scanning",
-              "features/file-sharing",
-              "features/file-requests",
-              "features/security"
+              "features/file-sharing"
+            ]
+          },
+          {
+            "group": "The Agent",
+            "pages": [
+              "agent/overview",
+              "agent/conversations",
+              "agent/approving-and-undoing",
+              "features/document-creation",
+              "agent/charts-and-diagrams",
+              "features/pdf-tools",
+              "agent/memory-and-instructions",
+              "agent/settings",
+              "agent/connected-drives",
+              "agent/browser-extension",
+              "agent/mcp-tools"
+            ]
+          },
+          {
+            "group": "Workflows",
+            "pages": [
+              "workflows/overview",
+              "workflows/triggers",
+              "workflows/steps",
+              "workflows/building-with-the-agent",
+              "workflows/approvals-and-activity",
+              "workflows/workflow-files"
+            ]
+          },
+          {
+            "group": "Collaboration",
+            "pages": [
+              "account/members-and-roles",
+              "features/e-sign",
+              "features/file-requests"
             ]
           },
           {
             "group": "Integrations",
             "pages": [
-              "integrations/google-drive-import",
-              "integrations/onedrive-import",
-              "integrations/dropbox-import",
+              "integrations/google-drive",
+              "integrations/onedrive",
+              "integrations/dropbox",
               "integrations/email-integration",
               "integrations/slack",
               "integrations/microsoft-teams",
@@ -50,9 +80,14 @@
             ]
           },
           {
-            "group": "Account & Billing",
+            "group": "Account",
             "pages": [
-              "account/plans-pricing"
+              "account/plans-pricing",
+              "account/usage-and-limits",
+              "account/notifications",
+              "account/profile-and-sign-in",
+              "account/settings-reference",
+              "features/security"
             ]
           },
           {
@@ -154,6 +189,32 @@
       ]
     }
   },
+  "redirects": [
+    {
+      "source": "/features/chat-mode",
+      "destination": "/agent/overview"
+    },
+    {
+      "source": "/features/agent-mode",
+      "destination": "/agent/overview"
+    },
+    {
+      "source": "/features/auto-organization",
+      "destination": "/workflows/overview"
+    },
+    {
+      "source": "/integrations/google-drive-import",
+      "destination": "/integrations/google-drive"
+    },
+    {
+      "source": "/integrations/onedrive-import",
+      "destination": "/integrations/onedrive"
+    },
+    {
+      "source": "/integrations/dropbox-import",
+      "destination": "/integrations/dropbox"
+    }
+  ],
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -164,7 +225,7 @@
         "label": "Contact",
         "href": "https://thedrive.ai/contact"
       },
-       {
+      {
         "label": "Get a demo",
         "href": "https://cal.com/bigyan"
       }

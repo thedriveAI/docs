@@ -1,169 +1,241 @@
 ---
 title: "File Requests"
-description: "Collect documents from anyone via email with checklists, reminders, and automatic organization"
+description: "Collect documents from anyone with a personal upload link, an optional checklist, a due date and reminders"
 ---
 
 ## Overview
 
-File Requests let you collect documents from clients, vendors, or anyone by email. Recipients upload files through a secure link or simply reply with attachments—no account needed. Files land in your workspace, automatically renamed and organized.
+A file request collects documents from clients, vendors or anyone else. Each recipient gets an email with their own upload link. They open the link, upload their files, and the files land in the folder you chose. Recipients don't need an account.
 
-## Managing File Requests
+You can ask for specific documents with a checklist, set a due date, rename uploads automatically, and send reminders to people who haven't finished.
 
-Navigate to **Settings** > **File Requests** to see all your file requests, their status, and create new ones.
+<Note>
+  Creating file requests needs a plan that includes them. See [Plans & Pricing](/account/plans-pricing).
+</Note>
 
-<Frame>
-  <img src="/images/file-request-1.png" alt="File Requests dashboard showing past requests and their status" />
-</Frame>
+## Who can create and manage requests
 
-Each request shows the number of respondents, files received, time since creation, and status (**Active** or **Closed**). Click **+ New request** to create a new one.
+| Action | Who can do it |
+|--------|---------------|
+| Create a request | Owners, admins and members. Viewers can't. |
+| See requests | Owners, admins and members see every request in the workspace, including other people's. |
+| Close a request, add or remove recipients, send reminders | The person who created the request, and workspace owners and admins |
 
-## How It Works
+If you open someone else's request and you're a member, you can see its progress, but closing it, reminding or changing its recipients is refused.
+
+## Where to find file requests
+
+Open **Settings** and choose **File Requests**. Each request shows its title, status, how many recipients have responded, how many files have arrived, and when it was created.
+
+## Create a request
 
 <Steps>
-  <Step title="Create a Request">
-    Click **+ New request** to open the request form. Fill in the details:
-
-    - **Title** (required) — e.g., "Q4 Tax Documents"
-    - **Message to recipients** (optional) — instructions for your recipients
-    - **Recipients** — email (required) and name (optional), add as many as needed
-    - **Required documents** (optional) — add a checklist of specific documents you need
-    - **Destination** — choose which folder files land in (defaults to Root)
-    - **Expires** — optionally set an expiration date
-    <Frame>
-      <img src="/images/file-request-2.png" alt="New file request modal with title, recipients, and settings" />
-    </Frame>
-
-    Expand **More options** for additional settings:
-
-    - **Auto-organize uploads** — AI sorts incoming files into subfolders automatically (off by default)
-    - **Rename uploaded files** — define a naming pattern using variables like `{recipient_name}`, `{original_name}`, `{recipient}`, `{email}`, `{date}`, `{title}`, `{document_name}`
-    - **Smart reminders** — auto-remind recipients who haven't uploaded yet (off by default)
-    - **Completion email** — get notified by email when a recipient uploads files (on by default)
-
-    <Frame>
-      <img src="/images/file-request-3.png" alt="More options: auto-organize, rename pattern, smart reminders, and completion email" />
-    </Frame>
-
-    Click **Send Request** when ready.
+  <Step title="Start a new request">
+    In **Settings** > **File Requests**, click **New request**. The **Request files** form opens.
   </Step>
-  <Step title="They Upload or Reply">
-    Recipients receive an email with a secure link. They see the request title, your message, and the document checklist. They can upload files to each slot, replace uploaded files, or upload additional files. They can also reply to the request email with attachments instead.
+  <Step title="Fill in the details">
+    | Field | What it does | Default |
+    |-------|--------------|---------|
+    | **Title** | Required. What you're asking for, for example "Q4 Tax Documents". Recipients see it in the email and on the upload page. | Empty |
+    | **Message to recipients** | Optional instructions shown in the email and on the upload page | Empty |
+    | **Recipients** | An email (required) and a name (optional) for each person. Click **Add recipient** for more. | One empty row |
+    | **Required documents** | Optional checklist of documents to collect. See [Checklists](#checklists). | No checklist |
+    | **Destination** | The folder uploads go to. Search for a folder, or choose **Workspace root**. | **Root** |
+    | **Expires** | Optional date after which the upload links stop working | **No expiry** |
 
-    No Drive AI account is required.
-
-    <Frame>
-      <img src="/images/file-request-4.png" alt="Recipient view showing the file upload page with document checklist and progress" />
-    </Frame>
+    If the same email appears twice, it's only added once.
   </Step>
-  <Step title="Files Organize Automatically">
-    Uploaded documents land in your workspace, auto-renamed and organized based on your rules.
+  <Step title="Set more options (optional)">
+    Click **More options**:
+
+    | Option | What it does | Default |
+    |--------|--------------|---------|
+    | **Rename uploaded files** | Renames each upload with a pattern. See [Rename uploads](#rename-uploads). | Off (files keep their names) |
+    | **Smart reminders** | Emails recipients who still owe files: **Every day**, **Every 2 days**, **Every 3 days**, **Every 5 days** or **Weekly** | Off. When you turn it on, **Every 3 days**. |
+    | **Completion email** | Emails you when a recipient has uploaded every required document on the checklist | On |
+    | **Save as template** | Saves the checklist so you can reuse it. Shown when the request has a checklist. Enter a template name. | Off |
+  </Step>
+  <Step title="Send">
+    Click **Send Request**. Each recipient gets an email with their own link. The **File Request Created** screen lists every recipient with **Copy link**, so you can also share the links yourself.
+
+    Each link is personal. Uploads through it are recorded against that recipient.
   </Step>
 </Steps>
 
-## Document Checklists
+<Frame>
+  <img src="/images/file-request-form.png" alt="The Request files form with title, message, a recipient, a two-item checklist and More options open" />
+</Frame>
 
-Specify the exact documents you need from each recipient. For example:
+### Checklists
 
-- W-2 forms
-- Profit & loss statements
-- Bank statements
-- Government-issued ID
-- Signed contracts
+A checklist lists the documents you need, such as "W-2 Form" or "Photo ID". Each item becomes its own upload slot on the recipient's page, and you can track what's arrived item by item.
 
-Recipients see a clear checklist interface and upload each file to the correct slot. You can track completion per recipient in real time.
+- Click **Add document** for each item and type its name.
+- Click the speech-bubble icon (**Add helper text**) to add a short hint under an item.
+- Click **X** to remove an item.
 
-## Two Ways to Respond
+Items you add in the form are required. Recipients can still upload extra files outside the checklist.
 
-Recipients can submit files in whichever way is easiest for them:
+### Templates
 
-| Method | How It Works |
-|--------|-------------|
-| **Upload via secure link** | Recipients click the link, see a clean upload page, and drag-and-drop files. No login required. |
-| **Reply with attachments** | Recipients simply reply to the request email with files attached. They are captured automatically. |
+A template saves a checklist (item names and helper text) for reuse.
 
-<Tip>
-  The reply-with-attachments option is great for less technical recipients who are more comfortable with email.
-</Tip>
+- **Save one:** turn on **Save as template** under **More options** and give it a name. It's saved when you click **Send Request**.
+- **Use one:** in **Required documents**, choose **Use template** and pick a template. It fills in the checklist, which you can then edit. **Use template** appears when the checklist is empty and the workspace has saved templates.
 
-## Smart Reminders
+Templates are shared with everyone in the workspace who can create requests.
 
-Stop chasing people for documents. Enable auto-reminders for incomplete submissions:
+### Rename uploads
 
-- **Daily** — a reminder every day until complete
-- **Every 3 days** — a gentler cadence
-- **Weekly** — a light-touch reminder
+Build a pattern from text and these variables. The file's extension is always kept.
 
-Reminders are sent automatically to recipients who have not yet submitted all requested documents.
+| Variable | Button | Becomes |
+|----------|--------|---------|
+| `{original_name}` | **Original name** | The file's name, without its extension |
+| `{recipient_name}` | **Recipient** | The recipient's name, or the part of their email before the @ |
+| `{recipient_email}` | **Email** | The recipient's email |
+| `{date}` | **Date** | The upload date, as YYYY-MM-DD |
+| `{request_title}` | **Title** | The request's title |
+| `{slot_name}` | **Document name** | The checklist item's name. For uploads outside the checklist, the file's name. |
 
-## Reusable Templates
+For example, `{recipient_name}_{slot_name}` turns a W-2 uploaded by Jane into `Jane_W-2 Form.pdf`.
 
-Save your document checklists as templates and reuse them:
+## What recipients see
 
-1. Create a checklist (e.g., "New Client Onboarding" with ID, contract, tax forms)
-2. Save it as a template
-3. Apply the template in one click for future requests
+<Steps>
+  <Step title="The email">
+    The subject is "*Your name* is requesting files from you: *title*". It includes your message, the checklist and the due date, if you set them, and an **Upload Files** button that opens their upload page.
+  </Step>
+  <Step title="The upload page">
+    The page shows who's asking, the title, your message and the due date.
 
-This is especially useful for recurring workflows like tax season, employee onboarding, or client intake.
+    - **With a checklist:** each item has an **Upload** button. They pick one file per item, then click **Submit N documents**. A filled item shows **Replace**, to swap the file. Once every required item is in, the checklist shows **Complete**. To send files that aren't on the list, they open **Upload additional files**.
+    - **Without a checklist:** they drop files on the page or click **browse**, then click **Upload N files**.
+  </Step>
+  <Step title="After uploading">
+    They see **Files uploaded** and can click **Upload more**. They can come back to the same link until it expires or you close the request.
+  </Step>
+</Steps>
 
-## Organization Rules
+{/* Screenshot: a recipient's upload page with a checklist, one item filled and one staged, and the Submit button */}
 
-Control how incoming files are organized in your workspace:
+### Upload limits
 
-| Option | Description |
-|--------|-------------|
-| **Destination folder** | Choose the folder where files are placed |
-| **Rename patterns** | Use variables like `{recipient}_{document}` for consistent naming |
-| **Plain English rules** | Describe your organization rules in natural language and the AI handles placement |
+| Limit | Value |
+|-------|-------|
+| File size | 500 MB per file |
+| Files per upload | 100 |
+| Uploads per link | 20 per hour. Each checklist item submitted counts as one upload. |
+| File types | Any |
 
-### Auto-Rename
+Uploaded files count toward your workspace's storage. If the workspace is full, the recipient sees "The workspace has reached its storage limit. Please contact the person who requested these files." Free up space or upgrade, then ask them to try again. See [Usage and Limits](/account/usage-and-limits).
 
-Files arrive consistently named based on patterns you define. No more `IMG_4032.pdf` or `Document (3).docx`—every file follows your naming convention.
+Files that fail the malware scan are discarded and don't appear in your workspace.
 
-## Tracking Submissions
+## Where uploads go
 
-Each file request includes a tracking dashboard where you can see:
+Files go into the **Destination** folder you chose. They're named by your rename pattern, if you set one.
 
-- **Per-recipient status** — pending, in progress, or complete
-- **Which documents** each person has submitted
-- **Which documents** are still missing
-- **Submission timestamps** for each file
+When a recipient replaces a checklist item, the new file takes that item's place on the checklist. The earlier file stays in the folder.
 
-## Use Cases
+## Notifications
 
-<CardGroup cols={2}>
-  <Card title="Accountants" icon="calculator">
-    Collect tax documents and financial statements from clients at year-end.
-  </Card>
-  <Card title="Real Estate" icon="house">
-    Gather contracts, inspections, and disclosures from buyers and title companies.
-  </Card>
-  <Card title="Law Firms" icon="scale-balanced">
-    Request discovery documents, agreements, and evidence from clients and opposing counsel.
-  </Card>
-  <Card title="HR Teams" icon="users">
-    Collect onboarding paperwork, IDs, and signed offer letters from new hires.
-  </Card>
-  <Card title="Insurance" icon="shield-halved">
-    Request certificates, policy documents, and claims evidence.
-  </Card>
-  <Card title="Agencies" icon="briefcase">
-    Collect deliverables, approvals, and signed SOWs from clients.
-  </Card>
-</CardGroup>
+| When | In-app notification | Email |
+|------|---------------------|-------|
+| A recipient uploads a file | Yes, one per file, to the person who created the request | No |
+| A recipient uploads every required checklist item | Yes, to the person who created the request | Yes, if **Completion email** is on. The subject is "All documents received from *recipient* for *title*". |
 
-## Security
+Requests without a checklist don't send a completion notice. Check the request's progress instead.
 
-- **Unique, time-limited links** — each request generates a secure upload link specific to that recipient
-- **AES-256 encryption** — files are encrypted at rest and in transit (TLS)
-- **No account required** — recipients upload without creating an account
-- **Workspace isolation** — only workspace members can access uploaded files
-- **Large file support** — supports files larger than typical email attachment limits
+## Track a request
 
-## What's Next?
+Click a request in **Settings** > **File Requests** to open it. You see its status, your message, and a summary: files received, how many recipients are complete (with a checklist), the due date and the destination folder.
+
+### Request statuses
+
+| Status | Meaning |
+|--------|---------|
+| **Active** | Links work and recipients can upload |
+| **Closed** | You closed it. Links no longer work. |
+| **Expired** | The due date passed. Links no longer work. |
+
+### Recipient progress
+
+| Request type | Labels |
+|--------------|--------|
+| With a checklist | **Pending** (nothing yet), **In progress** (some required items in), **Complete** (every required item in) |
+| Without a checklist | **Pending**, **Received** |
+
+Each recipient also shows how many files they've sent and when they last uploaded. Click the arrow next to a recipient to see their files. With a checklist, you see each item with the file received, or **Missing** or **Optional**.
+
+## Manage a request
+
+These actions are available while a request is **Active**:
+
+- **Copy upload link**: copy one recipient's personal link.
+- **Send reminder**: email one recipient who still owes files.
+- **Remind all (N)**: email every recipient who still owes files. N is how many that is.
+- **Add recipient**: enter an email and an optional name, then click **Add**. They get the request email with their own link.
+- **Remove recipient**: their link stops working right away. Files they've already uploaded stay in your workspace.
+- **Close request**: confirm in **Close this file request?**. All upload links stop working and no more reminders go out. Files already received stay. Closing can't be undone.
+
+Who "still owes files": with a checklist, anyone missing a required item; without one, anyone who hasn't uploaded anything.
+
+You can't change a request's title, message, checklist, folder or due date after sending. To change them, close it and send a new one.
+
+### Reminders
+
+A reminder email with a checklist lists the items and which ones are still missing. Without a checklist, the recipient gets the original request email again.
+
+**Smart reminders** run once a day. They go to recipients who still owe files and haven't been reminded within the interval you chose. The first one can go out the next time they run. They stop when the recipient is done, or when the request closes or expires.
+
+## File requests through the agent
+
+You can ask the [agent](/agent/overview) to create and follow requests, for example: "Ask jane@example.com and sam@example.com for their 2025 W-2 and 1099 by October 31, into /Clients/Tax, and remind them every 3 days."
+
+The agent can:
+
+- **Create a request** with a title, message, recipients, destination folder, due date, reminder interval and checklist. It can mark checklist items optional, which the form can't.
+- **List requests** and **check one**: who has sent what, and when they were last reminded.
+- **Add recipients**, **send reminders** and **close a request**, if you created it or you're an admin.
+
+Every action that emails someone or closes a request shows you a card first. Click **Allow** to go ahead, or **Not now**. The upload links appear on the card for you; the agent doesn't see them.
+
+<Note>
+  Uploads can only go to folders in your workspace, not to folders in a connected drive.
+</Note>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="A recipient says their link doesn't work">
+    The page tells them why:
+
+    - **Request expired**: the due date passed.
+    - **Request closed**: the request was closed.
+    - **Invalid upload link**: you removed them from the request, or the link was copied incorrectly.
+
+    To collect more files, send a new request.
+  </Accordion>
+  <Accordion title='A recipient sees "Too many uploads"'>
+    Each link allows 20 uploads an hour. Ask them to wait and try again, or to upload several files at once instead of one at a time.
+  </Accordion>
+  <Accordion title='A recipient sees "Upload limit exceeded"'>
+    A file is over 500 MB. Ask them to compress or split it.
+  </Accordion>
+  <Accordion title="I didn't get a completion email">
+    Completion emails are only sent for requests with a checklist, when a recipient has uploaded every required item, and only if **Completion email** was on.
+  </Accordion>
+  <Accordion title="I can't close, remind or change recipients on a request">
+    Only the person who created the request, and workspace owners and admins, can do that. Requests that are **Closed** or **Expired** can't be changed.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
 
 <CardGroup cols={2}>
   <Card title="File Sharing" icon="share-nodes" href="/features/file-sharing">
-    Share files and folders with granular permissions.
+    Share files and folders with people.
   </Card>
   <Card title="E-Sign" icon="signature" href="/features/e-sign">
     Send PDFs for electronic signatures.

@@ -135,9 +135,9 @@ Failed webhook deliveries are retried automatically:
 
 | Phase | Timing |
 |-------|--------|
-| Inline retries | 3 attempts with exponential backoff (immediate, 2s, 4s) |
-| Background retries | 1min, 5min, 15min, 30min, 1hr, 2hr, 4hr |
-| **Total** | **8 attempts over ~8 hours** |
+| Inline retries | 3 attempts with exponential backoff (immediate, then after 1s and 2s) |
+| Background retries | 5 attempts, after 1min, 5min, 15min, 30min and 1hr |
+| **Total** | **8 attempts over about 2 hours** |
 
 - **4xx responses** are treated as permanent failures (not retried)
 - **5xx responses** and timeouts are retried
@@ -171,8 +171,8 @@ curl https://dev.thedrive.ai/api/v1/jobs/task_a1b2c3d4e5f6/deliveries \
 Delivery statuses:
 - `pending` — Not yet attempted
 - `delivered` — Successfully received (2xx response)
-- `failed` — Will be retried
-- `dead` — Exhausted all retry attempts or permanent 4xx failure
+- `failed` — Not delivered yet. It's retried until all 8 attempts are used, and stays `failed` after that
+- `dead` — Your endpoint returned a 4xx response, so it won't be retried
 
 ## Deduplication
 

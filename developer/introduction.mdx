@@ -153,7 +153,12 @@ npm install @thedriveai/sdk
 | Extract | 1 credit/page (min 3), 5 credits for websites |
 | Analyze | 2 credits/page (min 5), 10 credits for websites |
 | Cross-Analyze | 5 credits/doc + 3 credits/page (min 10) |
+| Decide | 2 credits/page (min 5), 10 credits for websites, 5 credits with no document |
 | Markdown | 1 credit |
 | Thumbnail | 1 credit |
 
 Free tier includes 100 credits/month. [Purchase more](https://dev.thedrive.ai/dashboard/billing).
+
+## Rate limits
+
+Each API key can make a limited number of requests a minute: 30 on the free tier, and more on paid tiers. Past that, and when your credits run out, the API returns `429` with a `Retry-After` header. The SDKs retry `429` responses automatically, waiting as long as `Retry-After` says.

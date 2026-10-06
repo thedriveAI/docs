@@ -7,105 +7,75 @@ description: "Frequently asked questions about The Drive AI"
 
 <AccordionGroup>
   <Accordion title="What is The Drive AI?" icon="circle-question">
-    The Drive AI is an AI-powered file management workspace where you can create, organize, share, and manage files using natural language. Instead of clicking through menus and dragging files, you simply describe what you want to accomplish, and the AI handles the rest.
+    The Drive AI is a workspace for your files with an AI agent built in. You can store files in The Drive AI or connect Google Drive, OneDrive, SharePoint or Dropbox. Then ask the agent, in plain language, to find, read, organize or create files. See [Introduction](/getting-started/introduction).
   </Accordion>
 
-  <Accordion title="How is The Drive AI different from Google Drive or Dropbox?" icon="scale-balanced">
-    Traditional cloud storage services require you to manually organize files. The Drive AI uses AI to:
-    - Automatically organize your files based on content
-    - Let you search and ask questions about your files in natural language
-    - Execute file operations through simple commands
-    - Understand relationships between your documents
-
-    Think of it as cloud storage with a built-in AI assistant.
+  <Accordion title="How is it different from Google Drive or Dropbox?" icon="scale-balanced">
+    Google Drive and Dropbox store files. The Drive AI reads them. You can ask questions about what's inside your files and reorganize folders by describing what you want. You can also set up workflows that file new documents as they arrive. It can also work inside your Google Drive, OneDrive, SharePoint or Dropbox, so you don't have to move your files. See [Connected drives](/agent/connected-drives).
   </Accordion>
 
   <Accordion title="What file types are supported?" icon="file">
-    **Free plan:** PDF, DOCX, DOC, TXT, RTF, XLSX, XLS, CSV, PPTX, PPT
-
-    **Premium plan:** All of the above, plus PNG, JPG, JPEG, GIF, WEBP, MP3, WAV, M4A, MP4, MOV, AVI
+    You can upload any file. The Drive AI reads PDFs, Word documents, spreadsheets, presentations and text files on every plan. Reading images, audio and video (with transcription) needs a plan that includes every file type — see [Plans and pricing](/account/plans-pricing) — with an active subscription.
   </Accordion>
 
   <Accordion title="Is my data secure?" icon="shield-halved">
-    Yes. The Drive AI uses AES-256 encryption at rest and TLS 1.3 in transit. The platform is CASA certified and a Microsoft Verified Partner. All uploads are scanned for malware in real time, and your data is never used to train AI models. See our [Security & Privacy](/features/security) page for full details.
+    Files are encrypted at rest and in transit, uploads are scanned for malware, and your data is never used to train AI models. See [Security & Privacy](/features/security).
   </Accordion>
 
-  <Accordion title="Can I access The Drive AI on mobile?" icon="mobile">
-    Yes! The Drive AI is available on iOS and Android, in addition to the web app. The mobile apps include features like document scanning, file management, and AI chat. Download from the [App Store](https://apps.apple.com/us/app/the-drive-ai-file-organizer/id6758524851) or [Google Play](https://play.google.com/store/apps/details?id=com.bigyankarki.thedriveai).
-  </Accordion>
-</AccordionGroup>
-
-## Account & Sign-In
-
-<AccordionGroup>
-  <Accordion title="How do I create an account?" icon="user-plus">
-    Visit [thedrive.ai](https://thedrive.ai) and choose your preferred sign-in method:
-    - Google
-    - Microsoft
-    - GitHub
-    - Email & Password
-
-    Your account is created automatically when you sign in for the first time.
-  </Accordion>
-
-  <Accordion title="What sign-in methods are supported?" icon="key">
-    The Drive AI supports four sign-in options:
-    - **Google** - Use your Google account
-    - **Microsoft** - Use your Microsoft/Outlook account
-    - **GitHub** - Use your GitHub account
-    - **Email & Password** - Create a traditional account with email verification
-  </Accordion>
-
-  <Accordion title="Can I use multiple accounts?" icon="users">
-    Each account has its own separate Drive AI workspace. To switch accounts, sign out and sign in with a different account.
-  </Accordion>
-
-  <Accordion title="How do I delete my account?" icon="trash">
-    To delete your account and all associated data, please contact [contact@thedrive.ai](mailto:contact@thedrive.ai).
+  <Accordion title="Is there a mobile app?" icon="mobile">
+    Yes, for [iOS](https://apps.apple.com/us/app/the-drive-ai-file-organizer/id6758524851) and [Android](https://play.google.com/store/apps/details?id=com.bigyankarki.thedriveai). You can use it to scan documents, browse files and use the agent.
   </Accordion>
 </AccordionGroup>
 
-## Features
+## The agent
 
 <AccordionGroup>
-  <Accordion title="What's the difference between Chat Mode and Agent Mode?" icon="toggle-on">
-    **Chat Mode** is for asking questions and getting answers. The AI reads your files and responds but doesn't take any actions.
-
-    **Agent Mode** is for taking actions. The AI can create, rename, move, share, organize, and delete files based on your commands.
+  <Accordion title="What can the agent do?" icon="robot">
+    It can find, read, move, rename, copy and trash files, create folders, and create documents, spreadsheets and presentations. It can work across hundreds of files at once. With your approval it can also share files, invite members, create file requests, prepare signature requests and draft workflows. See [The agent](/agent/overview).
   </Accordion>
 
-  <Accordion title="How does auto-organization work?" icon="folder-tree">
-    When you upload files, The Drive AI analyzes the content of each file to understand what it is and how it relates to other files. It then creates appropriate folders and places files in logical locations.
-
-    You can trigger organization automatically (on upload) or manually (with Command+K).
+  <Accordion title="Where did Chat and Agent go?" icon="toggle-on">
+    There is only one assistant now: the agent. It answers questions and it makes changes, so there's nothing to switch.
   </Accordion>
 
-  <Accordion title="What is Command+K?" icon="keyboard">
-    Command+K (Ctrl+K on Windows) opens the command bar and triggers AI organization on the current folder. It's a quick way to organize files without uploading new ones.
+  <Accordion title="Can I undo what the agent did?" icon="rotate-left">
+    Yes, in almost every case. Every change appears as a card in the chat. Click **Undo** on the card, or ask the agent to undo it. Files moved to the trash in The Drive AI can also be restored from **Trash**. On a work or school OneDrive or SharePoint, a file moved to the recycle bin may have to be restored there; the card tells you. See [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
   </Accordion>
 
-  <Accordion title="Can I undo AI actions?" icon="rotate-left">
-    Yes. Recent Agent Mode actions can be undone. Additionally, deleted files go to a Trash folder first, giving you a chance to recover them.
+  <Accordion title="Why does the agent ask before some changes?" icon="hand">
+    Small changes apply straight away. Bigger changes, anything that moves files to the trash, and changes outside the folder you're in ask for your OK first. Owners and admins can change these thresholds in **Settings** > **Agent** under **Limits and approvals**.
   </Accordion>
 
-  <Accordion title="Can I sign PDF documents?" icon="signature">
-    Yes. The Drive AI includes built-in [E-Sign](/features/e-sign) for adding legally binding electronic signatures to PDFs. E-signatures are compliant with the ESIGN Act and UETA.
+  <Accordion title="How many tasks can I run?" icon="gauge">
+    A task is a request the assistant acts on, like "total my Acme invoices" or "rename these by date". Answering its questions or saying hello doesn't count. Every plan includes a monthly number: 20 on Free, 500 on Premium, 2,000 on Max, 2,000 per seat on Team and 4,000 per seat on Business, shared across the workspace. Free reads up to 50 files per task. They come back each month, and you can upgrade for more at any time. Check your usage in **Settings** > **Usage**.
   </Accordion>
 
-  <Accordion title="What PDF operations are available?" icon="file-pdf">
-    The Drive AI includes a full suite of [PDF tools](/features/pdf-tools): merge, split, compress, fill forms, extract pages, add watermarks, and convert PDF to JPG. You can use these through Agent Mode with natural language commands.
+  <Accordion title="Can the agent work in my Google Drive?" icon="google-drive">
+    Yes, on plans that include connected drives: Max, Team, Business and Enterprise. Connect it in **Settings** > **Integrations**. The same goes for OneDrive, SharePoint and Dropbox. See [Connected drives](/agent/connected-drives).
   </Accordion>
 
-  <Accordion title="Can I scan physical documents?" icon="camera">
-    Yes. The Drive AI mobile app includes a [document scanner](/features/document-scanning) that converts physical documents to searchable PDFs with OCR text extraction. Download the iOS or Android app to get started.
+  <Accordion title="Can the agent move files from Google Drive into The Drive AI?" icon="arrow-right-arrow-left">
+    Not in a single change: the agent can't move or copy files between two different storages. A [workflow](/workflows/overview) with a **Save a Copy** step can copy files across, as they arrive or on a schedule over an existing folder. For a one-off copy, use **New** > **Import from Cloud**, or **Export to Cloud** on a file.
   </Accordion>
 
-  <Accordion title="How do I share files with people outside my workspace?" icon="share-nodes">
-    You can share files via shareable links, direct email invitations, or [File Requests](/features/file-sharing). External collaborators only see the specific files shared with them—they cannot browse your workspace.
+  <Accordion title="Can the agent browse the web or read my email?" icon="globe">
+    No. It works on your files in The Drive AI and in connected drives. To file email attachments, use a [workflow](/workflows/overview).
+  </Accordion>
+</AccordionGroup>
+
+## Organizing files
+
+<AccordionGroup>
+  <Accordion title="Do my uploads get filed automatically?" icon="folder-tree">
+    Only if a workflow does it. Automatic filing on upload was replaced by [workflows](/workflows/overview): an owner or admin sets up a workflow with a **File Uploaded** trigger, and it files each new upload the way you describe.
   </Accordion>
 
-  <Accordion title="Does The Drive AI work offline?" icon="wifi-slash">
-    No. The Drive AI requires an internet connection to function, as the AI processing happens in the cloud.
+  <Accordion title="How do I tidy up an existing folder?" icon="broom">
+    Ask the agent, for example "Organize this folder by client and year." It shows you the changes before or as it makes them. You can also right-click the file browser and choose **Organize this folder (⌘K)**.
+  </Accordion>
+
+  <Accordion title="What does Command+K do?" icon="keyboard">
+    `⌘K` (or `Ctrl+K`) runs **Organize this folder** on the folder you're looking at. To open the agent, press `⌘J` (or `Ctrl+J`).
   </Accordion>
 </AccordionGroup>
 
@@ -113,132 +83,58 @@ description: "Frequently asked questions about The Drive AI"
 
 <AccordionGroup>
   <Accordion title="What integrations are available?" icon="plug">
-    **Cloud storage** (manual import/export):
-    - [Google Drive](/integrations/google-drive-import) — import and export files
-    - [OneDrive](/integrations/onedrive-import) — import and export files
-    - [Dropbox](/integrations/dropbox-import) — import and export files
-
-    **Live integrations** (automatic, real-time):
-    - [Email](/integrations/email-integration) — auto-import attachments from Gmail and Outlook (Premium)
-    - [Slack](/integrations/slack) — auto-organize files shared in Slack channels
-    - [Microsoft Teams](/integrations/microsoft-teams) — auto-organize files shared in Teams channels
-
-    **AI tools**:
-    - [MCP Server](/integrations/mcp-server) — connect to Claude, ChatGPT, Cursor, and other AI tools
+    - **Cloud storage:** [Google Drive](/integrations/google-drive), [OneDrive](/integrations/onedrive), SharePoint and [Dropbox](/integrations/dropbox). The agent and workflows work in them directly, and you can import and export files.
+    - **Email and messaging:** [Gmail and Outlook](/integrations/email-integration), [Slack](/integrations/slack) and [Microsoft Teams](/integrations/microsoft-teams). Workflows can act on the files that arrive through them.
+    - **AI tools:** the [MCP server](/integrations/mcp-server) connects Claude, ChatGPT, Cursor and other tools to your files.
   </Accordion>
 
-  <Accordion title="Do cloud storage integrations sync automatically?" icon="sync">
-    No. Google Drive, OneDrive, and Dropbox integrations are manual import/export. Files are copied when you trigger the action—changes are not synced automatically between the two. Your original files remain untouched. For real-time automatic imports, see the Email, Slack, and Microsoft Teams integrations.
+  <Accordion title="If I connect Gmail, are my attachments saved automatically?" icon="envelope">
+    Only when a workflow saves them. Connecting an account lets workflows see what arrives. The workflow decides what's saved and where.
   </Accordion>
 
-  <Accordion title="What is MCP?" icon="link">
-    MCP (Model Context Protocol) is an open standard that allows AI assistants to connect to external tools. The Drive AI's MCP server lets you use your files with Claude, ChatGPT, Cursor, and other compatible AI tools.
-  </Accordion>
-
-  <Accordion title="Can I connect multiple email accounts?" icon="envelopes-bulk">
-    Yes. You can connect multiple Gmail and Outlook accounts. Each account's attachments are imported according to your settings.
+  <Accordion title="Can I connect more than one account?" icon="envelopes-bulk">
+    Usually. Cloud storage has **Add account**, and Slack has **Add workspace**. Gmail and Outlook have **Add account** in team workspaces; a personal workspace connects one of each. A workspace can have one Microsoft Teams connection.
   </Accordion>
 </AccordionGroup>
 
-## Workspaces
+## Workspaces and plans
 
 <AccordionGroup>
   <Accordion title="What is a workspace?" icon="building">
-    A workspace is where your files live in The Drive AI. There are two types:
-    - **Personal Workspace**: For individual use (1 user). You get one automatically when you sign up.
-    - **Team Workspace**: For collaboration (up to 50 users). Create as many as you need.
-  </Accordion>
-
-  <Accordion title="How do I switch between workspaces?" icon="arrows-rotate">
-    Click the workspace name at the top of the left sidebar. A dropdown will show all your workspaces. Click on one to switch to it.
+    A workspace is where your files live. You get a personal workspace when you sign up, and only you use it. Team workspaces are for working with other people. See [Members and roles](/account/members-and-roles).
   </Accordion>
 
   <Accordion title="How do I create a team workspace?" icon="users-gear">
-    1. Click the workspace name at the top of the left sidebar
-    2. Click **Create Workspace** at the bottom of the dropdown
-    3. Name your workspace and start your 1-month free trial
+    Click your workspace name at the top of the left sidebar, click **Create team workspace**, and follow the steps.
   </Accordion>
 
-  <Accordion title="How much does a team workspace cost?" icon="money-bill">
-    Team workspaces cost **$500/month** per workspace after the 1-month free trial. Each new team workspace gets its own free trial.
+  <Accordion title="How much does it cost?" icon="money-bill">
+    There's a free plan, paid personal plans, and team plans billed per seat. See [Plans & Pricing](/account/plans-pricing).
+  </Accordion>
+
+  <Accordion title="Who manages billing?" icon="credit-card">
+    The workspace owner. Only the owner sees **Settings** > **Billing**. Members don't see prices.
   </Accordion>
 
   <Accordion title="Can I delete my personal workspace?" icon="trash">
-    No. Your personal workspace is permanent and tied to your account. You can delete team workspaces, but not your personal workspace.
+    No. Your personal workspace is tied to your account. The owner of a team workspace can delete it from **Settings** > **Danger Zone**.
   </Accordion>
 </AccordionGroup>
 
-## Plans & Billing
+## Account
 
 <AccordionGroup>
-  <Accordion title="Is there a free plan?" icon="gift">
-    Yes! The Free plan for your personal workspace includes:
-    - 10 AI steps per day (300/month)
-    - Text file support
-    - 5 auto-organized files per month
-    - 1 GB storage (up to 50 files)
+  <Accordion title="How do I sign in?" icon="key">
+    With Google, Microsoft or Apple, or with an email and password. Your account is created the first time you sign in.
   </Accordion>
 
-  <Accordion title="What plans are available?" icon="credit-card">
-    **Personal plans:**
-    - **Free** — $0, basic AI file management
-    - **Premium** — $199.99/year, more AI steps, all file types, 20 GB storage
-    - **Max** — $999.99/year, unlimited AI, all integrations (email, cloud storage, Slack, Teams), e-sign, file requests, 500 GB storage
-
-    **Team:** $500/month per workspace (up to 50 members) after a 1-month free trial.
-
-    See [Plans & Pricing](/account/plans-pricing) for full details.
-  </Accordion>
-
-  <Accordion title="Can I cancel anytime?" icon="circle-xmark">
-    Yes. You can cancel Premium or team workspace subscriptions at any time. You'll retain access until the end of your billing period.
-  </Accordion>
-
-  <Accordion title="What happens to my files if I downgrade?" icon="arrow-down">
-    Your files remain in your workspace. However:
-    - Files over your plan's storage limit become read-only
-    - Media files become inaccessible on the Free plan
-    - AI steps and auto-organization revert to the lower plan's limits
-    - Integrations exclusive to your previous plan are paused
-  </Accordion>
-
-  <Accordion title="Do you offer refunds?" icon="rotate-left">
-    Yes. If you're not satisfied within the first 14 days of your Premium subscription, contact support for a full refund.
+  <Accordion title="How do I delete my account?" icon="user-xmark">
+    Open **Settings** > **Profile**, click **Delete** next to **Delete account**, then **Yes, delete my account**. This deletes your account and its data and removes you from every workspace. If you own a team workspace, transfer ownership or delete that workspace first.
   </Accordion>
 </AccordionGroup>
 
-## Troubleshooting
+## Still have questions?
 
-<AccordionGroup>
-  <Accordion title="Files aren't uploading" icon="upload">
-    - Check your internet connection
-    - Verify you have sufficient storage space
-    - Ensure the file type is supported
-    - Try uploading smaller batches
-  </Accordion>
-
-  <Accordion title="AI isn't responding" icon="robot">
-    - Check if you've reached your daily query limit (Free plan)
-    - Refresh the page
-    - Try signing out and back in
-    - Contact support if the issue persists
-  </Accordion>
-
-  <Accordion title="Auto-organization isn't working" icon="folder-tree">
-    - Ensure you're uploading to the workspace root for automatic organization
-    - For manual organization, use Command+K in the desired folder
-    - Check if you've reached your monthly organization limit (Free plan)
-  </Accordion>
-
-  <Accordion title="Can't find my files" icon="magnifying-glass">
-    - Use Chat Mode to search: "Where is the file about [topic]?"
-    - Check the Trash folder for accidentally deleted files
-    - Look in auto-created folders
-  </Accordion>
-</AccordionGroup>
-
-## Still Have Questions?
-
-<Card title="Contact Support" icon="headset" href="mailto:contact@thedrive.ai">
-  Can't find what you're looking for? Our support team is here to help.
+<Card title="Contact us" icon="headset" href="mailto:contact@thedrive.ai">
+  Can't find what you're looking for? Email our team.
 </Card>

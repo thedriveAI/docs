@@ -1,146 +1,117 @@
 ---
 title: "Quick Start"
-description: "Get up and running with The Drive AI in minutes"
+description: "Create your account, add files, connect a drive, give the agent its first task and set up your first workflow"
 ---
 
-## Create Your Account
+This page gets you from no account to a working setup in a few minutes. Each step links to a page with the full detail.
+
+## 1. Create your account
 
 <Steps>
   <Step title="Go to The Drive AI">
-    Visit [thedrive.ai](https://thedrive.ai) in your web browser.
+    Visit [thedrive.ai](https://thedrive.ai) in your browser.
   </Step>
-  <Step title="Choose Your Sign-In Method">
-    Select your preferred sign-in option:
-
-    - **Google** - Sign in with your Google account
-    - **Microsoft** - Sign in with your Microsoft account
-    - **GitHub** - Sign in with your GitHub account
-    - **Email & Password** - Create an account with your email address
-
-    <Tip>
-      Social sign-in (Google, Microsoft, GitHub) is the fastest way to get started—no password to remember.
-    </Tip>
+  <Step title="Sign up">
+    Click **Continue with Google**, **Continue with Microsoft** or **Continue with Apple**. Or enter your name, email and a password, and click **Create account**.
   </Step>
-  <Step title="Complete Setup">
-    Follow the onboarding prompts to set up your workspace. You'll be ready to start uploading files immediately.
+  <Step title="Answer a few questions">
+    A short set of screens follows. You can click **Skip** at any point. If you answer **With my team** to **Who will use this?**, the app opens **Create Team Workspace** when you finish.
   </Step>
 </Steps>
 
-## Upload Your First Files
+You now have a **personal workspace** that only you use. See [Profile and sign-in](/account/profile-and-sign-in) for more on accounts.
 
-Once you're in your workspace, you can start uploading files right away. There are two ways to upload:
+## 2. Create a team workspace (optional)
+
+To work with other people, create a team workspace. It's separate from your personal workspace, which stays as it is.
+
+1. Click your workspace name at the top of the left sidebar, then click **Create team workspace**.
+2. Enter a name, choose the number of **Seats** and **Annual** or **Monthly**, and click **Create Workspace**.
+3. Enter your payment details at checkout.
+
+Team plans start with a free trial. See [Plans & Pricing](/account/plans-pricing#create-a-team-workspace), then [Members and roles](/account/members-and-roles) to invite people.
+
+## 3. Add your files
+
+You can upload files to The Drive AI, connect a drive you already use, or both.
 
 <Tabs>
-  <Tab title="Drag and Drop">
-    The quickest way to upload files:
+  <Tab title="Upload">
+    - Drag files or folders from your computer onto the file browser, or
+    - Click **New** in the toolbar and choose **Upload**.
 
-    1. Open your workspace in The Drive AI
-    2. Drag files from your computer into the browser window
-    3. Drop them anywhere in the workspace
-
-    <Frame>
-      <img src="/images/drag-and-drop.jpg" alt="Drag and drop files into The Drive AI" />
-    </Frame>
+    See [Uploading files](/features/uploading-files).
   </Tab>
-  <Tab title="New Button">
-    Use the toolbar to upload:
+  <Tab title="Connect a drive">
+    On a plan that includes connected drives, open **Settings** > **Integrations** and, under **Cloud storage**, connect **Google Drive**, **OneDrive**, **SharePoint** or **Dropbox**. The agent can then work in that drive directly, and it appears under **Connected** in the left sidebar.
 
-    1. Click the **New** button in the toolbar
-    2. Select **Upload File** from the menu
-    3. Choose files from your computer
-
-    <Frame>
-      <img src="/images/new.jpg" alt="Upload files using the New button" />
-    </Frame>
+    See [Connected drives](/agent/connected-drives).
   </Tab>
 </Tabs>
 
-### Supported File Types
+## 4. Give the agent its first task
 
-The Drive AI supports a wide range of file formats:
+<Steps>
+  <Step title="Open the agent">
+    Open a folder, then click **Agent** in the toolbar, or press `⌘J` (Mac) or `Ctrl+J` (Windows).
+  </Step>
+  <Step title="Ask for something">
+    Try one of these:
 
-<CardGroup cols={2}>
-  <Card title="Documents" icon="file-lines">
-    PDF, DOCX, DOC, TXT, RTF
-  </Card>
-  <Card title="Spreadsheets" icon="table">
-    XLSX, XLS, CSV
-  </Card>
-  <Card title="Presentations" icon="presentation-screen">
-    PPTX, PPT
-  </Card>
-  <Card title="Images" icon="image">
-    PNG, JPG, JPEG, GIF, WEBP
-  </Card>
-  <Card title="Audio" icon="headphones">
-    MP3, WAV, M4A
-  </Card>
-  <Card title="Video" icon="video">
-    MP4, MOV, AVI
-  </Card>
-</CardGroup>
+    ```text
+    What is in here, and what looks out of place?
+    ```
+
+    ```text
+    Create a folder called Reports and move all the PDFs into it
+    ```
+  </Step>
+  <Step title="Review the change">
+    If the agent proposes a change, it shows a card listing exactly what will happen. Small changes apply straight away. For larger ones, click **Apply N changes** or **Not now**. Once a change is applied, click **Undo** on its card to reverse it.
+  </Step>
+</Steps>
 
 <Note>
-  **Free plan** supports text-based files only (PDF, DOCX, etc.). **Premium plan** unlocks support for images, audio, and video files.
+  If the panel says **The agent is not enabled for this workspace**, the workspace owner or an admin turns it on in **Settings** > **Agent** with **Available in this workspace**.
 </Note>
 
-## Let AI Organize Your Files
-
-After uploading, you have two options for organization:
-
-### Option 1: Automatic Organization
-
-When you upload files to the root of your workspace, The Drive AI automatically analyzes and organizes them into appropriate folders. No action needed—just upload and watch the magic happen.
-
-### Option 2: Manual Organization (Command+K)
-
-Want more control? Use the keyboard shortcut:
-
-1. Select the files or folder you want to organize
-2. Press `Command+K` (Mac) or `Ctrl+K` (Windows)
-3. The AI will analyze and organize the selected items
-
 <Tip>
-  You can also right-click on files or folders and select **Organize with AI** from the context menu.
+  The agent works on the folder you have open. Open a folder first to keep the agent focused on it.
 </Tip>
 
-## Try Your First Command
+See [The agent](/agent/overview) and [Approving and undoing](/agent/approving-and-undoing).
 
-Now that you have files in your workspace, try interacting with them:
+## 5. Set up your first workflow
 
-### Chat Mode (Ask Questions)
+Owners and admins can set up workflows. Members can view them.
 
-Click on the chat interface and ask a question about your files:
+<Steps>
+  <Step title="Open Workflows">
+    Click **Workflows** in the left sidebar, then **New workflow**.
+  </Step>
+  <Step title="Describe it">
+    Under **What would you like to automate?**, describe it in a sentence, for example "When a PDF is uploaded, file it into a folder by client". The builder assembles the steps.
+  </Step>
+  <Step title="Save and turn it on">
+    Check the steps, click **Save**, and set the switch to **Active**.
+  </Step>
+</Steps>
 
-```
-What are the main topics covered in my uploaded documents?
-```
+See [Workflows](/workflows/overview) and [Building with the agent](/workflows/building-with-the-agent).
 
-The AI will analyze your files and provide an answer.
-
-### Agent Mode (Take Actions)
-
-Switch to Agent Mode to perform actions:
-
-```
-Create a folder called "Reports" and move all PDF files there
-```
-
-The AI will execute this command automatically.
-
-## What's Next?
+## What's next?
 
 <CardGroup cols={2}>
   <Card title="Interface Overview" icon="desktop" href="/getting-started/interface-overview">
-    Learn the layout and navigation of The Drive AI.
+    Find your way around the app.
   </Card>
-  <Card title="Auto-Organization" icon="folder-tree" href="/features/auto-organization">
-    Master the AI-powered organization features.
+  <Card title="The agent" icon="robot" href="/agent/overview">
+    Everything the agent can do.
   </Card>
-  <Card title="Chat Mode" icon="comments" href="/features/chat-mode">
-    Learn how to ask questions about your files.
+  <Card title="Usage and limits" icon="gauge" href="/account/usage-and-limits">
+    What your plan includes and what you've used.
   </Card>
-  <Card title="Agent Mode" icon="robot" href="/features/agent-mode">
-    Discover powerful file operations with natural language.
+  <Card title="Plans & Pricing" icon="credit-card" href="/account/plans-pricing">
+    Compare plans.
   </Card>
 </CardGroup>

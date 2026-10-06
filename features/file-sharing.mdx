@@ -1,114 +1,148 @@
 ---
 title: "File Sharing & Permissions"
-description: "Share files and folders with granular permission controls"
+description: "Share files and folders with people outside your workspace by email, choose what they can do, and publish a file with a public link"
 ---
 
 ## Overview
 
-The Drive AI makes it easy to share files and folders with anyone—whether they are team members in your workspace or external collaborators. You control exactly who can access what with granular permission settings.
+There are two ways to let someone outside your workspace see a file or folder:
 
-## Sharing a File or Folder
+- **Share it by email** with specific people, choosing whether they can view, edit or manage it.
+- **[Publish it](#public-links)** so anyone with the link can view it, without an account.
+
+People in your workspace don't need either. They already reach its files through their [workspace role](/account/members-and-roles), so sharing is for people outside it.
+
+## Who can share
+
+You can share an item, and change who it's shared with, when you have **Full Access** to it or own it:
+
+- **Owners, admins and members** of the workspace have this on its files through their role.
+- **People outside the workspace** have it on items shared with them at **Full Access**.
+- **Viewers** can't share. They can open the **Share** dialog to see who has access, but can't change it.
+
+## Share a file or folder
 
 <Steps>
-  <Step title="Select the Item">
-    Right-click on a file or folder in your workspace, or click the more options menu.
+  <Step title="Open sharing">
+    Click **⋮** on the file or folder and choose **Share**. For the file or folder you have open, you can also click the **Share** button in the top toolbar.
   </Step>
-  <Step title="Click Share">
-    Select **Share** from the context menu.
+  <Step title="Enter an email">
+    Type the person's email under **Invite with email address**. People you've shared with before are suggested as you type.
   </Step>
-  <Step title="Add People or Create a Link">
-    Enter email addresses to share with specific people, or create a shareable link for broader access.
+  <Step title="Choose a permission">
+    Pick **Full Access**, **Write** or **Read** from the menu next to the email. It starts at **Full Access**.
   </Step>
-  <Step title="Set Permissions">
-    Choose the permission level for each person or link.
+  <Step title="Press Enter">
+    The person is added to the list below and sent an email.
   </Step>
 </Steps>
 
-## Permission Levels
+<Frame>
+  <img src="/images/share-dialog.png" alt="The Share dialog with an email typed and the permission menu open showing Full Access, Write and Read" />
+</Frame>
 
-| Permission | Can View | Can Edit | Can Share | Can Delete |
-|------------|----------|----------|-----------|------------|
-| **Viewer** | Yes | No | No | No |
-| **Editor** | Yes | Yes | No | No |
-| **Admin** | Yes | Yes | Yes | Yes |
+<Warning>
+  New shares start at **Full Access**, which lets the person share the item with others and publish it. Choose **Read** or **Write** before you press Enter unless you want that.
+</Warning>
 
-## Sharing Methods
+### Permissions
 
-### Share with Specific People
+| Permission | What they can do |
+|------------|------------------|
+| **Read** | Open and download it |
+| **Write** | Also change its content |
+| **Full Access** | Also share it with others, change or remove other people's access, and [publish it](#public-links) |
+| **Owner** | Shown for the person who owns the item. It can't be changed or removed. |
 
-Invite individuals by email address. They will receive a notification and can access the shared file or folder from their workspace.
+### Sharing a folder
 
-- Recipients need a Drive AI account to access shared items
-- You can set different permission levels for each person
-- Revoke access at any time
+Sharing a folder shares everything in it, including files and subfolders added later. To stop sharing, remove the person from the folder itself. Their access to everything inside goes too.
 
-### Shareable Links
+Moving an item changes who it's shared with through folders. Moved out of a shared folder, it's no longer shared with that folder's people. Moved into one, it's shared with them. A share you set on the item itself moves with it.
 
-Create a link that anyone can use to access the file:
+### Who you can't add
 
-- **Restricted** — only people you have explicitly shared with can open the link
-- **Anyone with the link** — anyone who has the link can access the file
+- **Workspace members.** You see **Already a workspace member**: they reach the item through their role. In a team workspace the dialog reminds you: **All workspace members already have access to this content based on their role.**
+- **Someone already on the list.** You see **File is already shared with** and their email. Change their permission instead.
+- **Yourself.**
 
-<Note>
-  Shareable links respect the permission level you set. A view-only link does not allow editing.
-</Note>
+## What the people you share with get
 
-## External Collaborators
+- **If they have a The Drive AI account**, they get an email saying you've shared the file or folder, with a link to it, and a notification in the app.
+- **If they don't**, they get an email inviting them to sign up. Once they sign up with that email address, the item is waiting for them.
 
-Share files with people outside your workspace without giving them full workspace access:
+Either way, the item appears under **Shared** in their left sidebar. They see only what you shared, not the rest of your workspace.
 
-- External collaborators can only see the specific files or folders shared with them
-- They cannot browse your workspace or access other files
-- Permissions are set per shared item
+## Change or remove access
 
-## Team Workspace Roles
+Open the **Share** dialog. Everyone who has access is listed with their permission.
 
-In team workspaces, members have workspace-level roles that determine their default capabilities:
+- **To change** someone's permission, pick a new one from the menu next to their name. It takes effect straight away.
+- **To remove** someone, click the trash icon (**Delete**) next to their name.
 
-| Role | Description |
-|------|-------------|
-| **Owner** | Full control over the workspace, billing, and member management |
-| **Admin** | Can manage members, settings, and all files |
-| **Member** | Can upload, organize, and share files |
-| **Viewer** | Read-only access to workspace files |
+If an item is shared through a folder above it, change or remove the share on that folder.
 
-<Info>
-  File-level permissions can override workspace roles. For example, you can give a Viewer edit access to a specific folder.
-</Info>
+## Public links
 
-## Version History
+Publishing a file gives it a public link. Anyone with the link can view it, without signing in.
 
-The Drive AI keeps track of file changes so you can recover previous versions:
+<Steps>
+  <Step title="Open the file">
+    Open the file you want to publish.
+  </Step>
+  <Step title="Click Publish">
+    Click the **Publish** button (globe icon) in the top toolbar.
+  </Step>
+  <Step title="Switch it on">
+    Switch on **Publish document**. The dialog shows **Published** and the **Public URL**.
+  </Step>
+  <Step title="Copy the link">
+    Click the copy button next to the link (**Copy URL**) and send it to whoever needs it.
+  </Step>
+</Steps>
 
-- View the version history of any file
-- Restore a previous version at any time
-- See who made changes and when
+While a file is published, the **Publish** button shows a green dot. To stop sharing the link, open **Publish** and switch it off. The link stops working.
 
-## Managing Shared Items
+- **Who can publish:** people with **Full Access** to the file, or its owner. For everyone else the **Publish** button is greyed out.
+- **Folders:** the **Publish** button is for files. To publish a folder and everything in it, ask the agent: "Give me a public link to this folder." Files you upload into a published folder later are published too.
 
-### Viewing Shared Access
+<Frame>
+  <img src="/images/publish-dialog.png" alt="The Publish dialog with Publish document" />
+</Frame>
 
-To see who has access to a file or folder:
+## Files on connected drives
 
-1. Right-click the item and select **Share**
-2. View the list of people and their permission levels
-3. Modify or revoke access as needed
+Files in Google Drive, OneDrive, SharePoint or Dropbox can't be shared or published from The Drive AI. Share them in the drive itself. See [Connected drives](/agent/connected-drives).
 
-### Revoking Access
+## Sharing through the agent
 
-Remove someone's access at any time:
+You can also ask the [agent](/agent/overview):
 
-1. Open the sharing settings for the file or folder
-2. Click the remove icon next to the person's name
-3. Their access is revoked immediately
+```text
+Share the Q4 report with sam@example.com so they can edit it
+```
 
-## What's Next?
+```text
+Who can see the Contracts folder?
+```
+
+```text
+Stop sharing this folder with alex@example.com
+```
+
+```text
+Give me a shareable link to this file
+```
+
+The agent uses the same rules as the **Share** dialog. Before it shares, removes access or publishes anything, it shows a card with what it will do, who gets access and at what level, and a warning when a share covers a whole folder. Nothing happens until you allow it. A request for "a link" makes a [public link](#public-links); to share with specific people, name their emails.
+
+## What's next?
 
 <CardGroup cols={2}>
-  <Card title="File Requests" icon="inbox" href="/features/file-requests">
-    Collect documents from anyone via email.
+  <Card title="File requests" icon="inbox" href="/features/file-requests">
+    Collect documents from anyone with a secure link.
   </Card>
-  <Card title="Plans & Pricing" icon="credit-card" href="/account/plans-pricing">
-    Learn about team workspace plans.
+  <Card title="Members and roles" icon="users" href="/account/members-and-roles">
+    Workspace roles and what each can do.
   </Card>
 </CardGroup>
