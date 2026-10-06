@@ -15,7 +15,7 @@ When everyone has signed, a signed copy is saved next to the original PDF and em
 
 ## Who can send
 
-- **Owners, admins and members** can send signature requests. Viewers and guests can't.
+- **Owners, admins and members** can send signature requests. Viewers can't.
 - **Only PDFs** can be sent. Convert other files to PDF first (see [PDF Tools](/features/pdf-tools)).
 - **Requests are private to the sender.** Only the person who created a request can see it, send reminders, reassign, void or download it. Other people in the workspace, including owners and admins, don't see your requests.
 
@@ -35,9 +35,9 @@ If you already have a draft request for the same PDF, a banner says **A draft re
     - **Recipients**: an email and an optional name for each person. Choose **Signer** or **CC** for each one. Click **Add another** for more.
     - **Settings**:
       - **Sign in any order** (default) or **Sign in sequence**. See [Signing order](#signing-order).
-      - **Expires**: an optional date. **No expiration** by default.
+      - **Expires**: an optional date. **No expiration** by default. The request expires at the end of that day in your time zone.
       - **Auto-remind**: **Off** (default), **Every day**, **Every 2 days**, **Every 3 days** or **Every week**.
-      - **Require email verification**: signers must enter a code sent to their email before they can sign. See [Email verification](#email-verification).
+      - **Require email verification**: every recipient must enter a code sent to their email before they can see the document. See [Email verification](#email-verification).
 
     Recipient rules:
 
@@ -107,6 +107,7 @@ A draft is a request that hasn't been sent. Nobody is emailed.
 - **Save a draft:** click **Save draft** in the editor. You need a subject, at least one signer and at least one field.
 - **Find your drafts:** in **Settings** > **Signatures**, under **Waiting**. They show the **Draft** status.
 - **Finish a draft:** open it and click **Edit & send**.
+- **A draft past its expiry date can't be sent.** Open it, change or remove the date, then send.
 - **Delete a draft:** click **Discard** on the draft, or **Discard draft** in the editor. The draft is removed for good.
 
 Drafts the [agent](#send-through-the-agent) prepares for you are regular drafts. You can open, edit, send or discard them the same way.
@@ -152,11 +153,11 @@ Only the person who created a template can delete it. To delete one, click **⋯
   <Step title="Open the link">
     The email's subject is "*Sender* has sent you a document to sign: *subject*". Each signer has their own link.
   </Step>
+  <Step title="Verify their email (if required)">
+    If you turned on email verification, they enter a code before anything else. See [Email verification](#email-verification).
+  </Step>
   <Step title="Agree to sign electronically">
     The **Review and Sign** screen explains that the signer is agreeing to use electronic signatures. They click **Continue to Document**, or **I decline to sign**.
-  </Step>
-  <Step title="Verify their email (if required)">
-    See [Email verification](#email-verification).
   </Step>
   <Step title="Fill in the fields">
     The document opens at the first field they need to fill. A progress bar shows how many required fields are done, and **Next** jumps to the next one.
@@ -173,22 +174,26 @@ Only the person who created a template can delete it. To delete one, click **⋯
 </Steps>
 
 <Note>
-  An uploaded signature must be a PNG or JPG image of 500 KB or less.
+  An uploaded signature must be a PNG or JPG image of 500 KB or less, and no more than 4,096 pixels on a side.
 </Note>
+
+### What CC recipients see
+
+A CC recipient gets an email with the subject "*Sender* shared a document with you: *subject*". Their link opens a read-only copy marked **Copy for your records**, with no fields to fill and nothing to sign. If email verification is on, they enter a code first, like signers.
 
 ### Email verification
 
-When you turn on **Require email verification**, each signer proves they control their email address before they can sign:
+When you turn on **Require email verification**, each recipient proves they control their email address before the document is shown to them:
 
-1. After agreeing to sign electronically, they click **Send Verification Code**.
+1. When they open their link, they see **Verify Your Identity** and click **Send Verification Code**.
 2. A 6-digit code is emailed to them. The screen shows a masked version of their address.
 3. They enter the code and click **Verify**.
 
-The code is valid for 5 minutes. If it expires or doesn't arrive, they click **Didn't receive it? Send again** to get a new one.
+The code is valid for 5 minutes. If it expires or doesn't arrive, they click **Didn't receive it? Send again** to get a new one. Each code allows 5 tries, and a recipient can get up to 5 codes an hour.
 
 ### Declining
 
-A signer can decline from the first screen (**I decline to sign**) or from the document (**Decline**). They can give a reason, which is optional.
+A signer can decline from the **Review and Sign** screen (**I decline to sign**) or from the document (**Decline**). They can give a reason, which is optional. If email verification is on, they have to enter the code before they can decline.
 
 When a signer declines:
 
@@ -268,7 +273,7 @@ Voiding cancels a request that hasn't completed. It can't be undone.
 
 ## Expiry
 
-If you set an expiry date, signing links stop working once that date is reached, and the request becomes **Expired**. Signers who open their link see **This signing request has expired**.
+If you set an expiry date, signing links stop working at the end of that day in your time zone, and the request becomes **Expired**. Emails to recipients state the date in your time zone. Signers who open their link see **This signing request has expired**.
 
 You can't change the expiry date after sending. To give people more time, send a new request.
 
@@ -340,7 +345,7 @@ Compliant with:
 
 <AccordionGroup>
   <Accordion title="I can't find Request Signature">
-    It only appears for PDFs. Only owners, admins and members can send requests; if you're a viewer or guest, ask an admin to change your role. If the editor shows an upgrade prompt, your plan doesn't include e-sign.
+    It only appears for PDFs. Only owners, admins and members can send requests; if you're a viewer, ask an admin to change your role. If the editor shows an upgrade prompt, your plan doesn't include e-sign.
   </Accordion>
   <Accordion title="Send is grayed out">
     You need a subject, at least one recipient set to **Signer** with an email, and at least one field.
@@ -358,7 +363,7 @@ Compliant with:
     - **Invalid or expired signing link**: the link was replaced, for example because you reassigned their part.
   </Accordion>
   <Accordion title="A signer didn't get the verification code">
-    Ask them to check spam, then click **Didn't receive it? Send again**. Each code works for 5 minutes.
+    Ask them to check spam, then click **Didn't receive it? Send again**. Each code works for 5 minutes, and they can get up to 5 codes an hour.
   </Accordion>
   <Accordion title="A signer can't upload their signature">
     Use a PNG or JPG of 500 KB or less, or draw or type the signature instead.

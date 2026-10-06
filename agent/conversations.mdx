@@ -89,6 +89,11 @@ Stopping doesn't undo changes the agent already applied. Use **Undo** on their c
 
 **Continue.** If a task grows bigger than one turn, the agent stops and says: "This task got bigger than one turn can finish, so I stopped here. Say "continue" and I'll pick up where I left off." Type "continue" to carry on. Continuing counts as a new task. How big one turn may be is the workspace's [task size](/agent/settings#task-size).
 
+If the agent had already made files, such as a half-built spreadsheet, it attaches them to the chat before it stops, marked **Unfinished: the task stopped before this was checked**, and says it attached what it had made so far. When you say "continue", it builds on those files instead of starting over. It attaches up to 10 files this way.
+
+On the Free plan, if you can change the plan, the stop message also links to the next plan up: "On *plan*, bigger tasks finish in one go."
+
+
 If the agent couldn't make progress three times in a row, it stops and asks you to say "continue" to try again.
 
 ## What you see while it works

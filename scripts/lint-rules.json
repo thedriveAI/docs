@@ -2,6 +2,14 @@
   "version": 1,
   "retired": [
     {
+      "id": "guest-role",
+      "pattern": "\\bguests?\\b",
+      "flags": "i",
+      "why": "The Guest role was retired 2026-10-05 (backend 6459c35a, frontend 3c36a224); a stray guest reads as a viewer.",
+      "instead": "Viewer",
+      "allowIn": []
+    },
+    {
       "id": "daily-task-limit",
       "pattern": "in any 24 hours|tasks (for )?today",
       "flags": "i",

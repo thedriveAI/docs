@@ -16,32 +16,31 @@ You manage members in **Settings** > **Members**. Owners, admins and members can
 | **Owner** | Everything, including billing, seats, transferring ownership and deleting the workspace. Each workspace has exactly one owner. |
 | **Admin** | Runs the workspace: manages people below admin, workspace settings, integrations and workflows, and can turn the agent on or off. Can't see billing, delete the workspace or change the owner. |
 | **Member** | Works with content: creates, edits and deletes files, uses the agent, connects their own storage and email accounts, and sends file requests and signature requests. Can view workflows but not change them. |
-| **Viewer** | Views files. Can't make changes or open workspace settings. |
-| **Guest** | Limited access to specific content that's been shared with them. Can't make changes or open workspace settings. |
+| **Viewer** | Views and downloads files, nothing else. Can't make changes or open workspace settings. |
 
 ### What each role can do
 
-| | Owner | Admin | Member | Viewer | Guest |
-|---|:---:|:---:|:---:|:---:|:---:|
-| Create, edit and delete files | ✓ | ✓ | ✓ | | |
-| Open workspace settings | ✓ | ✓ | ✓ | | |
-| See the member list | ✓ | ✓ | ✓ | | |
-| Invite people | ✓ | ✓ ¹ | | | |
-| Change roles | ✓ | ✓ ² | | | |
-| Remove people | ✓ | ✓ ² | | | |
-| Transfer ownership | ✓ | | | | |
-| Billing and seats | ✓ | | | | |
-| Delete the workspace | ✓ | | | | |
-| Edit workspace settings | ✓ | ✓ | | | |
-| Create, edit and run [workflows](/workflows/overview) | ✓ | ✓ | View only | | |
-| Connect Slack or Microsoft Teams | ✓ | ✓ | | | |
-| Auto Organization, Activity Log, Email Blocklist and Import History | ✓ | ✓ | | | |
-| Send [signature requests](/features/e-sign) | ✓ | ✓ | ✓ | | |
-| Create [file requests](/features/file-requests) | ✓ | ✓ | ✓ | | |
-| Manage other people's file requests | ✓ | ✓ | | | |
+| | Owner | Admin | Member | Viewer |
+|---|:---:|:---:|:---:|:---:|
+| Create, edit and delete files | ✓ | ✓ | ✓ | |
+| Open workspace settings | ✓ | ✓ | ✓ | |
+| See the member list | ✓ | ✓ | ✓ | |
+| Invite people | ✓ | ✓ ¹ | | |
+| Change roles | ✓ | ✓ ² | | |
+| Remove people | ✓ | ✓ ² | | |
+| Transfer ownership | ✓ | | | |
+| Billing and seats | ✓ | | | |
+| Delete the workspace | ✓ | | | |
+| Edit workspace settings | ✓ | ✓ | | |
+| Create, edit and run [workflows](/workflows/overview) | ✓ | ✓ | View only | |
+| Connect Slack or Microsoft Teams | ✓ | ✓ | | |
+| Auto Organization, Activity Log, Email Blocklist and Import History | ✓ | ✓ | | |
+| Send [signature requests](/features/e-sign) | ✓ | ✓ | ✓ | |
+| Create [file requests](/features/file-requests) | ✓ | ✓ | ✓ | |
+| Manage other people's file requests | ✓ | ✓ | | |
 
-¹ Admins can invite members, viewers and guests, not admins.
-² Admins can act only on members, viewers and guests, and can only give those roles.
+¹ Admins can invite members and viewers, not admins.
+² Admins can act only on members and viewers, and can only give those roles.
 
 A few details:
 
@@ -92,7 +91,7 @@ Invitations that haven't been accepted are listed under **Pending invites**. Own
 Who can change what:
 
 - **The owner** can change anyone's role except their own, and can make people admins.
-- **Admins** can switch people between **Member**, **Viewer** and **Guest**. They can't change another admin, and they can't make anyone an admin.
+- **Admins** can switch people between **Member** and **Viewer**. They can't change another admin, and they can't make anyone an admin.
 - Nobody can change their own role here.
 - The owner's role changes only by [transferring ownership](#transfer-ownership).
 
@@ -110,7 +109,7 @@ What happens:
 Who can remove whom:
 
 - **The owner** can remove anyone except themselves.
-- **Admins** can remove members, viewers and guests, but not other admins.
+- **Admins** can remove members and viewers, but not other admins.
 - **The owner can't be removed.** Ownership must be transferred first.
 
 <Tip>
@@ -136,9 +135,9 @@ There's no **Leave** button. To leave a workspace:
 
 **The owner can't leave.** Transfer ownership to someone else first, then leave as an admin.
 
-## What viewers and guests see
+## What viewers see
 
-Viewers and guests can't open workspace settings, so they don't see the member list. If they ask the agent who's in the workspace, they get the number of people in each role, not names or emails.
+Viewers can't open workspace settings, so they don't see the member list. If they ask the agent who's in the workspace, they get the number of people in each role, not names or emails.
 
 ## Manage members through the agent
 
@@ -156,7 +155,7 @@ It follows the same rules as the Members tab, and asks before each change. Click
 
 <AccordionGroup>
   <Accordion title="I don't see the Members tab">
-    The tab isn't shown in personal workspaces, or to viewers and guests.
+    The tab isn't shown in personal workspaces, or to viewers.
   </Accordion>
   <Accordion title="I can't invite anyone">
     Only owners and admins can invite. If you're an admin and the workspace is out of seats, ask the owner to add seats.
