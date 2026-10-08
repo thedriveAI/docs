@@ -1,0 +1,223 @@
+---
+title: "Desktop App"
+description: "Use The Drive AI on your Mac: browse every workspace even offline, keep a folder uploaded with folder sync, and see sync status right in Finder"
+---
+
+## Overview
+
+The Drive AI for Mac works with the same account and workspaces as the web app. On your Mac you can:
+
+- Browse, search, open and organize the files in all your workspaces, even without a connection
+- Keep files available offline, and open them in the apps you already use
+- Keep a folder on your Mac uploaded to a workspace with [folder sync](#folder-sync)
+- Send files to The Drive AI from Finder, and see in Finder which files are synced
+
+The agent, sharing, workflows and workspace settings are on the web. See [What's on the web only](#whats-on-the-web-only).
+
+## Install and sign in
+
+<Card title="Download for Mac" icon="apple" href="https://thedrive.ai/desktop">
+  Choose **Apple Silicon** or **Intel** to match your Mac.
+</Card>
+
+You need macOS 13 Ventura or later. A Windows version isn't available yet.
+
+Open the downloaded file and drag **The Drive AI Desktop** into **Applications**. Then open it and sign in with **Continue with Google** or with your email and password.
+
+The app updates itself. When an update is ready, it tells you, and you can **Restart** to finish updating then or later.
+
+## Find your way around
+
+- **Your files** fill the main window. The status bar at the bottom shows how many items are in the folder, how many are selected, and how many are available offline.
+- **The sidebar** has your workspace at the top. If you belong to more than one, click its name to switch. Below it are **All files**, **Search**, **Recent** and **Trash**, and at the bottom **Feedback**, **Settings** and your account.
+- **The menu bar icon** stays when you close the window, so sync keeps running. Click it to see whether sync is up to date, open the app or your synced folder, pause syncing, or quit.
+
+<Frame>
+  <img src="/images/desktop-app-overview.png" alt="The desktop app with the sidebar on the left, the Docs Demo folder open in list view, and the status bar at the bottom" />
+</Frame>
+
+### Always up to date, even offline
+
+The app keeps a list of every file and folder in all your workspaces on your Mac, and follows changes as they happen. Switching folders or workspaces is instant, and a change made on the web or by a teammate appears within moments.
+
+When you're offline, you can still browse everything and open any file that's [available offline](#work-offline). A banner says you're offline, and changes catch up when you're back. If the app can't reach The Drive AI for a while, the status bar says **Reconnecting** or **Not receiving changes**.
+
+## Browse and manage files
+
+- **Open a folder or file:** double-click it. Files open in the app your Mac uses for that type, downloading first if needed.
+- **View and sort:** switch between list and grid in the toolbar. In list view, click a column to sort by it.
+- **Search:** click **Search** in the sidebar, or press **⌘F**. Search looks through file and folder names across the whole workspace.
+- **Select several items:** drag across empty space to draw a selection box, or ⌘-click and ⇧-click.
+- **Move:** drag items onto a folder, onto a folder in the path at the top, or onto **All files**. Or right-click and choose **Move to…**.
+
+Right-click a file or folder for its menu:
+
+| Item | What it does |
+|------|--------------|
+| **Open** | Opens it. |
+| **Make available offline** | Keeps a copy on your Mac. For a folder, every file inside. |
+| **Show in Finder** | Shows a file's offline copy in Finder. |
+| **Save a copy…** | Saves the file anywhere on your Mac. |
+| **Rename** | Gives it a new name. |
+| **Move to…** | Moves it to another folder in the workspace. |
+| **Delete** | Moves it to the Trash. |
+
+After you move or delete something, the confirmation has an **Undo** button for a few seconds.
+
+**Recent** lists the files changed most recently across the workspace. **Trash** lists deleted items: right-click one to **Restore** it or **Delete permanently**, or click **Empty trash** at the top.
+
+### Keyboard shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| **⌘F** or **⌘P** | Search |
+| **⌘↓** | Open |
+| **F2** | Rename |
+| **⌘⌫** | Delete |
+| Arrow keys | Move between files |
+
+## Upload files
+
+- **Drag files or folders** from Finder into the window. They upload to the folder you have open.
+- **Or click Upload** in the toolbar and choose **Files…** or **Folder…**.
+
+Progress shows in the transfer panel at the bottom of the window. If something fails, click **Retry failed**. Limits on file size, uploads per hour and files per workspace are the same as on the web. See [Uploading files](/features/uploading-files#limits).
+
+### From Finder
+
+You don't need to open the app first:
+
+- **Right-click files or folders in Finder** and choose **Quick Actions** > **Add to The Drive AI**.
+- **Drag them onto The Drive AI** in the Dock or onto its menu bar icon.
+
+The app asks where they should go. It starts with the folder you have open, so usually you just click **Add**.
+
+## Work offline
+
+Files you open are kept on your Mac, so they open instantly next time. To make sure a file or folder is there when you're offline, right-click it and choose **Make available offline**. Files on your Mac show a small drive icon next to their name.
+
+Offline copies take up space. To see how much, or to remove them, go to **Settings** > **Storage** > **Offline copies** and click **Clear**. Your files in The Drive AI aren't affected.
+
+## Folder sync
+
+Folder sync keeps a folder on your Mac uploaded to a workspace. Put a file in the folder, and it's uploaded. It's a good fit for a folder you save into all the time, like scans, exports or invoices.
+
+<Warning>
+  Folder sync is **one way, from your Mac to The Drive AI**. It doesn't download anything into the folder, and it doesn't mirror deletes or renames. See [What folder sync does and doesn't do](#what-folder-sync-does-and-doesnt-do).
+</Warning>
+
+### Set it up
+
+<Steps>
+  <Step title="Open sync settings">
+    Click **Settings** in the sidebar, then **Sync**. Once sync is set up, clicking the sync status in the status bar brings you back here.
+  </Step>
+  <Step title="Choose the workspace">
+    Under **Workspace to sync into**, pick where the files should go.
+  </Step>
+  <Step title="Choose the folder">
+    Click **Choose a folder…** and pick a folder on your Mac. Everything already in it starts uploading.
+  </Step>
+</Steps>
+
+You can sync one folder on each Mac. Its files go to the top level of the workspace, keeping the folders inside it.
+
+The status bar shows how it's going, for example **Syncing 3 of 10**, **Up to date**, **Paused** or **2 failed**. In **Settings** > **Sync** you can **Change** the folder, **Pause** and **Resume**, or **Stop syncing**. Stopping keeps your files, both on your Mac and in The Drive AI.
+
+Folder sync pauses by itself while you're offline and carries on when you're back. If you pause it, it stays paused, even after a restart, until you resume.
+
+### What folder sync does and doesn't do
+
+| When you… | What happens in The Drive AI |
+|-----------|------------------------------|
+| Add a file to the folder | It's uploaded. |
+| Add a file that's already in the workspace | It isn't uploaded again, wherever the copy is. |
+| Change a file | The changed file is uploaded **as a new file next to the earlier one**. The earlier one stays. |
+| Rename or move a file inside the folder | Nothing changes. The file keeps its earlier name and place. |
+| Delete a file from the folder | Nothing changes. The file stays in The Drive AI. |
+| Change, rename or delete the file on the web | Nothing changes in the folder on your Mac. |
+
+Hidden files (names starting with a dot) and empty files aren't uploaded.
+
+### Sync status in Finder
+
+With **sync badges** on, every file in your synced folder shows its state in Finder:
+
+| Badge | Meaning |
+|-------|---------|
+| Green check | Uploaded. |
+| Blue arrows | Waiting to upload, or uploading. |
+| Red alert | Couldn't be uploaded. Open the app to see why, and click **Retry failed**. |
+
+A folder shows the state of what's inside it. Right-click any file in the synced folder, or use The Drive AI button in the Finder toolbar, and choose **Open in The Drive AI** to see it in the app.
+
+The synced folder also wears The Drive AI's icon in Finder.
+
+<Frame>
+  <img src="/images/desktop-finder-badges.png" alt="A synced folder in Finder with a green check next to most files, blue arrows next to one uploading and a red alert next to one that failed" />
+</Frame>
+
+## Settings
+
+Click **Settings** in the sidebar.
+
+- **General:** **Appearance** (System, Light or Dark), **Open at login**, **Notify when uploads finish**, the **"Add to The Drive AI" in Finder** quick action, and **Sync badges in Finder**.
+- **Sync:** [folder sync](#folder-sync).
+- **Storage:** how much space [offline copies](#work-offline) use, and **Clear**.
+- **Account:** who is signed in, and **Manage on the web** for your profile, members and billing.
+- **About:** the version, updates and help.
+
+### Turn on sync badges in Finder
+
+macOS asks you to allow Finder extensions. The app turns sync badges on when it's first opened. If you don't see badges:
+
+<Steps>
+  <Step title="Turn them on in the app">
+    Go to **Settings** > **General** and click **Turn on** next to **Sync badges in Finder**.
+  </Step>
+  <Step title="Or in System Settings">
+    If the badges still don't appear, the app opens **System Settings** > **General** > **Login Items & Extensions**. Under **Extensions**, turn on **The Drive AI**.
+  </Step>
+</Steps>
+
+## What's on the web only
+
+These need the web app:
+
+- [The agent](/agent/overview) and [workflows](/workflows/overview)
+- [Sharing files and publishing public links](/features/file-sharing)
+- The **Shared** list of items others shared with you
+- [File requests](/features/file-requests) and [e-sign](/features/e-sign)
+- Inviting people, changing roles, and billing
+- Connected drives such as Google Drive, OneDrive and Dropbox
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The status bar says Not receiving changes">
+    The app couldn't reach The Drive AI for a while, so what you see may be out of date. Check your connection. The app keeps trying and catches up on its own once it gets through.
+  </Accordion>
+  <Accordion title="A file I added to the synced folder isn't in The Drive AI">
+    Check that it isn't a hidden or empty file. If the workspace already has a file with exactly the same contents, it isn't uploaded again: search for its name, and look for a copy under another name or folder. If the status bar says files failed, open the transfer panel to see why, and click **Retry failed**.
+  </Accordion>
+  <Accordion title="I see two files with the same name">
+    That's folder sync uploading a file you changed. It uploads the new version next to the earlier one. Delete the one you don't need, on the web or in the app.
+  </Accordion>
+  <Accordion title="There are no badges in Finder">
+    See [Turn on sync badges in Finder](#turn-on-sync-badges-in-finder). Badges only appear in the synced folder.
+  </Accordion>
+  <Accordion title="Add to The Drive AI isn't in Finder's Quick Actions">
+    Go to **Settings** > **General** and turn on **"Add to The Drive AI" in Finder**. It can also be under **Services** at the bottom of the right-click menu.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Uploading files" icon="upload" href="/features/uploading-files">
+    Limits and file types.
+  </Card>
+  <Card title="Mobile app" icon="mobile" href="/getting-started/mobile-app">
+    The Drive AI on your phone.
+  </Card>
+</CardGroup>
