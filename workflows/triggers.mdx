@@ -127,7 +127,7 @@ The Workflows page and the editor show when a scheduled workflow runs next, for 
 
 ## Email Attachment
 
-Starts once for every attachment that arrives in a connected Gmail or Outlook account. The email itself isn't saved.
+Starts once for every attachment that arrives in a connected Gmail or Outlook account. The email itself isn't saved, but its sender, subject and text are available to the steps: as the **Sender**, **Subject** and **Email body** values in messages, and as context for the steps that read the file, so "attached is the signed lease for unit 4B" in the email helps **Ask AI About the File** and **Move** decide. The email's text is treated as information about the file, never as instructions.
 
 - **Account**: the inbox to watch.
 - **More options** > **From**: only attachments from senders containing this text, for example `@acme.com` or part of a name.
