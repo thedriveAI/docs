@@ -93,7 +93,7 @@ Pauses the run and asks a person before anything after it happens. Put it before
 
 The step has three exits: **Approved**, **Rejected** and **Expired**. A rejected or expired file stops and stays where it is, unless you connect that exit to another step, for example a **Move** into a Review folder.
 
-With **Only when unsure**, confident filing into existing folders goes ahead on its own and is logged. New folders, unsure matches and anything destructive still ask.
+With **Only when unsure**, confident filing into existing folders goes ahead on its own and is logged. New folders, unsure matches, anything destructive and any message that attaches the file still ask.
 
 Approvers are emailed and notified in the app. If you pick **Specific people** but don't choose anyone, admins are asked instead. Owners and admins can also decide approvals addressed to specific people.
 
@@ -189,11 +189,21 @@ Pair it with **Check File Details** or **Ask AI About the File** so only the fil
 Sends a message without changing the file. Under **Send this as**, choose:
 
 - **A Slack message**: pick the **Workspace** and one **Channel**. Slack has to be connected in **Settings** > **Integrations**.
-- **An email**: enter **To** and **Subject**.
+- **An email**: enter **To** and **Subject**. Tick **Attach the file** to send the file itself with the email.
 
 Write the **Message**. Click a value under it to drop it in, like **File name**, **Source** or a value read by an earlier step. It's filled in when the workflow runs.
 
 **Example:** a Slack message to your accounts channel that says "New invoice:" followed by the **File name** value.
+
+**Example:** forward incoming invoices. **Email Attachment** → **Save a Copy** to The Drive AI, **The copy** → **Ask AI About the File** ("Is this an invoice?") → on **Yes**, **Send a Message** as an email to your bookkeeper with **Attach the file** ticked and a message made of the **Sender**, **Subject** and **Email body** values.
+
+How **Attach the file** works:
+
+- The email comes from The Drive AI's address, not from your mailbox. Quote the **Sender** value in the message so the recipient knows who sent it originally.
+- The file attached is the one the workflow is working on at that step, so the step has to come after **Save a Copy** on an email workflow. Save refuses it otherwise.
+- Files over 25 MB, and files flagged by the malware scan, aren't attached. The email still goes out and says why.
+- An email with several attachments starts the workflow once per attachment, so each one is forwarded in its own email. A message that doesn't mention the file is sent once per email, not once per attachment.
+- With an **Ask a Person to Approve** step set to **Only when unsure**, a message that attaches the file always asks.
 
 ### Send to Another App
 
@@ -215,7 +225,7 @@ Text settings like messages, approval questions, move and rename instructions an
 | **File name**, **File type**, **Source** | Every source |
 | **File size** | Stored-file sources and schedules |
 | **Folder** | **File Uploaded** on The Drive AI |
-| **Sender**, **Subject** | **Email Attachment** |
+| **Sender**, **Subject**, **Email body** | **Email Attachment** |
 | **Channel**, **Shared by** | **Slack** and **Microsoft Teams** |
 | Named values | After a **Read Details from File** step on the same path |
 
