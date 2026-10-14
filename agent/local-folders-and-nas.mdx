@@ -1,0 +1,166 @@
+---
+title: "Local Folders and NAS"
+description: "Let the agent work in folders on your Mac, PC or NAS: share a folder from the desktop app or run the helper on a NAS, choose who sees it and what the agent may read, and what happens when the device is off"
+---
+
+## Overview
+
+The agent can work in folders that live on a computer or a NAS, the way it works in a [connected drive](/agent/connected-drives). The files stay where they are. The agent keeps a catalogue of names, paths, sizes and dates, and, where you allow it, the text of documents, so it can find, read, organise and file them from a conversation or a workflow.
+
+Two ways to share a folder:
+
+- **On a Mac or PC**, from the desktop app. The app pairs itself with your workspace; no code is needed.
+- **On a NAS or a server**, with a small helper that runs in Docker. You pair it once with a code from **Settings** > **Agent**.
+
+Sharing folders on a device comes with the same plans as connected drives: Max, Team, Business and Enterprise. See [Plans and pricing](/account/plans-pricing).
+
+## Share a folder from your Mac or PC
+
+<Steps>
+  <Step title="Install the desktop app">
+    Version 1.2 or later. See [Desktop app](/getting-started/desktop-app).
+  </Step>
+  <Step title="Choose a folder">
+    Open the app's **Settings** > **Agent** and click **Share a folder…**. Pick the folder. Under **Workspace to share into**, choose the workspace; a computer shares into one workspace.
+  </Step>
+  <Step title="Choose what the agent may read">
+    Under **What the agent may read**, choose **Read documents** or **Names and dates only**. You can change this later for any folder under **Settings** > **Agent** in the web app.
+  </Step>
+</Steps>
+
+The folder appears under **Settings** > **Agent** > **Your devices** in the web app within a minute, first as **Cataloguing…**, then with its item count once the catalogue is complete. A large folder takes a few minutes.
+
+### Ask about a folder from Finder
+
+On a Mac, right-click a folder in Finder and choose **Quick Actions** > **Ask The Drive AI about this folder**. The app opens the agent on that folder and shares it for the conversation. To keep the agent on it after you quit the app, share it from **Settings** > **Agent** instead.
+
+## Share folders from a NAS
+
+The helper runs as a container on Synology, QNAP, TrueNAS, Unraid, or any machine with Docker. It connects out to The Drive AI; nothing on the NAS is opened to the internet.
+
+<Steps>
+  <Step title="Get a pairing code">
+    In the web app, open **Settings** > **Agent**, find **Your devices** and click **Pair a device**. Choose **On a NAS or a server (Docker)**. The code pairs one device into this workspace as you, and works for ten minutes.
+  </Step>
+  <Step title="Copy the compose file">
+    The page shows a compose file with the code filled in. Copy it into your NAS's container manager (Container Manager on Synology, Container Station on QNAP, Portainer, or a `docker-compose.yml` on a server). A `docker run` command is offered as well.
+  </Step>
+  <Step title="Mount your shares">
+    Each share you want the agent to see is one line under `volumes`, mounted under `/data`. The example mounts `/volume1/Clients`; change it to your own share and add a line per share.
+  </Step>
+  <Step title="Start the container">
+    The device appears under **Your devices** as **Online · NAS** within a minute, with one entry per mounted share. Each share is catalogued once, then kept up to date.
+  </Step>
+</Steps>
+
+The compose file looks like this:
+
+```yaml
+services:
+  thedrive:
+    image: ghcr.io/thedriveai/device-helper:latest
+    container_name: tdai-device
+    restart: unless-stopped
+    environment:
+      TDAI_PAIR_CODE: "<your code>"
+      TDAI_DEVICE_NAME: "Office NAS"
+      TDAI_TRASH_DIR: "#recycle"
+    volumes:
+      - /volume1/Clients:/data/Clients   # one line per share; change to yours
+      - tdai-device-config:/config
+volumes:
+  tdai-device-config:
+```
+
+Settings you can change in `environment`:
+
+| Setting | What it does |
+|---------|--------------|
+| `TDAI_DEVICE_NAME` | The name people see under **Your devices**. |
+| `TDAI_TRASH_DIR` | Where deletions go. `#recycle` uses each share's own recycle bin. A path uses one folder for everything. Leave it out and the agent moves files instead of deleting them. |
+| `TDAI_CONTENT` | `names` keeps every document on the NAS: the agent organises by name, date and photo details and never reads a document into its index. |
+| `TDAI_READ_ONLY` | `1` lets the agent read but not move, rename or delete. |
+| `TDAI_SHARED` | `0` keeps the folders to the person who paired. By default, a NAS paired by an admin is shared with the whole workspace. |
+
+The pairing is kept in the `tdai-device-config` volume, so you can update the container with `docker pull ghcr.io/thedriveai/device-helper:latest` and recreate it without pairing again. Run the container as the user who owns the shares (`user:` in compose) so files the agent creates belong to that user.
+
+## Who sees a shared folder
+
+- A folder on **a Mac or PC** is seen only by your own agent. Under **Your devices**, the folder says **Only you will see them until an admin shares them**.
+- A folder on **a NAS** paired by an admin is shared with everyone in the workspace, and says **Everyone here**.
+
+An admin can switch any folder either way under **Your devices**. A folder shared with everyone is listed for every member under **What the agent can see**.
+
+## What the agent may read
+
+Each folder has one of two settings, chosen when you share it and changeable under **Your devices**:
+
+| Setting | What it means |
+|---------|---------------|
+| **Reads documents** | The agent reads documents into its index, as for any drive, so it can find files by what they say. |
+| **Names and dates only** | No document is ever read into the index. The agent organises by file name, date and photo details, and reads a file only when you ask it to in a conversation. |
+
+**Names and dates only** suits a folder you'd rather keep on the device: client records, personal archives, a NAS full of scans.
+
+## What the agent can do in a shared folder
+
+The same things it does in a connected drive: find files by name or content, read a file when a task needs it, create folders, move, rename, copy and trash files, and run [workflows](/workflows/triggers#a-shared-folder-on-a-device) on files that land there. Every change waits for your approval, as elsewhere.
+
+A few things are particular to a device:
+
+- **Bytes stay on the device.** The agent streams a file from the device only when it reads it or copies it elsewhere.
+- **Deletions go to the device's own trash**: the Trash on a Mac, the Recycle Bin on a PC, the share's recycle bin on a NAS. A folder with no trash the helper can use says **no trash: the agent moves instead of deleting**.
+- **Moves and renames keep the file's identity**, so the agent's notes and datasets about a file follow it.
+- **Photos** are catalogued with when and where they were taken, read on the device without sending the photo anywhere.
+
+## When the device is off
+
+A laptop closes, a NAS reboots. The device shows **Offline · last seen 2 hours ago** under **Your devices**, and:
+
+- The catalogue stays. The agent can still find and talk about the files it knows, but can't read or change them until the device is back.
+- A task that needs the device stops and tells you so. A workflow run resumes on its own when the device reconnects; in a conversation, ask again once it's back.
+- Changes made while the device was off are picked up when it reconnects, and a [workflow](/workflows/triggers#a-shared-folder-on-a-device) watching the folder runs on files that arrived meanwhile.
+
+## Stop sharing
+
+- **One folder**: on a Mac or PC, choose **Stop sharing** next to it in the app's **Settings** > **Agent**. On a NAS, remove the share's line from the compose file and recreate the container. The folder leaves the agent's catalogue; nothing on the device is touched.
+- **The whole device**: under **Your devices**, disconnect it. Its folders leave the catalogue and the helper is signed out. Pairing it again brings everything back.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The device doesn't appear after pairing" icon="plug">
+    - A pairing code works for ten minutes and once. Make a new one with **Pair a device**.
+    - On a NAS, check the container's log. It says **connected as &lt;name&gt;** when pairing worked, and names the share it could not mount otherwise.
+    - The device must reach the internet. Nothing needs to be opened inbound.
+  </Accordion>
+  <Accordion title="A folder says Paused" icon="pause">
+    The folder isn't available on the device right now: a disk unplugged, a network drive asleep, a share not mounted when the container started. It resumes on its own when the folder is back. If it's gone for good, remove it under **Your devices**.
+  </Accordion>
+  <Accordion title="The agent can't find a file I just added" icon="magnifying-glass">
+    Changes reach the agent within a minute while the device is online. A very large folder is catalogued in the background first; the folder's line says **Cataloguing · 12,000 items so far** until it's done.
+  </Accordion>
+  <Accordion title="A teammate doesn't see my NAS" icon="users">
+    A folder is shared with everyone only when an admin paired the device, or when an admin switched it to **Everyone here** under **Your devices**.
+  </Accordion>
+  <Accordion title="Two files with the same name differ only in capital letters" icon="font-case">
+    On a NAS, `Report.pdf` and `report.pdf` can sit side by side. The agent treats them as one file today, so one of the two is not catalogued. Rename one of them.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    The same agent over Google Drive, OneDrive, SharePoint and Dropbox.
+  </Card>
+  <Card title="Workflow triggers" icon="bolt" href="/workflows/triggers#a-shared-folder-on-a-device">
+    Run a workflow when a file lands in a shared folder.
+  </Card>
+  <Card title="Desktop app" icon="desktop" href="/getting-started/desktop-app">
+    Install the app, work offline, keep a folder uploaded.
+  </Card>
+  <Card title="Agent settings" icon="sliders" href="/agent/settings">
+    Everything under Settings > Agent.
+  </Card>
+</CardGroup>

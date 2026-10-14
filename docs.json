@@ -45,6 +45,7 @@
               "agent/memory-and-instructions",
               "agent/settings",
               "agent/connected-drives",
+              "agent/local-folders-and-nas",
               "agent/browser-extension",
               "agent/mcp-tools"
             ]
