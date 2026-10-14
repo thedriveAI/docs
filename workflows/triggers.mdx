@@ -72,6 +72,21 @@ SharePoint has no single drive to watch. After you choose a SharePoint account:
 
 If the library holds a Teams channel's files, the picker says so. Files shared in that team's channels land in the library, so the workflow sees them too.
 
+### A shared folder on a device
+
+A folder on a Mac, a PC or a NAS that someone has shared with the agent is a place to watch too. See [Local folders and NAS](/agent/local-folders-and-nas). After you choose the device under **Where** (it's listed by its name, with a laptop icon):
+
+<Steps>
+  <Step title="Choose the shared folder">
+    Under **Folder on this device**, choose one of the folders shared from that device. A device trigger watches one shared folder, the way a SharePoint trigger watches one library.
+  </Step>
+  <Step title="Narrow it (optional)">
+    Under **Folder**, choose **All folders**, **Root only** or **Specific**, and pick a folder inside the shared one.
+  </Step>
+</Steps>
+
+The workflow runs while the device is on. Files that land while it's off are picked up when it reconnects, and a run that was in the middle of a step when the device went away resumes on its own. If nothing is paired yet, **Where** offers **Pair a device**, which opens **Settings** > **Agent**.
+
 ### Skip duplicate files
 
 Under **More options**, turn on **Skip duplicate files** to ignore exact copies of a file that's already in the watched place or that this workflow has already handled. Only byte-for-byte copies count. A re-scan or re-export of the same document is a different file.
