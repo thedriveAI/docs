@@ -14,7 +14,7 @@ The Drive AI has an MCP (Model Context Protocol) server. With it, AI assistants 
 ## Server URL
 
 ```text
-https://thedriveai.fastmcp.app/mcp
+https://mcp.thedrive.ai/mcp
 ```
 
 You can also find it in the app: open **Settings** and choose **MCP**.
@@ -41,19 +41,19 @@ You can also find it in the app: open **Settings** and choose **MCP**.
 
     <CodeGroup>
     ```bash Claude Code
-    claude mcp add --scope local --transport http thedriveai https://thedriveai.fastmcp.app/mcp
+    claude mcp add --scope local --transport http thedriveai https://mcp.thedrive.ai/mcp
     ```
 
     ```bash Codex CLI
-    codex mcp add --url https://thedriveai.fastmcp.app/mcp thedriveai
+    codex mcp add --url https://mcp.thedrive.ai/mcp thedriveai
     ```
 
     ```bash Gemini CLI
-    gemini mcp add thedriveai https://thedriveai.fastmcp.app/mcp --transport http
+    gemini mcp add thedriveai https://mcp.thedrive.ai/mcp --transport http
     ```
 
     ```bash VS Code
-    code --add-mcp '{"name":"thedriveai","type":"http","url":"https://thedriveai.fastmcp.app/mcp"}'
+    code --add-mcp '{"name":"thedriveai","type":"http","url":"https://mcp.thedrive.ai/mcp"}'
     ```
     </CodeGroup>
   </Tab>
@@ -64,7 +64,7 @@ You can also find it in the app: open **Settings** and choose **MCP**.
     {
       "servers": {
         "thedrive": {
-          "url": "https://thedriveai.fastmcp.app/mcp"
+          "url": "https://mcp.thedrive.ai/mcp"
         }
       }
     }
