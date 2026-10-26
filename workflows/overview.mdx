@@ -125,6 +125,20 @@ A scheduled workflow can be tried without waiting for its next run. Save it, the
 
 **Run now** only appears on workflows with an **On a Schedule** source. Other workflows run when a file arrives.
 
+## Run on past mail
+
+A workflow with an **Email Attachment** source acts on mail that arrives after it is saved. To run it over mail already in the mailbox, save it, then click **Run on past mail** in the editor's toolbar.
+
+- Choose how far back to look (up to a year) and how many attachments to act on. It stops when it reaches that number and offers **Continue** from where it stopped.
+- Which mail it reads is decided by the source's own **Sender contains** and **Subject contains** settings. To run over different mail, change the source first.
+- Mail the workflow already handled is skipped, not filed twice.
+- It runs for real: files are saved, moved and renamed as the steps say, and approvals are asked as configured. The **Activity** tab shows each run as it lands, with the replay's progress above the list.
+- The mailbox's owner can run it, and so can an admin.
+
+You can also ask the assistant: "run this workflow on the last 90 days of mail from that sender, three at a time". It shows the same choices on a card before anything runs.
+
+Importing mail as files is a different thing: **Settings** > **Integrations** > **Historical sync** brings attachments into the workspace without running a workflow on them.
+
 ## Delete a workflow
 
 On the Workflows page, open the workflow's **…** menu and choose **Delete**. The workflow stops running and its activity history is removed. Files it already organized aren't affected. This can't be undone.
