@@ -1,0 +1,63 @@
+---
+title: "Organize Files from Claude or ChatGPT with The Drive AI"
+description: "Connect The Drive AI to Claude, ChatGPT or Cursor to move, rename and file Google Drive, OneDrive, SharePoint and Dropbox files, with preview and undo"
+---
+
+Connect The Drive AI to Claude, ChatGPT, Cursor or any tool that supports MCP, and the assistant you already use can find, read, move, rename and file your documents in The Drive AI and in connected Google Drive, OneDrive, SharePoint and Dropbox. Every change is previewed first, bigger changes wait for your confirmation, and any applied change can be undone. Files in The Drive AI work on every plan. Connected drives come with Max, Team, Business and Enterprise.
+
+## What you need
+
+- **An AI tool that supports MCP**, such as Claude (desktop, web or Claude Code), ChatGPT, Cursor, Codex or Gemini CLI.
+- **A The Drive AI account.** You sign in with whatever method your account uses.
+- **For Google Drive, OneDrive, SharePoint or Dropbox:** Max, Team, Business or Enterprise, with the drive connected in The Drive AI. See [Plans & Pricing](/account/plans-pricing).
+
+## How it works
+
+<Steps>
+  <Step title="Add the connector">
+    In Claude or ChatGPT, add a custom connector with the server URL `https://mcp.thedrive.ai/mcp`. For Claude Desktop and Cursor, open **Settings** > **MCP** in The Drive AI for one-click installs. See [MCP Server](/integrations/mcp-server#connect-an-ai-tool).
+  </Step>
+  <Step title="Sign in">
+    Sign in to The Drive AI when the tool asks. It then acts as you, with your permissions.
+  </Step>
+  <Step title="Ask for what you want">
+    For example: "Using The Drive AI, sort the invoices in my Google Drive Finance folder by vendor and year, and rename each one with the date and vendor."
+  </Step>
+  <Step title="Confirm, then undo if needed">
+    The tool previews the change before anything happens. Small changes apply on their own; trashing anything, working outside the folder in focus, or more than 20 operations needs your confirmation. Ask the tool to undo an applied change at any time.
+  </Step>
+</Steps>
+
+For bigger jobs, such as reading a hundred contracts into a table, the tool can hand the work to [the agent](/agent/overview) inside The Drive AI.
+
+## What the tool can do through The Drive AI
+
+- Browse, search and read files by name, type, date or what's inside them.
+- Move, rename, copy, create folders, move to the trash, and create or edit documents, as changes it previews first.
+- Move or copy between drives, for example from Dropbox into Google Drive, as one change.
+- Share files in The Drive AI, after asking you.
+- Hand a job to the agent, which counts as one of your [assistant tasks](/account/usage-and-limits). Reading, searching and making changes don't count.
+
+## What it can't do
+
+- **It doesn't change Google, Microsoft or Dropbox sharing.** Sharing tools cover files in The Drive AI only.
+- **A confirmation lasts 15 minutes** and covers only the exact change it previewed. A different or later change asks again.
+- **Undo on connected drives has the drive's own limits**, for example a Dropbox folder restored from the trash comes back file by file. See [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
+- **It can't act beyond your own permissions.**
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="MCP Server" icon="plug" href="/integrations/mcp-server">
+    Server URL, every way to connect, and limits.
+  </Card>
+  <Card title="Preview, approve and undo" icon="rotate-left" href="/guides/preview-approve-and-undo">
+    How changes are shown and reversed.
+  </Card>
+  <Card title="Move files between drives" icon="arrow-right-arrow-left" href="/guides/move-files-between-drives">
+    Cross-drive moves as one change.
+  </Card>
+  <Card title="MCP on thedrive.ai" icon="arrow-up-right-from-square" href="https://thedrive.ai/mcp">
+    The Drive AI's MCP server, at a glance.
+  </Card>
+</CardGroup>

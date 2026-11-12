@@ -1,0 +1,66 @@
+---
+title: "Organize Files by Content with The Drive AI"
+description: "The Drive AI reads each document to decide where it goes and what to call it, so files are sorted by what they say, not by their names"
+---
+
+The Drive AI reads what's inside each document, such as an invoice's vendor, a contract's client or a scan's date, and uses it to file and rename the file. A file called `scan001.pdf` ends up as `2026-03-12 Acme Corp INV-10422.pdf` in `Clients/Acme Corp/2026` because of what's on the page, not what it was called. You can do this once, by asking the agent, or every time a file arrives, with a workflow.
+
+## What you need
+
+- **Files stored in The Drive AI:** every plan.
+- **Files in Google Drive, OneDrive, SharePoint or Dropbox, or on a Mac, PC or NAS:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Images, audio and video:** read on every plan except Free. Images in a connected drive aren't read. See [What it can't do](#what-it-cant-do).
+
+## How it works
+
+### Once, for files you already have
+
+Open the folder and ask the [agent](/agent/overview), for example:
+
+```text
+Sort these by client, then by year from the document date. Rename each one as date, client and document type.
+```
+
+The agent reads the files, then shows a card listing every move and rename before it makes them. Small changes in the folder you're in apply right away and can be undone. Bigger ones wait for you. See [Approving and undoing](/agent/approving-and-undoing).
+
+For a quick sort into subfolders, right-click a folder in The Drive AI and choose **Organize this folder (⌘K)**. See [Browsing and search](/features/browsing-and-search).
+
+### Every time a file arrives
+
+Set up a [workflow](/workflows/overview). Its steps read each file:
+
+- **Ask AI About the File** reads the file and decides what it is, such as `invoice`, `receipt` or `contract`, and sends each kind down its own path.
+- **Move** files it into the folder you describe, such as "to the client's folder, from the party named on the invoice, then by year from the invoice date". Folders that don't exist yet are created.
+- **Rename** names it from what it says, such as "date, client and invoice number".
+
+See [Steps](/workflows/steps) for every step and how to write instructions that work.
+
+## Finding files by what's in them
+
+The agent also finds files by what's inside them, not just by name, for example "the lease for unit 4B" or "the contract we signed with Acme last spring". See [Browsing and search](/features/browsing-and-search).
+
+## What it can't do
+
+- **AI reading can occasionally be wrong.** Steps that read the file are labelled **Reads the file** for that reason. Use **Ask a Person to Approve** with **Only when unsure** to have a person check the uncertain ones. See [Ask a Person to Approve](/workflows/steps#ask-a-person-to-approve).
+- **It doesn't read images stored in a connected drive.** Images uploaded to The Drive AI are read, on plans that include every file type.
+- **Search across a connected drive may miss words that only appear in a scan.** The agent reads a scanned PDF when it opens it, but the drive's own search may not find words in it.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Clean up thousands of files" icon="broom" href="/guides/clean-up-thousands-of-files">
+    Sort a large existing archive safely, in stages.
+  </Card>
+  <Card title="Preview, approve and undo" icon="rotate-left" href="/guides/preview-approve-and-undo">
+    See every change before it happens, and reverse it after.
+  </Card>
+  <Card title="Steps" icon="list-check" href="/workflows/steps">
+    Every decision and action a workflow can take.
+  </Card>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    How the agent works in Google Drive, OneDrive, SharePoint and Dropbox.
+  </Card>
+  <Card title="AI file organizer" icon="arrow-up-right-from-square" href="https://thedrive.ai/ai-file-organizer">
+    What it is, who it's for, and how it compares.
+  </Card>
+</CardGroup>

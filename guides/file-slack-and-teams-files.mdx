@@ -1,0 +1,58 @@
+---
+title: "File Slack and Microsoft Teams Files Automatically with The Drive AI"
+description: "A workflow in The Drive AI saves each file shared in a Slack or Teams channel, reads it, and renames and files it into the right folder"
+---
+
+The Drive AI files the documents people share in Slack and Microsoft Teams channels. A workflow saves each shared file as it's posted, reads it to work out what it is, then renames it and files it into a folder in The Drive AI or a connected Google Drive, OneDrive, SharePoint or Dropbox. It can also post a message back to Slack. Slack and Teams connections come with Max, Team, Business and Enterprise, and both are in beta.
+
+## What you need
+
+- **A plan with connected accounts:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **An owner or admin** to connect Slack or Teams and to create the workflow.
+- **For Slack:** the app installed in your Slack workspace and added to each channel with `/invite @The Drive AI`. Your Slack admin may need to approve the app.
+- **For Teams:** a work or school Microsoft account with a Teams license, and your Microsoft 365 administrator's approval. Personal Microsoft accounts can't be connected.
+
+## How it works
+
+<Steps>
+  <Step title="Connect Slack or Teams">
+    Open **Settings** > **Integrations** and click **Slack** or **Teams**. See [Slack](/integrations/slack) or [Microsoft Teams](/integrations/microsoft-teams). Connecting saves nothing by itself.
+  </Step>
+  <Step title="Create the workflow">
+    Open **Workflows** and describe it, or ask the agent, for example "When a file is shared in #contracts, save it, check whether it's a signed contract, then file it under Clients by client name and year." See [Create a workflow](/workflows/overview#create-a-workflow).
+  </Step>
+  <Step title="Check the steps">
+    The trigger is **Slack** or **Microsoft Teams**, set to the channels to watch. The first step has to be **Save a Copy**, because a shared file isn't stored anywhere until the workflow saves it. Then **Ask AI About the File**, **Rename** and **Move** file it. See [Triggers](/workflows/triggers#slack).
+  </Step>
+  <Step title="Turn it on">
+    Save and switch it on. Each file's run appears in the workflow's **Activity**.
+  </Step>
+</Steps>
+
+### Files shared before you connected
+
+**Historical sync** in **Settings** > **Integrations** brings in files from the last 30, 90 or 180 days. They land at the top level of the workspace as they are, and don't start Slack or Teams workflows. A workflow that watches uploads to The Drive AI can file them.
+
+## What it can't do
+
+- **It only sees channels it's in.** In Slack, a channel is covered once the app is added. In Teams, only teams the connection covers can be watched.
+- **Historical sync skips images** and files already imported, and doesn't file what it brings in.
+- **Each file a workflow handles counts as a workflow file.** See [Workflow files](/workflows/workflow-files).
+- **AI reading can occasionally be wrong.** Add **Ask a Person to Approve** before **Move** for anything that matters.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Slack integration" icon="slack" href="/integrations/slack">
+    Connecting, channels and past files.
+  </Card>
+  <Card title="Microsoft Teams integration" icon="microsoft" href="/integrations/microsoft-teams">
+    Admin approval, covered teams and past files.
+  </Card>
+  <Card title="Organize files by content" icon="file-magnifying-glass" href="/guides/organize-files-by-content">
+    How workflows read documents to file them.
+  </Card>
+  <Card title="Slack on thedrive.ai" icon="arrow-up-right-from-square" href="https://thedrive.ai/integrations/slack">
+    Filing Slack files with The Drive AI, at a glance.
+  </Card>
+</CardGroup>

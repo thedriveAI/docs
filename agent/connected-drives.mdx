@@ -110,9 +110,20 @@ Changes you make in the drive itself reach the agent within about a minute.
 
 Every change uses the same [approve-and-undo](/agent/approving-and-undoing) cards as in The Drive AI. The agent acts with your own permissions on the drive.
 
+## Move files between drives
+
+The agent can move or copy files and folders from one storage to another as one change: from Google Drive into The Drive AI, from Dropbox to SharePoint, or from a folder on your Mac to OneDrive. The card lists every file like any other change, and **Undo** reverses it.
+
+- **Nothing is lost on the way.** A move copies each file, checks that the copy arrived whole, and only then moves the original to its drive's trash. If a copy can't be checked, the original stays where it was and the card says so.
+- **It always asks first.** A move between storages never applies on its own, whatever its size.
+- **One change carries a folder of up to 2,000 files and 20 GB.** For a bigger folder, the agent does it in parts, a subfolder at a time.
+- **The source has to be ready.** A move, or a copy of a folder, waits until the source drive shows **Ready** in **Settings** > **Agent**. A move also needs a source whose files can go to a trash, and a destination that can take new files.
+- **Google files arrive as files.** A Google Doc moved to another storage arrives as the file it's exported to, for example `Q3 plan.docx`.
+
+For files that keep arriving, a [workflow](/workflows/overview) with a **Save a Copy** step puts a copy of each file into The Drive AI or another connected account, as files arrive or on a schedule. **Import from Cloud** and **Export to Cloud** also copy a file one at a time (see [Google Drive](/integrations/google-drive)).
+
 ## What it can't do
 
-- **It can't move or copy files between two different storages in one change**, for example from Google Drive into The Drive AI, or from OneDrive to Dropbox. A [workflow](/workflows/overview) with a **Save a Copy** step can: it puts a copy of each file it handles into The Drive AI or another connected account, as files arrive or on a schedule over an existing folder. For a one-off copy, you can also use **Import from Cloud** and **Export to Cloud** (see [Google Drive](/integrations/google-drive)).
 - **It can't read images stored in a connected drive.** Images stored in The Drive AI are different: they are read when you upload them, on plans that include every file type.
 - **It can't edit Google files that have no text form**, like Slides decks and Drawings. Open those in Google Drive.
 - **It can't move a file someone else shared with you** out of their Google Drive folder. Files whose folder you can't see are listed under **Shared with me**. The agent can copy them into a folder of yours instead.

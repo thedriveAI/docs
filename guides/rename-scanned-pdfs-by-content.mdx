@@ -1,0 +1,65 @@
+---
+title: "Rename Scanned PDFs by Content in The Drive AI"
+description: "The Drive AI reads each scan, even one with no text layer, and renames it from its contents, such as date, sender and document type"
+---
+
+The Drive AI reads each scanned PDF, including scans with no text layer, and renames it from what's on the page: `scan_0043.pdf` becomes `2026-03-12 Acme Corp Invoice INV-10422.pdf`. Do it once for a folder you already have by asking the agent, or every time a scan arrives with a workflow. Nothing changes until you've seen the new names, and every rename can be undone.
+
+## What you need
+
+- **Scans stored in The Drive AI:** every plan.
+- **Scans in Google Drive, OneDrive, SharePoint or Dropbox, or in a folder on a Mac, PC or NAS:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+
+## Rename a folder of scans you already have
+
+<Steps>
+  <Step title="Open the folder">
+    Open the folder of scans, in The Drive AI or under **Connected** in the left sidebar.
+  </Step>
+  <Step title="Describe the names you want">
+    Ask the [agent](/agent/overview), for example:
+
+    ```text
+    Rename these scans as date, sender and document type, like 2026-03-12 Acme Corp Invoice.pdf. Use the date printed on the document.
+    ```
+  </Step>
+  <Step title="Check the new names">
+    The agent shows a card with every old name and its new name. Change anything by typing what to do differently, then click **Apply N changes**. Click **Undo** on the card to put the old names back.
+  </Step>
+</Steps>
+
+For a folder of thousands, do one subfolder first and check it. See [Clean up thousands of files](/guides/clean-up-thousands-of-files).
+
+## Rename every new scan as it arrives
+
+Set up a [workflow](/workflows/overview) with a **File Uploaded** trigger on the folder your scanner saves to, then a **Rename** step that describes the name, for example "date, client and document type. e.g. an Acme Corp invoice dated 12 Mar 2026 → 2026-03-12 Acme Corp Invoice.pdf". Add a **Move** step to file it at the same time. See [Steps](/workflows/steps#rename).
+
+If your scanner puts several documents into one PDF, put a **Split Document** step first, for example "split into separate invoices". Each part is then renamed and filed on its own. See [Split Document](/workflows/steps#split-document).
+
+Scanning with your phone works too: the [mobile app](/features/document-scanning) saves scans as PDFs into a folder a workflow watches, or hands them straight to the agent.
+
+## What it can't do
+
+- **It can occasionally misread a page.** A blurry scan or handwriting can give a wrong date or name. That's why the agent shows the names before applying them, and why a workflow can have **Ask a Person to Approve** check the ones it's unsure about.
+- **Search across a connected drive may not find words that only appear in a scan.** The agent reads a scan when it opens it, but the drive's own search may not see inside it.
+- **A folder on a device set to Names and dates only** isn't read into the index. The agent reads a file there only when you ask in a conversation. See [What the agent may read](/agent/local-folders-and-nas#what-the-agent-may-read).
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Organize files by content" icon="file-magnifying-glass" href="/guides/organize-files-by-content">
+    File and rename by what each document says.
+  </Card>
+  <Card title="Invoices: split, read and file" icon="file-invoice" href="/guides/process-invoices">
+    Split batch scans, read amounts, file by vendor.
+  </Card>
+  <Card title="Document scanning" icon="camera" href="/features/document-scanning">
+    Scan paper with the mobile app.
+  </Card>
+  <Card title="Preview, approve and undo" icon="rotate-left" href="/guides/preview-approve-and-undo">
+    How every change is shown and reversed.
+  </Card>
+  <Card title="AI file organizer" icon="arrow-up-right-from-square" href="https://thedrive.ai/ai-file-organizer">
+    The product page: renaming and filing by content.
+  </Card>
+</CardGroup>

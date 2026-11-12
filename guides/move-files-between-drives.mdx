@@ -1,0 +1,64 @@
+---
+title: "Move Files Between Drives with The Drive AI"
+description: "The Drive AI moves a folder from one cloud drive to another without downloading it, as one change you approve and can undo"
+---
+
+The Drive AI moves or copies files and folders from one storage to another without you downloading anything: Dropbox to Google Drive, Google Drive to SharePoint, a NAS folder to OneDrive, or any of them into The Drive AI. Ask the agent, check the list of files, and approve it. Each file is copied, checked, and only then removed from where it was, and the whole move can be undone. Connected drives come with Max, Team, Business and Enterprise.
+
+## What you need
+
+- **A plan with connected drives:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Both sides connected**, in **Settings** > **Integrations** (or shared from the desktop app or NAS helper), and the source showing **Ready** in **Settings** > **Agent**.
+- **Permission to change files on both sides.** The agent acts with your own account on each drive.
+
+## How it works
+
+<Steps>
+  <Step title="Ask the agent">
+    For example: "Move the Contracts folder from Dropbox into the Legal library in SharePoint, keeping its subfolders."
+  </Step>
+  <Step title="Check the card">
+    The card lists every folder it will create and every file it will move. A move between storages always asks first, whatever its size.
+  </Step>
+  <Step title="Approve">
+    Click **Apply N changes**. Progress shows on the card. Each file is copied, the copy is checked, and only then is the original moved to its drive's trash. If a copy can't be checked, the original stays where it was and the card says so.
+  </Step>
+  <Step title="Undo if you need to">
+    **Undo** on the card removes the copies and restores the originals.
+  </Step>
+</Steps>
+
+You can rename and reorganize on the way, for example "Move these into Google Drive, filed by client and year." See [Move files between drives](/agent/connected-drives#move-files-between-drives) for the rules.
+
+## How much one move can carry
+
+- **One change carries a folder of up to 2,000 files and 20 GB.** For a bigger folder, the agent does it in parts, a subfolder at a time.
+- **Google Docs, Sheets and Slides arrive as files.** A Google Doc moved out of Google Drive arrives as the file it's exported to, for example `Q3 plan.docx`.
+
+To keep copying new files from one drive to another as they arrive, use a [workflow](/workflows/overview) with a **Save a Copy** step instead.
+
+## What it can't do
+
+- **It isn't a tenant migration tool.** Moving a whole company's storage, with every user's sharing settings and version history, is still a job for a dedicated migration service. Sharing settings and earlier versions aren't carried over.
+- **It can't move out of a source that's still cataloguing**, or out of a storage whose files can't go to a trash.
+- **It can't change files your account can only view.**
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives#move-files-between-drives">
+    The rules for moves between storages.
+  </Card>
+  <Card title="Clean up thousands of files" icon="broom" href="/guides/clean-up-thousands-of-files">
+    Reorganize while you move.
+  </Card>
+  <Card title="Organize folders on a Mac, PC or NAS" icon="hard-drive" href="/guides/organize-mac-pc-and-nas-folders">
+    Bring device folders into the same workspace.
+  </Card>
+  <Card title="Preview, approve and undo" icon="rotate-left" href="/guides/preview-approve-and-undo">
+    How every change is shown and reversed.
+  </Card>
+  <Card title="Move files from Dropbox to Google Drive" icon="arrow-up-right-from-square" href="https://thedrive.ai/use-cases/move-files-from-dropbox-to-google-drive">
+    A worked example of a move between clouds.
+  </Card>
+</CardGroup>

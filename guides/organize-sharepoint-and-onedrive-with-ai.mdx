@@ -1,0 +1,71 @@
+---
+title: "Organize SharePoint and OneDrive with The Drive AI"
+description: "The Drive AI moves, renames and files documents in SharePoint libraries and OneDrive where they are, with a preview of every change and undo"
+---
+
+The Drive AI connects to OneDrive and SharePoint document libraries and organizes them in place: it reads your documents, then moves, renames and files them into folders. Nothing is copied out of Microsoft 365 to do this, and it acts with each person's own Microsoft permissions. Every change is shown before it's made and can be undone. Connected OneDrive and SharePoint come with Max, Team, Business and Enterprise.
+
+## What you need
+
+- **A plan with connected drives:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Your Microsoft account connected** in **Settings** > **Integrations**: **OneDrive** for your own files, **SharePoint** for document libraries.
+- **Administrator approval for work and school accounts.** Your Microsoft 365 administrator approves The Drive AI in Microsoft Entra once. Until then you see **Administrator approval is required**.
+- **For SharePoint libraries:** an owner or admin adds each library once. Each member then reaches it through their own Microsoft account. See [Personal drives and shared drives](/agent/connected-drives#personal-drives-and-shared-drives).
+
+## How it works
+
+<Steps>
+  <Step title="Connect OneDrive or SharePoint">
+    Open **Settings** > **Integrations** and click **OneDrive** or **SharePoint**, then sign in. The agent builds a catalog of your files. When the account shows **Agent: ready**, it can find every file.
+  </Step>
+  <Step title="Add the libraries you want">
+    For SharePoint, an owner or admin opens **Settings** > **Agent**, finds their account under **What the agent can see**, clicks **Add library**, searches for the site and chooses the library.
+  </Step>
+  <Step title="Ask the agent">
+    Open the library or folder under **Connected** in the left sidebar and ask, for example "File these contracts by client, then by year from the signing date."
+  </Step>
+  <Step title="Check and apply">
+    The agent shows a card with every move and rename. Click **Apply N changes**, or tell it what to do differently. Click **Undo** on the card to reverse it later.
+  </Step>
+  <Step title="Keep it organized">
+    To file new documents as they land in a library, set up a [workflow](/workflows/overview) with a **File Uploaded** trigger on that site and library. See [SharePoint sites and libraries](/workflows/triggers#sharepoint-sites-and-libraries).
+  </Step>
+</Steps>
+
+## What the agent can do in OneDrive and SharePoint
+
+- Find files by name, and by content using Microsoft's own search.
+- Read PDFs, Word, Excel, PowerPoint and text files.
+- Move, rename, copy, create folders and move files to the recycle bin.
+- Save files it makes into a OneDrive or SharePoint folder.
+- Move or copy files between OneDrive or SharePoint and another drive, as one change. See [Move files between drives](/agent/connected-drives#move-files-between-drives).
+
+## What it can't do
+
+- **It doesn't read images stored in OneDrive or SharePoint.**
+- **Undo of a move to the recycle bin** in work or school OneDrive and SharePoint needs SharePoint access to be allowed for your account. Otherwise restore the file from the recycle bin on the web. Moves, renames and new folders can always be undone.
+- **It can't act beyond your own permissions.** If your account can only view a library, the agent can read it but not change it.
+
+## Compared with Copilot in SharePoint and OneDrive
+
+For what Microsoft Copilot does with files in OneDrive and SharePoint, side by side with The Drive AI, see [The Drive AI vs Copilot](https://thedrive.ai/comparison/copilot).
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="OneDrive and SharePoint integration" icon="microsoft" href="/integrations/onedrive">
+    Connecting, admin approval, importing and exporting.
+  </Card>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    Everything about how the agent works in a connected drive.
+  </Card>
+  <Card title="Organize Google Drive" icon="google-drive" href="/guides/organize-google-drive-with-ai">
+    The same for Google Workspace.
+  </Card>
+  <Card title="Members and roles" icon="users" href="/account/members-and-roles">
+    Who can connect accounts and add libraries.
+  </Card>
+  <Card title="SharePoint on thedrive.ai" icon="arrow-up-right-from-square" href="https://thedrive.ai/integrations/sharepoint">
+    What The Drive AI does in SharePoint libraries, at a glance.
+  </Card>
+</CardGroup>

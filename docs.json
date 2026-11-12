@@ -24,6 +24,24 @@
             ]
           },
           {
+            "group": "Guides",
+            "pages": [
+              "guides/organize-files-by-content",
+              "guides/rename-scanned-pdfs-by-content",
+              "guides/preview-approve-and-undo",
+              "guides/clean-up-thousands-of-files",
+              "guides/organize-google-drive-with-ai",
+              "guides/organize-sharepoint-and-onedrive-with-ai",
+              "guides/organize-dropbox-with-ai",
+              "guides/organize-mac-pc-and-nas-folders",
+              "guides/move-files-between-drives",
+              "guides/file-email-attachments-automatically",
+              "guides/file-slack-and-teams-files",
+              "guides/process-invoices",
+              "guides/use-from-claude-or-chatgpt"
+            ]
+          },
+          {
             "group": "Files",
             "pages": [
               "features/uploading-files",
