@@ -11,6 +11,7 @@
 - Components: Mintlify components
 
 ## Content strategy
+- Writing a page meant to be found and quoted by ChatGPT, Claude, Perplexity or Gemini (the `guides/` pages): read AGENTS.md first
 - Document just enough for user success - not too much, not too little
 - Prioritize accuracy and usability of information
 - Make content evergreen when possible

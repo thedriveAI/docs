@@ -1,0 +1,56 @@
+---
+title: "Preview, Approve and Undo AI File Changes"
+description: "The Drive AI shows every move, rename and edit before it happens, waits for your OK on larger changes, and can undo any change it applied"
+---
+
+The Drive AI never changes your files silently. Before it moves, renames, edits or deletes anything, it shows a card listing exactly what will change, such as "12 changes · 10 moves · 2 renames". Larger changes wait for your approval, and every change it applies can be undone from the same card. This works the same in The Drive AI and in connected Google Drive, OneDrive, SharePoint and Dropbox accounts.
+
+## What you need
+
+Nothing extra. Preview, approval and undo are part of the [agent](/agent/overview) on every plan. Working in connected drives needs Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+
+## How it works
+
+### Preview
+
+Every change appears as a card with a title, a count line and a row for each file showing where it is and where it goes, or its new name. See [Change cards](/agent/approving-and-undoing#change-cards).
+
+### Approve
+
+- **Small changes in the folder you're in apply right away**, up to the workspace's **Apply on its own** limit (20 files by default). You can still undo them.
+- **Bigger changes wait for you.** Click **Apply N changes**, or **Not now** to skip. You can also type what to do differently, such as "Leave the 2023 folder where it is", and the agent carries on from that.
+- **Very large changes ask twice.** Above the **Ask once** limit (5,000 files by default), you confirm the count with a second click.
+- **Some changes always ask**, however small: moving anything to the trash, editing an existing document, and changing anything outside the folder you're in.
+
+Owners and admins set the two limits in **Settings** > **Agent**. See [Agent settings](/agent/settings#apply-on-its-own).
+
+### Undo
+
+Click **Undo** on a change's card to reverse it. Moves, renames and new folders can be undone on every drive. An edited document goes back to its earlier version. Whether a move to the trash can be undone depends on the drive. See [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
+
+### In workflows
+
+[Workflows](/workflows/overview) run on their own, so they approve differently. Add an **Ask a Person to Approve** step before the steps it guards. Choose **Always ask**, or **Only when unsure** to let confident filing go ahead and send only uncertain files, new folders and deletions to a person. Every file's run is recorded in the workflow's **Activity**. See [Approvals and activity](/workflows/approvals-and-activity).
+
+## What it can't do
+
+- **Some things can't be undone.** Sharing, e-signature requests and messages sent by a workflow happen outside your files. That's why they always ask first. See [Approving and undoing](/agent/approving-and-undoing).
+- **Undo of a trash move in work or school OneDrive and SharePoint** needs SharePoint access to be allowed for your Microsoft account. Otherwise restore the file from the SharePoint recycle bin, and the card tells you so.
+- **An edit can't be undone** if the earlier version was too large to keep a copy of.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Approving and undoing" icon="circle-check" href="/agent/approving-and-undoing">
+    Every kind of card, what always asks, and how undo works.
+  </Card>
+  <Card title="Clean up thousands of files" icon="broom" href="/guides/clean-up-thousands-of-files">
+    Large reorganizations, approved in stages.
+  </Card>
+  <Card title="Organize files by content" icon="file-magnifying-glass" href="/guides/organize-files-by-content">
+    File and rename by what each document says.
+  </Card>
+  <Card title="Agent settings" icon="sliders" href="/agent/settings">
+    Set how much the agent may change before it asks.
+  </Card>
+</CardGroup>

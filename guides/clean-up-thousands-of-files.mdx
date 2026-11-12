@@ -1,0 +1,66 @@
+---
+title: "Clean Up Thousands of Existing Files"
+description: "How to reorganize a large archive with The Drive AI: sort by content in stages, approve each batch, find duplicates, and undo anything"
+---
+
+The Drive AI can reorganize thousands of files you already have, in The Drive AI or in a connected Google Drive, OneDrive, SharePoint or Dropbox. It reads each document, proposes where it goes and what to call it, and shows the full list before anything moves. Work folder by folder, approve each batch, and undo any batch that isn't right. For a folder that keeps filling up, a scheduled workflow keeps it organized afterwards.
+
+## What you need
+
+- **Files in The Drive AI:** every plan. **Files in a connected drive, or on a Mac, PC or NAS:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Room in your plan.** Each request to the agent is one task, and a scheduled workflow counts each file it goes through as a workflow file. Check **Settings** > **Usage**. See [Usage and limits](/account/usage-and-limits).
+
+## How it works
+
+<Steps>
+  <Step title="See what's there">
+    Open the top folder and ask the agent, for example "What's in here? Group it by kind of document and year, and tell me how many duplicates there are." Nothing changes.
+  </Step>
+  <Step title="Agree the structure">
+    Ask for a proposed folder structure and naming pattern, such as `Clients/[client]/[year]` and "date, client, document type". Change it until it's right.
+  </Step>
+  <Step title="Do one folder first">
+    Ask the agent to apply the structure to one folder. It shows a card with every move and rename. Check it, click **Apply N changes**, and look at the result. If it's wrong, click **Undo**.
+  </Step>
+  <Step title="Do the rest in batches">
+    Repeat folder by folder. When a request grows bigger than one turn, the agent stops and asks. Say "continue" and it picks up where it stopped.
+  </Step>
+  <Step title="Deal with duplicates">
+    Ask "Find duplicate files in this folder and tell me how much space they take." Moving anything to the trash always asks first.
+  </Step>
+  <Step title="Keep it organized">
+    Set up a [workflow](/workflows/overview) with **On a Schedule**, set to **New and changed files only**, so new files are filed the same way. See [On a Schedule](/workflows/triggers#on-a-schedule).
+  </Step>
+</Steps>
+
+## How big a change can be
+
+- **Changes up to the Apply on its own limit** (20 files by default) apply in the folder you're in without asking. You can undo them.
+- **Changes up to the Ask once limit** (5,000 files by default) need one approval.
+- **Larger changes** ask you to confirm the count with a second click.
+- **How much one turn can do** depends on the workspace's **Task size**. **Large** comes with Max and team plans, and **Extended** with Business and Enterprise. See [Agent settings](/agent/settings#task-size).
+- **A scheduled workflow handles up to 200 files a run** and finishes a bigger folder over the next runs.
+
+## What it can't do
+
+- **It won't delete anything without asking.** Moving files to the trash always needs your approval.
+- **It doesn't move files between two storages in one change**, such as from Dropbox into Google Drive. A workflow with **Save a Copy** can.
+- **It can't change files your account can only view.**
+- **AI reading can occasionally be wrong.** That's why each batch is shown before it's applied. Check the first folder closely before doing the rest.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Preview, approve and undo" icon="rotate-left" href="/guides/preview-approve-and-undo">
+    How every change is shown and reversed.
+  </Card>
+  <Card title="Organize files by content" icon="file-magnifying-glass" href="/guides/organize-files-by-content">
+    File and rename by what each document says.
+  </Card>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    Working in Google Drive, OneDrive, SharePoint and Dropbox.
+  </Card>
+  <Card title="Local folders and NAS" icon="hard-drive" href="/agent/local-folders-and-nas">
+    Organize folders on a Mac, PC or NAS.
+  </Card>
+</CardGroup>

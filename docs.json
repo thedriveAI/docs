@@ -24,6 +24,17 @@
             ]
           },
           {
+            "group": "Guides",
+            "pages": [
+              "guides/organize-files-by-content",
+              "guides/preview-approve-and-undo",
+              "guides/clean-up-thousands-of-files",
+              "guides/organize-google-drive-with-ai",
+              "guides/organize-sharepoint-and-onedrive-with-ai",
+              "guides/file-email-attachments-automatically"
+            ]
+          },
+          {
             "group": "Files",
             "pages": [
               "features/uploading-files",

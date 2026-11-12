@@ -1,0 +1,63 @@
+---
+title: "File Email Attachments Automatically by Vendor and Year"
+description: "A workflow in The Drive AI saves each Gmail or Outlook attachment, reads it, and files and renames it by vendor, client and year"
+---
+
+The Drive AI files email attachments for you. Connect Gmail or Outlook, and a workflow saves each attachment as it arrives, reads it to work out what it is, then renames it and files it into a folder such as `Vendors/Acme Corp/2026`. It can save into The Drive AI or a connected Google Drive, OneDrive, SharePoint or Dropbox account. Connected email accounts come with Max, Team, Business and Enterprise.
+
+## What you need
+
+- **A plan with connected accounts:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **A Gmail or Outlook account connected** in **Settings** > **Integrations**. See [Email integration](/integrations/email-integration).
+- **An owner or admin** to create the workflow. In a personal workspace, that's you.
+
+## How it works
+
+<Steps>
+  <Step title="Connect your inbox">
+    Open **Settings** > **Integrations**, choose **Gmail** or **Outlook** and sign in. Connecting saves nothing by itself.
+  </Step>
+  <Step title="Describe the workflow">
+    Open **Workflows** and describe it, or ask the agent, for example "When an attachment arrives in Gmail, save it, check whether it's an invoice, then file invoices into Vendors, by vendor then year, renamed as date, vendor and invoice number." See [Create a workflow](/workflows/overview#create-a-workflow).
+  </Step>
+  <Step title="Check the steps">
+    A typical workflow is **Email Attachment** → **Save a Copy** → **Ask AI About the File** (`invoice`, `receipt`, `other`) → **Rename** and **Move** for invoices. Narrow the trigger with **From** or **Subject contains** if you only want some senders. See [Steps](/workflows/steps).
+  </Step>
+  <Step title="Turn it on">
+    Save the workflow and switch it on. Each attachment's run appears in the workflow's **Activity**.
+  </Step>
+</Steps>
+
+The sender, subject and email text are used as context when the workflow reads the file, so "attached is the March invoice" helps it decide. The email itself isn't saved, and the text is treated as information about the file, never as instructions.
+
+### Attachments you already have
+
+Click **Run on past mail** in the workflow editor to run it over up to a year of mail already in the inbox. Mail it already handled is skipped. See [Run on past mail](/workflows/overview#run-on-past-mail).
+
+### Have a person check uncertain files
+
+Add **Ask a Person to Approve** set to **Only when unsure** before **Move**. Confident filing goes ahead, and uncertain matches wait for a person. See [Ask a Person to Approve](/workflows/steps#ask-a-person-to-approve).
+
+## What it can't do
+
+- **The agent doesn't read or send your email.** Only workflows act on attachments, and only on mail that arrives after the account is connected, unless you use **Run on past mail**.
+- **Attachments brought in with Historical sync aren't filed.** They're saved to the top level of the workspace as they are. A workflow that watches uploads can file them.
+- **Each attachment counts as a workflow file.** Plans include a monthly number. See [Workflow files](/workflows/workflow-files).
+- **AI reading can occasionally be wrong.** Use an approval step for anything that matters.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Email integration" icon="envelope" href="/integrations/email-integration">
+    Connecting Gmail or Outlook, blocked senders and past attachments.
+  </Card>
+  <Card title="Triggers" icon="bolt" href="/workflows/triggers#email-attachment">
+    The Email Attachment trigger and its settings.
+  </Card>
+  <Card title="Organize files by content" icon="file-magnifying-glass" href="/guides/organize-files-by-content">
+    How workflows read documents to file them.
+  </Card>
+  <Card title="Workflow files" icon="gauge" href="/workflows/workflow-files">
+    What counts toward the monthly allowance.
+  </Card>
+</CardGroup>

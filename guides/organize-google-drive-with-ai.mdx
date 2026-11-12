@@ -1,0 +1,66 @@
+---
+title: "Organize Google Drive with AI"
+description: "The Drive AI moves, renames and files documents in your Google Drive where they are, with a preview of every change and undo"
+---
+
+The Drive AI connects to your Google Drive and organizes it in place: it reads your documents, then moves, renames and files them into folders, and can edit Google Docs and Sheets. Nothing is copied out of Google Drive to do this. Every change is shown before it's made and can be undone. Connected Google Drive comes with Max, Team, Business and Enterprise.
+
+## What you need
+
+- **A plan with connected drives:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Your Google account connected** in **Settings** > **Integrations** > **Google Drive**. Any member except a viewer can connect their own.
+- **For shared drives:** an owner or admin adds each Google Shared Drive once. Each member then reaches it through their own Google account, with their own permissions. See [Personal drives and shared drives](/agent/connected-drives#personal-drives-and-shared-drives).
+
+## How it works
+
+<Steps>
+  <Step title="Connect Google Drive">
+    Open **Settings** > **Integrations** > **Google Drive** and click **Connect Google Drive**. The agent builds a catalog of your drive. When the account shows **Agent: ready**, it can find every file.
+  </Step>
+  <Step title="Ask the agent">
+    Open your drive under **Connected** in the left sidebar, go to the folder, and ask, for example "Sort these invoices into folders by vendor and year, and rename each one with the date and vendor."
+  </Step>
+  <Step title="Check and apply">
+    The agent shows a card with every move and rename. Click **Apply N changes**, or tell it what to do differently. Click **Undo** on the card to reverse it later.
+  </Step>
+  <Step title="Keep it organized">
+    To file new files as they arrive, set up a [workflow](/workflows/overview) with a **File Uploaded** trigger on a Google Drive folder. To go through a folder on a schedule, use **On a Schedule**. See [Triggers](/workflows/triggers).
+  </Step>
+</Steps>
+
+You can also use the agent from Chrome's side panel while you're on the Google Drive page. See [Browser extension](/agent/browser-extension).
+
+## What the agent can do in Google Drive
+
+- Find files by name, and by content using Google Drive's own search.
+- Read Google Docs, Sheets and Slides, PDFs, Word, Excel, PowerPoint and text files.
+- Move, rename, copy, create folders and move files to Google Drive's trash.
+- Edit Google Docs, Google Sheets and plain text files in place. The earlier content can be restored with **Undo**.
+- Save files it makes, such as a summary PDF or a spreadsheet, into a Google Drive folder.
+
+It acts with your own Google permissions. If you can only view a file, the agent can read it but not change it.
+
+## What it can't do
+
+- **It doesn't read images stored in Google Drive.**
+- **It can't edit Slides decks or Drawings.** Open those in Google Drive.
+- **It can't move a file someone else shared with you** out of their folder. It can copy it into a folder of yours instead.
+- **It doesn't move files from Google Drive into The Drive AI, or to another drive, in one change.** A workflow with **Save a Copy** can, or use **Import from Cloud**. See [Google Drive](/integrations/google-drive).
+- **Search may miss words that only appear in a scan.**
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    Everything about how the agent works in a connected drive.
+  </Card>
+  <Card title="Google Drive integration" icon="google-drive" href="/integrations/google-drive">
+    Connecting, importing and exporting.
+  </Card>
+  <Card title="Organize SharePoint and OneDrive" icon="microsoft" href="/guides/organize-sharepoint-and-onedrive-with-ai">
+    The same for Microsoft 365.
+  </Card>
+  <Card title="Preview, approve and undo" icon="rotate-left" href="/guides/preview-approve-and-undo">
+    How every change is shown and reversed.
+  </Card>
+</CardGroup>
