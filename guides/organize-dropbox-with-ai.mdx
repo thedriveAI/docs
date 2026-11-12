@@ -1,0 +1,64 @@
+---
+title: "Organize Dropbox with The Drive AI"
+description: "The Drive AI reads the files in your Dropbox and renames and files them where they are, with a preview of every change and undo"
+---
+
+The Drive AI connects to your Dropbox and organizes it in place: it reads your documents, then renames them and files them into folders by what they say. Nothing is copied out of Dropbox to do this. Every change is shown before it's made and can be undone, and a workflow can file new files as they land in a Dropbox folder. Connected Dropbox comes with Max, Team, Business and Enterprise.
+
+## What you need
+
+- **A plan with connected drives:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Your Dropbox account connected** in **Settings** > **Integrations** > **Dropbox**. Any member except a viewer can connect their own. Each Dropbox is seen by the agent only for the person who connected it.
+
+## How it works
+
+<Steps>
+  <Step title="Connect Dropbox">
+    Open **Settings** > **Integrations** > **Dropbox** and click **Connect Dropbox**. The agent builds a catalog of your Dropbox. When the account shows **Agent: ready**, it can find every file.
+  </Step>
+  <Step title="Ask the agent">
+    Open **My Dropbox** under **Connected** in the left sidebar, go to the folder, and ask, for example "Sort these client files into one folder per client, then by year, and rename each one with the date and document type."
+  </Step>
+  <Step title="Check and apply">
+    The agent shows a card with every move and rename. Click **Apply N changes**, or tell it what to do differently. Click **Undo** on the card to reverse it.
+  </Step>
+  <Step title="Keep it organized">
+    To file new files as they arrive, set up a [workflow](/workflows/overview) with a **File Uploaded** trigger on a Dropbox folder. To go through a folder on a schedule, use **On a Schedule**. See [Triggers](/workflows/triggers).
+  </Step>
+</Steps>
+
+You can also use the agent from Chrome's side panel while you're on the Dropbox page. See [Browser extension](/agent/browser-extension).
+
+## What the agent can do in Dropbox
+
+- Find files by name, and by content using Dropbox's own search.
+- Read PDFs, Word, Excel, PowerPoint and text files.
+- Move, rename, copy, create folders and move files to Dropbox's deleted files.
+- Edit plain text files such as .txt, .md and .csv in place. **Undo** puts back the earlier content.
+- Move or copy files between Dropbox and Google Drive, OneDrive, SharePoint or The Drive AI, as one change. See [Move files between drives](/agent/connected-drives#move-files-between-drives).
+
+It acts with your own Dropbox permissions.
+
+## What it can't do
+
+- **It doesn't read images stored in Dropbox.**
+- **A folder brought back from the trash comes back file by file.** Undo of a move to Dropbox's trash works, but a folder is restored one file at a time. See [Undo on each drive](/agent/connected-drives#undo-on-each-drive).
+- **Search may miss words that only appear in a scan.** The agent reads a scan when it opens it, but Dropbox's own search may not see inside it.
+- **It can't change files your account can only view.**
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Dropbox integration" icon="dropbox" href="/integrations/dropbox">
+    Connecting, importing and exporting.
+  </Card>
+  <Card title="Connected drives" icon="cloud" href="/agent/connected-drives">
+    Everything about how the agent works in a connected drive.
+  </Card>
+  <Card title="Clean up thousands of files" icon="broom" href="/guides/clean-up-thousands-of-files">
+    Large reorganizations, approved in stages.
+  </Card>
+  <Card title="Dropbox on thedrive.ai" icon="arrow-up-right-from-square" href="https://thedrive.ai/integrations/dropbox">
+    What The Drive AI does in Dropbox, at a glance.
+  </Card>
+</CardGroup>
