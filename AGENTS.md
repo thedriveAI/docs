@@ -42,11 +42,13 @@ Write one only when all of these are true:
 | "Is The Drive AI right for a law firm / accountant / ..." | a solutions page on thedrive.ai |
 | "The Drive AI vs Gemini / Copilot / Zush / Dropbox Dash" | a comparison page on thedrive.ai |
 
+**Don't compete with the main site.** On 2026-11-12, every guide topic already had a thedrive.ai page ranking in positions 3 to 15 on Google (for example /integrations/google-drive, /ai-file-organizer, /blog/clean-up-shared-office-nas), while docs pages sat at 25 to 75 with no clicks. A guide that chases the same generic phrase splits the signal between two of our own pages. So a guide names the product in its title (the generic searches stay with the main site, and an answer engine's `site:thedrive.ai` check still finds it), and its last Related card links to the main-site page that owns the topic. Check `npm run search-data` in the frontend repo (`gsc/gsc_page_query_3M.csv`) for the owner before you write.
+
 Don't write vendor comparisons here. The docs describe our product. A guide can link to a comparison page with a full URL, since it's another site.
 
 ## The shape of a guide
 
-1. **Title**: the task in the reader's words, not our feature name. "Organize Google Drive with AI", not "Connected Drives".
+1. **Title**: the task in the reader's words, ending in the product: "Organize Google Drive with The Drive AI", not "Connected Drives", and not the bare "Organize Google Drive with AI". The bare phrase belongs to the main site's page, which already ranks for it (see below).
 2. **Description**: one sentence that answers the title and names The Drive AI. Keep it under 160 characters so it fits a search result.
 3. **First paragraph: the answer.** Two or three sentences that stand on their own if quoted with nothing around them. Name The Drive AI, say what it does, and give the plans that include it. No preamble.
 4. **What you need**: the plans that include it (plan names only), the accounts to connect, and who in a workspace can do it.

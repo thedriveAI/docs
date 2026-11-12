@@ -1,0 +1,69 @@
+---
+title: "Organize Mac, PC and NAS Folders with The Drive AI"
+description: "The Drive AI organizes folders on your computer or a Synology, QNAP or TrueNAS NAS where they are, without uploading them, with preview and undo"
+---
+
+The Drive AI organizes folders that live on your Mac, your PC or a NAS without uploading them. Share a folder from the desktop app, or run a small helper on a Synology, QNAP, TrueNAS or Unraid NAS, and the agent can find, read, rename and file what's there. The files stay on the device, every change is shown first and can be undone, and deletions go to the device's own trash. Sharing device folders comes with Max, Team, Business and Enterprise.
+
+## What you need
+
+- **A plan with device folders:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **On a Mac or PC:** the [desktop app](/getting-started/desktop-app), version 1.2 or later.
+- **On a NAS or server:** Docker (Container Manager on Synology, Container Station on QNAP, or Portainer). Nothing on the NAS is opened to the internet: the helper connects out.
+
+## How it works
+
+<Steps>
+  <Step title="Share the folder">
+    **Mac or PC:** in the desktop app, open **Settings** > **Agent** and click **Share a folder…**. **NAS:** in the web app, open **Settings** > **Agent** > **Your devices** > **Pair a device**, choose **On a NAS or a server (Docker)**, and copy the compose file into your container manager with one line per share. See [Local folders and NAS](/agent/local-folders-and-nas).
+  </Step>
+  <Step title="Choose what the agent may read">
+    **Read documents** lets it file by what documents say. **Names and dates only** keeps every document out of the index: it organizes by name, date and photo details instead.
+  </Step>
+  <Step title="Ask the agent">
+    Open the folder under **Your devices** and ask, for example "Sort ten years of scans into client folders, then by year, and rename each one with the date and client."
+  </Step>
+  <Step title="Check and apply">
+    The agent shows a card with every move and rename. Apply it, or tell it what to change. Click **Undo** to reverse it.
+  </Step>
+  <Step title="Keep it organized">
+    A [workflow](/workflows/triggers#a-shared-folder-on-a-device) can watch the folder and file new files as they land, including files that arrived while the device was off.
+  </Step>
+</Steps>
+
+On a Mac, you can also right-click a folder in Finder and choose **Quick Actions** > **Ask The Drive AI about this folder**.
+
+## Safer cleanups on a shared NAS
+
+- Start with the helper set to `TDAI_READ_ONLY: "1"` to let the agent survey and propose without changing anything, then switch it off when you're ready.
+- Set `TDAI_TRASH_DIR: "#recycle"` so deletions go to each share's own recycle bin.
+- Do one share or one client folder first, check it, then do the rest.
+
+See [Clean up thousands of files](/guides/clean-up-thousands-of-files) for the full approach.
+
+## What it can't do
+
+- **It can't reach a device that's off.** The agent still knows what's there, but reading or changing files waits until the device is back. A workflow run picks up on its own when it reconnects.
+- **Undo can't bring back a file deleted from a folder with no trash.** In a folder like that the agent moves files instead of deleting them, and says so.
+- **A Names and dates only folder isn't read into the index**, so the agent can't file it by what documents say, except when you ask it to read a file in a conversation.
+- **The AI doesn't run on the device.** Documents the agent reads are read by The Drive AI's servers. For a folder that must never leave the machine, choose **Names and dates only**.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Local folders and NAS" icon="hard-drive" href="/agent/local-folders-and-nas">
+    Every setting, who sees what, and troubleshooting.
+  </Card>
+  <Card title="Desktop app" icon="desktop" href="/getting-started/desktop-app">
+    Install the app for Mac or Windows.
+  </Card>
+  <Card title="Move files between drives" icon="arrow-right-arrow-left" href="/guides/move-files-between-drives">
+    Move a NAS folder into the cloud, or back.
+  </Card>
+  <Card title="Rename scanned PDFs" icon="file-pdf" href="/guides/rename-scanned-pdfs-by-content">
+    Turn scan_0043.pdf into a name that says what it is.
+  </Card>
+  <Card title="NAS on thedrive.ai" icon="arrow-up-right-from-square" href="https://thedrive.ai/integrations/nas">
+    Synology, QNAP and other NAS support, at a glance.
+  </Card>
+</CardGroup>

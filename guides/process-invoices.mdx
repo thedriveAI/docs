@@ -1,0 +1,66 @@
+---
+title: "Split, Read and File Invoices with The Drive AI"
+description: "The Drive AI splits batch-scanned invoices, reads vendor, date and amount without templates, files them by vendor and year, and totals them in a spreadsheet"
+---
+
+The Drive AI handles invoices without templates. It splits a scanned stack into one file per invoice, reads the vendor, date, number and amount from any layout, renames and files each one by vendor and year, and can total a folder of invoices into a spreadsheet. Invoices can arrive by upload, by scan, by email or in a connected drive.
+
+## What you need
+
+- **Invoices stored in The Drive AI:** every plan.
+- **Invoices arriving in Gmail or Outlook, or kept in Google Drive, OneDrive, SharePoint, Dropbox or a NAS:** Max, Team, Business or Enterprise. See [Plans & Pricing](/account/plans-pricing).
+- **Workflows** are created by owners and admins. In a personal workspace, that's you.
+
+## File every new invoice
+
+Set up a [workflow](/workflows/overview) on the place invoices arrive. A typical one:
+
+1. **Trigger:** **File Uploaded** on your scans or invoices folder, or **Email Attachment** on your inbox. See [Triggers](/workflows/triggers).
+2. **Split Document**, if invoices arrive as one scanned stack: "split into separate invoices". Each invoice then goes through the rest on its own.
+3. **Ask AI About the File:** "What kind of document is this?" with `invoice`, `receipt` and `other`.
+4. **Rename** invoices: "date, vendor and invoice number. e.g. INV-10422 from Acme Corp dated 12 Mar 2026 → 2026-03-12 Acme Corp INV-10422.pdf".
+5. **Move** them: "to Vendors/[vendor name]/[year from the invoice date]". Folders that don't exist yet are created.
+6. Optionally, **Read Details from File** to pull `vendor` and `amount`, and **Send a Message** to Slack or email, such as "Invoice from Acme Corp for $4,200".
+
+Add **Ask a Person to Approve** with **Only when unsure** before **Move** if a person should check the uncertain ones. See [Steps](/workflows/steps).
+
+For invoices arriving by email, see [File email attachments automatically](/guides/file-email-attachments-automatically).
+
+## Read and total the invoices you already have
+
+Open the folder and ask the [agent](/agent/overview), for example:
+
+```text
+Read every invoice in this folder and make a spreadsheet with vendor, invoice number, date and amount, totalled by month.
+```
+
+The agent reads each invoice and makes an Excel file with real formulas, so totals recalculate when you edit a row. Save it to a folder or download it. See [Document creation](/features/document-creation).
+
+To file the invoices you already have, ask the agent to "rename and file these by vendor and year", or run the workflow above over the folder with **On a Schedule**.
+
+## What it can't do
+
+- **It can occasionally misread an invoice.** A blurry scan or an unusual layout can give a wrong total or vendor. Check the spreadsheet against a few originals, and use an approval step for filing that matters.
+- **Reading many invoices in one task has a limit per plan.** Free reads up to 50 files in one task, and paid plans far more. Moving and renaming many files isn't limited this way. See [Tasks and limits](/agent/overview#tasks-and-limits).
+- **Each file a workflow handles counts as a workflow file.** See [Workflow files](/workflows/workflow-files).
+- **It doesn't post to accounting software by itself.** **Send to Another App** can send the details to a service you choose. See [Steps](/workflows/steps#send-to-another-app).
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="File email attachments automatically" icon="envelope" href="/guides/file-email-attachments-automatically">
+    Invoices that arrive in Gmail or Outlook.
+  </Card>
+  <Card title="Rename scanned PDFs" icon="file-pdf" href="/guides/rename-scanned-pdfs-by-content">
+    Names from what's on the page.
+  </Card>
+  <Card title="Steps" icon="list-check" href="/workflows/steps">
+    Split Document, Read Details from File and the rest.
+  </Card>
+  <Card title="Document creation" icon="table" href="/features/document-creation">
+    Spreadsheets, PDFs and more from your files.
+  </Card>
+  <Card title="Accounts payable workflow automation" icon="arrow-up-right-from-square" href="https://thedrive.ai/blog/accounts-payable-workflow-automation">
+    How invoice intake and filing fit an AP process.
+  </Card>
+</CardGroup>
