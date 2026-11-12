@@ -70,6 +70,7 @@ Say "approve file changes before they happen", not "approval workflow". ChatGPT 
 
 - **Plan names, never prices.** Prices change, and `snippets/generated/plans.mdx` is the only place they live. Link to [Plans & Pricing](/account/plans-pricing).
 - **Only claims the reference pages or the code back.** If a guide needs a fact that no reference page states, add it to the reference page first, then link to it.
+- **Check every "can't" against the backend.** Reference pages fall behind the product. In November 2026 they still said the agent couldn't move files between storages, a month after the backend shipped it (851c1bee). Before you repeat a limit, search `thedrive_backend` for it and read the latest commits that touch it.
 - **No em dashes, no superlatives, no "best".** State what it does.
 - **No compliance claims** we can't back. There is no HIPAA BAA.
 - **Name the product "The Drive AI"** in the first paragraph and the description. In the body, "the agent" and "a workflow" are fine.
