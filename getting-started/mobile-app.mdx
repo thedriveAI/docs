@@ -1,6 +1,6 @@
 ---
 title: "Mobile App"
-description: "Use The Drive AI on iOS and Android: browse and upload files, scan documents, work with the agent, approve workflows and get notifications"
+description: "Use The Drive AI on iOS and Android: browse and upload files, scan documents, let the agent organize folders on your phone, approve workflows and get notifications"
 ---
 
 ## Overview
@@ -10,6 +10,7 @@ The Drive AI app for iOS and Android works with the same account and workspaces 
 - Browse, search, upload, download and print files
 - Scan paper documents into PDFs
 - Ask the agent to find, read, organize and create files, and approve or undo its changes
+- Share a folder on your phone, so the agent can organize the files in it where they are
 - Follow and approve workflows, and build new ones by asking the agent
 - Get notified when the agent or a workflow needs you
 
@@ -83,6 +84,37 @@ When you open a file, tap **Share** at the top to send a copy or open it in anot
 ## Scan documents
 
 Tap the scan button, just above **+**, to scan paper documents into a PDF in the folder you have open. You can also scan straight into an agent chat. See [Document scanning](/features/document-scanning).
+
+## Share folders on your phone
+
+From version 1.5, the app can share a folder on your phone with the agent. The agent then finds, reads, renames, moves and sorts the files in it, from a conversation on your phone or on the web, and a [workflow](/workflows/triggers#a-shared-folder-on-a-device) can watch it. The files stay on the phone. Sharing phone folders comes with the Max and Team plans, like [other devices](/agent/local-folders-and-nas).
+
+<Steps>
+  <Step title="Open Folders on this phone">
+    Open the sidebar, tap **Integrations**, then **Folders on this phone**.
+  </Step>
+  <Step title="Choose a folder">
+    Tap **Choose a folder** and pick one in your phone's folder chooser. The first time, the app checks that your plan includes devices before it asks for anything else.
+  </Step>
+  <Step title="Choose what the agent may read">
+    Each shared folder has a **Read documents** switch. Off, the agent sees names and dates and opens a file only when you ask about it. On, it reads what's inside so it can search and sort by content, which uses mobile data.
+  </Step>
+</Steps>
+
+**What you can share:**
+
+| Phone | Folders |
+|-------|---------|
+| iPhone | A folder in **On My iPhone**, **iCloud Drive**, or another app that shows up in Files. The Photos library isn't a folder and can't be shared. |
+| Android | **Documents**, **Pictures**, **DCIM**, a memory card, or any folder inside them, from Android's chooser. With **All files access** turned on for the app, also **Downloads** and **Everything on this phone**. |
+
+A folder can't be shared twice, or inside one that's already shared. The app tells you which folder it overlaps.
+
+**When the app is closed:** the agent asks the phone to wake up for the work, quietly first and then with a notification, **Your assistant needs this phone**. If the phone can't wake, the work waits until you open the app. An iPhone gives an app about half a minute in the background, so a rename or a read works from a locked iPhone, while a large reorganization needs the app open. On the web, a phone that isn't reachable shows **App not open** under **Settings** > **Agent** > **Your devices**.
+
+**Deleting:** nothing is deleted for good. A file the agent deletes goes into a **Deleted by The Drive AI** folder inside the shared folder. Take it back from there with the phone's Files app.
+
+**Stop sharing:** tap **Stop sharing** under the folder. The agent no longer sees it; nothing on your phone is deleted.
 
 ## The agent on your phone
 
@@ -165,6 +197,7 @@ These need the web app:
 - Editing a workflow's steps
 - Inviting people and changing roles
 - Adding shared drives for the agent, and browsing connected drives
+- Sharing folders from a Mac, PC or NAS (folders on your phone are shared from the app)
 - Billing for team workspaces
 
 ## What's next?

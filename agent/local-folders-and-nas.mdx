@@ -1,16 +1,17 @@
 ---
 title: "Local Folders and NAS"
-description: "Let the agent work in folders on your Mac, PC or NAS: share a folder from the desktop app or run the helper on a NAS, choose who sees it and what the agent may read, and what happens when the device is off"
+description: "Let the agent work in folders on your Mac, PC, NAS or phone: share a folder from the desktop or mobile app, or run the helper on a NAS, and choose what it may read."
 ---
 
 ## Overview
 
-The agent can work in folders that live on a computer or a NAS, the way it works in a [connected drive](/agent/connected-drives). The files stay where they are. The agent keeps a catalogue of names, paths, sizes and dates, and, where you allow it, the text of documents, so it can find, read, organise and file them from a conversation or a workflow.
+The agent can work in folders that live on a computer, a NAS or a phone, the way it works in a [connected drive](/agent/connected-drives). The files stay where they are. The agent keeps a catalogue of names, paths, sizes and dates, and, where you allow it, the text of documents, so it can find, read, organise and file them from a conversation or a workflow.
 
-Two ways to share a folder:
+Three ways to share a folder:
 
 - **On a Mac or PC**, from the desktop app. The app pairs itself with your workspace; no code is needed.
 - **On a NAS or a server**, with a small helper that runs in Docker. You pair it once with a code from **Settings** > **Agent**.
+- **On an iPhone or Android phone**, from the mobile app (version 1.5 or later). See [Share folders on your phone](/getting-started/mobile-app#share-folders-on-your-phone).
 
 Sharing folders on a device comes with the same plans as connected drives: Max, Team, Business and Enterprise. See [Plans and pricing](/account/plans-pricing).
 
@@ -109,13 +110,13 @@ The same things it does in a connected drive: find files by name or content, rea
 A few things are particular to a device:
 
 - **Bytes stay on the device.** The agent streams a file from the device only when it reads it or copies it elsewhere.
-- **Deletions go to the device's own trash**: the Trash on a Mac, the Recycle Bin on a PC, the share's recycle bin on a NAS. A folder with no trash the helper can use says **no trash: the agent moves instead of deleting**.
+- **Deletions go to the device's own trash**: the Trash on a Mac, the Recycle Bin on a PC, the share's recycle bin on a NAS, and on a phone a **Deleted by The Drive AI** folder inside the shared folder. A folder with no trash the helper can use says **no trash: the agent moves instead of deleting**.
 - **Moves and renames keep the file's identity**, so the agent's notes and datasets about a file follow it.
 - **Photos** are catalogued with when and where they were taken, read on the device without sending the photo anywhere.
 
 ## When the device is off
 
-A laptop closes, a NAS reboots. The device shows **Offline · last seen 2 hours ago** under **Your devices**, and:
+A laptop closes, a NAS reboots. The device shows **Offline · last seen 2 hours ago** under **Your devices** (a phone shows **App not open**, and the agent asks it to wake up when work needs it), and:
 
 - The catalogue stays. The agent can still find and talk about the files it knows, but can't read or change them until the device is back.
 - A task that needs the device stops and tells you so. A workflow run resumes on its own when the device reconnects; in a conversation, ask again once it's back.
