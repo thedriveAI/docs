@@ -401,23 +401,31 @@ export const SHOTS = [
     },
     // ── E-signatures and file requests ────────────────────────────────────
     {
-        id: 'esign-dropdown',
+        id: 'esign-editor',
         page: 'features/e-sign.mdx',
-        placeholder: "the Placed list with a Dropdown field's Configure popover open, showing Label, Options and Required",
-        file: 'images/esign-dropdown-configure.png',
-        alt: 'The e-sign editor on Place Fields, with a signature and a dropdown placed on the document and listed under Placed',
+        placeholder: 'the editor on Place Fields, with the Fields for and Add a field panels, and a selected field with its toolbar',
+        file: 'images/e-sign-editor.png',
+        alt: 'The e-sign editor on Place Fields: the Fields for and Add a field panels on the left, and the document with a signature and a date field placed and the selected field\'s toolbar above it',
         async run(page, h) {
             await h.docsDemo();
             await page.getByText('Master-Services-Agreement-Contoso.pdf').first().dblclick(); await h.wait(7000);
             await page.locator('button:has(svg.lucide-signature)').first().click();
-            await page.getByPlaceholder('Email address').waitFor({ timeout: 60_000 }); await h.wait(2500);
+            await page.getByPlaceholder('Email address').first().waitFor({ timeout: 60_000 }); await h.wait(2500);
             if (await page.getByText(/A draft request already exists/).isVisible()) await page.getByText('Start fresh').click();
-            await page.getByPlaceholder('Email address').fill('alex@example.com');
-            await page.getByPlaceholder('Name (optional)').fill('Alex Morgan');
-            await page.getByRole('button', { name: /Continue/ }).click(); await h.wait(3000);
-            await page.getByRole('button', { name: 'Signature', exact: true }).click(); await page.mouse.click(560, 628); await h.wait(1000);
-            await page.getByRole('button', { name: 'Dropdown', exact: true }).click(); await page.mouse.click(1080, 640); await h.wait(1200);
-            await page.keyboard.press('Escape'); await h.wait(500);
+            await page.getByPlaceholder('Email address').first().fill('alex@example.com');
+            await page.getByPlaceholder(/name \(optional\)/i).first().fill('Alex Morgan');
+            await page.getByRole('button', { name: /^(Next|Continue)/ }).first().click(); await h.wait(4000);
+            // A field type is picked in the sidebar, then placed with a click on the page.
+            const tile = (name) => page.locator('aside .grid button').filter({ hasText: name }).first();
+            const sheet = page.locator('[data-page]').first();
+            await sheet.waitFor({ timeout: 60_000 });
+            const box = await sheet.boundingBox();
+            await tile('Date').click(); await page.mouse.click(box.x + box.width * 0.68, box.y + box.height * 0.42); await h.wait(800);
+            await page.keyboard.press('Escape');
+            await tile('Signature').click(); await page.mouse.click(box.x + box.width * 0.30, box.y + box.height * 0.42); await h.wait(800);
+            await page.keyboard.press('Escape'); await h.wait(300);
+            // Selected, so its toolbar shows.
+            await page.locator('[data-field]').last().click(); await h.wait(1200);
             return null;
         },
     },

@@ -85,7 +85,9 @@ The editor has two steps, **Recipients** and **Place Fields**, and a review befo
   </Step>
 </Steps>
 
-{/* Screenshot: the editor on Place Fields, with the page rail, the Fields for and Add a field panels, and a selected field with its toolbar */}
+<Frame>
+  <img src="/images/e-sign-editor.png" alt="The e-sign editor on Place Fields: the Fields for and Add a field panels on the left, and the document with a signature and a date field placed and the selected field's toolbar above it" />
+</Frame>
 
 ### Several documents in one request
 
@@ -314,7 +316,7 @@ The request's page shows, from the top:
 - **A status sentence**, for example "Waiting on Jane Doe." or "Everyone signed."
 - **A progress line**: "N of N signed", with the expiry date if there is one.
 - **Message**: the note you sent, if any.
-- **Recipients**: each person, whether they sign or get a copy, and one line on where they stand, such as "Emailed", "Opened", "Signed", "Declined", "Waiting for their turn" or "Email could not be sent", with the time.
+- **Recipients**: each person, whether they sign or get a copy, and one line on where they stand, such as "Emailed", "Delivered", "Opened", "Signed", "Declined" or "Waiting for their turn", with the time. If their email didn't reach them, the line says why: "Email bounced", "Marked as spam", "Email delayed" or "Email could not be sent".
 - **Documents** (requests with several documents): each document with its pages and size.
 - **Activity**: everything that happened, newest first.
 - **Details**: the document, signing order, creation, completion and expiry dates, and the request ID.
@@ -332,11 +334,29 @@ With several documents, each document has its own **Original** and **Signed** bu
 
 {/* Screenshot: a request page in progress, showing the status sentence, the progress line, Recipients with a status line each, and Activity */}
 
-### If an email could not be sent
+### If an email doesn't reach a recipient
 
-If a request or reminder email can't be sent, the request's page says who has not been told about the request and shows their address. Their line under **Recipients** reads "Email could not be sent". Their signing link is ready and only needs sending again. Click **Send again**, or click **⋯** next to the recipient and choose **Send the email again**.
+After a request or reminder is sent, the recipient's line shows what became of the email: **Delivered** once their mail server accepts it, or the problem if there is one. You don't need to wait and wonder whether an address was right.
 
-You're also told when you send: the request goes out, and a message names the address the email couldn't be sent to.
+When someone hasn't been reached, a notice at the top of the request's page lists each person with what happened and one button:
+
+| What the page says | What happened | What to do |
+|--------------------|---------------|------------|
+| **Email bounced**: "that address does not accept mail" | Their mail server returned the email. The address is usually mistyped or no longer exists. | Click **Reassign** and enter the right address. The link sent to the old address stops working. |
+| **Email bounced**: "a full or unavailable mailbox" | Their mail server returned it for now. | Click **Send again**, or reassign the request. |
+| **Marked as spam** | They reported the email as spam, so reminders won't reach them either. | Click **Reassign** to use another address, or reach them another way. |
+| **Email could not be sent** | The email didn't leave our mail service. Their signing link is ready. | Click **Send again**. |
+| **Email delayed** | Their mail server hasn't accepted it yet. Delivery is still being tried. | Nothing yet. The line changes to **Delivered** or **Email bounced**. |
+
+You also get an email when a recipient wasn't reached, with the subject "Not delivered: …". It's sent once for each address, not for every reminder. The problem is listed under **Activity** with the mail server's own message.
+
+Scheduled reminders skip an address that doesn't accept mail. A reminder you send yourself still goes.
+
+If the email couldn't be sent at the moment you send the request, you're told right away: the request goes out, and a message names the address.
+
+<Note>
+  A bounce is reported when the address can't receive mail. If a typo happens to be someone else's working address, the email is delivered to them and nothing bounces. Turn on [email verification](#email-verification) so that only someone who can read mail at that address can open the documents, and watch for a request that stays unopened.
+</Note>
 
 ### Reminders
 
@@ -410,7 +430,7 @@ You can ask the [agent](/agent/overview) to prepare and send a request, for exam
 2. **You review the card.** It lists the documents, each recipient, their role, their position in a sequence and how many fields they have, plus the expiry date. It shows the pages with the fields drawn on them.
 3. **You decide.** Click **Allow** to send, or **Not now**. To move or add fields first, click **Adjust in the editor**. When you allow it, the draft is sent as it is at that moment, including your edits.
 
-The agent can also list your requests, check one's progress, send reminders and cancel a request. Reminders and cancelling ask you first, too. If a request or reminder email couldn't be sent, the agent tells you whose. If you decline the card, the draft stays, and you can still **Open in the editor**.
+The agent can also list your requests, check one's progress, send reminders and cancel a request. Reminders and cancelling ask you first, too. If a recipient's email bounced, was marked as spam or couldn't be sent, the agent says so when you ask about the request. If you decline the card, the draft stays, and you can still **Open in the editor**.
 
 <Note>
   The agent can only send PDFs stored in your workspace. To send a file from a connected drive, copy it into the workspace first. The agent doesn't add **Dropdown** fields or turn on email verification; add those in the editor before you allow the send.
@@ -471,6 +491,9 @@ Compliant with:
     - **You have already signed this document**: they've finished their part.
     - **This document is no longer available for signing**: the request was cancelled or declined.
     - **Invalid or expired signing link**: the link was replaced, for example because you reassigned their part.
+  </Accordion>
+  <Accordion title="A recipient says they never got the email">
+    Open the request's page and look at their line under **Recipients**. **Email bounced** or **Marked as spam** means the address needs changing: click **Reassign**. **Delivered** means their mail server accepted it: ask them to check spam, then send a reminder. See [If an email doesn't reach a recipient](#if-an-email-doesnt-reach-a-recipient).
   </Accordion>
   <Accordion title="A signer didn't get the verification code">
     Ask them to check spam, then click **Didn't receive it? Send again**. Each code works for 5 minutes, and they can get up to 5 codes an hour.
