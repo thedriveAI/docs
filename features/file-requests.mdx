@@ -7,7 +7,7 @@ description: "Collect documents from anyone with a personal upload link, an opti
 
 A file request collects documents from clients, vendors or anyone else. Each recipient gets an email with their own upload link. They open the link, upload their files, and the files land in the folder you chose. Recipients don't need an account.
 
-You can ask for specific documents with a checklist, set a due date, rename uploads automatically, and send reminders to people who haven't finished.
+You can ask for specific documents with a checklist, say in a sentence what counts as the right document, set a due date, rename uploads automatically, and send reminders to people who haven't finished. Uploads to the checklist are checked as they arrive, so a wrong document is caught before it reaches you. See [Upload checks](#upload-checks).
 
 <Note>
   Creating file requests needs a plan that includes them. See [Plans & Pricing](/account/plans-pricing).
@@ -53,6 +53,7 @@ Open **Settings** and choose **File Requests**. Each request shows its title, st
     | **Rename uploaded files** | Renames each upload with a pattern. See [Rename uploads](#rename-uploads). | Off (files keep their names) |
     | **Smart reminders** | Emails recipients who still owe files: **Every day**, **Every 2 days**, **Every 3 days**, **Every 5 days** or **Weekly** | Off. When you turn it on, **Every 3 days**. |
     | **Completion email** | Emails you when a recipient has uploaded every required document on the checklist | On |
+    | **Check uploads before accepting them** | Reads each upload against its checklist item. See [Upload checks](#upload-checks). Not shown when checks are off for the workspace. | On |
     | **Save as template** | Saves the checklist so you can reuse it. Shown when the request has a checklist. Enter a template name. | Off |
   </Step>
   <Step title="Send">
@@ -73,6 +74,7 @@ A checklist lists the documents you need, such as "W-2 Form" or "Photo ID". Each
 - Click **Add document** for each item and type its name.
 - Click the speech-bubble icon (**Add helper text**) to add a short hint under an item.
 - Click **X** to remove an item.
+- Under each item, a line says what the check will accept, for example "Morgan's own W-2 for 2025." Click it to say it in your own words, for example "Hers or her husband's. A corrected W-2c is fine." Clear the box to go back to the line it suggested. **Don't check this one** turns the check off for that item.
 
 Items you add in the form are required. Recipients can still upload extra files outside the checklist.
 
@@ -110,6 +112,8 @@ For example, `{recipient_name}_{slot_name}` turns a W-2 uploaded by Jane into `J
     The page shows who's asking, the title, your message and the due date.
 
     - **With a checklist:** each item has an **Upload** button. They pick one file per item, then click **Submit N documents**. A filled item shows **Replace**, to swap the file. Once every required item is in, the checklist shows **Complete**. To send files that aren't on the list, they open **Upload additional files**.
+    - **If a file isn't what you asked for:** the item says why, and they can click **Upload a different file**. If they're sure it's right, they can click **Send it anyway**, and it comes to you to decide.
+    - **If they don't have a document:** they can click **I don't have this** and add an optional note for you.
     - **Without a checklist:** they drop files on the page or click **browse**, then click **Upload N files**.
   </Step>
   <Step title="After uploading">
@@ -137,6 +141,35 @@ Files that fail the malware scan are discarded and don't appear in your workspac
 Files go into the **Destination** folder you chose. They're named by your rename pattern, if you set one.
 
 When a recipient replaces a checklist item, the new file takes that item's place on the checklist. The earlier file stays in the folder.
+
+## Upload checks
+
+When **Check uploads before accepting them** is on, each file uploaded to a checklist item is read against what you asked for: the item's name, your message, and the item's line or your own sentence.
+
+| What the check finds | What happens |
+|----------------------|--------------|
+| The right document | It's accepted and filed. |
+| The wrong document, year or period | The recipient sees why on their upload page and can upload a different file. If they leave it for 10 minutes, it comes to you, unless **Ask again without me** is on. |
+| The right document in another person's name, when your sentence doesn't allow that name | It comes to you. It isn't sent back. |
+| Nothing it can be sure of | It comes to you. |
+
+A file that comes to you shows on the request under the recipient, with **Accept**, **Ask again** and **Mark as not needed**. **Ask again** emails them the item and the reason, with their same link; you can pick a reason and add a sentence. When several files are waiting, **Accept all** takes them in one go.
+
+### Suggestions from the assistant
+
+When a file comes to you, the assistant reads it and suggests a decision, shown as "Suggested: …" with its reason. While it reads, the row says **Looking at it…**. The suggested button is the main one, but nothing is decided until you click.
+
+What you decide is remembered for that person, for example "W-2s are sometimes uploaded by her husband Alex Rivera." The check and the assistant use it next time. Owners and admins can see these lines in **Settings** > **File Requests** under **What the assistant has learned**, and remove one with **Forget this**.
+
+### Switches and usage
+
+| Switch | Where | Default |
+|--------|-------|---------|
+| **Ask again without me**: when someone leaves a wrong file, email them the reason and their link, at most twice per item, then it comes to you | **Settings** > **File Requests** (owners and admins) | Off |
+| **Check uploads to file requests** | **Settings** > **Waiting On** > **What the assistant does on its own** (owners and admins) | On |
+| **Speak up when something is due**: also covers the assistant's suggestions on files that come to you | **Settings** > **Waiting On** > **What the assistant does on its own** (owners and admins) | On |
+
+Each check, and each file the assistant reads for a suggestion, uses one workflow file from your plan. When the workspace has none left, uploads are accepted without a check until the period resets, and the form says so.
 
 ## Notifications
 
@@ -187,7 +220,9 @@ You can't change a request's title, message, checklist, folder or due date after
 
 A reminder email with a checklist lists the items and which ones are still missing. Without a checklist, the recipient gets the original request email again.
 
-**Smart reminders** run once a day. They go to recipients who still owe files and haven't been reminded within the interval you chose. The first one can go out the next time they run. They stop when the recipient is done, or when the request closes or expires.
+**Smart reminders** go to recipients who still owe a required document and haven't been reminded within the interval you chose. They go out at 9 AM on weekdays in your time zone. They stop when the recipient is done, when the request closes or reaches its due date, or when the recipient turns them off.
+
+Every request email has a link to turn reminders off. The recipient sees **Reminders are off**, and their upload link keeps working.
 
 ## File requests through the agent
 
@@ -198,6 +233,12 @@ The agent can:
 - **Create a request** with a title, message, recipients, destination folder, due date, reminder interval and checklist. It can mark checklist items optional, which the form can't.
 - **List requests** and **check one**: who has sent what, and when they were last reminded.
 - **Add recipients**, **send reminders** and **close a request**, if you created it or you're an admin.
+
+How the agent sets it up depends on what starts the ask:
+
+- **Named people, now:** one request, sent once.
+- **On a calendar**, such as "every quarter": this period's request now, and the agent comes back with the next one for you to approve when the date comes.
+- **When something arrives**, such as an email or a file in a folder: a [workflow](/workflows/overview) with a Request Files step. A person approves each request before it's sent.
 
 Every action that emails someone or closes a request shows you a card first. Click **Allow** to go ahead, or **Not now**. The upload links appear on the card for you; the agent doesn't see them.
 
