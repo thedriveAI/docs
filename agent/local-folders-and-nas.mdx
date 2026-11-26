@@ -10,7 +10,7 @@ The agent can work in folders that live on a computer, a NAS or a phone, the way
 Three ways to share a folder:
 
 - **On a Mac or PC**, from the desktop app. The app pairs itself with your workspace; no code is needed.
-- **On a NAS or a server**, with a small helper that runs in Docker. You pair it once with a code from **Settings** > **Agent**.
+- **On a NAS or a server**, with a small helper that runs in Docker. You pair it once with a code from **Settings** > **Devices**.
 - **On an iPhone or Android phone**, from the mobile app (version 1.5 or later). See [Share folders on your phone](/getting-started/mobile-app#share-folders-on-your-phone).
 
 Sharing folders on a device comes with the same plans as connected drives: Max, Team, Business and Enterprise. See [Plans and pricing](/account/plans-pricing).
@@ -25,11 +25,11 @@ Sharing folders on a device comes with the same plans as connected drives: Max, 
     Open the app's **Settings** > **Agent** and click **Share a folder…**. Pick the folder. Under **Workspace to share into**, choose the workspace; a computer shares into one workspace.
   </Step>
   <Step title="Choose what the agent may read">
-    Under **What the agent may read**, choose **Read documents** or **Names and dates only**. You can change this later for any folder under **Settings** > **Agent** in the web app.
+    Under **What the agent may read**, choose **Read documents** or **Names and dates only**. You can change this later for any folder under **Settings** > **Devices** in the web app.
   </Step>
 </Steps>
 
-The folder appears under **Settings** > **Agent** > **Your devices** in the web app within a minute, first as **Cataloguing…**, then with its item count once the catalogue is complete. A large folder takes a few minutes.
+The folder appears under **Settings** > **Devices** in the web app within a minute, first as **Cataloguing…**, then with its item count once the catalogue is complete. A large folder takes a few minutes.
 
 ### Ask about a folder from Finder
 
@@ -41,7 +41,7 @@ The helper runs as a container on Synology, QNAP, TrueNAS, Unraid, or any machin
 
 <Steps>
   <Step title="Get a pairing code">
-    In the web app, open **Settings** > **Agent**, find **Your devices** and click **Pair a device**. Choose **On a NAS or a server (Docker)**. The code pairs one device into this workspace as you, and works for ten minutes.
+    In the web app, open **Settings** > **Devices** and click **Pair a device**. Choose **On a NAS or a server (Docker)**. The code pairs one device into this workspace as you, and works for ten minutes.
   </Step>
   <Step title="Copy the compose file">
     The page shows a compose file with the code filled in. Copy it into your NAS's container manager (Container Manager on Synology, Container Station on QNAP, Portainer, or a `docker-compose.yml` on a server). A `docker run` command is offered as well.
@@ -50,7 +50,7 @@ The helper runs as a container on Synology, QNAP, TrueNAS, Unraid, or any machin
     Each share you want the agent to see is one line under `volumes`, mounted under `/data`. The example mounts `/volume1/Clients`; change it to your own share and add a line per share.
   </Step>
   <Step title="Start the container">
-    The device appears under **Your devices** as **Online · NAS** within a minute, with one entry per mounted share. Each share is catalogued once, then kept up to date.
+    The device appears under **Settings** > **Devices** as **Online · NAS** within a minute, with one entry per mounted share. Each share is catalogued once, then kept up to date.
   </Step>
 </Steps>
 
@@ -77,7 +77,7 @@ Settings you can change in `environment`:
 
 | Setting | What it does |
 |---------|--------------|
-| `TDAI_DEVICE_NAME` | The name people see under **Your devices**. |
+| `TDAI_DEVICE_NAME` | The name people see under **Settings** > **Devices**. |
 | `TDAI_TRASH_DIR` | Where deletions go. `#recycle` uses each share's own recycle bin. A path uses one folder for everything. Leave it out and the agent moves files instead of deleting them. |
 | `TDAI_CONTENT` | `names` keeps every document on the NAS: the agent organises by name, date and photo details and never reads a document into its index. |
 | `TDAI_READ_ONLY` | `1` lets the agent read but not move, rename or delete. |
@@ -87,14 +87,14 @@ The pairing is kept in the `tdai-device-config` volume, so you can update the co
 
 ## Who sees a shared folder
 
-- A folder on **a Mac or PC** is seen only by your own agent. Under **Your devices**, the folder says **Only you will see them until an admin shares them**.
+- A folder on **a Mac or PC** is seen only by your own agent. Under **Settings** > **Devices**, the folder says **Only you will see them until an admin shares them**.
 - A folder on **a NAS** paired by an admin is shared with everyone in the workspace, and says **Everyone here**.
 
-An admin can switch any folder either way under **Your devices**. A folder shared with everyone is listed for every member under **What the agent can see**.
+An admin can switch any folder either way under **Settings** > **Devices**. A folder shared with everyone is listed for every member under **What the agent can see**.
 
 ## What the agent may read
 
-Each folder has one of two settings, chosen when you share it and changeable under **Your devices**:
+Each folder has one of two settings, chosen when you share it and changeable under **Settings** > **Devices**:
 
 | Setting | What it means |
 |---------|---------------|
@@ -116,7 +116,7 @@ A few things are particular to a device:
 
 ## When the device is off
 
-A laptop closes, a NAS reboots. The device shows **Offline · last seen 2 hours ago** under **Your devices** (a phone shows **App not open**, and the agent asks it to wake up when work needs it), and:
+A laptop closes, a NAS reboots. The device shows **Offline · last seen 2 hours ago** under **Settings** > **Devices** (a phone shows **App not open**, and the agent asks it to wake up when work needs it), and:
 
 - The catalogue stays. The agent can still find and talk about the files it knows, but can't read or change them until the device is back.
 - A task that needs the device stops and tells you so. A workflow run resumes on its own when the device reconnects; in a conversation, ask again once it's back.
@@ -125,7 +125,7 @@ A laptop closes, a NAS reboots. The device shows **Offline · last seen 2 hours 
 ## Stop sharing
 
 - **One folder**: on a Mac or PC, choose **Stop sharing** next to it in the app's **Settings** > **Agent**. On a NAS, remove the share's line from the compose file and recreate the container. The folder leaves the agent's catalogue; nothing on the device is touched.
-- **The whole device**: under **Your devices**, disconnect it. Its folders leave the catalogue and the helper is signed out. Pairing it again brings everything back.
+- **The whole device**: under **Settings** > **Devices**, disconnect it. Its folders leave the catalogue and the helper is signed out. Pairing it again brings everything back.
 
 ## Troubleshooting
 
@@ -136,13 +136,13 @@ A laptop closes, a NAS reboots. The device shows **Offline · last seen 2 hours 
     - The device must reach the internet. Nothing needs to be opened inbound.
   </Accordion>
   <Accordion title="A folder says Paused" icon="pause">
-    The folder isn't available on the device right now: a disk unplugged, a network drive asleep, a share not mounted when the container started. It resumes on its own when the folder is back. If it's gone for good, remove it under **Your devices**.
+    The folder isn't available on the device right now: a disk unplugged, a network drive asleep, a share not mounted when the container started. It resumes on its own when the folder is back. If it's gone for good, remove it under **Settings** > **Devices**.
   </Accordion>
   <Accordion title="The agent can't find a file I just added" icon="magnifying-glass">
     Changes reach the agent within a minute while the device is online. A very large folder is catalogued in the background first; the folder's line says **Cataloguing · 12,000 items so far** until it's done.
   </Accordion>
   <Accordion title="A teammate doesn't see my NAS" icon="users">
-    A folder is shared with everyone only when an admin paired the device, or when an admin switched it to **Everyone here** under **Your devices**.
+    A folder is shared with everyone only when an admin paired the device, or when an admin switched it to **Everyone here** under **Settings** > **Devices**.
   </Accordion>
   <Accordion title="Two files with the same name differ only in capital letters" icon="font-case">
     On a NAS, `Report.pdf` and `report.pdf` can sit side by side. The agent treats them as one file today, so one of the two is not catalogued. Rename one of them.
