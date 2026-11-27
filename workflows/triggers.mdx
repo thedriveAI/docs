@@ -178,6 +178,16 @@ In a team workspace, **Whose account** offers **One account** or **Team members*
 
 Like Slack, the first step has to be **Save a Copy**. See [Microsoft Teams](/integrations/microsoft-teams).
 
+## Signed Document
+
+Starts when a signature request sent from this workspace is completed and a signed copy is saved: once per document in the request, on the signed copy where it landed, in the workspace or beside the original on a connected drive. See [E-Sign](/features/e-sign#when-everyone-has-signed).
+
+- **More options** > **Title contains**: only requests whose title contains this text, for example `Lease`.
+
+The workflow that sent the request (with a [Send for Signature](/workflows/steps#send-for-signature) step) doesn't run again on its own signed copy. A workflow can't have both **Signed Document** and **File Uploaded** as sources: the signed copy would start it twice.
+
+The **Request title**, **Signers** and **Completed at** values are available to the steps.
+
 ## Every member's own drive
 
 In a team workspace, **File Uploaded** can watch each member's personal drive instead of one account. Under **Where**, choose **Every member's Google Drive**, **Every member's OneDrive** or **Every member's Dropbox**.
