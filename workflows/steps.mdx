@@ -8,7 +8,7 @@ description: "Every decision and action a workflow can take, with its settings a
 After a [trigger](/workflows/triggers) picks up a file, steps decide what happens to it. There are two kinds:
 
 - **Decisions** send each file down a path: by the file's details, by AI reading it, or by a person.
-- **Actions** do something: move, rename, read details, save a copy, send a message and more.
+- **Actions** do something: move, rename, read details, save a copy, send a message, send for signature and more.
 
 Add steps from the **Nodes** tab in the editor and click one to open its settings. Settings most workflows don't need are under **More options**, and the fold shows anything you've changed there.
 
@@ -205,6 +205,25 @@ How **Attach the file** works:
 - An email with several attachments starts the workflow once per attachment, so each one is forwarded in its own email. A message that doesn't mention the file is sent once per email, not once per attachment.
 - With an **Ask a Person to Approve** step set to **Only when unsure**, a message that attaches the file always asks.
 
+### Send for Signature
+
+Sends the file for [electronic signature](/features/e-sign), as the workflow's owner, and carries on without waiting for the signatures. Only PDFs are sent: another file type ends the run quietly. **Sends outside.**
+
+- **Who signs**: one or more email addresses, each with an optional name, in signing order. A fixed address, or a value from the run such as an email read by **Read Details from File**.
+- **Title**: the request's title, the file's name unless you write one. Values from earlier steps work here and in the message.
+- **Where to sign**: **End of the last page** places a signature and a date for each signer in the free space there (the nearest free space before it when the last page is full). **Next to printed text** places each signer's signature beside text you name, such as "Signature:". **A template** uses a saved [template](/features/e-sign#templates) as it is; its roles are filled by the signers above, in order.
+- **More options**: a message to the signers, people who get a copy, signing order, expiry, reminders and the date format.
+
+What it never does:
+
+- Send a signed copy again. A file named "(Signed)" or one that already carries a signature record ends the run quietly, so a workflow can watch the folder its own signed copies land in.
+- Send the same file to the same people twice in a day. A request already out for signature on the file is reused instead of a second one.
+- Send more than a few requests to one address in a day, or more from one workspace than a person could review.
+
+Signers whose address comes from the run need an **Ask a Person to Approve** step before this one, set to ask every time, so a misread address is seen before anyone is emailed.
+
+A file on a connected drive is read with the workflow owner's connection, and the signed copy goes back beside it. See [Documents on a connected drive](/features/e-sign#documents-on-a-connected-drive). Later steps can use the request's title and the signers' addresses as values.
+
 ### Send to Another App
 
 Sends the file's details to another tool you use, such as your accounting system, at an address that tool gives you.
@@ -228,6 +247,7 @@ Text settings like messages, approval questions, move and rename instructions an
 | **Sender**, **Subject**, **Email body** | **Email Attachment** |
 | **Channel**, **Shared by** | **Slack** and **Microsoft Teams** |
 | Named values | After a **Read Details from File** step on the same path |
+| **Request title**, **Signers**, **Completed at** | **Signed Document** |
 
 With several sources, only values every source has are offered. **Source** says which one the file came from, like Google Drive or The Drive AI.
 

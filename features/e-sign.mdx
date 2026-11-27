@@ -1,13 +1,13 @@
 ---
 title: "E-Sign"
-description: "Send one or several PDFs for electronic signature, track every request, and get signed copies with a Certificate of Completion. Signers don't need an account."
+description: "Send one or several PDFs for electronic signature, from your workspace or a connected drive, track every request, and get signed copies with a Certificate of Completion. Signers don't need an account."
 ---
 
 ## Overview
 
-Send any PDF in your workspace for electronic signature, or several PDFs in one request. You add recipients, place fields where each signer fills in or signs, and send. Each recipient gets an email with their own link. Signers open it in a browser and sign every document in one sitting. They don't need an account or any software.
+Send any PDF for electronic signature, or several PDFs in one request: PDFs in your workspace, and PDFs that live on a connected drive (SharePoint, OneDrive, Google Drive, Dropbox, Box, or a shared folder on a device). You add recipients, place fields where each signer fills in or signs, and send. Each recipient gets an email with their own link. Signers open it in a browser and sign every document in one sitting. They don't need an account or any software.
 
-When everyone has signed, a signed copy of each document is saved next to its original PDF and emailed to every party.
+When everyone has signed, a signed copy of each document is saved next to its original PDF, in your workspace or on the drive the original lives on, and emailed to every party.
 
 <Note>
   Sending documents for signature needs a plan that includes e-sign. See [Plans & Pricing](/account/plans-pricing).
@@ -16,7 +16,8 @@ When everyone has signed, a signed copy of each document is saved next to its or
 ## Who can send
 
 - **Owners, admins and members** can send signature requests. Viewers can't.
-- **Only PDFs** can be sent. Convert other files to PDF first (see [PDF Tools](/features/pdf-tools)).
+- **Only PDFs** can be sent. Convert other files to PDF first (see [PDF Tools](/features/pdf-tools)). A Word or Google Docs file on a connected drive has to be converted too.
+- **A PDF on a connected drive** is read with your own connection to that drive. See [Documents on a connected drive](#documents-on-a-connected-drive).
 - **Requests are private to the sender.** Only the person who created a request can see it, send reminders, reassign, cancel or download it. Other people in the workspace, including owners and admins, don't see your requests.
 
 ## Limits
@@ -38,6 +39,7 @@ The editor tells you which limit a document or a request is over, and you can't 
 
 - **From the PDF viewer:** open the PDF and click the signature icon (**Request Signature**) in the toolbar. If your workspace has saved [templates](#templates), you choose **Start from scratch** or a template first.
 - **From the file browser:** click **⋮** on a PDF and choose **Request Signature**. The editor opens in a new tab. This path doesn't offer templates.
+- **From a connected drive:** open the drive under **Connected** in the sidebar, click **⋮** on a PDF and choose **Request signature**. The editor opens on the file where it lives.
 - **From the agent:** see [Send through the agent](#send-through-the-agent).
 
 If you already have a draft request for the same PDF, a banner says **A draft request already exists for this document**. Click **Continue that draft** to pick it up, or **Start fresh** to begin a new request.
@@ -93,7 +95,7 @@ The editor has two steps, **Recipients** and **Place Fields**, and a review befo
 
 A request can hold up to 30 PDFs. Signers get one email and one link, and sign every document in one sitting.
 
-- **Add a document:** click **Add document** above the page, then choose a PDF from the same workspace. The dialog shows how many documents and how much of the size limit the request uses.
+- **Add a document:** click **Add document** above the page. **This workspace** lists the PDFs of the request's workspace; **Connected drives** lets you walk the workspace's connected drives folder by folder and pick a PDF there. One request can mix both. The dialog shows how many documents and how much of the size limit the request uses.
 - **Switch documents:** click a document in the list above the page. Each one shows how many fields it has.
 - **Reorder:** on the open document, click **Move earlier** or **Move later**. Signers read the documents in this order.
 - **Remove:** on the open document, click **Remove document**. Its fields are removed with it.
@@ -397,7 +399,7 @@ You can't change the expiry date after sending. To give people more time, send a
 
 When the last signer finishes, the request becomes **Completed** and:
 
-- **A signed copy of each document is saved in your workspace**, in the same folder as its original, named "*original name* (Signed).pdf". The original PDFs aren't changed.
+- **A signed copy of each document is saved next to its original**, named "*original name* (Signed).pdf": in the same workspace folder, or beside the original on the connected drive it lives on. The original PDFs aren't changed.
 - **Every party gets an email**: you, every signer and every CC. The subject is "Completed: All parties have signed …". The signed PDFs are attached, each as "*original name* - signed.pdf", when together they're 25 MB or less. Your email also links to the request in The Drive AI.
 - **A Certificate of Completion** is added to the end of each signed PDF.
 - **Each recipient's signing link opens the signed copies.** With several documents, they can download them one at a time or with **Download all (.zip)**.
@@ -420,6 +422,19 @@ For a request with several documents, each certificate also says which document 
   If the signed PDFs are larger than 25 MB together, they aren't attached. The other parties' emails link to their own signing link, which opens the signed copies. You can download them from the request's page.
 </Note>
 
+## Documents on a connected drive
+
+A PDF on SharePoint, OneDrive, Google Drive, Dropbox, Box or a shared folder on a device can be sent without copying it into the workspace.
+
+- **It's read with your own connection.** The request opens the file as you, through the drive you connected. If you can't open the file there, it can't be added.
+- **What signers sign is the file as it was when you added it.** The request keeps that copy. If someone replaces the file on the drive before you send, the send is refused with a message naming the drive, and you add the file again. Changes to the file after sending don't affect the request.
+- **The signed copy goes back beside the original**, on the same drive, in the same folder, named "*original name* (Signed).pdf". The request page shows **Lives on …** for the document and a link to the signed copy.
+- **If the drive won't take the copy** (the folder was deleted, your connection to the drive expired, the file is too large for the drive), the signed copy is saved in your workspace instead, and the request page says why. The other documents in the request aren't affected.
+- **Nothing is written with anyone else's account.** Only your connection writes the signed copy. For a shared folder on a device, the device's own connection can write it too.
+- **The Signatures list** shows **Open where it lives** for a request whose first document is on a connected drive.
+
+The original on the drive is never changed. Whether it's moved, renamed or deleted later, the request still opens the signed PDF, and the Certificate of Completion still proves it.
+
 ## If you delete the original PDF
 
 When a PDF with signature requests is permanently deleted (see [Versions and Trash](/features/versions-and-trash)):
@@ -439,12 +454,17 @@ You can ask the [agent](/agent/overview) to prepare and send a request, for exam
 The agent can also list your requests, check one's progress, send reminders and cancel a request. Reminders and cancelling ask you first, too. If a recipient's email bounced, was marked as spam or couldn't be sent, the agent says so when you ask about the request. If you decline the card, the draft stays, and you can still **Open in the editor**.
 
 <Note>
-  The agent can only send PDFs stored in your workspace. To send a file from a connected drive, copy it into the workspace first. The agent doesn't add **Dropdown** fields or turn on email verification; add those in the editor before you allow the send.
+  The agent sends PDFs from your workspace and from connected drives you can reach. It doesn't add **Dropdown** fields or turn on email verification; add those in the editor before you allow the send.
 </Note>
+
+## In workflows
+
+A workflow can send a file for signature as a step, and run when a signed copy is saved. See [Send for Signature](/workflows/steps#send-for-signature) and the [Signed Document](/workflows/triggers#signed-document) source.
 
 ## What isn't available
 
 - Documents larger than 250 MB.
+- Word or Google Docs files on a connected drive. Convert them to PDF first.
 - Automatic field placement on scanned pages.
 - Certificate-based digital signatures (a PAdES or qualified signature that PDF readers validate against a certificate authority). Signatures here are electronic signatures with an audit trail.
 - Signer identity checks beyond the emailed code, such as SMS codes or ID documents.
